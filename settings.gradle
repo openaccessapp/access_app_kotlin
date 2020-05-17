@@ -1,0 +1,2 @@
+rootProject.name='Access-App'
+include ':app'
