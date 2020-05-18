@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Access-App</string>
+    <string name="_3">3</string>
+    <string name="_1">1</string>
+    <string name="_5">5</string>
+    <string name="_3">3</string>
+    <string name="_1">1</string>
+    <string name="_5">5</string>
+    <string name="w">W</string>
+    <string name="t">T</string>
+    <string name="m">M</string>
+    <string name="stats">Stats</string>
 </resources>
