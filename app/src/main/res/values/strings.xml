@@ -7,4 +7,7 @@
     <string name="t">T</string>
     <string name="m">M</string>
     <string name="stats">Stats</string>
+    <string name="pick_time" />
+    <string name="pick_date" />
+    <string name="hello" />
 </resources>
