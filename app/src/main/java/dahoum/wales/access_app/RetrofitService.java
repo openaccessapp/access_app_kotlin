@@ -2,17 +2,23 @@ package dahoum.wales.access_app;
 
 import com.google.gson.JsonObject;
 
+import java.util.HashMap;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface RetrofitService {
 
-    @GET("/posts")
-    Call<List<JsonObject>> getAllPosts();
+    @GET("/access")
+    Call<List<JsonObject>> getAllPlaces();
 
-    @POST("/posts")
-    Call<List<JsonObject>> POSTRequest();
+    @GET("/access/demo")
+    Call<JsonObject> getDemo();
+
+    @PUT("/access/{placeId}")
+    Call<JsonObject> updatePlace(@Path("placeId") String placeId, @Body HashMap<String, String> body);
 }
