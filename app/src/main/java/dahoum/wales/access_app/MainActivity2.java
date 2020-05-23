@@ -54,6 +54,18 @@ public class MainActivity2 extends AppCompatActivity {
         });
         toDateTv = findViewById(R.id.toDateTv);
 
+        toDateTv.setOnClickListener(v -> {
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    (view, year, monthOfYear, dayOfMonth) -> {
+                        calendarTo.set(Calendar.YEAR, year);
+                        calendarTo.set(Calendar.MONTH, monthOfYear);
+                        calendarTo.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                        showTimePickerTo();
+                    }, calendarTo.get(Calendar.YEAR), calendarTo.get(Calendar.MONTH), calendarTo.get(Calendar.DAY_OF_MONTH));
+
+            datePickerDialog.show();
+        });
+
         service = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
         Call<JsonObject> getDemo = service.getDemo();
         getDemo.enqueue(new Callback<JsonObject>() {
@@ -61,18 +73,20 @@ public class MainActivity2 extends AppCompatActivity {
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
                 try {
-                    Date fromDate = simpleDateFormat.parse( response.body().getAsJsonObject().get("fromDate").getAsString());
+                    Date fromDate = simpleDateFormat.parse(response.body().getAsJsonObject().get("fromDate").getAsString());
                     calendarFrom.setTime(fromDate);
                     SimpleDateFormat dateFormat = new SimpleDateFormat("E, d MMM yyyy HH:mm:ss", Locale.getDefault());
                     fromDateTv.setText(dateFormat.format(fromDate));
 
-                    Date toDate = simpleDateFormat.parse( response.body().getAsJsonObject().get("toDate").getAsString());
+                    Date toDate = simpleDateFormat.parse(response.body().getAsJsonObject().get("toDate").getAsString());
                     calendarTo.setTime(toDate);
-                    toDateTv.setText(dateFormat.format(toDate));
+                    SimpleDateFormat dateFormatTo = new SimpleDateFormat("E, d MMM yyyy HH:mm:ss", Locale.getDefault());
+                    toDateTv.setText(dateFormatTo.format(toDate));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             }
+
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
@@ -87,10 +101,22 @@ public class MainActivity2 extends AppCompatActivity {
                     calendarFrom.set(Calendar.HOUR_OF_DAY, pHour);
                     calendarFrom.set(Calendar.MINUTE, pMinute);
                     updateOnServer();
-                }, calendarFrom.get(Calendar.HOUR_OF_DAY), calendarFrom.get(Calendar.MINUTE), true);
 
+                }, calendarFrom.get(Calendar.HOUR_OF_DAY), calendarFrom.get(Calendar.MINUTE), true);
         timePickerDialog.show();
     }
+
+    private void showTimePickerTo() {
+        TimePickerDialog timePickerDialogTo = new TimePickerDialog(this,
+                (view, pHourTo, pMinuteTo) -> {
+                    calendarTo.set(Calendar.HOUR_OF_DAY, pHourTo);
+                    calendarTo.set(Calendar.MINUTE, pMinuteTo);
+                    updateOnServer();
+                }, calendarTo.get(Calendar.HOUR_OF_DAY), calendarTo.get(Calendar.MINUTE), true);
+
+        timePickerDialogTo.show();
+    }
+
 
     private void updateOnServer() {
         HashMap<String, String> body = new HashMap<>();
