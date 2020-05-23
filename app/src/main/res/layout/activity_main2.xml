@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/fromDateEt"
+        android:id="@+id/fromDateTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textview" />
 
     <TextView
-        android:id="@+id/toDateEt"
+        android:id="@+id/toDateTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -42,6 +42,6 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fromDateEt" />
+        app:layout_constraintTop_toBottomOf="@+id/fromDateTv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

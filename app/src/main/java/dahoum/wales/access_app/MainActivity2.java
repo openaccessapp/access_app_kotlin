@@ -40,7 +40,7 @@ public class MainActivity2 extends AppCompatActivity {
         calendarFrom = Calendar.getInstance();
         calendarTo = Calendar.getInstance();
 
-        fromDateTv = findViewById(R.id.fromDateEt);
+        fromDateTv = findViewById(R.id.fromDateTv);
         fromDateTv.setOnClickListener(v -> {
             DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                     (view, year, monthOfYear, dayOfMonth) -> {
@@ -52,7 +52,7 @@ public class MainActivity2 extends AppCompatActivity {
 
             datePickerDialog.show();
         });
-        toDateTv = findViewById(R.id.toDateEt);
+        toDateTv = findViewById(R.id.toDateTv);
 
         service = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
         Call<JsonObject> getDemo = service.getDemo();
