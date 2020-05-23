@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     private val TAG: String? = MainActivity::class.java.simpleName
     lateinit var calendarFrom: Calendar
     lateinit var calendarTo: Calendar
-    lateinit var service: RetrofitService
+    lateinit var service: RetrofitService2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             datePickerDialog.show()
         }
 
-        service = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService::class.java)
+        service = RetrofitClientInstance2().getRetrofitInstance()!!.create(RetrofitService2::class.java)
     }
 
     fun showTimePicker() {
