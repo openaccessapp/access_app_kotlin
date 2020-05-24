@@ -52,8 +52,8 @@ public class MainActivity2 extends AppCompatActivity {
 
             datePickerDialog.show();
         });
-        toDateTv = findViewById(R.id.toDateTv);
 
+        toDateTv = findViewById(R.id.toDateTv);
         toDateTv.setOnClickListener(v -> {
             DatePickerDialog datePickerDialog = new DatePickerDialog(this,
                     (view, year, monthOfYear, dayOfMonth) -> {
