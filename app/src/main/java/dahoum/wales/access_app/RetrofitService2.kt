@@ -13,7 +13,7 @@ interface RetrofitService2 {
     fun allPlaces(): Call<List<JsonObject>>
 
     @GET("/access/demo")
-    fun demo(): Call<JsonObject>
+    fun getDemo(): Call<JsonObject>
 
     @PUT("/access/{placeId}")
     fun updatePlace(@Path("placeId") placeId: String, @Body body: HashMap<String, String>): Call<JsonObject>
