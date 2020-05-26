@@ -1,4 +1,4 @@
-package dahoum.wales.access_app
+package dahoum.wales.access_app.network
 
 import com.google.gson.JsonObject
 import retrofit2.Call

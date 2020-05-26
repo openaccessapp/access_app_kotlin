@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/tree_top"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/christmas_tree"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,8 +17,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="25dp"
         android:onClick="goBack"
         android:src="@drawable/ic_keyboard_backspace_black_24dp"
@@ -63,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                app:cardCornerRadius="30dp"
+                app:cardCornerRadius="5dp"
                 app:cardElevation="0dp"
                 app:cardUseCompatPadding="true">
 
@@ -88,11 +88,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/title"
+                android:layout_marginTop="10dp"
                 android:layout_toEndOf="@id/image"
                 android:fontFamily="@font/rubik"
                 android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna"
                 android:textColor="@color/text_grey"
                 android:textSize="12sp" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_info"
+                android:tint="@color/colorPrimary" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

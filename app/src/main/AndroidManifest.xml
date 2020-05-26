@@ -3,6 +3,10 @@
     package="dahoum.wales.access_app">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <meta-data
+        android:name="com.google.android.gms.vision.DEPENDENCIES"
+        android:value="barcode" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="false"
@@ -25,7 +29,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity2" />
-        <activity android:name=".EventsActivity" />
     </application>
 
 </manifest>

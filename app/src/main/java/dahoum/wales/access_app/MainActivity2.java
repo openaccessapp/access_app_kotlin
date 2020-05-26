@@ -1,128 +1,99 @@
 package dahoum.wales.access_app;
 
-import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
-import com.google.gson.JsonObject;
+import dahoum.wales.access_app.navigation.CalendarFragment;
+import dahoum.wales.access_app.navigation.HomeFragment;
+import dahoum.wales.access_app.navigation.PlacesFragment;
+import dahoum.wales.access_app.navigation.ScanFragment;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Locale;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-public class MainActivity2 extends AppCompatActivity {
+public class MainActivity2 extends AppCompatActivity implements View.OnClickListener{
 
     private static final String TAG = MainActivity2.class.getSimpleName();
-
-    private TextView fromDateTv, toDateTv;
-    private Calendar calendarFrom, calendarTo;
-    private RetrofitService service;
+    private LinearLayout home, places, calendar, scan;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        calendarFrom = Calendar.getInstance();
-        calendarTo = Calendar.getInstance();
+        home = findViewById(R.id.homeButton);
+        home.setOnClickListener(this);
+        places = findViewById(R.id.placesButton);
+        places.setOnClickListener(this);
+        calendar = findViewById(R.id.calendarButton);
+        calendar.setOnClickListener(this);
+        scan = findViewById(R.id.scanButton);
+        scan.setOnClickListener(this);
 
-        fromDateTv = findViewById(R.id.fromDateTv);
-        fromDateTv.setOnClickListener(v -> {
-            showDateTimePicker(calendarFrom);
-        });
-
-        toDateTv = findViewById(R.id.toDateTv);
-        toDateTv.setOnClickListener(v -> {
-            showDateTimePicker(calendarTo);
-        });
-
-        service = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
-        Call<JsonObject> getDemo = service.getDemo();
-        getDemo.enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
-                SimpleDateFormat serverDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
-                SimpleDateFormat viewsDateFormat = new SimpleDateFormat("E, d MMM yyyy HH:mm:ss", Locale.getDefault());
-                try {
-                    Date fromDate = serverDateFormat.parse(response.body().getAsJsonObject().get("fromDate").getAsString());
-                    Date toDate = serverDateFormat.parse(response.body().getAsJsonObject().get("toDate").getAsString());
-                    calendarFrom.setTime(fromDate);
-                    calendarTo.setTime(toDate);
-                    toDateTv.setText(viewsDateFormat.format(toDate));
-                    fromDateTv.setText(viewsDateFormat.format(fromDate));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                Toast.makeText(MainActivity2.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        openFragment(HomeFragment.newInstance("", ""));
     }
 
-    private void showDateTimePicker(Calendar calendar) {
-        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
-                (view, year, monthOfYear, dayOfMonth) -> {
-                    calendar.set(Calendar.YEAR, year);
-                    calendar.set(Calendar.MONTH, monthOfYear);
-                    calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                    TimePickerDialog timePickerDialog = new TimePickerDialog(this,
-                            (view1, pHour, pMinute) -> {
-                                calendar.set(Calendar.HOUR_OF_DAY, pHour);
-                                calendar.set(Calendar.MINUTE, pMinute);
-                                updateOnServer();
-
-                            }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
-                    timePickerDialog.show();
-                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-
-        datePickerDialog.show();
+    public void openFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
-    private void updateOnServer() {
-        HashMap<String, String> body = new HashMap<>();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
-        body.put("fromDate", simpleDateFormat.format(calendarFrom.getTime()));
-        body.put("toDate", simpleDateFormat.format(calendarTo.getTime()));
-        Call<JsonObject> updateTime = service.updatePlace("demo", body);
-        updateTime.enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                SimpleDateFormat serverDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
-                SimpleDateFormat viewsDateFormat = new SimpleDateFormat("E, d MMM yyyy HH:mm:ss", Locale.getDefault());
-                try {
-                    Date fromDate = serverDateFormat.parse(response.body().getAsJsonObject().get("fromDate").getAsString());
-                    Date toDate = serverDateFormat.parse(response.body().getAsJsonObject().get("toDate").getAsString());
-                    calendarFrom.setTime(fromDate);
-                    calendarTo.setTime(toDate);
-                    toDateTv.setText(viewsDateFormat.format(toDate));
-                    fromDateTv.setText(viewsDateFormat.format(fromDate));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                Toast.makeText(MainActivity2.this, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.homeButton:
+                ((ImageView) home.findViewById(R.id.homeImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
+                ((TextView) home.findViewById(R.id.homeTv)).setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                ((ImageView) places.findViewById(R.id.placesImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
+                ((TextView) places.findViewById(R.id.placesTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
+                ((ImageView) calendar.findViewById(R.id.calendarImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
+                ((TextView) calendar.findViewById(R.id.calendarTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
+                ((ImageView) scan.findViewById(R.id.scanImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
+                ((TextView) scan.findViewById(R.id.scanTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
+                openFragment(HomeFragment.newInstance("", ""));
+                break;
+            case R.id.placesButton:
+                ((ImageView) places.findViewById(R.id.placesImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
+                ((TextView) places.findViewById(R.id.placesTv)).setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                ((ImageView) home.findViewById(R.id.homeImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
+                ((TextView) home.findViewById(R.id.homeTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
+                ((ImageView) calendar.findViewById(R.id.calendarImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
+                ((TextView) calendar.findViewById(R.id.calendarTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
+                ((ImageView) scan.findViewById(R.id.scanImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
+                ((TextView) scan.findViewById(R.id.scanTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
+                openFragment(PlacesFragment.newInstance());
+                break;
+            case R.id.calendarButton:
+                ((ImageView) calendar.findViewById(R.id.calendarImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
+                ((TextView) calendar.findViewById(R.id.calendarTv)).setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                ((ImageView) places.findViewById(R.id.placesImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
+                ((TextView) places.findViewById(R.id.placesTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
+                ((ImageView) home.findViewById(R.id.homeImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
+                ((TextView) home.findViewById(R.id.homeTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
+                ((ImageView) scan.findViewById(R.id.scanImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
+                ((TextView) scan.findViewById(R.id.scanTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
+                openFragment(CalendarFragment.newInstance("", ""));
+                break;
+            case R.id.scanButton:
+                ((ImageView) scan.findViewById(R.id.scanImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
+                ((TextView) scan.findViewById(R.id.scanTv)).setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
+                ((ImageView) places.findViewById(R.id.placesImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
+                ((TextView) places.findViewById(R.id.placesTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
+                ((ImageView) home.findViewById(R.id.homeImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
+                ((TextView) home.findViewById(R.id.homeTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
+                ((ImageView) calendar.findViewById(R.id.calendarImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
+                ((TextView) calendar.findViewById(R.id.calendarTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
+                openFragment(ScanFragment.newInstance());
+                break;
+        }
     }
 }
 

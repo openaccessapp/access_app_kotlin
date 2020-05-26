@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EventsActivity">
+    tools:context=".MainActivity2">
 
     <ImageView
         android:id="@+id/tree_top"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/christmas_tree"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,10 +17,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_marginEnd="25dp"
-        android:src="@mipmap/qrcode_scan"
+        android:src="@drawable/ic_qrcode_scan"
         app:layout_constraintBottom_toBottomOf="@id/tree_top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tree_top" />
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/rubik_medium"
         android:text="Upcoming Visits"
         android:textSize="16sp"
@@ -68,7 +68,7 @@
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/bell" />
+                    android:src="@drawable/ic_bell" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/priority_text"
@@ -109,7 +109,7 @@
                 android:layout_height="24dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/person_outline"
+                android:src="@drawable/ic_person_outline_24px"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layout_buttons" />
 
@@ -118,7 +118,7 @@
                 android:layout_width="17dp"
                 android:layout_height="17dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/clock"
+                android:src="@drawable/ic_clock"
                 app:layout_constraintEnd_toEndOf="@id/person"
                 app:layout_constraintStart_toStartOf="@id/person"
                 app:layout_constraintTop_toBottomOf="@id/person" />
@@ -153,7 +153,8 @@
                 android:layout_height="17dp"
                 android:layout_marginStart="80dp"
                 android:layout_marginEnd="6dp"
-                android:src="@drawable/calendar_alt"
+                android:tint="@color/icon_tint"
+                android:src="@drawable/ic_calendar_alt"
                 app:layout_constraintBottom_toBottomOf="@id/calendar_date"
                 app:layout_constraintEnd_toStartOf="@id/calendar_date"
                 app:layout_constraintTop_toTopOf="@id/calendar_date" />
@@ -182,6 +183,5 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,4 +5,10 @@
     <item>
         <color android:color="@color/white" />
     </item>
+
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/christmas_tree_launcher" />
+    </item>
 </layer-list>

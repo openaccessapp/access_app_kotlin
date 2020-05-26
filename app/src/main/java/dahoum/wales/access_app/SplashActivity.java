@@ -16,7 +16,7 @@ public class SplashActivity extends AppCompatActivity {
 
         Button getStarted = findViewById(R.id.get_started_button);
         getStarted.setOnClickListener(v -> {
-            startActivity(new Intent(this, EventsActivity.class));
+            startActivity(new Intent(this, MainActivity2.class));
             finish();
         });
 

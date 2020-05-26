@@ -6,14 +6,19 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-<!--        <item name="android:statusBarColor">@color/white</item>-->
+        <!--        <item name="android:statusBarColor">@color/white</item>-->
     </style>
 
     <style name="AppTheme.Launcher">
         <!-- Customize your theme here. -->
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-<!--        <item name="android:statusBarColor">@color/white</item>-->
+        <!--        <item name="android:statusBarColor">@color/white</item>-->
         <item name="android:windowBackground">@drawable/launch_screen</item>
+    </style>
+
+    <style name="CustomChipChoice" parent="@style/Widget.MaterialComponents.Chip.Action">
+        <item name="chipBackgroundColor">@color/chip_color_state_list</item>
+        <item name="android:textColor">@color/chip_text_state_list</item>
     </style>
 
 </resources>

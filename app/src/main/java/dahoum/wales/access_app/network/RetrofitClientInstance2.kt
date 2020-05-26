@@ -1,4 +1,4 @@
-package dahoum.wales.access_app
+package dahoum.wales.access_app.network
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

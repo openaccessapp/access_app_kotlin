@@ -7,6 +7,10 @@
     <color name="text_color_dark">#474A67</color>
     <color name="text_grey">#9597AC</color>
     <color name="red">#FF0000</color>
+    <color name="disabled_tint">#DBDDEB</color>
     <color name="green">#1BE41B</color>
     <color name="white">#FFFFFF</color>
+    <color name="icon_tint">#9597AC</color>
+    <color name="grey">#F7F7FA</color>
+
 </resources>
