@@ -108,7 +108,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/rubik"
-                android:text="Calendar"
+                android:text="Planner"
                 android:textAllCaps="false"
                 android:textColor="@color/disabled_tint"
                 android:textSize="12sp" />
