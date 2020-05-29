@@ -8,21 +8,21 @@
 
     <ImageView
         android:id="@+id/tree_top"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/christmas_tree"
+        android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginEnd="25dp"
-        android:src="@drawable/ic_qrcode_scan"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="35dp"
+        android:src="@drawable/ic_user"
         app:layout_constraintBottom_toBottomOf="@id/tree_top"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tree_top" />
 
     <TextView
@@ -37,151 +37,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tree_top" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_history_museum"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/homeRecyclerView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
+        android:overScrollMode="never"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/textView"
-        app:layout_constraintTop_toBottomOf="@id/textView">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp">
-
-            <LinearLayout
-                android:id="@+id/layout_buttons"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/bell_icon"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_bell" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/priority_text"
-                    style="@style/Widget.MaterialComponents.TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="6dp"
-                    android:layout_toRightOf="@id/bell_icon"
-                    android:background="@drawable/rounded_textview"
-                    android:fontFamily="@font/rubik_bold"
-                    android:padding="5dp"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:text="Priority"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    app:cornerRadius="10dp" />
-
-                <com.google.android.material.textview.MaterialTextView
-                    style="@style/Widget.MaterialComponents.TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:layout_toRightOf="@id/bell_icon"
-                    android:fontFamily="@font/rubik_bold"
-                    android:padding="5dp"
-                    android:text="History Museum"
-                    android:textColor="@color/text_color_dark"
-                    android:textSize="16sp"
-                    app:cornerRadius="10dp" />
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/person"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/ic_person_outline_24px"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layout_buttons" />
-
-            <ImageView
-                android:id="@+id/clock"
-                android:layout_width="17dp"
-                android:layout_height="17dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/ic_clock"
-                app:layout_constraintEnd_toEndOf="@id/person"
-                app:layout_constraintStart_toStartOf="@id/person"
-                app:layout_constraintTop_toBottomOf="@id/person" />
-
-            <TextView
-                android:id="@+id/personCountTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/rubik_bold"
-                android:text="1"
-                android:textColor="@color/text_color_dark"
-                app:layout_constraintBottom_toBottomOf="@id/person"
-                app:layout_constraintStart_toEndOf="@id/person"
-                app:layout_constraintTop_toTopOf="@id/person" />
-
-            <TextView
-                android:id="@+id/timeTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/rubik_bold"
-                android:text="10:10 - 11:00"
-                android:textColor="@color/text_color_dark"
-                app:layout_constraintBottom_toBottomOf="@id/clock"
-                app:layout_constraintStart_toEndOf="@id/clock"
-                app:layout_constraintTop_toTopOf="@id/clock" />
-
-            <ImageView
-                android:id="@+id/calendar_icon"
-                android:layout_width="17dp"
-                android:layout_height="17dp"
-                android:layout_marginStart="80dp"
-                android:layout_marginEnd="6dp"
-                android:tint="@color/icon_tint"
-                android:src="@drawable/ic_calendar_alt"
-                app:layout_constraintBottom_toBottomOf="@id/calendar_date"
-                app:layout_constraintEnd_toStartOf="@id/calendar_date"
-                app:layout_constraintTop_toTopOf="@id/calendar_date" />
-
-            <TextView
-                android:id="@+id/calendar_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="60dp"
-                android:fontFamily="@font/rubik_bold"
-                android:text="25th May"
-                android:textColor="@color/text_color_dark"
-                app:layout_constraintBottom_toBottomOf="@id/clock"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/clock" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/rubik_bold"
-                android:text="20/100"
-                android:textColor="@color/colorAccent"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="@id/layout_buttons"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

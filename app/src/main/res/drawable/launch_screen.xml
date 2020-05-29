@@ -9,6 +9,6 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/christmas_tree_launcher" />
+            android:src="@drawable/logo_launcher" />
     </item>
 </layer-list>

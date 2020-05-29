@@ -3,24 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".PlanVisitActivity">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/tree_top"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_marginTop="20dp"
-        android:src="@drawable/christmas_tree"
+        android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:layout_width="20dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="25dp"
-        android:onClick="goBack"
+        android:id="@+id/goBack"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="27dp"
+        android:background="?selectableItemBackgroundBorderless"
         android:src="@drawable/ic_keyboard_backspace_black_24dp"
         app:layout_constraintBottom_toBottomOf="@id/tree_top"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="23dp"
         android:fontFamily="@font/rubik_bold"
         android:text="Plan Visit"
         android:textColor="@color/text_color_dark"
@@ -85,6 +85,7 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/contentText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/title"
@@ -96,13 +97,63 @@
                 android:textSize="12sp" />
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:id="@+id/infoButton"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 android:layout_alignParentEnd="true"
                 android:src="@drawable/ic_info"
                 android:tint="@color/colorPrimary" />
-        </RelativeLayout>
 
+            <View
+                android:id="@+id/cellSeparator"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/contentText"
+                android:layout_alignStart="@id/contentText"
+                android:layout_alignEnd="@id/contentText"
+                android:layout_marginTop="7dp"
+                android:background="@color/grey" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cellSeparator"
+                android:layout_alignStart="@id/contentText"
+                android:layout_alignEnd="@id/contentText"
+                android:layout_marginTop="7dp">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_globe" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/rubik"
+                    android:text="www.centralpark.com"
+                    android:textColor="@color/blue" />
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_calender"
+                    android:tint="@color/text_grey" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="12"
+                    android:textColor="@color/text_color_dark" />
+            </LinearLayout>
+        </RelativeLayout>
 
 
     </androidx.cardview.widget.CardView>
@@ -116,15 +167,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card_history_museum">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="#FFFFFF"
-            android:clickable="true"
-            app:rippleColor="@color/text_grey"
-            app:srcCompat="@drawable/ic_calendar_alt" />
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_calendar_alt"
+            android:tint="@color/text_grey" />
 
         <TextView
             android:id="@+id/textView3"
@@ -234,13 +281,13 @@
     <LinearLayout
         android:layout_width="374dp"
         android:layout_height="45dp"
-        android:orientation="horizontal"
+        android:background="@color/grey"
         android:backgroundTint="@color/grey"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.548"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        android:background="@color/grey">
+        app:layout_constraintTop_toBottomOf="@+id/textView7">
 
 
         <Button
@@ -289,138 +336,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="0dp" />
-
-    <LinearLayout
-        android:id="@+id/navigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <LinearLayout
-            android:id="@+id/homeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:orientation="vertical"
-            android:paddingTop="5dp"
-            android:paddingBottom="10dp">
-
-            <ImageView
-                android:id="@+id/homeImg"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_home_alt" />
-
-            <TextView
-                android:id="@+id/homeTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/rubik"
-                android:text="Home"
-                android:textAllCaps="false"
-                android:textColor="@color/colorPrimary"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/placesButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:orientation="vertical"
-            android:paddingTop="5dp"
-            android:paddingBottom="10dp">
-
-            <ImageView
-                android:id="@+id/placesImg"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_map_marker"
-                android:tint="@color/disabled_tint" />
-
-            <TextView
-                android:id="@+id/placesTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/rubik"
-                android:text="Places"
-                android:textAllCaps="false"
-                android:textColor="@color/disabled_tint"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/calendarButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:orientation="vertical"
-            android:paddingTop="5dp"
-            android:paddingBottom="10dp">
-
-            <ImageView
-                android:id="@+id/calendarImg"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_calendar_alt"
-                android:tint="@color/disabled_tint" />
-
-            <TextView
-                android:id="@+id/calendarTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/rubik"
-                android:text="Planner"
-                android:textAllCaps="false"
-                android:textColor="@color/disabled_tint"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/scanButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:orientation="vertical"
-            android:paddingTop="5dp"
-            android:paddingBottom="10dp">
-
-            <ImageView
-                android:id="@+id/scanImg"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_qrcode_scan"
-                android:tint="@color/disabled_tint" />
-
-            <TextView
-                android:id="@+id/scanTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/rubik"
-                android:text="Scan"
-                android:textAllCaps="false"
-                android:textColor="@color/disabled_tint"
-                android:textSize="12sp" />
-        </LinearLayout>
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

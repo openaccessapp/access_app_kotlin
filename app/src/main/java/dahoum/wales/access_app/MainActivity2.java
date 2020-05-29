@@ -36,7 +36,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         scan = findViewById(R.id.scanButton);
         scan.setOnClickListener(this);
 
-        openFragment(HomeFragment.newInstance("", ""));
+        openFragment(HomeFragment.newInstance());
     }
 
     public void openFragment(Fragment fragment) {
@@ -58,7 +58,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                 ((TextView) calendar.findViewById(R.id.calendarTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
                 ((ImageView) scan.findViewById(R.id.scanImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
                 ((TextView) scan.findViewById(R.id.scanTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
-                openFragment(HomeFragment.newInstance("", ""));
+                openFragment(HomeFragment.newInstance());
                 break;
             case R.id.placesButton:
                 ((ImageView) places.findViewById(R.id.placesImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));

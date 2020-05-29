@@ -5,15 +5,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import com.google.android.material.chip.ChipGroup;
+import androidx.fragment.app.FragmentTransaction;
 
 import dahoum.wales.access_app.R;
 
-public class PlacesFragment extends Fragment {
+public class PlacesFragment extends Fragment implements FragmentCallback {
 
-    private ChipGroup chipGroup;
+    private static final String TAG = PlacesFragment.class.getSimpleName();
 
     public PlacesFragment() {
         // Required empty public constructor
@@ -26,15 +27,38 @@ public class PlacesFragment extends Fragment {
         return fragment;
     }
 
+    public void openFragment(Fragment fragment) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.places_container, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_places, container, false);
-        chipGroup = rootView.findViewById(R.id.chip_group);
-        chipGroup.setOnCheckedChangeListener((group, checkedId) -> {
+    public void onAttachFragment(@NonNull Fragment fragment) {
+        if (fragment instanceof PlacesHomeFragment) {
+            PlacesHomeFragment placesHomeFragment = (PlacesHomeFragment) fragment;
+            placesHomeFragment.setListener(this);
+        }
+    }
 
-        });
-        return rootView;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_places, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        PlacesHomeFragment placesHomeFragment = PlacesHomeFragment.newInstance();
+        placesHomeFragment.setListener(this);
+        openFragment(placesHomeFragment);
+    }
+
+    @Override
+    public void onPlaceClicked() {
+        PlanVisitFragment planVisitFragment = PlanVisitFragment.newInstance();
+        openFragment(planVisitFragment);
     }
 }

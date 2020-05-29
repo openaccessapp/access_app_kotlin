@@ -18,7 +18,10 @@
 
     <style name="CustomChipChoice" parent="@style/Widget.MaterialComponents.Chip.Action">
         <item name="chipBackgroundColor">@color/chip_color_state_list</item>
-        <item name="android:textColor">@color/chip_text_state_list</item>
+    </style>
+
+    <style name="ChipUncheckedText" parent="TextAppearance.MaterialComponents.Chip">
+        <item name="android:textColor">@color/white</item>
     </style>
 
 </resources>

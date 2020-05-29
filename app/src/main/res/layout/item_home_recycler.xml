@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <!--    <androidx.cardview.widget.CardView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:clickable="true"-->
+    <!--        android:focusable="true"-->
+    <!--        android:foreground="?android:attr/selectableItemBackground"-->
+    <!--        app:cardCornerRadius="10dp"-->
+    <!--        app:cardElevation="10dp"-->
+    <!--        app:cardPreventCornerOverlap="false"-->
+    <!--        app:cardUseCompatPadding="true"-->
+    <!--        app:contentPadding="10dp">-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/rounded_item"
+        android:clipToPadding="false"
+        android:elevation="5dp"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:id="@+id/layout_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/bell_icon"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_bell" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/priority_text"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="6dp"
+                android:enabled="false"
+                android:fontFamily="@font/rubik_bold"
+                android:letterSpacing="0.0"
+                android:minHeight="40dp"
+                android:minWidth="0dp"
+                android:stateListAnimator="@null"
+                android:text="Priority"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:backgroundTint="@color/colorAccent"
+                app:cornerRadius="6dp" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/placeName"
+                style="@style/Widget.MaterialComponents.TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/rubik_bold"
+                android:padding="5dp"
+                android:text="History Museum"
+                android:textColor="@color/text_color_dark"
+                android:textSize="16sp"
+                app:cornerRadius="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/personsLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_buttons">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_person_outline_24px" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/clock"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginStart="3.5dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_clock"
+            app:layout_constraintStart_toStartOf="@id/personsLayout"
+            app:layout_constraintTop_toBottomOf="@id/personsLayout" />
+
+        <TextView
+            android:id="@+id/personCountTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/rubik_bold"
+            android:text="1"
+            android:textColor="@color/text_color_dark"
+            app:layout_constraintBottom_toBottomOf="@id/personsLayout"
+            app:layout_constraintStart_toEndOf="@id/personsLayout"
+            app:layout_constraintTop_toTopOf="@id/personsLayout" />
+
+        <TextView
+            android:id="@+id/hours_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/rubik_bold"
+            android:text="10:10 - 11:00"
+            android:textColor="@color/text_color_dark"
+            app:layout_constraintBottom_toBottomOf="@id/clock"
+            app:layout_constraintStart_toEndOf="@id/clock"
+            app:layout_constraintTop_toTopOf="@id/clock" />
+
+        <ImageView
+            android:id="@+id/calendar_icon"
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="6dp"
+            android:src="@drawable/ic_calendar_alt"
+            android:tint="@color/icon_tint"
+            app:layout_constraintBottom_toBottomOf="@id/calendar_date_rv"
+            app:layout_constraintEnd_toStartOf="@id/calendar_date_rv"
+            app:layout_constraintTop_toTopOf="@id/calendar_date_rv" />
+
+        <TextView
+            android:id="@+id/calendar_date_rv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="60dp"
+            android:fontFamily="@font/rubik_bold"
+            android:text="25th May"
+            android:textColor="@color/text_color_dark"
+            app:layout_constraintBottom_toBottomOf="@id/clock"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/clock" />
+
+        <TextView
+            android:id="@+id/placeCapacity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/rubik_bold"
+            android:text="20/100"
+            android:textColor="@color/colorAccent"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/layout_buttons"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/layout_buttons" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--    </androidx.cardview.widget.CardView>-->
+</LinearLayout>
