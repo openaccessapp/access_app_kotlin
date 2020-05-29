@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".navigation.VisitorsInformationFragment">
+
+
+    <LinearLayout
+        android:layout_width="372dp"
+        android:layout_height="88dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="22.78dp"
+            android:layout_height="8dp"
+            android:layout_weight="1"
+            android:background="@color/text_grey"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_keyboard_backspace_black_24dp"
+            android:translationX="27dp"
+            android:translationY="51dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/rubik_bold"
+            android:text="Central Park"
+            android:textAlignment="viewStart"
+            android:textColor="@color/text_color_dark"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
+</FrameLayout>

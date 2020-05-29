@@ -8,6 +8,8 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.ButtonBarLayout;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +26,7 @@ public class PlanVisitFragment extends Fragment {
     private List<Place> places;
     private ImageView goBackButton;
 
+
     public PlanVisitFragment() {
         // Required empty public constructor
     }
@@ -35,16 +38,20 @@ public class PlanVisitFragment extends Fragment {
         return fragment;
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_plan_visit, container, false);
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        goBackButton = view.findViewById(R.id.goBack);
-        goBackButton.setOnClickListener(v -> {
-            getActivity().onBackPressed();
-        });
+
+     @Override
+        public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+         goBackButton = view.findViewById(R.id.goBack);
+         goBackButton.setOnClickListener(v -> {
+             getActivity().onBackPressed();
+         });
+
     }
 }

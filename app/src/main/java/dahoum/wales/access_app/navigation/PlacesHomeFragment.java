@@ -48,6 +48,7 @@ public class PlacesHomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         cardView = view.findViewById(R.id.card_history_museum);
         cardView.setOnClickListener(v -> {
             callback.onPlaceClicked();
