@@ -8,17 +8,11 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.ButtonBarLayout;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import dahoum.wales.access_app.R;
-import dahoum.wales.access_app.adapters.HomeAdapter;
 import dahoum.wales.access_app.models.Place;
 
 public class PlanVisitFragment extends Fragment {
@@ -45,13 +39,13 @@ public class PlanVisitFragment extends Fragment {
     }
 
 
-     @Override
-        public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-         goBackButton = view.findViewById(R.id.goBack);
-         goBackButton.setOnClickListener(v -> {
-             getActivity().onBackPressed();
-         });
+        goBackButton = view.findViewById(R.id.goBack);
+        goBackButton.setOnClickListener(v -> {
+            getActivity().onBackPressed();
+        });
 
     }
 }

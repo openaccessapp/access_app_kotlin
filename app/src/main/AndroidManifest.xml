@@ -3,9 +3,11 @@
     package="dahoum.wales.access_app">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <meta-data
         android:name="com.google.android.gms.vision.DEPENDENCIES"
         android:value="barcode" />
+
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -17,6 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ProfileActivity"></activity>
         <activity android:name=".MainActivity" />
         <activity
             android:name=".SplashActivity"

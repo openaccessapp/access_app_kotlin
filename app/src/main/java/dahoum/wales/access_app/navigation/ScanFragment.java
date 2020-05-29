@@ -1,5 +1,6 @@
 package dahoum.wales.access_app.navigation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.SparseArray;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.vision.CameraSource;
@@ -19,6 +22,7 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
 
+import dahoum.wales.access_app.ProfileActivity;
 import dahoum.wales.access_app.R;
 
 public class ScanFragment extends Fragment {
@@ -82,5 +86,12 @@ public class ScanFragment extends Fragment {
             }
         });
         return rootView;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        view.findViewById(R.id.openProfile).setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), ProfileActivity.class));
+        });
     }
 }

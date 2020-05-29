@@ -1,7 +1,6 @@
 package dahoum.wales.access_app.navigation;
 
-import android.app.Activity;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 
+import dahoum.wales.access_app.ProfileActivity;
 import dahoum.wales.access_app.R;
 
 public class PlacesHomeFragment extends Fragment {
@@ -48,7 +48,9 @@ public class PlacesHomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        view.findViewById(R.id.openProfile).setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), ProfileActivity.class));
+        });
         cardView = view.findViewById(R.id.card_history_museum);
         cardView.setOnClickListener(v -> {
             callback.onPlaceClicked();

@@ -20,37 +20,6 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
-            android:id="@+id/homeButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:orientation="vertical"
-            android:paddingTop="5dp"
-            android:paddingBottom="10dp">
-
-            <ImageView
-                android:id="@+id/homeImg"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_home_alt" />
-
-            <TextView
-                android:id="@+id/homeTv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/rubik"
-                android:text="Home"
-                android:textAllCaps="false"
-                android:textColor="@color/colorPrimary"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/placesButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -66,8 +35,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_map_marker"
-                android:tint="@color/disabled_tint" />
+                android:src="@drawable/ic_map_marker" />
 
             <TextView
                 android:id="@+id/placesTv"
@@ -78,7 +46,7 @@
                 android:fontFamily="@font/rubik"
                 android:text="Places"
                 android:textAllCaps="false"
-                android:textColor="@color/disabled_tint"
+                android:textColor="@color/colorPrimary"
                 android:textSize="12sp" />
         </LinearLayout>
 

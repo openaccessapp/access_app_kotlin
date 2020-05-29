@@ -17,21 +17,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/openProfile"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_marginStart="35dp"
+        android:layout_marginEnd="35dp"
+        android:background="?selectableItemBackgroundBorderless"
         android:src="@drawable/ic_user"
         app:layout_constraintBottom_toBottomOf="@id/tree_top"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tree_top" />
 
     <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="25dp"
-        android:src="@drawable/ic_location_arrow"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="30dp"
+        android:src="@drawable/ic_near_me_24px"
         app:layout_constraintBottom_toBottomOf="@id/tree_top"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tree_top" />
 
     <View
