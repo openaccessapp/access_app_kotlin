@@ -84,6 +84,7 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -105,6 +106,7 @@
         android:id="@+id/editText3"
         android:layout_width="276dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:fontFamily="@font/rubik"
         android:gravity="start|top"
@@ -113,29 +115,31 @@
         android:textColor="@color/text_grey"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.474"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="275dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <TextView
         android:id="@+id/textView15"
-        android:layout_width="53pt"
-        android:layout_height="14pt"
-        android:layout_marginStart="44dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/rubik_medium"
         android:text="Mon-Sun"
         android:textAlignment="viewStart"
         android:textColor="@color/text_grey"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView17"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/button4"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="180dp"
         android:fontFamily="@font/rubik_bold"
         android:text="08:00 - 12:00"
@@ -143,6 +147,8 @@
         android:textColor="@color/text_color_dark"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/button4" />
 
     <Button
@@ -169,6 +175,7 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView19"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText3" />
 
@@ -181,6 +188,7 @@
         android:text="Non-Priority Group"
         android:textAlignment="viewStart"
         android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/editText3"
         app:layout_constraintStart_toEndOf="@+id/button5"
         app:layout_constraintTop_toBottomOf="@+id/editText3" />
 
@@ -189,21 +197,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/rubik_medium"
         android:text="Mon-Fri"
         android:textAlignment="viewStart"
         android:textColor="@color/text_grey"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView22"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        app:layout_constraintTop_toBottomOf="@+id/button5"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView22"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/rubik_bold"
         android:text="10:00 - 18:00"
         android:textAlignment="viewStart"

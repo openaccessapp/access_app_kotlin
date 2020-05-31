@@ -171,19 +171,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card_history_museum" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@id/button"
-        android:layout_width="360dp"
-        android:layout_height="350dp"
-        android:layout_marginTop="10dp"
-        android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground"
-        app:cardCornerRadius="6dp"
-        app:cardElevation="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView7">
 
+        <RelativeLayout
+            android:layout_width="320dp"
+            android:layout_height="210dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -192,9 +187,9 @@
             android:layout_marginTop="10dp"
             android:background="@color/grey"
             android:backgroundTint="@color/grey"
+            android:clickable="true"
             android:gravity="center"
             android:orientation="horizontal"
-            android:clickable="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7">
@@ -230,6 +225,7 @@
                 android:layout_width="72dp"
                 android:layout_height="14dp"
                 android:layout_gravity="center"
+                android:layout_marginEnd="20dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/rubik_bold"
                 android:gravity="center"
@@ -254,77 +250,92 @@
                 android:fontFamily="@font/rubik_bold"
                 android:text="14/20"
                 android:textColor="@color/disabled_tint" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:background="@color/grey"
-            android:backgroundTint="@color/grey"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayout1">
-
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button1"
-                style="@style/Widget.MaterialComponents.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|center_horizontal|center_vertical"
-                android:layout_marginStart="6dp"
-                android:background="@color/disabled_tint"
-                android:backgroundTint="@color/disabled_tint"
-                android:enabled="false"
-                android:fontFamily="@font/rubik"
-                android:insetLeft="6dp"
-                android:insetTop="6dp"
-                android:insetRight="6dp"
-                android:insetBottom="6dp"
-                android:letterSpacing="0.0"
-                android:minWidth="0dp"
-                android:minHeight="40dp"
-                android:stateListAnimator="@null"
-                android:text="Priority"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="72dp"
-                android:layout_height="14dp"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="@font/rubik_bold"
-                android:gravity="center"
-                android:lineSpacingExtra="14sp"
-                android:text="10:00 - 11:00"
-                android:textAlignment="center"
-                android:textColor="@color/disabled_tint"
-                android:textSize="12sp" />
 
             <ImageView
-                android:id="@+id/imageView11"
+                android:id="@+id/imageView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/ic_person_outline_24px" />
-
-            <TextView
-                android:id="@+id/textView12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/rubik_bold"
-                android:text="12/20"
-                android:textColor="@color/disabled_tint" />
+                app:srcCompat="@drawable/check" />
         </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="160dp"
+                android:background="@color/grey"
+                android:backgroundTint="@color/grey"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout1">
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button1"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|center_horizontal|center_vertical"
+                    android:layout_marginStart="6dp"
+                    android:background="@color/disabled_tint"
+                    android:backgroundTint="@color/disabled_tint"
+                    android:enabled="false"
+                    android:fontFamily="@font/rubik"
+                    android:insetLeft="6dp"
+                    android:insetTop="6dp"
+                    android:insetRight="6dp"
+                    android:insetBottom="6dp"
+                    android:letterSpacing="0.0"
+                    android:minWidth="0dp"
+                    android:minHeight="40dp"
+                    android:stateListAnimator="@null"
+                    android:text="Priority"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="72dp"
+                    android:layout_height="14dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/rubik_bold"
+                    android:gravity="center"
+                    android:lineSpacingExtra="14sp"
+                    android:text="10:00 - 11:00"
+                    android:textAlignment="center"
+                    android:textColor="@color/disabled_tint"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/imageView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_person_outline_24px" />
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="12/20"
+                    android:textColor="@color/disabled_tint" />
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/check" />
+            </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -370,6 +381,7 @@
                 android:layout_width="72dp"
                 android:layout_height="14dp"
                 android:layout_gravity="center"
+                android:layout_marginEnd="20dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/rubik_bold"
                 android:gravity="center"
@@ -394,80 +406,96 @@
                 android:fontFamily="@font/rubik_bold"
                 android:text="12/20"
                 android:textColor="@color/disabled_tint" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="160dp"
-            android:background="@color/colorAccent"
-            android:backgroundTint="@color/colorAccent"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayout">
-
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/button3"
-                style="@style/Widget.MaterialComponents.Button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|center_horizontal|center_vertical"
-                android:layout_marginStart="6dp"
-                android:background="@color/disabled_tint"
-                android:backgroundTint="@color/colorPrimary"
-                android:enabled="false"
-                android:fontFamily="@font/rubik"
-                android:insetLeft="6dp"
-                android:insetTop="6dp"
-                android:insetRight="6dp"
-                android:insetBottom="6dp"
-                android:letterSpacing="0.0"
-                android:minWidth="0dp"
-                android:minHeight="40dp"
-                android:stateListAnimator="@null"
-                android:text="Priority"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/textView16"
-                android:layout_width="72dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:fontFamily="@font/rubik_bold"
-                android:gravity="center"
-                android:lineSpacingExtra="14sp"
-                android:text="10:00 - 11:00"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="12sp" />
 
             <ImageView
-                android:id="@+id/imageView17"
+                android:id="@+id/imageView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:tint="#FFFFFF"
-                app:srcCompat="@drawable/ic_person_outline_24px" />
-
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/rubik_bold"
-                android:text="12/20"
-                android:textColor="@color/white" />
+                app:srcCompat="@drawable/check" />
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:background="@color/colorAccent"
+                android:backgroundTint="@color/colorAccent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout">
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/button3"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|center_horizontal|center_vertical"
+                    android:layout_marginStart="6dp"
+                    android:background="@color/disabled_tint"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:enabled="false"
+                    android:fontFamily="@font/rubik"
+                    android:insetLeft="6dp"
+                    android:insetTop="6dp"
+                    android:insetRight="6dp"
+                    android:insetBottom="6dp"
+                    android:letterSpacing="0.0"
+                    android:minWidth="0dp"
+                    android:minHeight="40dp"
+                    android:stateListAnimator="@null"
+                    android:text="Priority"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/rubik_bold"
+                    android:gravity="center"
+                    android:lineSpacingExtra="14sp"
+                    android:text="10:00 - 11:00"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/imageView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tint="#FFFFFF"
+                    app:srcCompat="@drawable/ic_person_outline_24px" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/rubik_bold"
+                    android:text="12/20"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/white" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/check" />
+            </LinearLayout>
+        </RelativeLayout>
+
 
     <FrameLayout
         android:id="@+id/container"
@@ -478,6 +506,180 @@
         app:layout_constraintVertical_bias="0.0"
         tools:layout_editor_absoluteX="0dp" />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="343dp"
+        android:layout_height="104dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill_vertical"
+                android:fontFamily="@font/rubik_medium"
+                android:text="14:00"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/imageView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                app:srcCompat="@drawable/ic_person_outline_24px" />
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/rubik_medium"
+                android:text="Visitors"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/editText4"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:ems="10"
+                android:fontFamily="@font/rubik_bold"
+                android:inputType="number"
+                android:text="1"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_color_dark"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/imageView15"
+                android:layout_width="16dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="50dp"
+                app:srcCompat="@drawable/ic_bell" />
+
+            <Switch
+                android:id="@+id/switch1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:checked="true"
+                android:fontFamily="@font/rubik_medium"
+                android:text="Reminder"
+                android:textColor="@color/text_grey"
+                android:textColorHighlight="@color/colorPrimary"
+                android:textSize="12sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:fontFamily="@font/rubik_medium"
+                android:text="12:00"
+                android:textColor="@color/text_color_dark"
+                android:textSize="12sp"
+                tools:layout_editor_absoluteX="-8dp"
+                tools:layout_editor_absoluteY="434dp" />
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|center_horizontal|center_vertical"
+                android:layout_marginLeft="20dp"
+                android:text="Standart"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                app:cornerRadius="6dp" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="wrap_content"
+                android:layout_height="33dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/rubik_bold"
+                android:text="Central Park"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_color_dark"
+                android:textSize="16sp" />
+        </TableRow>
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="19.69dp"
+        android:layout_height="19.69dp"
+        android:layout_marginEnd="44dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tree_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.777"
+        app:srcCompat="@drawable/ic_person_outline_24px" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="343dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:clickable="true"
+            android:scaleType="centerInside"
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_calendar_alt" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="15dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_horizontal"
+            android:layout_weight="1"
+            android:fontFamily="@font/rubik_medium"
+            android:text="MON"
+            android:textAlignment="center"
+            android:textColor="@color/text_grey"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:fontFamily="@font/rubik_bold"
+            android:text="31th May"
+            android:textColor="@color/text_color_dark"
+            android:textSize="16sp" />
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
