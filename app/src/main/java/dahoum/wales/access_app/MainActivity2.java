@@ -63,7 +63,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                 ((TextView) places.findViewById(R.id.placesTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
                 ((ImageView) scan.findViewById(R.id.scanImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
                 ((TextView) scan.findViewById(R.id.scanTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
-                openFragment(PlannerFragment.newInstance("", ""));
+                openFragment(PlannerFragment.newInstance());
                 break;
             case R.id.scanButton:
                 ((ImageView) scan.findViewById(R.id.scanImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));

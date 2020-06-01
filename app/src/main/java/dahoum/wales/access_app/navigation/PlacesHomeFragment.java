@@ -2,15 +2,14 @@ package dahoum.wales.access_app.navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.chip.Chip;
@@ -21,6 +20,7 @@ import dahoum.wales.access_app.R;
 
 public class PlacesHomeFragment extends Fragment {
 
+    private static final String TAG = PlacesHomeFragment.class.getSimpleName();
     private FragmentCallback callback;
     private ChipGroup chipGroup;
     private CardView cardView;
@@ -56,13 +56,9 @@ public class PlacesHomeFragment extends Fragment {
             callback.onPlaceClicked();
         });
         chipGroup = view.findViewById(R.id.chip_group);
-        chipGroup.setOnCheckedChangeListener(new ChipGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(ChipGroup group, int checkedId) {
-                Chip chip = (Chip) group.getChildAt(checkedId - 1);
-                chip.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
-                Toast.makeText(getContext(), "" + checkedId, Toast.LENGTH_SHORT).show();
-            }
+        chipGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            Chip chip = group.findViewById(checkedId);
+            Log.d(TAG, chip.getText().toString());
         });
     }
 

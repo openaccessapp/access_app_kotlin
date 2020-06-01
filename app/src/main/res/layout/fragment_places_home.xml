@@ -103,81 +103,79 @@
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chip_group"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:chipSpacing="8dp"
+            app:selectionRequired="true"
             app:singleSelection="true">
 
             <com.google.android.material.chip.Chip
-                style="@style/CustomChipChoice"
+                android:id="@+id/option1"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checkable="true"
-                android:clickable="true"
-                android:focusable="true"
                 android:fontFamily="@font/rubik_medium"
                 android:text="Favourites"
-                android:textAppearance="@style/ChipUncheckedText"
-                android:textColor="@color/text_grey"
+                android:textColor="@color/chip_text_state_list"
                 android:textSize="12sp"
-                app:checkedIconEnabled="false"
+                app:chipBackgroundColor="@color/chip_color_state_list"
                 app:chipCornerRadius="30dp"
                 app:chipIcon="@drawable/ic_heart"
+                app:chipIconEnabled="true"
                 app:chipIconSize="20dp"
-                app:chipStartPadding="14dp" />
+                app:chipIconTint="@color/chip_icon_state_list"
+                app:iconStartPadding="10dp" />
 
             <com.google.android.material.chip.Chip
-                style="@style/CustomChipChoice"
+                android:id="@+id/option2"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checkable="true"
-                android:clickable="true"
-                android:focusable="true"
                 android:fontFamily="@font/rubik_medium"
                 android:text="Parks"
-                android:textColor="@color/text_grey"
+                android:textColor="@color/chip_text_state_list"
                 android:textSize="12sp"
-                app:checkedIconEnabled="false"
+                app:chipBackgroundColor="@color/chip_color_state_list"
                 app:chipCornerRadius="30dp"
                 app:chipIcon="@drawable/ic_trees"
+                app:chipIconEnabled="true"
                 app:chipIconSize="20dp"
-                app:chipIconTint="@color/text_grey"
-                app:chipStartPadding="14dp" />
+                app:chipIconTint="@color/chip_icon_state_list"
+                app:iconStartPadding="10dp" />
 
             <com.google.android.material.chip.Chip
-                style="@style/CustomChipChoice"
+                android:id="@+id/option3"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checkable="true"
-                android:clickable="true"
-                android:focusable="true"
                 android:fontFamily="@font/rubik_medium"
                 android:text="Museums"
-                android:textColor="@color/text_grey"
+                android:textColor="@color/chip_text_state_list"
                 android:textSize="12sp"
-                app:checkedIconEnabled="false"
+                app:chipBackgroundColor="@color/chip_color_state_list"
                 app:chipCornerRadius="30dp"
                 app:chipIcon="@drawable/ic_museum_24px"
+                app:chipIconEnabled="true"
                 app:chipIconSize="20dp"
-                app:chipStartPadding="14dp" />
+                app:chipIconTint="@color/chip_icon_state_list"
+                app:iconStartPadding="10dp" />
 
             <com.google.android.material.chip.Chip
-                style="@style/CustomChipChoice"
+                android:id="@+id/option4"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checkable="true"
-                android:clickable="true"
-                android:focusable="true"
                 android:fontFamily="@font/rubik_medium"
                 android:text="Shopping basket"
-                android:textColor="@color/text_grey"
+                android:textColor="@color/chip_text_state_list"
                 android:textSize="12sp"
-                app:checkedIconEnabled="false"
+                app:chipBackgroundColor="@color/chip_color_state_list"
                 app:chipCornerRadius="30dp"
                 app:chipIcon="@drawable/ic_shopping_basket"
+                app:chipIconEnabled="true"
                 app:chipIconSize="20dp"
-                app:chipStartPadding="14dp" />
+                app:chipIconTint="@color/chip_icon_state_list"
+                app:iconStartPadding="10dp" />
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
 

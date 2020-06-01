@@ -1,7 +1,9 @@
 package dahoum.wales.access_app.navigation;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,61 +11,39 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSmoothScroller;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import dahoum.wales.access_app.ProfileActivity;
 import dahoum.wales.access_app.R;
+import dahoum.wales.access_app.adapters.PlannerAdapter;
+import dahoum.wales.access_app.models.Plan;
+import dahoum.wales.access_app.stickyheaders.StickyLinearLayoutManager;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PlannerFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class PlannerFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private RecyclerView recyclerView;
+    private PlannerAdapter adapter;
+    private List<Plan> plans = new ArrayList<>();
 
     public PlannerFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CalendarFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PlannerFragment newInstance(String param1, String param2) {
+    public static PlannerFragment newInstance() {
         PlannerFragment fragment = new PlannerFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_planner, container, false);
     }
 
@@ -72,5 +52,69 @@ public class PlannerFragment extends Fragment {
         view.findViewById(R.id.openProfile).setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), ProfileActivity.class));
         });
+
+        recyclerView = view.findViewById(R.id.recyclerViewPlanner);
+        getData();
+        adapter = new PlannerAdapter();
+        adapter.setDataList(plans);
+        StickyLinearLayoutManager layoutManager = new StickyLinearLayoutManager(view.getContext(), adapter) {
+            @Override
+            public boolean isAutoMeasureEnabled() {
+                return true;
+            }
+
+            @Override
+            public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int position) {
+                RecyclerView.SmoothScroller smoothScroller = new TopSmoothScroller(recyclerView.getContext());
+                smoothScroller.setTargetPosition(position);
+                startSmoothScroll(smoothScroller);
+            }
+
+            class TopSmoothScroller extends LinearSmoothScroller {
+
+                TopSmoothScroller(Context context) {
+                    super(context);
+                }
+
+                @Override
+                public int calculateDtToFit(int viewStart, int viewEnd, int boxStart, int boxEnd, int snapPreference) {
+                    return boxStart - viewStart;
+                }
+            }
+        };
+//        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        recyclerView.setAdapter(adapter);
+        layoutManager.setStickyHeaderListener(new StickyLinearLayoutManager.StickyHeaderListener() {
+            @Override
+            public void headerAttached(View headerView, int adapterPosition) {
+                Log.d("StickyHeader", "Header Attached : " + adapterPosition);
+            }
+
+            @Override
+            public void headerDetached(View headerView, int adapterPosition) {
+                Log.d("StickyHeader", "Header Detached : " + adapterPosition);
+            }
+        });
+    }
+
+    private void getData() {
+        plans.add(new Plan("MON", "27th May", 1));
+        plans.add(new Plan("Central Park", "Priority", 0));
+        plans.add(new Plan("History Museum", "Normal", 0));
+        plans.add(new Plan("History Museum", "Normal", 0));
+        plans.add(new Plan("TUE", "28th May", 1));
+        plans.add(new Plan("Central Park", "Priority", 0));
+        plans.add(new Plan("History Museum", "Normal", 0));
+        plans.add(new Plan("History Museum", "Normal", 0));
+        plans.add(new Plan("WED", "29th May", 1));
+        plans.add(new Plan("Central Park", "Priority", 0));
+        plans.add(new Plan("History Museum", "Normal", 0));
+        plans.add(new Plan("History Museum", "Normal", 0));
+        plans.add(new Plan("THU", "30th May", 1));
+        plans.add(new Plan("Central Park", "Priority", 0));
+        plans.add(new Plan("History Museum", "Normal", 0));
+        plans.add(new Plan("History Museum", "Normal", 0));
+
     }
 }
