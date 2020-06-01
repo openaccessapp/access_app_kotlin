@@ -157,7 +157,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center|center_horizontal|center_vertical"
         android:layout_marginStart="44dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:background="@color/disabled_tint"
         android:backgroundTint="@color/colorPrimary"
         android:enabled="false"
