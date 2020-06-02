@@ -83,6 +83,7 @@ public class PlannerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             placeName = itemView.findViewById(R.id.titlePlanner);
             priorityText = itemView.findViewById(R.id.priority_text);
+
         }
     }
 

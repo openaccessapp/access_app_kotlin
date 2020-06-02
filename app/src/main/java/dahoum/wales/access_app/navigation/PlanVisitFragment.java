@@ -68,22 +68,22 @@ public class PlanVisitFragment extends Fragment {
 
     private void getData() {
         slots.add(new Slot(null, null, null, "MON", "27th May", 1));
-        slots.add(new Slot("10:00 - 11:00", "Priority", "11/20",null, null, 0));
-        slots.add(new Slot("10:00 - 11:00", "Priority", "11/20",null, null, 0));
-        slots.add(new Slot("10:00 - 11:00", "Priority", "11/20",null, null, 0));
-        slots.add(new Slot("10:00 - 11:00", "Priority", "11/20",null, null, 0));
-        slots.add(new Slot("10:00 - 11:00", "Priority", "11/20",null, null, 0));
+        slots.add(new Slot("10:00 - 11:00", "Priority", "14/20",null, null, 0));
+        slots.add(new Slot("11:00 - 12:00", "Priority", "12/20",null, null, 0));
+        slots.add(new Slot("12:00 - 13:00", "Standart", "11/20",null, null, 0));
+        slots.add(new Slot("13:00 - 14:00", "Standart", "18/20",null, null, 0));
+        slots.add(new Slot("14:00 - 15:00", "Standart", "20/20",null, null, 0));
         slots.add(new Slot(null, null, null, "TUE", "28th May", 1));
-        slots.add(new Slot("10:00 - 11:00", "Priority", "11/20",null, null, 0));
-        slots.add(new Slot("10:00 - 11:00", "Priority", "11/20",null, null, 0));
-        slots.add(new Slot("10:00 - 11:00", "Priority", "11/20",null, null, 0));
-        slots.add(new Slot("10:00 - 11:00", "Priority", "11/20",null, null, 0));
-        slots.add(new Slot("10:00 - 11:00", "Priority", "11/20",null, null, 0));
+        slots.add(new Slot("10:00 - 11:00", "Priority", "16/20",null, null, 0));
+        slots.add(new Slot("11:00 - 12:00", "Priority", "18/20",null, null, 0));
+        slots.add(new Slot("12:00 - 13:00", "Standart", "11/20",null, null, 0));
+        slots.add(new Slot("13:00 - 14:00", "Standart", "14/20",null, null, 0));
+        slots.add(new Slot("14:00 - 15:00", "Priority", "20/20",null, null, 0));
         slots.add(new Slot(null, null, null, "WED", "29th May", 1));
-        slots.add(new Slot("10:00 - 11:00", "Priority", "11/20",null, null, 0));
-        slots.add(new Slot("10:00 - 11:00", "Priority", "11/20",null, null, 0));
-        slots.add(new Slot("10:00 - 11:00", "Priority", "11/20",null, null, 0));
-        slots.add(new Slot("10:00 - 11:00", "Priority", "11/20",null, null, 0));
-        slots.add(new Slot("10:00 - 11:00", "Priority", "11/20",null, null, 0));
+        slots.add(new Slot("10:00 - 11:00", "Priority", "18/20",null, null, 0));
+        slots.add(new Slot("11:00 - 12:00", "Standart", "11/20",null, null, 0));
+        slots.add(new Slot("12:00 - 13:00", "Standart", "13/20",null, null, 0));
+        slots.add(new Slot("13:00 - 14:00", "Priority", "20/20",null, null, 0));
+        slots.add(new Slot("14:00 - 15:00", "Standart", "10/20",null, null, 0));
     }
 }

@@ -102,19 +102,19 @@ public class PlannerFragment extends Fragment {
         plans.add(new Plan("MON", "27th May", 1));
         plans.add(new Plan("Central Park", "Priority", 0));
         plans.add(new Plan("History Museum", "Normal", 0));
-        plans.add(new Plan("History Museum", "Normal", 0));
+        plans.add(new Plan("South Park", "Normal", 0));
         plans.add(new Plan("TUE", "28th May", 1));
         plans.add(new Plan("Central Park", "Priority", 0));
         plans.add(new Plan("History Museum", "Normal", 0));
-        plans.add(new Plan("History Museum", "Normal", 0));
+        plans.add(new Plan("South Park", "Normal", 0));
         plans.add(new Plan("WED", "29th May", 1));
         plans.add(new Plan("Central Park", "Priority", 0));
         plans.add(new Plan("History Museum", "Normal", 0));
-        plans.add(new Plan("History Museum", "Normal", 0));
+        plans.add(new Plan("South Park", "Normal", 0));
         plans.add(new Plan("THU", "30th May", 1));
         plans.add(new Plan("Central Park", "Priority", 0));
         plans.add(new Plan("History Museum", "Normal", 0));
-        plans.add(new Plan("History Museum", "Normal", 0));
+        plans.add(new Plan("South Park", "Normal", 0));
 
     }
 }
