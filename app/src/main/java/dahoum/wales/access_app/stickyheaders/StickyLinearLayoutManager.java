@@ -127,7 +127,7 @@ public class StickyLinearLayoutManager extends LinearLayoutManager {
 
     private void cacheHeaderPositions() {
         mHeaderPositions.clear();
-        List<Plan> adapterData = mHeaderProvider.getAdapterData();
+        List<Plan> adapterData = (List<Plan>) mHeaderProvider.getAdapterData();
         if (adapterData == null) {
             if (mHeaderHandler != null) {
                 mHeaderHandler.setHeaderPositions(mHeaderPositions);

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import java.util.Map;
 
-public final class StickyHeaderHandler {
+public class StickyHeaderHandler {
 
     private static final int INVALID_POSITION = -1;
 
