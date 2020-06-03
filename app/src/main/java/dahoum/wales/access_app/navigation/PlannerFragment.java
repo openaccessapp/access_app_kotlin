@@ -99,22 +99,22 @@ public class PlannerFragment extends Fragment {
     }
 
     private void getData() {
-        plans.add(new Plan("MON", "27th May", 1));
-        plans.add(new Plan("Central Park", "Priority", 0));
-        plans.add(new Plan("History Museum", "Normal", 0));
-        plans.add(new Plan("South Park", "Normal", 0));
-        plans.add(new Plan("TUE", "28th May", 1));
-        plans.add(new Plan("Central Park", "Priority", 0));
-        plans.add(new Plan("History Museum", "Normal", 0));
-        plans.add(new Plan("South Park", "Normal", 0));
-        plans.add(new Plan("WED", "29th May", 1));
-        plans.add(new Plan("Central Park", "Priority", 0));
-        plans.add(new Plan("History Museum", "Normal", 0));
-        plans.add(new Plan("South Park", "Normal", 0));
-        plans.add(new Plan("THU", "30th May", 1));
-        plans.add(new Plan("Central Park", "Priority", 0));
-        plans.add(new Plan("History Museum", "Normal", 0));
-        plans.add(new Plan("South Park", "Normal", 0));
+        plans.add(new Plan(null,null,"MON", "27th May", 1));
+        plans.add(new Plan("11:00","12:00","Central Park", "Priority", 0));
+        plans.add(new Plan("12:00","13:00","History Museum", "Normal", 0));
+        plans.add(new Plan("13:00","14:00","South Park", "Normal", 0));
+        plans.add(new Plan(null,null,"TUE", "28th May", 1));
+        plans.add(new Plan("11:00","13:00","Central Park", "Priority", 0));
+        plans.add(new Plan("14:00","15:00","History Museum", "Normal", 0));
+        plans.add(new Plan("15:00","16:00","South Park", "Normal", 0));
+        plans.add(new Plan(null,null,"WED", "29th May", 1));
+        plans.add(new Plan("10:00","11:00","Central Park", "Priority", 0));
+        plans.add(new Plan("11:00","12:00","History Museum", "Normal", 0));
+        plans.add(new Plan("13:00","14:00","South Park", "Normal", 0));
+        plans.add(new Plan(null,null,"THU", "30th May", 1));
+        plans.add(new Plan("13:00","14:00","Central Park", "Priority", 0));
+        plans.add(new Plan("14:00","15:00","History Museum", "Normal", 0));
+        plans.add(new Plan("15:00","16:00","South Park", "Normal", 0));
 
     }
 }

@@ -37,6 +37,8 @@ public class PlannerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             itemViewHolder.placeName.setText(item.getPlaceName());
             itemViewHolder.priorityText.setText(item.getPriorityText());
+            itemViewHolder.hourFrom.setText(item.getHourFrom());
+            itemViewHolder.hourTo.setText(item.getHourTo());
         } else if (holder instanceof HeaderViewHolder) {
             HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
             headerViewHolder.shortDate.setText(item.getPlaceName());
@@ -75,12 +77,16 @@ public class PlannerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     private static final class ItemViewHolder extends RecyclerView.ViewHolder {
 
+        TextView hourFrom;
+        TextView hourTo;
         TextView placeName;
         TextView priorityText;
 
         ItemViewHolder(View itemView) {
             super(itemView);
 
+            hourFrom = itemView.findViewById(R.id.hourFrom);
+            hourTo = itemView.findViewById(R.id.hourTo);
             placeName = itemView.findViewById(R.id.titlePlanner);
             priorityText = itemView.findViewById(R.id.priority_text);
 
