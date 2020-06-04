@@ -16,4 +16,9 @@
         <item name="android:windowBackground">@drawable/launch_screen</item>
     </style>
 
+    <style name="BottomNavigationTheme" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:letterSpacing">0.0</item>
+        <item name="fontFamily">@font/rubik</item>
+    </style>
+
 </resources>

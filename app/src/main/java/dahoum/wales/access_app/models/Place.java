@@ -1,20 +1,40 @@
 package dahoum.wales.access_app.models;
 
-public class Place {
-    private String name;
-    private String capacity;
-    private int currentCount;
-    private String date;
-    private String hours;
-    private String priority;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public Place(String name, String capacity, int currentCount, String date, String hours, String priority) {
-        this.name = name;
-        this.capacity = capacity;
-        this.currentCount = currentCount;
-        this.date = date;
-        this.hours = hours;
-        this.priority = priority;
+public class Place {
+    @SerializedName("id")
+    @Expose
+    private String id;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("type")
+    @Expose
+    private String type;
+    @SerializedName("image")
+    @Expose
+    private String image;
+    @SerializedName("description")
+    @Expose
+    private String description;
+    @SerializedName("www")
+    @Expose
+    private String www;
+    @SerializedName("location")
+    @Expose
+    private String location;
+    @SerializedName("isFavourite")
+    @Expose
+    private Boolean isFavourite;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -25,43 +45,51 @@ public class Place {
         this.name = name;
     }
 
-    public String getCapacity() {
-        return capacity;
+    public String getType() {
+        return type;
     }
 
-    public void setCapacity(String capacity) {
-        this.capacity = capacity;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public int getCurrentCount() {
-        return currentCount;
+    public String getImage() {
+        return image;
     }
 
-    public void setCurrentCount(int currentCount) {
-        this.currentCount = currentCount;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getDate() {
-        return date;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getHours() {
-        return hours;
+    public String getWww() {
+        return www;
     }
 
-    public void setHours(String hours) {
-        this.hours = hours;
+    public void setWww(String www) {
+        this.www = www;
     }
 
-    public String getPriority() {
-        return priority;
+    public String getLocation() {
+        return location;
     }
 
-    public void setPriority(String priority) {
-        this.priority = priority;
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Boolean getIsFavourite() {
+        return isFavourite;
+    }
+
+    public void setIsFavourite(Boolean isFavourite) {
+        this.isFavourite = isFavourite;
     }
 }

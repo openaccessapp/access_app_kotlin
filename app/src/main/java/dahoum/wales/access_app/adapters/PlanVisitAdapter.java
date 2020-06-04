@@ -18,11 +18,17 @@ import dahoum.wales.access_app.stickyheaders.AdapterDataProvider;
 public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements AdapterDataProvider {
 
     private final List<Slot> dataList = new ArrayList<>();
+    private AdapterCallback callback;
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == 0) {
-            return new ItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_slot, parent, false));
+            ItemViewHolder itemViewHolder = new ItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_slot, parent, false));
+            itemViewHolder.itemView.setOnClickListener(v -> {
+                callback.onItemClick(itemViewHolder.getAdapterPosition());
+            });
+            return itemViewHolder;
+
         } else {
             return new HeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_planner_header, parent, false));
         }
@@ -71,6 +77,10 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
     }
 
+    public void setAdapterCallback(AdapterCallback callback) {
+        this.callback = callback;
+    }
+
     private static final class ItemViewHolder extends RecyclerView.ViewHolder {
 
         TextView hourFromTo;
@@ -94,5 +104,9 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             shortDate = itemView.findViewById(R.id.shortDay);
             date = itemView.findViewById(R.id.date);
         }
+    }
+
+    public interface AdapterCallback {
+        void onItemClick(int position);
     }
 }

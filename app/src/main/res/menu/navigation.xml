@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/placesNav"
+        android:icon="@drawable/ic_map_marker"
+        android:title="@string/places" />
+
+    <item
+        android:id="@+id/plannerNav"
+        android:icon="@drawable/ic_calendar_alt"
+        android:title="@string/planner" />
+
+    <item
+        android:id="@+id/scanNav"
+        android:icon="@drawable/ic_qrcode_scan"
+        android:title="@string/scan" />
+</menu>
