@@ -6,12 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity2">
 
-    <FrameLayout
-        android:id="@+id/container"
+    <dahoum.wales.access_app.CustomViewPager
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!--    <FrameLayout-->
+    <!--        android:id="@+id/container"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
@@ -28,102 +35,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/navigation" />
 
-    <!--    <LinearLayout-->
-    <!--        android:id="@+id/navigationView"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent">-->
-
-    <!--        <LinearLayout-->
-    <!--            android:id="@+id/placesButton"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:background="?attr/selectableItemBackgroundBorderless"-->
-    <!--            android:clickable="true"-->
-    <!--            android:orientation="vertical"-->
-    <!--            android:paddingTop="5dp"-->
-    <!--            android:paddingBottom="10dp">-->
-
-    <!--            <ImageView-->
-    <!--                android:id="@+id/placesImg"-->
-    <!--                android:layout_width="30dp"-->
-    <!--                android:layout_height="30dp"-->
-    <!--                android:layout_gravity="center"-->
-    <!--                android:src="@drawable/ic_map_marker" />-->
-
-    <!--            <TextView-->
-    <!--                android:id="@+id/placesTv"-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_gravity="center"-->
-    <!--                android:layout_marginTop="4dp"-->
-    <!--                android:fontFamily="@font/rubik"-->
-    <!--                android:text="Places"-->
-    <!--                android:textAllCaps="false"-->
-    <!--                android:textColor="@color/colorPrimary"-->
-    <!--                android:textSize="12sp" />-->
-    <!--        </LinearLayout>-->
-
-    <!--        <LinearLayout-->
-    <!--            android:id="@+id/calendarButton"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:background="?attr/selectableItemBackgroundBorderless"-->
-    <!--            android:clickable="true"-->
-    <!--            android:orientation="vertical"-->
-    <!--            android:paddingTop="5dp"-->
-    <!--            android:paddingBottom="10dp">-->
-
-    <!--            <ImageView-->
-    <!--                android:id="@+id/calendarImg"-->
-    <!--                android:layout_width="30dp"-->
-    <!--                android:layout_height="30dp"-->
-    <!--                android:layout_gravity="center"-->
-    <!--                android:src="@drawable/ic_calendar_alt"-->
-    <!--                android:tint="@color/disabled_tint" />-->
-
-    <!--            <TextView-->
-    <!--                android:id="@+id/calendarTv"-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_gravity="center"-->
-    <!--                android:layout_marginTop="4dp"-->
-    <!--                android:fontFamily="@font/rubik"-->
-    <!--                android:text="Planner"-->
-    <!--                android:textAllCaps="false"-->
-    <!--                android:textColor="@color/disabled_tint"-->
-    <!--                android:textSize="12sp" />-->
-    <!--        </LinearLayout>-->
-
-    <!--        <LinearLayout-->
-    <!--            android:id="@+id/scanButton"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:background="?attr/selectableItemBackgroundBorderless"-->
-    <!--            android:clickable="true"-->
-    <!--            android:orientation="vertical"-->
-    <!--            android:paddingTop="5dp"-->
-    <!--            android:paddingBottom="10dp">-->
-
-    <!--            <ImageView-->
-    <!--                android:id="@+id/scanImg"-->
-    <!--                android:layout_width="30dp"-->
-    <!--                android:layout_height="30dp"-->
-    <!--                android:layout_gravity="center"-->
-    <!--                android:src="@drawable/ic_qrcode_scan"-->
-    <!--                android:tint="@color/disabled_tint" />-->
-
-    <!--            <TextView-->
-    <!--                android:id="@+id/scanTv"-->
-    <!--                android:layout_width="wrap_content"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                android:layout_gravity="center"-->
-    <!--                android:layout_marginTop="4dp"-->
-    <!--                android:fontFamily="@font/rubik"-->
-    <!--                android:text="Scan"-->
-    <!--                android:textAllCaps="false"-->
-    <!--                android:textColor="@color/disabled_tint"-->
-    <!--                android:textSize="12sp" />-->
-    <!--        </LinearLayout>-->
-    <!--    </LinearLayout>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

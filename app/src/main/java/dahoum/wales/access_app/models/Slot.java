@@ -1,60 +1,87 @@
 package dahoum.wales.access_app.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Slot {
-    private String hourFromTo;
-    private String priorityText;
-    private String capacity;
-    private String shortDate;
-    private String date;
-    int viewType;
+    @SerializedName("id")
+    @Expose
+    private String id;
+    @SerializedName("type")
+    @Expose
+    private String type;
+    @SerializedName("from")
+    @Expose
+    private String from;
+    @SerializedName("to")
+    @Expose
+    private String to;
+    @SerializedName("occupiedSlots")
+    @Expose
+    private Integer occupiedSlots;
+    @SerializedName("maxSlots")
+    @Expose
+    private Integer maxSlots;
+    @SerializedName("isPlanned")
+    @Expose
+    private Boolean isPlanned;
 
-    public Slot(String hourFromTo, String priorityText, String capacity, String shortDate, String date, int viewType) {
-        this.hourFromTo = hourFromTo;
-        this.priorityText = priorityText;
-        this.capacity = capacity;
-        this.shortDate = shortDate;
-        this.date = date;
-        this.viewType = viewType;
+    private int viewType;
+
+    public String getId() {
+        return id;
     }
 
-    public String getHourFromTo() {
-        return hourFromTo;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setHourFromTo(String hourFromTo) {
-        this.hourFromTo = hourFromTo;
+    public String getType() {
+        return type;
     }
 
-    public String getPriorityText() {
-        return priorityText;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public void setPriorityText(String priorityText) {
-        this.priorityText = priorityText;
+    public String getFrom() {
+        return from;
     }
 
-    public String getCapacity() {
-        return capacity;
+    public void setFrom(String from) {
+        this.from = from;
     }
 
-    public void setCapacity(String capacity) {
-        this.capacity = capacity;
+    public String getTo() {
+        return to;
     }
 
-    public String getShortDate() {
-        return shortDate;
+    public void setTo(String to) {
+        this.to = to;
     }
 
-    public void setShortDate(String shortDate) {
-        this.shortDate = shortDate;
+    public Integer getOccupiedSlots() {
+        return occupiedSlots;
     }
 
-    public String getDate() {
-        return date;
+    public void setOccupiedSlots(Integer occupiedSlots) {
+        this.occupiedSlots = occupiedSlots;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public Integer getMaxSlots() {
+        return maxSlots;
+    }
+
+    public void setMaxSlots(Integer maxSlots) {
+        this.maxSlots = maxSlots;
+    }
+
+    public Boolean getIsPlanned() {
+        return isPlanned;
+    }
+
+    public void setIsPlanned(Boolean isPlanned) {
+        this.isPlanned = isPlanned;
     }
 
     public int getViewType() {

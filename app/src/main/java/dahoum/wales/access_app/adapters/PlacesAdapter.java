@@ -7,26 +7,41 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dahoum.wales.access_app.R;
 import dahoum.wales.access_app.models.Place;
 
-public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder> {
+public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder> implements Filterable {
 
     private List<Place> places;
+    private List<Place> placesFull;
     private Context context;
+    private PlacesCallback callback;
 
     public PlacesAdapter(Context context, List<Place> places) {
         this.context = context;
         this.places = places;
+        this.placesFull = new ArrayList<>(this.places);
+    }
+
+    public void setAdapterCallback(PlacesCallback callback) {
+        this.callback = callback;
+    }
+
+    public void setDataLists(List<Place> places) {
+        this.places = places;
+        this.placesFull = new ArrayList<>(this.places);
+        notifyDataSetChanged();
     }
 
     @Override
@@ -34,30 +49,84 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
         Place place = places.get(position);
         holder.placeName.setText(place.getName());
         holder.placeDesc.setText(place.getDescription());
-        if (place.getIsFavourite()) {
-            holder.placeFav.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorPrimary));
-        } else {
-            holder.placeFav.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorPrimary));
-        }
         holder.websiteTv.setText(place.getWww());
         if (place.getImage() != null) {
-            byte[] decodedString = Base64.decode(place.getImage().substring(23), Base64.DEFAULT);
+            byte[] decodedString = Base64.decode(place.getImage(), Base64.DEFAULT);
             Bitmap base64Bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
             holder.image.setImageBitmap(base64Bitmap);
+        }
+        if (place.getIsFavourite()) {
+            holder.placeFav.setImageResource(R.drawable.ic_heart_filled);
+        } else {
+            holder.placeFav.setImageResource(R.drawable.ic_heart);
         }
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.item_place_recycler, parent, false);
-        return new ViewHolder(v);
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_place_recycler, parent, false));
     }
 
     @Override
     public int getItemCount() {
         return places.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return exampleFilter;
+    }
+
+    private Filter exampleFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence type) {
+            List<Place> filteredList = new ArrayList<>();
+            if (type == null || type.length() == 0) {
+                filteredList.addAll(placesFull);
+            } else {
+                String filterPattern = type.toString().toLowerCase().trim();
+                String keyword = "";
+                switch (filterPattern) {
+                    case "parks":
+                        keyword = "park";
+                        break;
+                    case "museums":
+                        keyword = "museum";
+                        break;
+                    case "fav":
+                        keyword = "fav";
+                        break;
+                    default:
+                        keyword = "all";
+                        break;
+                }
+                for (Place item : placesFull) {
+                    if (keyword.equals("fav")) {
+                        if (item.getIsFavourite()) {
+                            filteredList.add(item);
+                        }
+                    } else if (keyword.equals("all")) {
+                        filteredList.add(item);
+                    } else {
+                        if (item.getType() != null && item.getType().toLowerCase().equals(keyword)) {
+                            filteredList.add(item);
+                        }
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            places.clear();
+            places.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -67,10 +136,27 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             placeName = itemView.findViewById(R.id.placeName);
+            placeName.setOnClickListener(v -> {
+               callback.onPlaceClick(getAdapterPosition());
+            });
             placeDesc = itemView.findViewById(R.id.placeDesc);
+            placeDesc.setOnClickListener(v -> {
+                callback.onPlaceClick(getAdapterPosition());
+            });
             placeFav = itemView.findViewById(R.id.placeFav);
+            placeFav.setOnClickListener(v -> {
+                callback.onFavouriteClick((ImageView) v, getAdapterPosition());
+            });
             websiteTv = itemView.findViewById(R.id.websiteTv);
             image = itemView.findViewById(R.id.image);
+            image.setOnClickListener(v -> {
+                callback.onFavouriteClick((ImageView) v, getAdapterPosition());
+            });
         }
+    }
+
+    public interface PlacesCallback {
+        void onFavouriteClick(ImageView favImage, int position);
+        void onPlaceClick(int position);
     }
 }

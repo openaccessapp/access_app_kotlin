@@ -18,7 +18,7 @@ public interface RetrofitService {
     @GET("/api/place/{visitorId}")
     Call<JsonObject> getAllPlaces(@Path("visitorId") String visitorId);
 
-    @GET("/api/place/{visitorId}/favourites/{placeId}")
+    @GET("/api/user/{visitorId}/favourites/{placeId}")
     Call<JsonObject> addRemoveFavourite(@Path("visitorId") String visitorId, @Path("placeId") String placeId);
 
     @PUT("/access/{placeId}")

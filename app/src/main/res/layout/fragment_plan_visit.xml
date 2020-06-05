@@ -31,7 +31,7 @@
         android:layout_height="24dp"
         android:layout_marginEnd="35dp"
         android:background="?selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_user"
+        android:src="@drawable/ic_profile_icon"
         app:layout_constraintBottom_toBottomOf="@id/tree_top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tree_top" />
@@ -55,29 +55,31 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
-        android:clickable="true"
-        android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="10dp"
-        app:cardElevation="10dp"
+        app:cardElevation="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/textView"
         app:layout_constraintTop_toBottomOf="@id/textView">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:paddingBottom="8dp">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/image"
+                android:id="@+id/placeImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="0dp"
-                app:cardUseCompatPadding="true">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/image"
                     android:layout_width="90dp"
                     android:layout_height="100dp"
                     android:scaleType="fitXY"
@@ -85,42 +87,50 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/placeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/image"
+                android:layout_marginStart="11dp"
                 android:fontFamily="@font/rubik_bold"
                 android:text="Central Park"
                 android:textColor="@color/text_color_dark"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/placeImage"
+                app:layout_constraintTop_toTopOf="@id/placeImage" />
 
             <TextView
-                android:id="@+id/contentText"
-                android:layout_width="wrap_content"
+                android:id="@+id/placeDesc"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/title"
-                android:layout_marginTop="10dp"
-                android:layout_toEndOf="@id/image"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="13dp"
                 android:fontFamily="@font/rubik"
-                android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna"
+                android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr"
                 android:textColor="@color/text_grey"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/placeName"
+                app:layout_constraintTop_toBottomOf="@id/placeName" />
 
             <ImageView
                 android:id="@+id/infoButton"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_alignParentEnd="true"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="17dp"
                 android:src="@drawable/ic_info"
-                android:tint="@color/colorPrimary" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/placeImage" />
 
             <LinearLayout
+                android:id="@+id/linearLayout2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/contentText"
-                android:layout_alignStart="@id/contentText"
-                android:layout_alignEnd="@id/contentText"
-                android:layout_marginTop="7dp">
+                android:layout_below="@id/placeDesc"
+                android:layout_alignStart="@id/placeDesc"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintStart_toStartOf="@id/placeDesc"
+                app:layout_constraintTop_toBottomOf="@id/placeDesc">
 
                 <ImageView
                     android:layout_width="15dp"
@@ -129,16 +139,17 @@
                     android:src="@drawable/ic_globe" />
 
                 <TextView
+                    android:id="@+id/websiteTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:layout_weight="1"
                     android:fontFamily="@font/rubik"
                     android:text="www.centralpark.com"
-                    android:textColor="@color/blue" />
+                    android:textColor="@color/light_blue" />
 
             </LinearLayout>
-        </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 

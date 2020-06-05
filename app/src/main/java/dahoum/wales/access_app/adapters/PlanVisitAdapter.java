@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dahoum.wales.access_app.R;
-import dahoum.wales.access_app.models.Plan;
 import dahoum.wales.access_app.models.Slot;
 import dahoum.wales.access_app.stickyheaders.AdapterDataProvider;
 
@@ -36,16 +35,16 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
-        final Slot slot = dataList.get(position);
-        if (holder instanceof ItemViewHolder) {
-            ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-            itemViewHolder.hourFromTo.setText(slot.getHourFromTo());
-            itemViewHolder.priorityText.setText(slot.getPriorityText());
-        } else if (holder instanceof HeaderViewHolder) {
-            HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
-            headerViewHolder.shortDate.setText(slot.getShortDate());
-            headerViewHolder.date.setText(slot.getDate());
-        }
+//        final Slot slot = dataList.get(position);
+//        if (holder instanceof ItemViewHolder) {
+//            ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
+//            itemViewHolder.hourFromTo.setText(slot.getHourFromTo());
+//            itemViewHolder.priorityText.setText(slot.getPriorityText());
+//        } else if (holder instanceof HeaderViewHolder) {
+//            HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
+//            headerViewHolder.shortDate.setText(slot.getShortDate());
+//            headerViewHolder.date.setText(slot.getDate());
+//        }
     }
 
     @Override

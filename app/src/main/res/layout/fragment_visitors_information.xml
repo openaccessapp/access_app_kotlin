@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".navigation.VisitorsInformationFragment">
+    android:layout_height="match_parent">
 
 
     <LinearLayout
@@ -20,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/goBack"
             android:layout_width="22.78pt"
             android:layout_height="14.48pt"
             android:layout_weight="1"

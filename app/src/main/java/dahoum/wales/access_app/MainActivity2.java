@@ -10,12 +10,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.JsonObject;
 
-import dahoum.wales.access_app.navigation.PlacesFragment;
+import dahoum.wales.access_app.navigation.PlacesFragmentContainer;
 import dahoum.wales.access_app.navigation.PlannerFragment;
 import dahoum.wales.access_app.navigation.ScanFragment;
 import dahoum.wales.access_app.network.RetrofitClientInstance;
@@ -29,6 +29,10 @@ public class MainActivity2 extends AppCompatActivity {
     private static final String TAG = MainActivity2.class.getSimpleName();
     private LinearLayout home, places, calendar, scan;
     private RetrofitService retrofitService;
+    private Fragment placeFragmentContainer, plannerFragment, scanFragment;
+    private CustomViewPager viewPager;
+    private BottomNavigationView bottomNavigationView;
+    MenuItem prevMenuItem;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,8 +40,11 @@ public class MainActivity2 extends AppCompatActivity {
         overridePendingTransition(0, 0);
         setContentView(R.layout.activity_main);
 
-        BottomNavigationView navigation = findViewById(R.id.bottomNavigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        viewPager = findViewById(R.id.viewPager);
+        viewPager.setOffscreenPageLimit(2);
+        viewPager.setPagingEnabled(false);
+        bottomNavigationView = findViewById(R.id.bottomNavigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         SharedPreferences prefs = getPreferences(MODE_PRIVATE);
 
@@ -59,75 +66,66 @@ public class MainActivity2 extends AppCompatActivity {
                 }
             });
         }
-//        places = findViewById(R.id.placesButton);
-//        places.setOnClickListener(this);
-//        calendar = findViewById(R.id.calendarButton);
-//        calendar.setOnClickListener(this);
-//        scan = findViewById(R.id.scanButton);
-//        scan.setOnClickListener(this);
 
-        openFragment(PlacesFragment.newInstance());
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (prevMenuItem != null) {
+                    prevMenuItem.setChecked(false);
+                } else {
+                    bottomNavigationView.getMenu().getItem(0).setChecked(false);
+                }
+                Log.d("page", "onPageSelected: " + position);
+                bottomNavigationView.getMenu().getItem(position).setChecked(true);
+                prevMenuItem = bottomNavigationView.getMenu().getItem(position);
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        setupViewPager(viewPager);
+
+        bottomNavigationView.setSelectedItemId(R.id.placesNav);
     }
 
-    public void openFragment(Fragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        placeFragmentContainer = PlacesFragmentContainer.newInstance();
+        plannerFragment = PlannerFragment.newInstance();
+        scanFragment = ScanFragment.newInstance();
+        adapter.addFragment(placeFragmentContainer);
+        adapter.addFragment(plannerFragment);
+        adapter.addFragment(scanFragment);
+        viewPager.setAdapter(adapter);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment fragment;
             switch (item.getItemId()) {
                 case R.id.placesNav:
-                    openFragment(PlacesFragment.newInstance());
+                    viewPager.setCurrentItem(0, false);
                     return true;
                 case R.id.plannerNav:
-                    openFragment(PlannerFragment.newInstance());
+                    viewPager.setCurrentItem(1, false);
                     return true;
                 case R.id.scanNav:
-                    openFragment(ScanFragment.newInstance());
+                    viewPager.setCurrentItem(2, false);
                     return true;
             }
             return false;
         }
     };
-
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.placesButton:
-//                ((ImageView) places.findViewById(R.id.placesImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
-//                ((TextView) places.findViewById(R.id.placesTv)).setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
-//                ((ImageView) calendar.findViewById(R.id.calendarImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
-//                ((TextView) calendar.findViewById(R.id.calendarTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
-//                ((ImageView) scan.findViewById(R.id.scanImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
-//                ((TextView) scan.findViewById(R.id.scanTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
-//                openFragment(PlacesFragment.newInstance());
-//                break;
-//            case R.id.calendarButton:
-//                ((ImageView) calendar.findViewById(R.id.calendarImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
-//                ((TextView) calendar.findViewById(R.id.calendarTv)).setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
-//                ((ImageView) places.findViewById(R.id.placesImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
-//                ((TextView) places.findViewById(R.id.placesTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
-//                ((ImageView) scan.findViewById(R.id.scanImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
-//                ((TextView) scan.findViewById(R.id.scanTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
-//                openFragment(PlannerFragment.newInstance());
-//                break;
-//            case R.id.scanButton:
-//                ((ImageView) scan.findViewById(R.id.scanImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
-//                ((TextView) scan.findViewById(R.id.scanTv)).setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
-//                ((ImageView) places.findViewById(R.id.placesImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
-//                ((TextView) places.findViewById(R.id.placesTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
-//                ((ImageView) calendar.findViewById(R.id.calendarImg)).setImageTintList(ContextCompat.getColorStateList(this, R.color.disabled_tint));
-//                ((TextView) calendar.findViewById(R.id.calendarTv)).setTextColor(ContextCompat.getColor(this, R.color.disabled_tint));
-//                openFragment(ScanFragment.newInstance());
-//                break;
-//        }
-//    }
 }
 
 

@@ -9,6 +9,7 @@
     <color name="red">#FF0000</color>
     <color name="disabled_tint">#DBDDEB</color>
     <color name="blue">#385FE2</color>
+    <color name="light_blue">#006CFF</color>
     <color name="green">#1BE41B</color>
     <color name="white">#FFFFFF</color>
     <color name="icon_tint">#9597AC</color>
