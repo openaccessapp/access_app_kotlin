@@ -7,8 +7,12 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import dahoum.wales.access_app.R;
 import dahoum.wales.access_app.models.Slot;
@@ -35,16 +39,32 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
-//        final Slot slot = dataList.get(position);
-//        if (holder instanceof ItemViewHolder) {
-//            ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
-//            itemViewHolder.hourFromTo.setText(slot.getHourFromTo());
-//            itemViewHolder.priorityText.setText(slot.getPriorityText());
-//        } else if (holder instanceof HeaderViewHolder) {
-//            HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
-//            headerViewHolder.shortDate.setText(slot.getShortDate());
-//            headerViewHolder.date.setText(slot.getDate());
-//        }
+        final Slot slot = dataList.get(position);
+        if (holder instanceof ItemViewHolder) {
+            ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
+            try {
+                Calendar from = Calendar.getInstance();
+                Calendar to = Calendar.getInstance();
+                SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
+                from.setTime(sdf.parse(slot.getFrom()));
+                to.setTime(sdf.parse(slot.getTo()));
+                itemViewHolder.hourFromTo.setText(from.get(Calendar.HOUR_OF_DAY) + ":" + from.get(Calendar.MINUTE) + " - " + to.get(Calendar.HOUR_OF_DAY) + ":" + to.get(Calendar.MINUTE));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            itemViewHolder.priorityText.setText(slot.getType());
+        } else if (holder instanceof HeaderViewHolder) {
+            HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
+            Calendar cal = Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
+            try {
+                cal.setTime(sdf.parse(slot.getFrom()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            headerViewHolder.shortDate.setText(new SimpleDateFormat("EEE", Locale.getDefault()).format(cal.getTime()));
+            headerViewHolder.date.setText(cal.get(Calendar.DAY_OF_MONTH) + "th " + new SimpleDateFormat("MMM").format(cal.getTime()));
+        }
     }
 
     @Override
@@ -82,14 +102,14 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private static final class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        TextView hourFromTo;
-        TextView priorityText;
+        TextView hourFromTo, priorityText, occupiedMax;
 
         ItemViewHolder(View itemView) {
             super(itemView);
 
-            hourFromTo = itemView.findViewById(R.id.hourFromToSlot);
+            hourFromTo = itemView.findViewById(R.id.hourFromTo);
             priorityText = itemView.findViewById(R.id.priority_text);
+            occupiedMax = itemView.findViewById(R.id.occupiedMax);
         }
     }
 

@@ -26,6 +26,11 @@ public class Slot {
     @Expose
     private Boolean isPlanned;
 
+    public Slot(String from, int viewType) {
+        this.from = from;
+        this.viewType = viewType;
+    }
+
     private int viewType;
 
     public String getId() {

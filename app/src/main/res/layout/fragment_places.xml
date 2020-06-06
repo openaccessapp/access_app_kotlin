@@ -52,26 +52,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/tree_top" />
 
-    <View
-        android:id="@+id/separatorView"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="14dp"
-        android:background="@color/grey"
-        app:layout_constraintTop_toBottomOf="@id/tree_top" />
-
     <TextView
         android:id="@+id/choosePlaceTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="@font/rubik_bold"
         android:text="Choose Place"
         android:textColor="@color/text_color_dark"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/separatorView" />
+        app:layout_constraintTop_toBottomOf="@+id/tree_top" />
 
     <LinearLayout
         android:id="@+id/searchInputLayout"
@@ -190,23 +182,6 @@
                 app:chipBackgroundColor="@color/chip_color_state_list"
                 app:chipCornerRadius="30dp"
                 app:chipIcon="@drawable/ic_museum_24px"
-                app:chipIconEnabled="true"
-                app:chipIconSize="20dp"
-                app:chipIconTint="@color/chip_icon_state_list"
-                app:iconStartPadding="10dp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/option5"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/rubik_medium"
-                android:text="Shopping basket"
-                android:textColor="@color/chip_text_state_list"
-                android:textSize="12sp"
-                app:chipBackgroundColor="@color/chip_color_state_list"
-                app:chipCornerRadius="30dp"
-                app:chipIcon="@drawable/ic_shopping_basket"
                 app:chipIconEnabled="true"
                 app:chipIconSize="20dp"
                 app:chipIconTint="@color/chip_icon_state_list"

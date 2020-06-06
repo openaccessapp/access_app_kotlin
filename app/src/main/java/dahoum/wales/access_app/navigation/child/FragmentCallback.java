@@ -1,6 +1,8 @@
 package dahoum.wales.access_app.navigation.child;
 
+import dahoum.wales.access_app.models.Place;
+
 public interface FragmentCallback {
-    void onPlaceClicked(int position);
+    void onPlaceClicked(Place place);
     void onInfoClicked(int position);
 }

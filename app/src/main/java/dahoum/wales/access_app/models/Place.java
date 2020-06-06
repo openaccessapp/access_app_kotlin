@@ -3,7 +3,9 @@ package dahoum.wales.access_app.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Place {
+import java.io.Serializable;
+
+public class Place implements Serializable {
     @SerializedName("id")
     @Expose
     private String id;

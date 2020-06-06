@@ -3,6 +3,7 @@ package dahoum.wales.access_app.navigation.child;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -138,7 +139,14 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
 
     @Override
     public void onPlaceClick(int position) {
-        callback.onPlaceClicked(position);
+        callback.onPlaceClicked(places.get(position));
+    }
+
+    @Override
+    public void onWebsiteClick(int position) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(places.get(position).getWww()));
+        startActivity(intent);
     }
 
     private void getAllPlaces() {

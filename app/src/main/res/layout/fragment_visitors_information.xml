@@ -1,241 +1,310 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="375dp"
-        android:layout_height="88dp"
-        android:layout_marginTop="28dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageButton
+        <ImageView
             android:id="@+id/goBack"
-            android:layout_width="22.78pt"
-            android:layout_height="14.48pt"
-            android:layout_weight="1"
-            android:background="@color/text_grey"
-            android:backgroundTint="@color/white"
-            android:src="@drawable/ic_keyboard_backspace_black_24dp" />
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="27dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_keyboard_backspace_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@id/imageView3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imageView3" />
 
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_weight="1"
-            android:src="@drawable/circle" />
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/circle"
+            app:layout_constraintEnd_toStartOf="@+id/visitTitle"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView3"
-            android:layout_width="100pt"
-            android:layout_height="19pt"
-            android:layout_weight="1"
+            android:id="@+id/visitTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/rubik_bold"
+            android:gravity="start|center_vertical"
             android:text="Central Park"
+            android:textColor="@color/text_color_dark"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/imageView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/imageView3" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="31dp"
+            android:fontFamily="@font/rubik_bold"
+            android:text="Visitors Information"
             android:textAlignment="viewStart"
             android:textColor="@color/text_color_dark"
-            android:textSize="16sp" />
-    </LinearLayout>
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/visitTitle" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/rubik_bold"
-        android:text="Visitors Information"
-        android:textAlignment="viewStart"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button4"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="35dp"
+            android:enabled="false"
+            android:fontFamily="@font/rubik"
+            android:letterSpacing="0.0"
+            android:minWidth="0dp"
+            android:minHeight="40dp"
+            android:stateListAnimator="@null"
+            android:text="Priority"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:backgroundTint="@color/colorAccent"
+            app:cornerRadius="6dp"
+            app:layout_constraintStart_toStartOf="@id/textView4"
+            app:layout_constraintTop_toBottomOf="@id/textView4" />
 
-    <Button
-        android:id="@+id/button4"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|center_horizontal|center_vertical"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="28dp"
-        android:background="@color/disabled_tint"
-        android:backgroundTint="@color/colorAccent"
-        android:enabled="false"
-        android:fontFamily="@font/rubik"
-        android:insetLeft="6dp"
-        android:insetTop="6dp"
-        android:insetRight="6dp"
-        android:insetBottom="6dp"
-        android:letterSpacing="0.0"
-        android:minWidth="0dp"
-        android:minHeight="40dp"
-        android:stateListAnimator="@null"
-        android:text="Priority"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:fontFamily="@font/rubik_bold"
+            android:text="Priority Group"
+            android:textAlignment="viewStart"
+            android:textColor="@color/text_color_dark"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/button4"
+            app:layout_constraintStart_toEndOf="@id/button4"
+            app:layout_constraintTop_toTopOf="@id/button4" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/rubik_bold"
-        android:text="Priority Group"
-        android:textAlignment="viewStart"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.513"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/rubik_medium"
+            android:text="Mon-Sun"
+            android:textAlignment="viewStart"
+            android:textColor="@color/text_grey"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/button4"
+            app:layout_constraintTop_toBottomOf="@+id/button4" />
 
-    <TextView
-        android:id="@+id/editText3"
-        android:layout_width="276dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:fontFamily="@font/rubik"
-        android:gravity="start|top"
-        android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod"
-        android:textAlignment="viewStart"
-        android:textColor="@color/text_grey"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.474"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/rubik_bold"
+            android:text="08:00 - 12:00"
+            android:textAlignment="viewStart"
+            android:textColor="@color/text_color_dark"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/textView15"
+            app:layout_constraintStart_toEndOf="@id/button4"
+            app:layout_constraintTop_toTopOf="@id/textView15" />
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/rubik_medium"
-        android:text="Mon-Sun"
-        android:textAlignment="viewStart"
-        android:textColor="@color/text_grey"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView17"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4"
-        app:layout_constraintVertical_bias="1.0" />
+        <LinearLayout
+            android:id="@+id/important"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@id/textView4"
+            app:layout_constraintStart_toStartOf="@id/textView4"
+            app:layout_constraintTop_toBottomOf="@id/textView15">
 
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="180dp"
-        android:fontFamily="@font/rubik_bold"
-        android:text="08:00 - 12:00"
-        android:textAlignment="viewStart"
-        android:textColor="@color/text_color_dark"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/dot_textview"
+                android:drawablePadding="14dp"
+                android:fontFamily="@font/rubik"
+                android:text="Age range 60+"
+                android:textColor="@color/text_grey"
+                android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center|center_horizontal|center_vertical"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="28dp"
-        android:background="@color/disabled_tint"
-        android:backgroundTint="@color/colorPrimary"
-        android:enabled="false"
-        android:fontFamily="@font/rubik"
-        android:insetLeft="6dp"
-        android:insetTop="6dp"
-        android:insetRight="6dp"
-        android:insetBottom="6dp"
-        android:letterSpacing="0.0"
-        android:minWidth="0dp"
-        android:minHeight="40dp"
-        android:stateListAnimator="@null"
-        android:text="Standart"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView19"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:drawableLeft="@drawable/dot_textview"
+                android:drawablePadding="14dp"
+                android:fontFamily="@font/rubik"
+                android:text="Maximum number of visitors at the same time: 100 (1 visitor per 20m2)"
+                android:textColor="@color/text_grey"
+                android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/rubik_bold"
-        android:text="Non-Priority Group"
-        android:textAlignment="viewStart"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/editText3"
-        app:layout_constraintStart_toEndOf="@+id/button5"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:drawableLeft="@drawable/dot_textview"
+                android:drawablePadding="14dp"
+                android:fontFamily="@font/rubik"
+                android:text="Mask is mandatory"
+                android:textColor="@color/text_grey"
+                android:textSize="16sp" />
 
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/rubik_medium"
-        android:text="Mon-Fri"
-        android:textAlignment="viewStart"
-        android:textColor="@color/text_grey"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView22"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5"
-        app:layout_constraintVertical_bias="1.0" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:drawableLeft="@drawable/dot_textview"
+                android:drawablePadding="14dp"
+                android:fontFamily="@font/rubik"
+                android:text="Disinfectant at the entrance"
+                android:textColor="@color/text_grey"
+                android:textSize="16sp" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/rubik_bold"
-        android:text="10:00 - 18:00"
-        android:textAlignment="viewStart"
-        android:textColor="@color/text_color_dark"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView21"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button5"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="35dp"
+            android:enabled="false"
+            android:fontFamily="@font/rubik"
+            android:letterSpacing="0.0"
+            android:minWidth="0dp"
+            android:minHeight="40dp"
+            android:stateListAnimator="@null"
+            android:text="Standart"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:backgroundTint="@color/blue"
+            app:cornerRadius="6dp"
+            app:layout_constraintStart_toStartOf="@id/textView4"
+            app:layout_constraintTop_toBottomOf="@id/important" />
 
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="276dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/rubik"
-        android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod"
-        android:textColor="@color/text_grey"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.474"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="11dp"
+            android:fontFamily="@font/rubik_bold"
+            android:text="Non-Priority Group"
+            android:textAlignment="viewStart"
+            android:textColor="@color/text_color_dark"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/button5"
+            app:layout_constraintStart_toEndOf="@id/button5"
+            app:layout_constraintTop_toTopOf="@id/button5" />
 
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/rubik_medium"
+            android:text="Mon-Sun"
+            android:textAlignment="viewStart"
+            android:textColor="@color/text_grey"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/button5"
+            app:layout_constraintTop_toBottomOf="@+id/button5" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/rubik_bold"
+            android:text="10:00 - 18:00"
+            android:textAlignment="viewStart"
+            android:textColor="@color/text_color_dark"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/textView20"
+            app:layout_constraintStart_toEndOf="@id/button5"
+            app:layout_constraintTop_toTopOf="@id/textView20" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/rubik_medium"
+            android:text="Sat-Sun"
+            android:textAlignment="viewStart"
+            android:textColor="@color/text_grey"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/textView20"
+            app:layout_constraintTop_toBottomOf="@id/textView20" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/rubik_bold"
+            android:text="10:00 - 14:00"
+            android:textAlignment="viewStart"
+            android:textColor="@color/text_color_dark"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/textView22"
+            app:layout_constraintStart_toEndOf="@id/button5"
+            app:layout_constraintTop_toTopOf="@id/textView22" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@id/textView4"
+            app:layout_constraintStart_toStartOf="@id/textView4"
+            app:layout_constraintTop_toBottomOf="@id/textView22">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/dot_textview"
+                android:drawablePadding="14dp"
+                android:fontFamily="@font/rubik"
+                android:text="Maximum number of visitors at the same time: 100 (1 visitor per 20m2)"
+                android:textColor="@color/text_grey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:drawableLeft="@drawable/dot_textview"
+                android:drawablePadding="14dp"
+                android:fontFamily="@font/rubik"
+                android:text="Mask is optional"
+                android:textColor="@color/text_grey"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:drawableLeft="@drawable/dot_textview"
+                android:drawablePadding="14dp"
+                android:fontFamily="@font/rubik"
+                android:text="Disinfectant at the entrance"
+                android:textColor="@color/text_grey"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

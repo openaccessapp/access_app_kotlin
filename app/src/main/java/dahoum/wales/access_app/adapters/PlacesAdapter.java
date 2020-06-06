@@ -148,9 +148,12 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
                 callback.onFavouriteClick((ImageView) v, getAdapterPosition());
             });
             websiteTv = itemView.findViewById(R.id.websiteTv);
+            websiteTv.setOnClickListener(v -> {
+                callback.onWebsiteClick(getAdapterPosition());
+            });
             image = itemView.findViewById(R.id.image);
             image.setOnClickListener(v -> {
-                callback.onFavouriteClick((ImageView) v, getAdapterPosition());
+                callback.onPlaceClick(getAdapterPosition());
             });
         }
     }
@@ -158,5 +161,6 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
     public interface PlacesCallback {
         void onFavouriteClick(ImageView favImage, int position);
         void onPlaceClick(int position);
+        void onWebsiteClick(int position);
     }
 }

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import dahoum.wales.access_app.R;
+import dahoum.wales.access_app.models.Place;
 import dahoum.wales.access_app.navigation.child.FragmentCallback;
 import dahoum.wales.access_app.navigation.child.PlacesFragment;
 import dahoum.wales.access_app.navigation.child.PlanVisitFragment;
@@ -69,8 +70,8 @@ public class PlacesFragmentContainer extends Fragment implements FragmentCallbac
     }
 
     @Override
-    public void onPlaceClicked(int position) {
-        PlanVisitFragment planVisitFragment = PlanVisitFragment.newInstance();
+    public void onPlaceClicked(Place place) {
+        PlanVisitFragment planVisitFragment = PlanVisitFragment.newInstance(place);
         planVisitFragment.setListener(this);
         openFragment(planVisitFragment);
     }
