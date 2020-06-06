@@ -92,7 +92,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
         });
         infoButton = view.findViewById(R.id.infoButton);
         infoButton.setOnClickListener(v -> {
-            callback.onInfoClicked(1);
+            callback.onInfoClicked(place);
         });
         view.findViewById(R.id.openProfile).setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), ProfileActivity.class));

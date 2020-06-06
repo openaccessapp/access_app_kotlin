@@ -77,8 +77,8 @@ public class PlacesFragmentContainer extends Fragment implements FragmentCallbac
     }
 
     @Override
-    public void onInfoClicked(int position) {
-        VisitInfoFragment fragment = VisitInfoFragment.newInstance();
+    public void onInfoClicked(Place place) {
+        VisitInfoFragment fragment = VisitInfoFragment.newInstance(place);
         fragment.setListener(this);
         openFragment(fragment);
     }

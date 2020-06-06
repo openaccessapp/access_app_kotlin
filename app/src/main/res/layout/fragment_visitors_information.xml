@@ -15,22 +15,22 @@
             android:layout_marginStart="27dp"
             android:background="?selectableItemBackgroundBorderless"
             android:src="@drawable/ic_keyboard_backspace_black_24dp"
-            app:layout_constraintBottom_toBottomOf="@id/imageView3"
+            app:layout_constraintBottom_toBottomOf="@id/image"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/imageView3" />
+            app:layout_constraintTop_toTopOf="@id/image" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/image"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
             android:src="@drawable/circle"
-            app:layout_constraintEnd_toStartOf="@+id/visitTitle"
+            app:layout_constraintEnd_toStartOf="@+id/placeName"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/visitTitle"
+            android:id="@+id/placeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/rubik_bold"
@@ -38,10 +38,10 @@
             android:text="Central Park"
             android:textColor="@color/text_color_dark"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@id/imageView3"
+            app:layout_constraintBottom_toBottomOf="@id/image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/imageView3" />
+            app:layout_constraintTop_toTopOf="@id/image" />
 
         <TextView
             android:id="@+id/textView4"
@@ -55,7 +55,7 @@
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/visitTitle" />
+            app:layout_constraintTop_toBottomOf="@id/placeName" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button4"
