@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentTransaction;
 import dahoum.wales.access_app.R;
 import dahoum.wales.access_app.models.Place;
 import dahoum.wales.access_app.navigation.child.FragmentCallback;
+import dahoum.wales.access_app.navigation.child.LocationFragment;
 import dahoum.wales.access_app.navigation.child.PlacesFragment;
 import dahoum.wales.access_app.navigation.child.PlanVisitFragment;
 import dahoum.wales.access_app.navigation.child.VisitInfoFragment;
@@ -34,7 +35,7 @@ public class PlacesFragmentContainer extends Fragment implements FragmentCallbac
     }
 
     public void openFragment(Fragment fragment) {
-        String backStateName =  fragment.getClass().getName();
+        String backStateName = fragment.getClass().getName();
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.replace(R.id.places_container, fragment);
         transaction.addToBackStack(backStateName);
@@ -58,6 +59,9 @@ public class PlacesFragmentContainer extends Fragment implements FragmentCallbac
         } else if (childFragment instanceof VisitInfoFragment) {
             ((VisitInfoFragment) childFragment).setListener(this);
             Log.d(TAG, "VisitInfo attached");
+        } else if (childFragment instanceof LocationFragment) {
+            ((LocationFragment) childFragment).setListener(this);
+            Log.d(TAG, "Location attached");
         }
     }
 
@@ -82,4 +86,5 @@ public class PlacesFragmentContainer extends Fragment implements FragmentCallbac
         fragment.setListener(this);
         openFragment(fragment);
     }
+
 }

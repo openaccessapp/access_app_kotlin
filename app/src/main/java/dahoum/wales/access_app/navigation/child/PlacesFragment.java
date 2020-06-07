@@ -167,5 +167,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
                 Log.d(TAG, t.getLocalizedMessage());
             }
         });
+
     }
+
 }
