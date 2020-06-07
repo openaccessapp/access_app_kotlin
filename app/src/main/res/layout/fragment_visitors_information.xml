@@ -15,19 +15,31 @@
             android:layout_marginStart="27dp"
             android:background="?selectableItemBackgroundBorderless"
             android:src="@drawable/ic_keyboard_backspace_black_24dp"
-            app:layout_constraintBottom_toBottomOf="@id/image"
+            app:layout_constraintBottom_toBottomOf="@+id/circle_image_card"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/image" />
+            app:layout_constraintTop_toTopOf="@+id/circle_image_card" />
 
-        <ImageView
-            android:id="@+id/image"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/circle_image_card"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
-            android:src="@drawable/circle"
+            app:cardCornerRadius="50dp"
             app:layout_constraintEnd_toStartOf="@+id/placeName"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.cardview.widget.CardView>
+
+
 
         <TextView
             android:id="@+id/placeName"
@@ -38,10 +50,10 @@
             android:text="Central Park"
             android:textColor="@color/text_color_dark"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@id/image"
+            app:layout_constraintBottom_toBottomOf="@+id/circle_image_card"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/image" />
+            app:layout_constraintTop_toTopOf="@+id/circle_image_card" />
 
         <TextView
             android:id="@+id/textView4"

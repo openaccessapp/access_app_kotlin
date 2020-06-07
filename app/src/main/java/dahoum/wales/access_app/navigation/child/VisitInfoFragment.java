@@ -13,8 +13,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.fragment.app.Fragment;
 
+
+import java.util.Arrays;
 
 import dahoum.wales.access_app.R;
 import dahoum.wales.access_app.models.Place;
