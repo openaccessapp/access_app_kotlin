@@ -52,9 +52,9 @@ public class VisitsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             }
             itemViewHolder.priorityText.setText(visit.getType());
             itemViewHolder.occupiedMax.setText(visit.getOccupiedSlots() + "/" + visit.getMaxSlots());
-        } else if (holder instanceof HeaderViewHolder) {
+        } else if (holder instanceof HeaderViewHolder) {Calendar cal = Calendar.getInstance();
             HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
-            Calendar cal = Calendar.getInstance();
+
             SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
             try {
                 cal.setTime(sdf.parse(visit.getStartTime()));

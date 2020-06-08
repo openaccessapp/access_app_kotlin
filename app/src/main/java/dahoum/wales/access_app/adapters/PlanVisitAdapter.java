@@ -51,6 +51,8 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         final Slot slot = dataList.get(position);
         if (holder instanceof ItemViewHolder) {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
+
+
             try {
                 Calendar from = Calendar.getInstance();
                 Calendar to = Calendar.getInstance();
