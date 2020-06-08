@@ -12,7 +12,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import dahoum.wales.access_app.models.Plan;
+import dahoum.wales.access_app.models.Visit;
 
 public class StickyLinearLayoutManager extends LinearLayoutManager {
 
@@ -127,7 +127,7 @@ public class StickyLinearLayoutManager extends LinearLayoutManager {
 
     private void cacheHeaderPositions() {
         mHeaderPositions.clear();
-        List<Plan> adapterData = (List<Plan>) mHeaderProvider.getAdapterData();
+        List<Visit> adapterData = (List<Visit>) mHeaderProvider.getAdapterData();
         if (adapterData == null) {
             if (mHeaderHandler != null) {
                 mHeaderHandler.setHeaderPositions(mHeaderPositions);

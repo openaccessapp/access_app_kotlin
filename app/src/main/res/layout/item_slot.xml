@@ -55,7 +55,7 @@
         android:textSize="12sp" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/personIconSlot"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="65dp"
@@ -72,7 +72,7 @@
         android:textColor="@color/disabled_tint" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/checkIcon"
         android:layout_width="11dp"
         android:layout_height="8dp"
         android:layout_marginStart="18dp"

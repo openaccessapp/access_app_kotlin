@@ -38,7 +38,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
         this.callback = callback;
     }
 
-    public void setDataLists(List<Place> places) {
+    public void setDataList(List<Place> places) {
         this.places = places;
         this.placesFull = new ArrayList<>(this.places);
         notifyDataSetChanged();

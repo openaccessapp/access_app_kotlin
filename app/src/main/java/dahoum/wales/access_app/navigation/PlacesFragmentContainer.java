@@ -87,4 +87,11 @@ public class PlacesFragmentContainer extends Fragment implements FragmentCallbac
         openFragment(fragment);
     }
 
+    @Override
+    public void onLocationClick() {
+        LocationFragment locationFragment = LocationFragment.newInstance();
+        locationFragment.setListener(this);
+        openFragment(locationFragment);
+    }
+
 }

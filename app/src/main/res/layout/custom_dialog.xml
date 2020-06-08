@@ -139,14 +139,126 @@
             android:text="Visitors"
             android:textSize="12sp" />
 
+        <LinearLayout
+            android:id="@+id/pickPeopleLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/personIcon"
+            android:layout_alignStart="@id/personIcon"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/one"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="0dp"
+                android:fontFamily="@font/rubik_bold"
+                android:gravity="center"
+                android:stateListAnimator="@null"
+                android:text="1"
+                android:textSize="12sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/two"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/grey"
+                android:elevation="0dp"
+                android:fontFamily="@font/rubik_bold"
+                android:gravity="center"
+                android:stateListAnimator="@null"
+                android:text="2"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/three"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/grey"
+                android:elevation="0dp"
+                android:fontFamily="@font/rubik_bold"
+                android:gravity="center"
+                android:stateListAnimator="@null"
+                android:text="3"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/four"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/grey"
+                android:elevation="0dp"
+                android:fontFamily="@font/rubik_bold"
+                android:gravity="center"
+                android:stateListAnimator="@null"
+                android:text="4"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/five"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/grey"
+                android:elevation="0dp"
+                android:fontFamily="@font/rubik_bold"
+                android:gravity="center"
+                android:stateListAnimator="@null"
+                android:text="5"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/six"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/grey"
+                android:elevation="0dp"
+                android:fontFamily="@font/rubik_bold"
+                android:gravity="center"
+                android:stateListAnimator="@null"
+                android:text="6"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/seven"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/grey"
+                android:elevation="0dp"
+                android:fontFamily="@font/rubik_bold"
+                android:gravity="center"
+                android:stateListAnimator="@null"
+                android:text="7"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
         <ImageView
             android:id="@+id/bellIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/personIcon"
+            android:layout_below="@id/pickPeopleLayout"
             android:layout_alignStart="@id/hourFrom"
             android:layout_alignEnd="@id/personIcon"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="27dp"
             android:src="@drawable/ic_bell" />
 
         <TextView

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.PUT;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface RetrofitService {
@@ -24,6 +24,9 @@ public interface RetrofitService {
     @GET("/api/user/{visitorId}/favourites/{placeId}")
     Call<JsonObject> addRemoveFavourite(@Path("visitorId") String visitorId, @Path("placeId") String placeId);
 
-    @PUT("/access/{placeId}")
-    Call<JsonObject> updatePlace(@Path("placeId") String placeId, @Body HashMap<String, String> body);
+    @POST("/api/user/{visitorId}/visit")
+    Call<JsonObject> planVisit(@Path("visitorId") String visitorId, @Body HashMap<String, Object> body);
+
+    @GET("/api/user/{visitorId}/visits")
+    Call<JsonObject> getUserVisits(@Path("visitorId") String visitorId);
 }

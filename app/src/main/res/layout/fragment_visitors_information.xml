@@ -39,8 +39,6 @@
 
         </androidx.cardview.widget.CardView>
 
-
-
         <TextView
             android:id="@+id/placeName"
             android:layout_width="wrap_content"

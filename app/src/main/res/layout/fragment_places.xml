@@ -44,9 +44,11 @@
         app:layout_constraintTop_toTopOf="@id/tree_top" />
 
     <ImageView
+        android:id="@+id/locationIcon"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_marginStart="30dp"
+        android:background="?selectableItemBackgroundBorderless"
         android:src="@drawable/ic_near_me_24px"
         app:layout_constraintBottom_toBottomOf="@id/tree_top"
         app:layout_constraintStart_toStartOf="parent"

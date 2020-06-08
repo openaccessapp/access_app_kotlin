@@ -1,10 +1,14 @@
 package dahoum.wales.access_app.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.ParseException;
@@ -22,6 +26,11 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private final List<Slot> dataList = new ArrayList<>();
     private AdapterCallback callback;
+    private Context context;
+
+    public PlanVisitAdapter(Context context) {
+        this.context = context;
+    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -53,6 +62,22 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 e.printStackTrace();
             }
             itemViewHolder.priorityText.setText(slot.getType());
+            itemViewHolder.occupiedMax.setText(slot.getOccupiedSlots() + "/" + slot.getMaxSlots());
+            if (slot.getIsPlanned()) {
+                itemViewHolder.linearLayout.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorAccent));
+                itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorPrimary));
+                itemViewHolder.hourFromTo.setTextColor(ContextCompat.getColor(context, R.color.white));
+                itemViewHolder.occupiedMax.setTextColor(ContextCompat.getColor(context, R.color.white));
+                itemViewHolder.checkIcon.setImageTintList(ContextCompat.getColorStateList(context, R.color.white));
+                itemViewHolder.personIcon.setImageTintList(ContextCompat.getColorStateList(context, R.color.white));
+            } else {
+                itemViewHolder.linearLayout.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.grey));
+                itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.disabled_tint));
+                itemViewHolder.hourFromTo.setTextColor(ContextCompat.getColor(context, R.color.disabled_tint));
+                itemViewHolder.occupiedMax.setTextColor(ContextCompat.getColor(context, R.color.disabled_tint));
+                itemViewHolder.checkIcon.setImageTintList(ContextCompat.getColorStateList(context, R.color.grey));
+                itemViewHolder.personIcon.setImageTintList(ContextCompat.getColorStateList(context, R.color.disabled_tint));
+            }
         } else if (holder instanceof HeaderViewHolder) {
             HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
             Calendar cal = Calendar.getInstance();
@@ -103,10 +128,15 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private static final class ItemViewHolder extends RecyclerView.ViewHolder {
 
         TextView hourFromTo, priorityText, occupiedMax;
+        LinearLayout linearLayout;
+        ImageView personIcon, checkIcon;
 
         ItemViewHolder(View itemView) {
             super(itemView);
 
+            personIcon = itemView.findViewById(R.id.personIconSlot);
+            checkIcon = itemView.findViewById(R.id.checkIcon);
+            linearLayout = itemView.findViewById(R.id.linearLayout);
             hourFromTo = itemView.findViewById(R.id.hourFromTo);
             priorityText = itemView.findViewById(R.id.priority_text);
             occupiedMax = itemView.findViewById(R.id.occupiedMax);

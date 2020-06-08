@@ -23,10 +23,12 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,6 +87,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         view.findViewById(R.id.openProfile).setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), ProfileActivity.class));
         });
+        view.findViewById(R.id.locationIcon).setOnClickListener(v -> callback.onLocationClick());
         chipGroup = view.findViewById(R.id.chip_group);
         chipGroup.setOnCheckedChangeListener((group, checkedId) -> {
             Chip chip = group.findViewById(checkedId);
@@ -123,16 +126,20 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         adapter.notifyDataSetChanged();
         retrofitService.addRemoveFavourite(prefs.getString("userId", null), places.get(position).getId()).enqueue(new Callback<JsonObject>() {
             @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if (!response.isSuccessful() && response.errorBody() != null) {
-                    Toast.makeText(getContext(), response.errorBody().toString(), Toast.LENGTH_SHORT).show();
+            public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
+                if (response.code() != 204 && response.errorBody() != null) {
+                    try {
+                        JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();
+                        Toast.makeText(getContext(), errorObject.get("message").getAsString(), Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
+            public void onFailure(@NotNull Call<JsonObject> call, @NotNull Throwable t) {
                 Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                Log.d(TAG, t.getLocalizedMessage());
             }
         });
     }
@@ -158,7 +165,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
                 if (response.body().get("places").getAsJsonArray() != null) {
                     places = gson.fromJson(response.body().get("places"), new TypeToken<ArrayList<Place>>() {
                     }.getType());
-                    adapter.setDataLists(places);
+                    adapter.setDataList(places);
                 }
             }
 

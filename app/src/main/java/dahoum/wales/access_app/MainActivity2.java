@@ -31,7 +31,7 @@ public class MainActivity2 extends AppCompatActivity {
     private RetrofitService retrofitService;
     private Fragment placeFragmentContainer, plannerFragment, scanFragment;
     private CustomViewPager viewPager;
-    private BottomNavigationView bottomNavigationView;
+    public BottomNavigationView bottomNavigationView;
     MenuItem prevMenuItem;
 
     @Override
@@ -118,6 +118,7 @@ public class MainActivity2 extends AppCompatActivity {
                     return true;
                 case R.id.plannerNav:
                     viewPager.setCurrentItem(1, false);
+                    ((PlannerFragment) plannerFragment).getAllVisits();
                     return true;
                 case R.id.scanNav:
                     viewPager.setCurrentItem(2, false);
