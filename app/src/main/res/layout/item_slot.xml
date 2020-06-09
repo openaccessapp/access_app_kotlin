@@ -48,7 +48,7 @@
         android:layout_marginStart="18dp"
         android:fontFamily="@font/rubik_bold"
         android:gravity="center"
-        android:lineSpacingExtra="14sp"
+        android:lineSpacingExtra="10sp"
         android:text="10:00 - 11:00"
         android:textAlignment="center"
         android:textColor="@color/disabled_tint"
@@ -58,7 +58,7 @@
         android:id="@+id/personIconSlot"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_marginStart="65dp"
+        android:layout_marginStart="55dp"
         android:tint="@color/disabled_tint"
         app:srcCompat="@drawable/ic_person_outline_24px" />
 
