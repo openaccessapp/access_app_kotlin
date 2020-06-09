@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -29,4 +30,7 @@ public interface RetrofitService {
 
     @GET("/api/user/{visitorId}/visits")
     Call<JsonObject> getUserVisits(@Path("visitorId") String visitorId);
+
+    @DELETE("/api/user/{visitorId}/visit/{slotId}")
+    Call<JsonObject> deleteVisit(@Path("visitorId") String visitorId, @Path("slotId") String slotId);
 }

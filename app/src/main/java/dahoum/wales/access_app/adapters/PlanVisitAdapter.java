@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -119,6 +121,30 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             dataList.addAll(items);
             notifyItemRangeInserted(start, items.size());
         }
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void deleteItem(int position) {
+        mRecentlyDeletedItem = mListItems.get(position);
+        mRecentlyDeletedItemPosition = position;
+        notifyItemRemoved(position);
+        showUndoSnackbar();
+    }
+
+    private void showUndoSnackbar() {
+        View view = mActivity.findViewById(R.id.coordinator_layout);
+        Snackbar snackbar = Snackbar.make(view, R.string.snack_bar_text, Snackbar.LENGTH_LONG);
+        snackbar.setAction(R.string.snack_bar_undo, v -> undoDelete());
+        snackbar.show();
+    }
+
+    private void undoDelete() {
+        mListItems.add(mRecentlyDeletedItemPosition,
+                mRecentlyDeletedItem);
+        notifyItemInserted(mRecentlyDeletedItemPosition);
     }
 
     public void setAdapterCallback(AdapterCallback callback) {

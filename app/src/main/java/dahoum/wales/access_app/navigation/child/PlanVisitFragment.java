@@ -21,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,6 +41,7 @@ import java.util.List;
 import dahoum.wales.access_app.ProfileActivity;
 import dahoum.wales.access_app.R;
 import dahoum.wales.access_app.adapters.PlanVisitAdapter;
+import dahoum.wales.access_app.adapters.SwipeToDeleteCallback;
 import dahoum.wales.access_app.models.Place;
 import dahoum.wales.access_app.models.Slot;
 import dahoum.wales.access_app.network.RetrofitClientInstance;
@@ -113,6 +115,8 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
         adapter.setAdapterCallback(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setAdapter(adapter);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeToDeleteCallback(adapter));
+        itemTouchHelper.attachToRecyclerView(recyclerView);
 
         retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
     }
