@@ -1,5 +1,6 @@
 package dahoum.wales.access_app.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,10 +29,12 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private final List<Slot> dataList = new ArrayList<>();
     private AdapterCallback callback;
-    private Context context;
+    private Activity mActivity;
+    private Slot mRecentlyDeletedItem;
+    private int mRecentlyDeletedItemPosition;
 
-    public PlanVisitAdapter(Context context) {
-        this.context = context;
+    public PlanVisitAdapter(Activity activity) {
+        mActivity = activity;
     }
 
     @Override
@@ -53,39 +56,29 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         final Slot slot = dataList.get(position);
         if (holder instanceof ItemViewHolder) {
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
+            itemViewHolder.hourFromTo.setText(slot.getFrom() + " - " + slot.getTo());
 
-
-            try {
-                Calendar from = Calendar.getInstance();
-                Calendar to = Calendar.getInstance();
-                SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
-                from.setTime(sdf.parse(slot.getFrom()));
-                to.setTime(sdf.parse(slot.getTo()));
-                itemViewHolder.hourFromTo.setText(from.get(Calendar.HOUR_OF_DAY) + ":" + from.get(Calendar.MINUTE) + " - " + to.get(Calendar.HOUR_OF_DAY) + ":" + to.get(Calendar.MINUTE));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
             itemViewHolder.priorityText.setText(slot.getType());
             itemViewHolder.occupiedMax.setText(slot.getOccupiedSlots() + "/" + slot.getMaxSlots());
             if (slot.getIsPlanned()) {
-                itemViewHolder.linearLayout.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorAccent));
-                itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorPrimary));
-                itemViewHolder.hourFromTo.setTextColor(ContextCompat.getColor(context, R.color.white));
-                itemViewHolder.occupiedMax.setTextColor(ContextCompat.getColor(context, R.color.white));
-                itemViewHolder.checkIcon.setImageTintList(ContextCompat.getColorStateList(context, R.color.white));
-                itemViewHolder.personIcon.setImageTintList(ContextCompat.getColorStateList(context, R.color.white));
+                itemViewHolder.linearLayout.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.colorAccent));
+                itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.colorPrimary));
+                itemViewHolder.hourFromTo.setTextColor(ContextCompat.getColor(mActivity, R.color.white));
+                itemViewHolder.occupiedMax.setTextColor(ContextCompat.getColor(mActivity, R.color.white));
+                itemViewHolder.checkIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.white));
+                itemViewHolder.personIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.white));
             } else {
-                itemViewHolder.linearLayout.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.grey));
-                itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.disabled_tint));
-                itemViewHolder.hourFromTo.setTextColor(ContextCompat.getColor(context, R.color.disabled_tint));
-                itemViewHolder.occupiedMax.setTextColor(ContextCompat.getColor(context, R.color.disabled_tint));
-                itemViewHolder.checkIcon.setImageTintList(ContextCompat.getColorStateList(context, R.color.grey));
-                itemViewHolder.personIcon.setImageTintList(ContextCompat.getColorStateList(context, R.color.disabled_tint));
+                itemViewHolder.linearLayout.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.grey));
+                itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.disabled_tint));
+                itemViewHolder.hourFromTo.setTextColor(ContextCompat.getColor(mActivity, R.color.disabled_tint));
+                itemViewHolder.occupiedMax.setTextColor(ContextCompat.getColor(mActivity, R.color.disabled_tint));
+                itemViewHolder.checkIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.grey));
+                itemViewHolder.personIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.disabled_tint));
             }
         } else if (holder instanceof HeaderViewHolder) {
             HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
             Calendar cal = Calendar.getInstance();
-            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
             try {
                 cal.setTime(sdf.parse(slot.getFrom()));
             } catch (ParseException e) {
@@ -126,26 +119,25 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     public Context getContext() {
-        return context;
+        return mActivity;
     }
 
     public void deleteItem(int position) {
-        mRecentlyDeletedItem = mListItems.get(position);
+        mRecentlyDeletedItem = dataList.get(position);
         mRecentlyDeletedItemPosition = position;
         notifyItemRemoved(position);
         showUndoSnackbar();
     }
 
     private void showUndoSnackbar() {
-        View view = mActivity.findViewById(R.id.coordinator_layout);
-        Snackbar snackbar = Snackbar.make(view, R.string.snack_bar_text, Snackbar.LENGTH_LONG);
-        snackbar.setAction(R.string.snack_bar_undo, v -> undoDelete());
+        View view = mActivity.findViewById(android.R.id.content);
+        Snackbar snackbar = Snackbar.make(view, "Undo slot delete", Snackbar.LENGTH_LONG);
+        snackbar.setAction("Undo slot delete", v -> undoDelete());
         snackbar.show();
     }
 
     private void undoDelete() {
-        mListItems.add(mRecentlyDeletedItemPosition,
-                mRecentlyDeletedItem);
+        dataList.add(mRecentlyDeletedItemPosition, mRecentlyDeletedItem);
         notifyItemInserted(mRecentlyDeletedItemPosition);
     }
 

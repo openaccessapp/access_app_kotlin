@@ -110,7 +110,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
         setupPlace(view);
 
         recyclerView = view.findViewById(R.id.recyclerPlanVisit);
-        adapter = new PlanVisitAdapter(view.getContext());
+        adapter = new PlanVisitAdapter(getActivity());
         adapter.setDataList(slots);
         adapter.setAdapterCallback(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
