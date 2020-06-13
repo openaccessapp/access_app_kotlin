@@ -154,6 +154,8 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
                         e.printStackTrace();
                     }
                 } else if (response.body().get("slots").getAsJsonArray() != null) {
+                    //todo slots is not longer an arraylist, it's a map<the date as string, ArrayList<Slot>>
+                    //crashes the app when opened
                     slots = new Gson().fromJson(response.body().get("slots"), new TypeToken<ArrayList<Slot>>() {
                     }.getType());
                     if (!slots.isEmpty()) {
