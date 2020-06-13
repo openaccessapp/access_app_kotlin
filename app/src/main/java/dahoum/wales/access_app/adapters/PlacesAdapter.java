@@ -51,8 +51,15 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
         holder.placeDesc.setText(place.getDescription());
         holder.websiteTv.setText(place.getWww());
         if (place.getImage() != null) {
-            byte[] decodedString = Base64.decode(place.getImage(), Base64.DEFAULT);
-            Bitmap base64Bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            Bitmap base64Bitmap;
+            //decoding every time from base64 was laggy
+            if (place.getBase64Bitmap() != null) {
+                base64Bitmap = place.getBase64Bitmap();
+            } else {
+                byte[] decodedString = Base64.decode(place.getImage(), Base64.DEFAULT);
+                base64Bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+            }
+
             holder.image.setImageBitmap(base64Bitmap);
         }
         if (place.getIsFavourite()) {
@@ -137,7 +144,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
             super(itemView);
             placeName = itemView.findViewById(R.id.placeName);
             placeName.setOnClickListener(v -> {
-               callback.onPlaceClick(getAdapterPosition());
+                callback.onPlaceClick(getAdapterPosition());
             });
             placeDesc = itemView.findViewById(R.id.placeDesc);
             placeDesc.setOnClickListener(v -> {
@@ -160,7 +167,9 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
 
     public interface PlacesCallback {
         void onFavouriteClick(ImageView favImage, int position);
+
         void onPlaceClick(int position);
+
         void onWebsiteClick(int position);
     }
 }

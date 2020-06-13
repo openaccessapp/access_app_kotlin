@@ -10,6 +10,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface RetrofitService {
 
@@ -17,7 +18,7 @@ public interface RetrofitService {
     Call<JsonObject> getUserId();
 
     @GET("/api/place/{visitorId}")
-    Call<JsonObject> getAllPlaces(@Path("visitorId") String visitorId);
+    Call<JsonObject> getAllPlaces(@Path("visitorId") String visitorId, @Query("skip") int skip, @Query("load") int load);
 
     @GET("/api/place/{visitorId}/{placeId}")
     Call<JsonObject> getSlotsPlace(@Path("visitorId") String visitorId, @Path("placeId") String placeId);

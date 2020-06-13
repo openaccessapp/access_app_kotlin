@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
@@ -37,6 +38,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import dahoum.wales.access_app.ProfileActivity;
 import dahoum.wales.access_app.R;
@@ -153,15 +156,17 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                } else if (response.body().get("slots").getAsJsonArray() != null) {
-                    //todo slots is not longer an arraylist, it's a map<the date as string, ArrayList<Slot>>
-                    //crashes the app when opened
-                    slots = new Gson().fromJson(response.body().get("slots"), new TypeToken<ArrayList<Slot>>() {
-                    }.getType());
-                    if (!slots.isEmpty()) {
-                        slots.add(0, new Slot(slots.get(0).getFrom(), 1));
+                } else if (response.body().get("slots").getAsJsonObject() != null) {
+                    slots.clear();
+                    adapter.notifyDataSetChanged();
+                    Gson gson = new Gson();
+                    Set<Map.Entry<String, JsonElement>> entries = response.body().getAsJsonObject().get("slots").getAsJsonObject().entrySet();
+                    for (Map.Entry<String, JsonElement> entry : entries) {
+                        slots.add(new Slot(entry.getKey(), 1));
+                        slots.addAll(gson.fromJson(entry.getValue().getAsJsonArray(), new TypeToken<ArrayList<Slot>>() {
+                        }.getType()));
                     }
-                    adapter.setDataList(slots);
+                    adapter.notifyDataSetChanged();
                 }
             }
 

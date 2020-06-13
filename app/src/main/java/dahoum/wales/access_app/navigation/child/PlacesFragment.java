@@ -53,6 +53,10 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     private List<Place> places = new ArrayList<>();
     private SharedPreferences prefs;
     private RelativeLayout loadingPanel;
+    private int currentPage = 0;
+    private int visibleThreshold = 7;
+    private boolean isLoading = false;
+    private boolean reachedEnd = false;
 
     public PlacesFragment() {
         // Required empty public constructor
@@ -102,6 +106,22 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
 
         retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
         recyclerView = view.findViewById(R.id.placesRecyclerView);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                LinearLayoutManager llm = (LinearLayoutManager) recyclerView.getLayoutManager();
+                if (llm != null) {
+                    int page = llm.findLastCompletelyVisibleItemPosition();
+                    if (page > (currentPage * visibleThreshold) - 4 && !reachedEnd && !isLoading) {
+                        getAllPlaces();
+                    }
+                }
+
+            }
+        });
         adapter = new PlacesAdapter(getContext(), places);
         adapter.setAdapterCallback(this);
         LinearLayoutManager manager = new LinearLayoutManager(view.getContext());
@@ -156,25 +176,35 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         startActivity(intent);
     }
 
-    private void getAllPlaces() {
+    void getAllPlaces() {
+        isLoading = true;
         loadingPanel.setVisibility(View.GONE);
-        retrofitService.getAllPlaces(prefs.getString("userId", null)).enqueue(new Callback<JsonObject>() {
+        retrofitService.getAllPlaces(prefs.getString("userId", null), currentPage++ * visibleThreshold, visibleThreshold).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
                 Gson gson = new Gson();
                 if (response.body().get("places").getAsJsonArray() != null) {
-                    places = gson.fromJson(response.body().get("places"), new TypeToken<ArrayList<Place>>() {
+                    ArrayList<Place> newPlaces = gson.fromJson(response.body().get("places"), new TypeToken<ArrayList<Place>>() {
                     }.getType());
+
+                    if (newPlaces.isEmpty()) {
+                        reachedEnd = true;
+                        return;
+                    }
+
+                    places.addAll(newPlaces);
+
                     adapter.setDataList(places);
                 }
+                isLoading = false;
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 Log.d(TAG, t.getLocalizedMessage());
+                isLoading = false;
             }
         });
-
     }
 
 }
