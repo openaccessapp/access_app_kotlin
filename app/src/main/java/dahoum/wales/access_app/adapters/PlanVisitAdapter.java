@@ -27,7 +27,7 @@ import dahoum.wales.access_app.stickyheaders.AdapterDataProvider;
 
 public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements AdapterDataProvider {
 
-    private final List<Slot> dataList = new ArrayList<>();
+    private List<Slot> dataList = new ArrayList<>();
     private AdapterCallback callback;
     private Activity mActivity;
     private Slot mRecentlyDeletedItem;
@@ -105,9 +105,7 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     public void setDataList(List<Slot> items) {
-        dataList.clear();
-        dataList.addAll(items);
-        notifyDataSetChanged();
+        dataList = items;
     }
 
     public void addDataList(List<Slot> items) {

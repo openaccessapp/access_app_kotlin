@@ -22,7 +22,7 @@ import dahoum.wales.access_app.stickyheaders.AdapterDataProvider;
 
 public class VisitsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements AdapterDataProvider {
 
-    private final List<Visit> visitList = new ArrayList<>();
+    private List<Visit> visitList = new ArrayList<>();
 
     @NotNull
     @Override
@@ -82,9 +82,7 @@ public class VisitsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     public void setDataList(List<Visit> items) {
-        visitList.clear();
-        visitList.addAll(items);
-        notifyDataSetChanged();
+        visitList = items;
     }
 
     private static final class ItemViewHolder extends RecyclerView.ViewHolder {

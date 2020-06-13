@@ -18,11 +18,14 @@ import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import dahoum.wales.access_app.MainActivity2;
 import dahoum.wales.access_app.ProfileActivity;
@@ -81,7 +84,6 @@ public class PlannerFragment extends Fragment {
         retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
         recyclerView = view.findViewById(R.id.recyclerViewPlanner);
         recyclerView.setEmptyView(view.findViewById(R.id.emptyViewPlanner));
-//        getData();
         adapter = new VisitsAdapter();
         adapter.setDataList(visits);
         StickyLinearLayoutManager layoutManager = new StickyLinearLayoutManager(view.getContext(), adapter) {
@@ -129,14 +131,17 @@ public class PlannerFragment extends Fragment {
         retrofitService.getUserVisits(prefs.getString("userId", null)).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                Gson gson = new Gson();
-                if (response.body().get("visits").getAsJsonArray() != null) {
-                    visits = gson.fromJson(response.body().get("visits"), new TypeToken<ArrayList<Visit>>() {
-                    }.getType());
-                    if (!visits.isEmpty()) {
-                        visits.add(0, new Visit(visits.get(0).getStartTime(), 1));
+                if (response.body().get("visits").getAsJsonObject() != null) {
+                    visits.clear();
+                    adapter.notifyDataSetChanged();
+                    Gson gson = new Gson();
+                    Set<Map.Entry<String, JsonElement>> entries = response.body().getAsJsonObject().get("visits").getAsJsonObject().entrySet();
+                    for (Map.Entry<String, JsonElement> entry : entries) {
+                        visits.add(new Visit(entry.getKey(), 1));
+                        visits.addAll(gson.fromJson(entry.getValue().getAsJsonArray(), new TypeToken<ArrayList<Visit>>() {
+                        }.getType()));
                     }
-                    adapter.setDataList(visits);
+                    adapter.notifyDataSetChanged();
                 }
             }
 
@@ -147,24 +152,4 @@ public class PlannerFragment extends Fragment {
             }
         });
     }
-
-//    private void getData() {
-//        plans.add(new Plan(null,null,"MON", "27th May", 1));
-//        plans.add(new Plan("11:00","12:00","Central Park", "Priority", 0));
-//        plans.add(new Plan("12:00","13:00","History Museum", "Normal", 0));
-//        plans.add(new Plan("13:00","14:00","South Park", "Normal", 0));
-//        plans.add(new Plan(null,null,"TUE", "28th May", 1));
-//        plans.add(new Plan("11:00","13:00","Central Park", "Priority", 0));
-//        plans.add(new Plan("14:00","15:00","History Museum", "Normal", 0));
-//        plans.add(new Plan("15:00","16:00","South Park", "Normal", 0));
-//        plans.add(new Plan(null,null,"WED", "29th May", 1));
-//        plans.add(new Plan("10:00","11:00","Central Park", "Priority", 0));
-//        plans.add(new Plan("11:00","12:00","History Museum", "Normal", 0));
-//        plans.add(new Plan("13:00","14:00","South Park", "Normal", 0));
-//        plans.add(new Plan(null,null,"THU", "30th May", 1));
-//        plans.add(new Plan("13:00","14:00","Central Park", "Priority", 0));
-//        plans.add(new Plan("14:00","15:00","History Museum", "Normal", 0));
-//        plans.add(new Plan("15:00","16:00","South Park", "Normal", 0));
-//
-//    }
 }
