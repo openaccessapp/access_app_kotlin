@@ -17,6 +17,9 @@ public class Visit {
     @SerializedName("endTime")
     @Expose
     private String endTime;
+    @SerializedName("visitors")
+    @Expose
+    private Integer visitors;
     @SerializedName("occupiedSlots")
     @Expose
     private Integer occupiedSlots;
@@ -84,5 +87,13 @@ public class Visit {
 
     public void setViewType(int viewType) {
         this.viewType = viewType;
+    }
+
+    public Integer getVisitors() {
+        return visitors;
+    }
+
+    public void setVisitors(Integer visitors) {
+        this.visitors = visitors;
     }
 }

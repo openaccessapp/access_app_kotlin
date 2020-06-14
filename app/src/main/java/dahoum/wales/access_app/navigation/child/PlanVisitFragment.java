@@ -102,7 +102,9 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
-        view.findViewById(R.id.goBack).setOnClickListener(v -> getParentFragment().getChildFragmentManager().popBackStack());
+        View goBackButton = view.findViewById(R.id.goBack);
+        goBackButton.setOnClickListener(v -> getParentFragment().getChildFragmentManager().popBackStack());
+
         OnBackPressedCallback backButton = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {

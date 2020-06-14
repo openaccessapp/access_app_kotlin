@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="11dp"
             android:fontFamily="@font/rubik_bold"
-            android:text="Central Park"
+            android:text="Place Name"
             android:textColor="@color/text_color_dark"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@id/placeImage"

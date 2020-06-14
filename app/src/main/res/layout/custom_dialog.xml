@@ -90,7 +90,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="13dp"
             android:fontFamily="@font/rubik_bold"
-            android:text="History Museum"
+            android:text="Place Name"
             android:textColor="@color/text_color_dark"
             android:textSize="16sp" />
 
@@ -149,7 +149,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/one"
-                android:layout_width="40dp"
+                android:layout_width="42dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:elevation="0dp"
@@ -161,9 +161,9 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/two"
-                android:layout_width="40dp"
+                android:layout_width="42dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="3dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/grey"
                 android:elevation="0dp"
@@ -176,9 +176,9 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/three"
-                android:layout_width="40dp"
+                android:layout_width="42dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="3dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/grey"
                 android:elevation="0dp"
@@ -191,9 +191,9 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/four"
-                android:layout_width="40dp"
+                android:layout_width="42dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="3dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/grey"
                 android:elevation="0dp"
@@ -206,9 +206,9 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/five"
-                android:layout_width="40dp"
+                android:layout_width="42dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="3dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/grey"
                 android:elevation="0dp"
@@ -221,9 +221,9 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/six"
-                android:layout_width="40dp"
+                android:layout_width="42dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="3dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/grey"
                 android:elevation="0dp"
@@ -236,9 +236,9 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/seven"
-                android:layout_width="40dp"
+                android:layout_width="42dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="3dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/grey"
                 android:elevation="0dp"

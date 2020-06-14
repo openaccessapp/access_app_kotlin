@@ -72,7 +72,9 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState);
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        view.findViewById(R.id.goBack).setOnClickListener(v -> getParentFragment().getChildFragmentManager().popBackStack());
+        goBackButton = view.findViewById(R.id.goBack);
+        goBackButton.setOnClickListener(v -> getParentFragment().getChildFragmentManager().popBackStack());
+
         view.findViewById(R.id.openProfile).setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), ProfileActivity.class));
         });

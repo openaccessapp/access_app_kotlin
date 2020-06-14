@@ -133,7 +133,6 @@ public class PlannerFragment extends Fragment {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.body().get("visits").getAsJsonObject() != null) {
                     visits.clear();
-                    adapter.notifyDataSetChanged();
                     Gson gson = new Gson();
                     Set<Map.Entry<String, JsonElement>> entries = response.body().getAsJsonObject().get("visits").getAsJsonObject().entrySet();
                     for (Map.Entry<String, JsonElement> entry : entries) {

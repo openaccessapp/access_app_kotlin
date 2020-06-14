@@ -12,5 +12,6 @@ public class ProfileActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         setContentView(R.layout.activity_profile);
         findViewById(R.id.goBack).setOnClickListener(v -> finish());
+
     }
 }

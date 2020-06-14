@@ -28,15 +28,24 @@
         app:layout_constraintTop_toTopOf="@id/tree_top" />
 
     <ImageView
-        android:id="@+id/goBack"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:id="@+id/goBackImage"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginStart="27dp"
         android:background="?selectableItemBackgroundBorderless"
         android:src="@drawable/ic_keyboard_backspace_black_24dp"
-        app:layout_constraintBottom_toBottomOf="@id/tree_top"
+        app:layout_constraintBottom_toBottomOf="@+id/tree_top"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tree_top" />
+        app:layout_constraintTop_toTopOf="@+id/tree_top" />
+    <ImageView
+        android:id="@+id/goBack"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="12dp"
+        android:background="?selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="@+id/tree_top"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tree_top" />
 
     <LinearLayout
         android:id="@+id/searchInputLayout"
@@ -227,7 +236,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="11dp"
                     android:fontFamily="@font/rubik_bold"
-                    android:text="Central Park"
+                    android:text="Place Name"
                     android:textColor="@color/text_color_dark"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@id/placeImage"

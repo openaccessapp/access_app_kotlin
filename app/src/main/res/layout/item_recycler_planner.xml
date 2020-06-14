@@ -90,7 +90,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/rubik_bold"
-            android:text="History Museum"
+            android:text="Place Name"
             android:textColor="@color/text_color_dark"
             android:textSize="16sp"
             app:cornerRadius="10dp"

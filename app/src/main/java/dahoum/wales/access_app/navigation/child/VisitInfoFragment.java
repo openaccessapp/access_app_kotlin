@@ -52,11 +52,11 @@ public class VisitInfoFragment extends Fragment {
     }
 
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         goBackButton = view.findViewById(R.id.goBack);
+
         goBackButton.setOnClickListener(v -> {
             getParentFragment().getChildFragmentManager().popBackStack();
         });
