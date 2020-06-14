@@ -41,9 +41,8 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == 0) {
             ItemViewHolder itemViewHolder = new ItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_slot, parent, false));
-            itemViewHolder.itemView.setOnClickListener(v -> {
-                callback.onItemClick(itemViewHolder.getAdapterPosition());
-            });
+            itemViewHolder.itemView.setOnClickListener(v -> callback.onItemClick(itemViewHolder.getAdapterPosition()));
+            itemViewHolder.priorityText.setOnClickListener(v -> callback.onItemClick(itemViewHolder.getAdapterPosition()));
             return itemViewHolder;
 
         } else {
@@ -107,14 +106,6 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public void setDataList(List<Slot> items) {
         dataList = items;
-    }
-
-    public void addDataList(List<Slot> items) {
-        if (items != null) {
-            int start = dataList.size();
-            dataList.addAll(items);
-            notifyItemRangeInserted(start, items.size());
-        }
     }
 
     public Context getContext() {

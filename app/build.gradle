@@ -11,8 +11,8 @@ android {
         applicationId "dahoum.wales.access_app"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 9
-        versionName "1.0-beta09"
+        versionCode 10
+        versionName "1.0-beta10"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

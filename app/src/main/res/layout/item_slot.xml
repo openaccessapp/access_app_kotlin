@@ -13,13 +13,15 @@
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
     android:gravity="center"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:focusable="true">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/priority_text"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:layout_gravity="center|center_horizontal|center_vertical"
         android:layout_marginStart="10dp"
         android:background="@color/disabled_tint"
@@ -38,7 +40,8 @@
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:focusable="true" />
 
     <TextView
         android:id="@+id/hourFromTo"

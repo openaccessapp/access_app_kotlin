@@ -1,5 +1,6 @@
 package dahoum.wales.access_app.adapters;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,8 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.button.MaterialButton;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -18,26 +21,33 @@ import java.util.List;
 import java.util.Locale;
 
 import dahoum.wales.access_app.R;
+import dahoum.wales.access_app.ShadowConstraintLayout;
 import dahoum.wales.access_app.models.Visit;
 import dahoum.wales.access_app.stickyheaders.AdapterDataProvider;
 
 public class VisitsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements AdapterDataProvider {
 
     private List<Visit> visitList = new ArrayList<>();
-    private ViewGroup parent;
+    private VisitsAdapter.AdapterCallback callback;
+    private Activity mActivity;
+
+    public VisitsAdapter(Activity activity) {
+        mActivity = activity;
+    }
 
     @NotNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        this.parent = parent;
-        if (viewType == 0) {
-            return new ItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_planner, parent, false));
-        } else if (viewType == 1) {
+        if (viewType == 1) {
             return new HeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_planner_header, parent, false));
         } else {
-            //standard is blue color, also is type 2
             ItemViewHolder itemViewHolder = new ItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_planner, parent, false));
-            itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(parent.getContext(), R.color.colorPrimary));
+
+            //standard is blue color, also is type 2
+            if (viewType != 0)
+                itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.colorPrimary));
+
+            itemViewHolder.visitedSlot.setOnClickListener(v -> callback.onItemClick(itemViewHolder.getAdapterPosition()));
             return itemViewHolder;
         }
     }
@@ -68,6 +78,10 @@ public class VisitsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
+    public void setAdapterCallback(AdapterCallback callback) {
+        this.callback = callback;
+    }
+
     @Override
     public int getItemCount() {
         return visitList.size();
@@ -92,7 +106,9 @@ public class VisitsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     private static final class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        TextView hourFrom, hourTo, placeName, priorityText, occupiedMax, visitors;
+        ShadowConstraintLayout visitedSlot;
+        MaterialButton priorityText;
+        TextView hourFrom, hourTo, placeName, occupiedMax, visitors;
 
         ItemViewHolder(View itemView) {
             super(itemView);
@@ -103,6 +119,7 @@ public class VisitsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             priorityText = itemView.findViewById(R.id.priority_text);
             occupiedMax = itemView.findViewById(R.id.occupiedMax);
             visitors = itemView.findViewById(R.id.personCountTv);
+            visitedSlot = itemView.findViewById(R.id.visitedSlot);
 
         }
     }
@@ -117,5 +134,9 @@ public class VisitsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             shortDate = itemView.findViewById(R.id.shortDay);
             date = itemView.findViewById(R.id.date);
         }
+    }
+
+    public interface AdapterCallback {
+        void onItemClick(int position);
     }
 }

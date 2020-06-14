@@ -26,6 +26,12 @@ public class Visit {
     @SerializedName("maxSlots")
     @Expose
     private Integer maxSlots;
+    @SerializedName("slotId")
+    @Expose
+    private String slotId;
+    @SerializedName("placeId")
+    @Expose
+    private String placeId;
     private int viewType;
 
     public Visit(String startTime, int viewType) {
@@ -45,55 +51,35 @@ public class Visit {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getStartTime() {
         return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
     }
 
     public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
-
     public Integer getOccupiedSlots() {
         return occupiedSlots;
-    }
-
-    public void setOccupiedSlots(Integer occupiedSlots) {
-        this.occupiedSlots = occupiedSlots;
     }
 
     public Integer getMaxSlots() {
         return maxSlots;
     }
 
-    public void setMaxSlots(Integer maxSlots) {
-        this.maxSlots = maxSlots;
-    }
-
     public int getViewType() {
         return viewType;
-    }
-
-    public void setViewType(int viewType) {
-        this.viewType = viewType;
     }
 
     public Integer getVisitors() {
         return visitors;
     }
 
-    public void setVisitors(Integer visitors) {
-        this.visitors = visitors;
+    public String getSlotId() {
+        return slotId;
+    }
+
+    public String getPlaceId() {
+        return placeId;
     }
 }
