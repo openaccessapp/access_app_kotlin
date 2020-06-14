@@ -1,9 +1,6 @@
 package dahoum.wales.access_app.adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,18 +49,8 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
         holder.placeName.setText(place.getName());
         holder.placeDesc.setText(place.getDescription());
         holder.websiteTv.setText(place.getWww());
-        if (place.getImage() != null) {
-            Bitmap base64Bitmap;
-            //decoding every time from base64 was laggy
-            if (place.getBase64Bitmap() != null) {
-                base64Bitmap = place.getBase64Bitmap();
-            } else {
-                byte[] decodedString = Base64.decode(place.getImage(), Base64.DEFAULT);
-                base64Bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-            }
+        Picasso.get().load("http://80.100.38.7:3001/api/image/" + place.getId()).into(holder.image);
 
-            holder.image.setImageBitmap(base64Bitmap);
-        }
         if (place.getIsFavourite()) {
             holder.placeFav.setImageResource(R.drawable.ic_heart_filled);
         } else {

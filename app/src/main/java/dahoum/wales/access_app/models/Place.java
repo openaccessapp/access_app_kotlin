@@ -1,7 +1,5 @@
 package dahoum.wales.access_app.models;
 
-import android.graphics.Bitmap;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -17,10 +15,6 @@ public class Place implements Serializable {
     @SerializedName("type")
     @Expose
     private String type;
-    @SerializedName("image")
-    @Expose
-    private String image;
-    private Bitmap base64Bitmap = null;
     @SerializedName("description")
     @Expose
     private String description;
@@ -58,14 +52,6 @@ public class Place implements Serializable {
         this.type = type;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -96,13 +82,5 @@ public class Place implements Serializable {
 
     public void setIsFavourite(Boolean isFavourite) {
         this.isFavourite = isFavourite;
-    }
-
-    public Bitmap getBase64Bitmap() {
-        return base64Bitmap;
-    }
-
-    public void setBase64Bitmap(Bitmap base64Bitmap) {
-        this.base64Bitmap = base64Bitmap;
     }
 }

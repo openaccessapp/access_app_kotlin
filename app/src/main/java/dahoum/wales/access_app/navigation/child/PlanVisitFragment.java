@@ -4,10 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +29,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -148,11 +146,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
         websiteTv = view.findViewById(R.id.websiteTv);
         websiteTv.setText(place.getWww());
         image = view.findViewById(R.id.image);
-        if (place.getImage() != null) {
-            byte[] decodedString = Base64.decode(place.getImage(), Base64.DEFAULT);
-            Bitmap base64Bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-            image.setImageBitmap(base64Bitmap);
-        }
+        Picasso.get().load("http://80.100.38.7:3001/api/image/" + place.getId()).into(image);
     }
 
     private void getSlotsPlace() {

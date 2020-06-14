@@ -1,10 +1,7 @@
 package dahoum.wales.access_app.navigation.child;
 
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +12,8 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.squareup.picasso.Picasso;
 
 import dahoum.wales.access_app.R;
 import dahoum.wales.access_app.models.Place;
@@ -76,11 +75,7 @@ public class VisitInfoFragment extends Fragment {
         placeName = view.findViewById(R.id.placeName);
         placeName.setText(place.getName());
         image = view.findViewById(R.id.image);
-        if (place.getImage() != null) {
-            byte[] decodedString = Base64.decode(place.getImage(), Base64.DEFAULT);
-            Bitmap base64Bitmap = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-            image.setImageBitmap(base64Bitmap);
-        }
+        Picasso.get().load("http://80.100.38.7:3001/api/image/" + place.getId()).into(image);
 
     }
 }
