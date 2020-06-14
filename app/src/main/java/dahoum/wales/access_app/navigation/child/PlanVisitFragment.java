@@ -192,6 +192,25 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
         View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.custom_dialog, viewGroup, false);
         Button saveButton = dialogView.findViewById(R.id.save_button);
         Button cancelButton = dialogView.findViewById(R.id.cancel_button);
+        Slot slot = slots.get(position);
+
+        TextView occupied = dialogView.findViewById(R.id.occupiedMax);
+        occupied.setText(slot.getOccupiedSlots() + "/" + slot.getMaxSlots());
+
+        MaterialButton type = dialogView.findViewById(R.id.priority_text);
+        type.setText(slot.getType());
+        if (slot.getType().equals("Standard"))
+            type.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(), R.color.colorPrimary));
+
+        TextView hourFrom = dialogView.findViewById(R.id.hourFrom);
+        hourFrom.setText(slot.getFrom());
+
+        TextView hourTo = dialogView.findViewById(R.id.hourTo);
+        hourTo.setText(slot.getTo());
+
+        TextView placeName = dialogView.findViewById(R.id.titlePlanner);
+        placeName.setText(place.getName());
+
         for (int i = 0; i < btn.length; i++) {
             btn[i] = dialogView.findViewById(btn_id[i]);
             btn[i].setOnClickListener(this);
@@ -199,11 +218,16 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
 
         btn_unfocus = btn[0];
 
+        if (slot.getFriends() > 0) {
+            int btnId = slot.getFriends() - 1;
+            setFocus(btn_unfocus, btn[btnId]);
+        }
+
 
         builder.setView(dialogView);
         final AlertDialog alertDialog = builder.create();
         saveButton.setOnClickListener(v -> {
-            postPlanVisit(slots.get(position).getId(), Integer.parseInt(btn_unfocus.getText().toString()));
+            postPlanVisit(slot.getId(), Integer.parseInt(btn_unfocus.getText().toString()));
             alertDialog.dismiss();
         });
         cancelButton.setOnClickListener(v -> {

@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/rubik_bold"
-            android:text="Customise Information"
+            android:text="Book Visit"
             android:textAlignment="center"
             android:textColor="@color/text_color_dark"
             android:textSize="20sp" />
@@ -78,7 +78,7 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="12sp"
-            app:backgroundTint="@color/colorAccent"
+            app:backgroundTint="@color/green"
             app:cornerRadius="6dp" />
 
         <TextView

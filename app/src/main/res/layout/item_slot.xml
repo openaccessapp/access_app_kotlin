@@ -34,7 +34,7 @@
         android:minWidth="0dp"
         android:minHeight="40dp"
         android:stateListAnimator="@null"
-        android:text="Priority"
+        android:text="P"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/white"

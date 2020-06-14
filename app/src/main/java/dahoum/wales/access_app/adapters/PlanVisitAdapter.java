@@ -58,11 +58,12 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             itemViewHolder.hourFromTo.setText(slot.getFrom() + " - " + slot.getTo());
 
-            itemViewHolder.priorityText.setText(slot.getType());
+            itemViewHolder.priorityText.setText(slot.getType().charAt(0) + "");
             itemViewHolder.occupiedMax.setText(slot.getOccupiedSlots() + "/" + slot.getMaxSlots());
             if (slot.getIsPlanned()) {
                 itemViewHolder.linearLayout.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.colorAccent));
-                itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.colorPrimary));
+                if (slot.getType().equals("Standard")) itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.colorPrimary));
+                else itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.green));
                 itemViewHolder.hourFromTo.setTextColor(ContextCompat.getColor(mActivity, R.color.white));
                 itemViewHolder.occupiedMax.setTextColor(ContextCompat.getColor(mActivity, R.color.white));
                 itemViewHolder.checkIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.white));
