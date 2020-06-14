@@ -32,8 +32,13 @@ public class VisitsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         this.parent = parent;
         if (viewType == 0) {
             return new ItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_planner, parent, false));
-        } else {
+        } else if (viewType == 1) {
             return new HeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_planner_header, parent, false));
+        } else {
+            //standard is blue color, also is type 2
+            ItemViewHolder itemViewHolder = new ItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_recycler_planner, parent, false));
+            itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(parent.getContext(), R.color.colorPrimary));
+            return itemViewHolder;
         }
     }
 
@@ -44,9 +49,6 @@ public class VisitsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
             itemViewHolder.hourFrom.setText(visit.getStartTime());
             itemViewHolder.hourTo.setText(visit.getEndTime());
-            if (visit.getType().equals("Standard")) {
-                itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(parent.getContext(), R.color.colorPrimary));
-            }
             itemViewHolder.priorityText.setText(visit.getType());
             itemViewHolder.occupiedMax.setText(visit.getOccupiedSlots() + "/" + visit.getMaxSlots());
             itemViewHolder.visitors.setText(visit.getVisitors() + "");
@@ -55,7 +57,7 @@ public class VisitsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             Calendar cal = Calendar.getInstance();
             HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
 
-            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.getDefault());
+            SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
             try {
                 cal.setTime(sdf.parse(visit.getStartTime()));
             } catch (ParseException e) {
@@ -73,7 +75,10 @@ public class VisitsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public int getItemViewType(int position) {
-        return visitList.get(position).getViewType();
+        Visit item = visitList.get(position);
+        if (item.getViewType() == 1) return 1;
+        else if (item.getType().equals("Standard")) return 2;
+        return 0;
     }
 
     @Override

@@ -182,7 +182,8 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
 
             @Override
             public void onFailure(@NotNull Call<JsonObject> call, @NotNull Throwable t) {
-                Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                //todo this toast was crashing the app
+//                Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
