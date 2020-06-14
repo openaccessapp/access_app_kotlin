@@ -10,23 +10,23 @@
 
         <ImageView
             android:id="@+id/goBackImage"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginStart="27dp"
             android:background="?selectableItemBackgroundBorderless"
             android:src="@drawable/ic_keyboard_backspace_black_24dp"
-            app:layout_constraintBottom_toBottomOf="@+id/tree_top"
+            app:layout_constraintBottom_toBottomOf="@+id/circle_image_card"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tree_top" />
+            app:layout_constraintTop_toTopOf="@+id/circle_image_card" />
         <ImageView
             android:id="@+id/goBack"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="12dp"
             android:background="?selectableItemBackgroundBorderless"
-            app:layout_constraintBottom_toBottomOf="@+id/tree_top"
+            app:layout_constraintBottom_toBottomOf="@+id/circle_image_card"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tree_top" />
+            app:layout_constraintTop_toTopOf="@+id/circle_image_card" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/circle_image_card"
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/rubik_bold"
             android:gravity="start|center_vertical"
-            android:text="Place Name"
+            android:text="Central Park"
             android:textColor="@color/text_color_dark"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/circle_image_card"

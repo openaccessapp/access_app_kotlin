@@ -20,8 +20,8 @@
 
     <ImageView
         android:id="@+id/goBackImage"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_marginStart="27dp"
         android:background="?selectableItemBackgroundBorderless"
         android:src="@drawable/ic_keyboard_backspace_black_24dp"
