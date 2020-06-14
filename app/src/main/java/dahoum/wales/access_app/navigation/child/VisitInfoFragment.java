@@ -11,14 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.graphics.drawable.RoundedBitmapDrawable;
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 import androidx.fragment.app.Fragment;
-
-
-import java.util.Arrays;
 
 import dahoum.wales.access_app.R;
 import dahoum.wales.access_app.models.Place;
@@ -64,6 +60,13 @@ public class VisitInfoFragment extends Fragment {
         goBackButton.setOnClickListener(v -> {
             getParentFragment().getChildFragmentManager().popBackStack();
         });
+        OnBackPressedCallback backButton = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                getParentFragment().getChildFragmentManager().popBackStack();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, backButton);
 
         place = (Place) getArguments().getSerializable("place");
         setupPlace(view);

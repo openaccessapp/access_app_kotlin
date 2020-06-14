@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -102,6 +103,13 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
 
         prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
         view.findViewById(R.id.goBack).setOnClickListener(v -> getParentFragment().getChildFragmentManager().popBackStack());
+        OnBackPressedCallback backButton = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                getParentFragment().getChildFragmentManager().popBackStack();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, backButton);
         infoButton = view.findViewById(R.id.infoButton);
         infoButton.setOnClickListener(v -> {
             callback.onInfoClicked(place);
