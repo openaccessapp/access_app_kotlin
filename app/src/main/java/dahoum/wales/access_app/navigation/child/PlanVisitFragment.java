@@ -184,6 +184,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
                                 plannedSlots++;
                                 slot.setViewType(slot.getViewType()+1);
                             }
+                            else if (slot.getOccupiedSlots().equals(slot.getMaxSlots())) slot.setViewType(slot.getViewType() + 2);
                         }
                         if (plannedSlots >= 2) for (Slot slot : slots) {
                             if (slot.getViewType() % 10 == 0) slot.setViewType(slot.getViewType() + 2);

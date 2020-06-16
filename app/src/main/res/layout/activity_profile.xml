@@ -53,20 +53,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tree_top" />
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="7dp"
-        android:fontFamily="@font/rubik"
-        android:gravity="center"
-        android:text="Lorem ipsum dolor sit amet"
-        android:textColor="@color/text_gray"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choosePlaceTv" />
+<!--    <TextView-->
+<!--        android:id="@+id/textView12"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="7dp"-->
+<!--        android:fontFamily="@font/rubik"-->
+<!--        android:gravity="center"-->
+<!--        android:text="Lorem ipsum dolor sit amet"-->
+<!--        android:textColor="@color/text_gray"-->
+<!--        android:textSize="18sp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/choosePlaceTv" />-->
 
     <TextView
         android:id="@+id/textView10"
@@ -81,7 +81,7 @@
         android:textColor="@color/text_gray"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView12" />
+        app:layout_constraintTop_toBottomOf="@id/choosePlaceTv" />
 
     <EditText
         android:id="@+id/ageField"
