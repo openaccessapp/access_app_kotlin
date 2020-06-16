@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -55,7 +56,6 @@ import retrofit2.Response;
 public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.AdapterCallback, View.OnClickListener {
 
     private static final String TAG = PlanVisitFragment.class.getSimpleName();
-    private ImageView infoButton;
     private RecyclerView recyclerView;
     private PlanVisitAdapter adapter;
     private List<Slot> slots = new ArrayList<>();
@@ -110,8 +110,8 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, backButton);
-        infoButton = view.findViewById(R.id.infoButton);
-        infoButton.setOnClickListener(v -> {
+        ConstraintLayout placeBox = view.findViewById(R.id.placeBox);
+        placeBox.setOnClickListener(v -> {
             callback.onInfoClicked(place);
         });
         view.findViewById(R.id.openProfile).setOnClickListener(v -> {
@@ -167,8 +167,28 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
                     Set<Map.Entry<String, JsonElement>> entries = response.body().getAsJsonObject().get("slots").getAsJsonObject().entrySet();
                     for (Map.Entry<String, JsonElement> entry : entries) {
                         slots.add(new Slot(entry.getKey(), 1));
-                        slots.addAll(gson.fromJson(entry.getValue().getAsJsonArray(), new TypeToken<ArrayList<Slot>>() {
-                        }.getType()));
+                        List<Slot> slots = gson.fromJson(entry.getValue().getAsJsonArray(), new TypeToken<ArrayList<Slot>>() {
+                        }.getType());
+                        //1 = header
+                        //10 = standard
+                        //11 = standard planned
+                        //12 = standard disabled
+                        //20 = priority
+                        //21 = priority planned
+                        //22 = priority disabled
+                        int plannedSlots = 0;
+                        for (Slot slot : slots) {
+                            if (slot.getType().equals("Standard")) slot.setViewType(10);
+                            else slot.setViewType(20);
+                            if (slot.getIsPlanned()) {
+                                plannedSlots++;
+                                slot.setViewType(slot.getViewType()+1);
+                            }
+                        }
+                        if (plannedSlots >= 2) for (Slot slot : slots) {
+                            if (slot.getViewType() % 10 == 0) slot.setViewType(slot.getViewType() + 2);
+                        };
+                        PlanVisitFragment.this.slots.addAll(slots);
                     }
                     adapter.notifyDataSetChanged();
                 }
@@ -243,7 +263,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
                 if (response.code() != 204 && response.errorBody() != null) {
                     try {
                         JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();
-                        Toast.makeText(getContext(), errorObject.get("message").getAsString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), errorObject.get("message").getAsString(), Toast.LENGTH_LONG).show();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -286,8 +306,8 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
     }
 
     private void setFocus(MaterialButton btn_unfocus, MaterialButton btn_focus) {
-        btn_unfocus.setTextColor(ContextCompat.getColor(getContext(), R.color.text_grey));
-        btn_unfocus.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.grey));
+        btn_unfocus.setTextColor(ContextCompat.getColor(getContext(), R.color.text_gray));
+        btn_unfocus.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.gray));
         btn_focus.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
         btn_focus.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.colorPrimary));
         this.btn_unfocus = btn_focus;

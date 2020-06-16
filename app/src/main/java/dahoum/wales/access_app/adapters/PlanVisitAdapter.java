@@ -39,14 +39,48 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == 0) {
-            ItemViewHolder itemViewHolder = new ItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_slot, parent, false));
-            itemViewHolder.itemView.setOnClickListener(v -> callback.onItemClick(itemViewHolder.getAdapterPosition()));
-            itemViewHolder.priorityText.setOnClickListener(v -> callback.onItemClick(itemViewHolder.getAdapterPosition()));
-            return itemViewHolder;
-
-        } else {
+        //1 = header
+        //10 = standard
+        //11 = standard planned
+        //12 = standard disabled
+        //20 = priority
+        //21 = priority planned
+        //22 = priority disabled
+        if (viewType == 1) {
             return new HeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_planner_header, parent, false));
+        } else {
+            ItemViewHolder itemViewHolder = new ItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_slot, parent, false));
+            if(viewType % 10 == 2){
+                itemViewHolder.linearLayout.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.gray));
+                itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.disabled_tint));
+                itemViewHolder.hourFromTo.setTextColor(ContextCompat.getColor(mActivity, R.color.disabled_tint));
+                itemViewHolder.occupiedMax.setTextColor(ContextCompat.getColor(mActivity, R.color.disabled_tint));
+                itemViewHolder.checkIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.gray));
+                itemViewHolder.personIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.disabled_tint));
+                return itemViewHolder;
+            }
+            if (viewType < 20){
+                itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.colorPrimary));
+            }
+            if (viewType % 10 == 0){
+                itemViewHolder.hourFromTo.setTextColor(ContextCompat.getColor(mActivity, R.color.text_gray));
+                itemViewHolder.personIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.icon_tint));
+                itemViewHolder.occupiedMax.setTextColor(ContextCompat.getColor(mActivity, R.color.text_gray));
+            }
+            if (viewType == 20) itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.colorAccent));
+            if (viewType == 21){
+                itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.white));
+                itemViewHolder.priorityText.setTextColor(ContextCompat.getColorStateList(mActivity, R.color.colorAccent));
+            }
+            if (viewType % 10 == 1) {
+                itemViewHolder.linearLayout.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.colorAccent));
+                itemViewHolder.hourFromTo.setTextColor(ContextCompat.getColor(mActivity, R.color.white));
+                itemViewHolder.occupiedMax.setTextColor(ContextCompat.getColor(mActivity, R.color.white));
+                itemViewHolder.checkIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.white));
+                itemViewHolder.personIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.white));
+            }
+            itemViewHolder.itemView.setOnClickListener(v -> callback.onItemClick(itemViewHolder.getAdapterPosition()));
+            return itemViewHolder;
         }
     }
 
@@ -59,22 +93,6 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
             itemViewHolder.priorityText.setText(slot.getType().charAt(0) + "");
             itemViewHolder.occupiedMax.setText(slot.getOccupiedSlots() + "/" + slot.getMaxSlots());
-            if (slot.getIsPlanned()) {
-                itemViewHolder.linearLayout.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.colorAccent));
-                if (slot.getType().equals("Standard")) itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.colorPrimary));
-                else itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.green));
-                itemViewHolder.hourFromTo.setTextColor(ContextCompat.getColor(mActivity, R.color.white));
-                itemViewHolder.occupiedMax.setTextColor(ContextCompat.getColor(mActivity, R.color.white));
-                itemViewHolder.checkIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.white));
-                itemViewHolder.personIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.white));
-            } else {
-                itemViewHolder.linearLayout.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.grey));
-                itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.disabled_tint));
-                itemViewHolder.hourFromTo.setTextColor(ContextCompat.getColor(mActivity, R.color.disabled_tint));
-                itemViewHolder.occupiedMax.setTextColor(ContextCompat.getColor(mActivity, R.color.disabled_tint));
-                itemViewHolder.checkIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.grey));
-                itemViewHolder.personIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.disabled_tint));
-            }
         } else if (holder instanceof HeaderViewHolder) {
             HeaderViewHolder headerViewHolder = (HeaderViewHolder) holder;
             Calendar cal = Calendar.getInstance();

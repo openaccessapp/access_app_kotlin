@@ -115,4 +115,5 @@ public class Slot {
     public void setFriends(Integer friends) {
         this.friends = friends;
     }
+
 }

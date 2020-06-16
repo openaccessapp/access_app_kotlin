@@ -24,7 +24,7 @@
         android:layout_marginStart="12dp"
         android:fontFamily="@font/rubik_medium"
         android:text="MON"
-        android:textColor="@color/text_grey"
+        android:textColor="@color/text_gray"
         android:textSize="12sp" />
 
     <TextView

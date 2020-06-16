@@ -120,7 +120,7 @@
             android:fontFamily="@font/rubik_medium"
             android:text="Mon-Sun"
             android:textAlignment="viewStart"
-            android:textColor="@color/text_grey"
+            android:textColor="@color/text_gray"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@id/button4"
             app:layout_constraintTop_toBottomOf="@+id/button4" />
@@ -156,7 +156,7 @@
                 android:drawablePadding="14dp"
                 android:fontFamily="@font/rubik"
                 android:text="Age range 60+"
-                android:textColor="@color/text_grey"
+                android:textColor="@color/text_gray"
                 android:textSize="16sp" />
 
             <TextView
@@ -167,7 +167,7 @@
                 android:drawablePadding="14dp"
                 android:fontFamily="@font/rubik"
                 android:text="Maximum number of visitors at the same time: 100 (1 visitor per 20m2)"
-                android:textColor="@color/text_grey"
+                android:textColor="@color/text_gray"
                 android:textSize="16sp" />
 
             <TextView
@@ -178,7 +178,7 @@
                 android:drawablePadding="14dp"
                 android:fontFamily="@font/rubik"
                 android:text="Mask is mandatory"
-                android:textColor="@color/text_grey"
+                android:textColor="@color/text_gray"
                 android:textSize="16sp" />
 
             <TextView
@@ -189,7 +189,7 @@
                 android:drawablePadding="14dp"
                 android:fontFamily="@font/rubik"
                 android:text="Disinfectant at the entrance"
-                android:textColor="@color/text_grey"
+                android:textColor="@color/text_gray"
                 android:textSize="16sp" />
         </LinearLayout>
 
@@ -237,7 +237,7 @@
             android:fontFamily="@font/rubik_medium"
             android:text="Mon-Sun"
             android:textAlignment="viewStart"
-            android:textColor="@color/text_grey"
+            android:textColor="@color/text_gray"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@id/button5"
             app:layout_constraintTop_toBottomOf="@+id/button5" />
@@ -264,7 +264,7 @@
             android:fontFamily="@font/rubik_medium"
             android:text="Sat-Sun"
             android:textAlignment="viewStart"
-            android:textColor="@color/text_grey"
+            android:textColor="@color/text_gray"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@id/textView20"
             app:layout_constraintTop_toBottomOf="@id/textView20" />
@@ -299,7 +299,7 @@
                 android:drawablePadding="14dp"
                 android:fontFamily="@font/rubik"
                 android:text="Maximum number of visitors at the same time: 100 (1 visitor per 20m2)"
-                android:textColor="@color/text_grey"
+                android:textColor="@color/text_gray"
                 android:textSize="16sp" />
 
             <TextView
@@ -310,7 +310,7 @@
                 android:drawablePadding="14dp"
                 android:fontFamily="@font/rubik"
                 android:text="Mask is optional"
-                android:textColor="@color/text_grey"
+                android:textColor="@color/text_gray"
                 android:textSize="16sp" />
 
             <TextView
@@ -321,7 +321,7 @@
                 android:drawablePadding="14dp"
                 android:fontFamily="@font/rubik"
                 android:text="Disinfectant at the entrance"
-                android:textColor="@color/text_grey"
+                android:textColor="@color/text_gray"
                 android:textSize="16sp" />
         </LinearLayout>
 

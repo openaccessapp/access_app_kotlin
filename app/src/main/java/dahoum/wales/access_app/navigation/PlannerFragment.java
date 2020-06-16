@@ -194,8 +194,8 @@ public class PlannerFragment extends Fragment implements VisitsAdapter.AdapterCa
         }
     }
     private void setFocus(MaterialButton btn_unfocus, MaterialButton btn_focus) {
-        btn_unfocus.setTextColor(ContextCompat.getColor(getContext(), R.color.text_grey));
-        btn_unfocus.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.grey));
+        btn_unfocus.setTextColor(ContextCompat.getColor(getContext(), R.color.text_gray));
+        btn_unfocus.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.gray));
         btn_focus.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
         btn_focus.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.colorPrimary));
         this.btn_unfocus = btn_focus;

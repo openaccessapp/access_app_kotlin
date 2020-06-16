@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/rubik"
-        android:textColor="@color/text_grey"
+        android:textColor="@color/text_gray"
         android:text="Safe and queue free visiting"
         android:textSize="18sp"
         android:visibility="gone"

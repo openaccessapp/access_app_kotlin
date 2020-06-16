@@ -67,7 +67,7 @@
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/rubik"
             android:text="No planned visits"
-            android:textColor="@color/text_grey"
+            android:textColor="@color/text_gray"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
