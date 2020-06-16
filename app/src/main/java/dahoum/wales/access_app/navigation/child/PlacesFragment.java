@@ -1,14 +1,18 @@
 package dahoum.wales.access_app.navigation.child;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -21,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -57,6 +62,9 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     private int visibleThreshold = 7;
     private boolean isLoading = false;
     private boolean reachedEnd = false;
+    private String search = null;
+    private Integer typeId = null;
+    private Boolean onlyFavourites = null;
 
     public PlacesFragment() {
         // Required empty public constructor
@@ -87,6 +95,27 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        TextInputEditText searchBar = view.findViewById(R.id.searchBar);
+        searchBar.setOnEditorActionListener(
+                (v, actionId, event) -> {
+                    if (actionId == EditorInfo.IME_ACTION_SEARCH ||
+                            actionId == EditorInfo.IME_ACTION_NEXT ||
+                            actionId == EditorInfo.IME_ACTION_DONE ||
+                            event != null &&
+                                    event.getAction() == KeyEvent.ACTION_DOWN &&
+                                    event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+                        if (event == null || !event.isShiftPressed()) {
+                            search = searchBar.getText() == null || searchBar.getText().toString().trim().isEmpty() ?
+                                    null : searchBar.getText().toString();
+                            reset();
+                            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                            return true; // consume.
+                        }
+                    }
+                    return false; // pass on to other listeners.
+                }
+        );
         loadingPanel = view.findViewById(R.id.loadingPanel);
         view.findViewById(R.id.openProfile).setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), ProfileActivity.class));
@@ -96,12 +125,19 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         chipGroup.setOnCheckedChangeListener((group, checkedId) -> {
             Chip chip = group.findViewById(checkedId);
             if (chip.getText().equals("Favourites")) {
-                adapter.getFilter().filter("fav");
+                onlyFavourites = true;
+                typeId = null;
             } else if (chip.getText().equals("All")) {
-                adapter.getFilter().filter("all");
-            } else {
-                adapter.getFilter().filter(chip.getText());
+                onlyFavourites = null;
+                typeId = null;
+            } else if (chip.getText().equals("Parks")) {
+                onlyFavourites = null;
+                typeId = 0;
+            } else if (chip.getText().equals("Museums")) {
+                onlyFavourites = null;
+                typeId = 1;
             }
+            reset();
         });
 
         retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
@@ -176,35 +212,43 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         startActivity(intent);
     }
 
+    private void reset() {
+        currentPage = 0;
+        places.clear();
+        adapter.setDataList(places);
+        getAllPlaces();
+    }
+
     void getAllPlaces() {
         isLoading = true;
         loadingPanel.setVisibility(View.GONE);
-        retrofitService.getAllPlaces(prefs.getString("userId", null), currentPage++ * visibleThreshold, visibleThreshold).enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
-                Gson gson = new Gson();
-                if (response.body().get("places").getAsJsonArray() != null) {
-                    ArrayList<Place> newPlaces = gson.fromJson(response.body().get("places"), new TypeToken<ArrayList<Place>>() {
-                    }.getType());
+        retrofitService.getAllPlaces(prefs.getString("userId", null), currentPage++ * visibleThreshold, visibleThreshold, search, typeId, onlyFavourites)
+                .enqueue(new Callback<JsonObject>() {
+                    @Override
+                    public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
+                        Gson gson = new Gson();
+                        if (response.body().get("places").getAsJsonArray() != null) {
+                            ArrayList<Place> newPlaces = gson.fromJson(response.body().get("places"), new TypeToken<ArrayList<Place>>() {
+                            }.getType());
 
-                    if (newPlaces.isEmpty()) {
-                        reachedEnd = true;
-                        return;
+                            if (newPlaces.isEmpty()) {
+                                reachedEnd = true;
+                                return;
+                            }
+
+                            places.addAll(newPlaces);
+
+                            adapter.setDataList(places);
+                        }
+                        isLoading = false;
                     }
 
-                    places.addAll(newPlaces);
-
-                    adapter.setDataList(places);
-                }
-                isLoading = false;
-            }
-
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                Log.d(TAG, t.getLocalizedMessage());
-                isLoading = false;
-            }
-        });
+                    @Override
+                    public void onFailure(Call<JsonObject> call, Throwable t) {
+                        Log.d(TAG, t.getLocalizedMessage());
+                        isLoading = false;
+                    }
+                });
     }
 
 }

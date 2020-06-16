@@ -18,7 +18,8 @@ public interface RetrofitService {
     Call<JsonObject> getUserId();
 
     @GET("/api/place/{visitorId}")
-    Call<JsonObject> getAllPlaces(@Path("visitorId") String visitorId, @Query("skip") int skip, @Query("load") int load);
+    Call<JsonObject> getAllPlaces(@Path("visitorId") String visitorId, @Query("skip") Integer skip, @Query("load") Integer load,
+                                  @Query("name") String name, @Query("typeId") Integer typeId, @Query("onlyFavourites") Boolean onlyFavourites);
 
     @GET("/api/place/{visitorId}/{placeId}")
     Call<JsonObject> getSlotsPlace(@Path("visitorId") String visitorId, @Path("placeId") String placeId);
