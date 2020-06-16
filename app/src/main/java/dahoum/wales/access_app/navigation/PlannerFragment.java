@@ -50,7 +50,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PlannerFragment extends Fragment implements VisitsAdapter.AdapterCallback, View.OnClickListener  {
+public class PlannerFragment extends Fragment implements VisitsAdapter.AdapterCallback, View.OnClickListener {
 
     private static final String TAG = PlannerFragment.class.getSimpleName();
     private RecyclerViewEmptySupport recyclerView;
@@ -193,6 +193,7 @@ public class PlannerFragment extends Fragment implements VisitsAdapter.AdapterCa
                 break;
         }
     }
+
     private void setFocus(MaterialButton btn_unfocus, MaterialButton btn_focus) {
         btn_unfocus.setTextColor(ContextCompat.getColor(getContext(), R.color.text_gray));
         btn_unfocus.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.gray));
@@ -249,8 +250,35 @@ public class PlannerFragment extends Fragment implements VisitsAdapter.AdapterCa
         cancelButton.setOnClickListener(v -> {
             alertDialog.dismiss();
         });
+        dialogView.findViewById(R.id.delete_button).setOnClickListener(v -> {
+            removeVisit(visit.getSlotId());
+            alertDialog.dismiss();
+        });
         alertDialog.show();
     }
+
+    private void removeVisit(String slotId) {
+        retrofitService.deleteVisit(prefs.getString("userId", null), slotId).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
+                if (response.code() != 204 && response.errorBody() != null) {
+                    try {
+                        JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();
+                        Toast.makeText(getContext(), errorObject.get("message").getAsString(), Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                getAllVisits();
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<JsonObject> call, @NotNull Throwable t) {
+                Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private void postPlanVisit(String slotId, int visitorsCount) {
         HashMap<String, Object> body = new HashMap<>();
         body.put("slotId", slotId);

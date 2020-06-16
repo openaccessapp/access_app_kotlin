@@ -182,13 +182,15 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
                             else slot.setViewType(20);
                             if (slot.getIsPlanned()) {
                                 plannedSlots++;
-                                slot.setViewType(slot.getViewType()+1);
-                            }
-                            else if (slot.getOccupiedSlots().equals(slot.getMaxSlots())) slot.setViewType(slot.getViewType() + 2);
+                                slot.setViewType(slot.getViewType() + 1);
+                            } else if (slot.getOccupiedSlots().equals(slot.getMaxSlots()))
+                                slot.setViewType(slot.getViewType() + 2);
                         }
                         if (plannedSlots >= 2) for (Slot slot : slots) {
-                            if (slot.getViewType() % 10 == 0) slot.setViewType(slot.getViewType() + 2);
-                        };
+                            if (slot.getViewType() % 10 == 0)
+                                slot.setViewType(slot.getViewType() + 2);
+                        }
+                        ;
                         PlanVisitFragment.this.slots.addAll(slots);
                     }
                     adapter.notifyDataSetChanged();
@@ -211,6 +213,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
         Button saveButton = dialogView.findViewById(R.id.save_button);
         Button cancelButton = dialogView.findViewById(R.id.cancel_button);
         Slot slot = slots.get(position);
+
 
         TextView occupied = dialogView.findViewById(R.id.occupiedMax);
         occupied.setText(slot.getOccupiedSlots() + "/" + slot.getMaxSlots());
@@ -251,7 +254,38 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
         cancelButton.setOnClickListener(v -> {
             alertDialog.dismiss();
         });
+        View button = dialogView.findViewById(R.id.delete_button);
+        if (slot.getFriends() == 0) {
+            button.setVisibility(View.GONE);
+        } else {
+            button.setOnClickListener(v -> {
+                removeVisit(slot.getId());
+                alertDialog.dismiss();
+            });
+        }
         alertDialog.show();
+    }
+
+    private void removeVisit(String slotId){
+        retrofitService.deleteVisit(prefs.getString("userId", null), slotId).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
+                if (response.code() != 204 && response.errorBody() != null) {
+                    try {
+                        JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();
+                        Toast.makeText(getContext(), errorObject.get("message").getAsString(), Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                getSlotsPlace();
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<JsonObject> call, @NotNull Throwable t) {
+                Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void postPlanVisit(String slotId, int visitorsCount) {

@@ -301,9 +301,9 @@
         android:fontFamily="@font/rubik_medium"
         android:letterSpacing="0.0"
         android:minWidth="0dp"
-        android:paddingStart="54dp"
+        android:paddingStart="50dp"
         android:paddingTop="14dp"
-        android:paddingEnd="54dp"
+        android:paddingEnd="50dp"
         android:paddingBottom="14dp"
         android:text="Cancel"
         android:textAllCaps="false"
@@ -332,5 +332,29 @@
         android:textAllCaps="false"
         android:textSize="14sp"
         app:cornerRadius="30dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/delete_button"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/save_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:fontFamily="@font/rubik_medium"
+        android:letterSpacing="0.0"
+        android:minWidth="0dp"
+        android:paddingStart="54dp"
+        android:paddingTop="14dp"
+        android:paddingEnd="54dp"
+        android:paddingBottom="14dp"
+        android:text="Remove Visit"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        app:backgroundTint="@color/red"
+        app:cornerRadius="30dp"
+        app:strokeColor="@color/red"
+        app:strokeWidth="2dp" />
 
 </RelativeLayout>
