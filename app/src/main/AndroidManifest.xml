@@ -29,8 +29,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="XXXXXXXXXX" />
 
-        <activity android:name=".navigation.child.LocationFragment"></activity>
-        <activity android:name=".ProfileActivity" />
+        <activity
+            android:name=".ProfileActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/AppTheme.Launcher">

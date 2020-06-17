@@ -28,6 +28,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tree_top"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tree_top" />
+
     <ImageView
         android:id="@+id/goBack"
         android:layout_width="50dp"
@@ -53,20 +54,51 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tree_top" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/textView12"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:layout_marginTop="7dp"-->
-<!--        android:fontFamily="@font/rubik"-->
-<!--        android:gravity="center"-->
-<!--        android:text="Lorem ipsum dolor sit amet"-->
-<!--        android:textColor="@color/text_gray"-->
-<!--        android:textSize="18sp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/choosePlaceTv" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/textView12"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:layout_marginTop="7dp"-->
+    <!--        android:fontFamily="@font/rubik"-->
+    <!--        android:gravity="center"-->
+    <!--        android:text="Lorem ipsum dolor sit amet"-->
+    <!--        android:textColor="@color/text_gray"-->
+    <!--        android:textSize="18sp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/choosePlaceTv" />-->
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/rubik_medium"
+        android:gravity="center"
+        android:text="Name"
+        android:textColor="@color/text_gray"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/choosePlaceTv" />
+
+    <EditText
+        android:id="@+id/nameField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/edittext_rounded"
+        android:hint="Enter your name"
+        android:inputType="number"
+        android:paddingStart="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/textView11" />
 
     <TextView
         android:id="@+id/textView10"
@@ -81,7 +113,7 @@
         android:textColor="@color/text_gray"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/choosePlaceTv" />
+        app:layout_constraintTop_toBottomOf="@id/nameField" />
 
     <EditText
         android:id="@+id/ageField"
@@ -92,11 +124,11 @@
         android:layout_marginEnd="32dp"
         android:background="@drawable/edittext_rounded"
         android:hint="Enter your age"
+        android:inputType="number"
         android:paddingStart="16dp"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
         android:textSize="14sp"
-        android:inputType="number"
         app:layout_constraintTop_toBottomOf="@id/textView10" />
 
     <com.google.android.material.button.MaterialButton
