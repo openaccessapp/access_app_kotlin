@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,6 +58,10 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 itemViewHolder.occupiedMax.setTextColor(ContextCompat.getColor(mActivity, R.color.disabled_tint));
                 itemViewHolder.checkIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.gray));
                 itemViewHolder.personIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.disabled_tint));
+
+                itemViewHolder.itemView.setOnClickListener(v ->
+                        Toast.makeText(getContext(), "You have reached the daily limit for this place!", Toast.LENGTH_SHORT).show()
+                    );
                 return itemViewHolder;
             }
             if (viewType < 20){

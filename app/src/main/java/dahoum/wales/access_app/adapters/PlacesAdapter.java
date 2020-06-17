@@ -4,8 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,23 +12,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import dahoum.wales.access_app.R;
 import dahoum.wales.access_app.models.Place;
 
-public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder> implements Filterable {
+public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder> {
 
     private List<Place> places;
-    private List<Place> placesFull;
     private Context context;
     private PlacesCallback callback;
 
     public PlacesAdapter(Context context, List<Place> places) {
         this.context = context;
         this.places = places;
-        this.placesFull = new ArrayList<>(this.places);
     }
 
     public void setAdapterCallback(PlacesCallback callback) {
@@ -39,7 +34,6 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
 
     public void setDataList(List<Place> places) {
         this.places = places;
-        this.placesFull = new ArrayList<>(this.places);
         notifyDataSetChanged();
     }
 
@@ -68,61 +62,6 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
     public int getItemCount() {
         return places.size();
     }
-
-    @Override
-    public Filter getFilter() {
-        return exampleFilter;
-    }
-
-    private Filter exampleFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence type) {
-            List<Place> filteredList = new ArrayList<>();
-            if (type == null || type.length() == 0) {
-                filteredList.addAll(placesFull);
-            } else {
-                String filterPattern = type.toString().toLowerCase().trim();
-                String keyword = "";
-                switch (filterPattern) {
-                    case "parks":
-                        keyword = "park";
-                        break;
-                    case "museums":
-                        keyword = "museum";
-                        break;
-                    case "fav":
-                        keyword = "fav";
-                        break;
-                    default:
-                        keyword = "all";
-                        break;
-                }
-                for (Place item : placesFull) {
-                    if (keyword.equals("fav")) {
-                        if (item.getIsFavourite()) {
-                            filteredList.add(item);
-                        }
-                    } else if (keyword.equals("all")) {
-                        filteredList.add(item);
-                    } else {
-                        if (item.getType() != null && item.getType().toLowerCase().equals(keyword)) {
-                            filteredList.add(item);
-                        }
-                    }
-                }
-            }
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-            places.clear();
-            places.addAll((List) results.values);
-            notifyDataSetChanged();
-        }
-    };
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 

@@ -1,6 +1,5 @@
 package dahoum.wales.access_app.navigation.child;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,13 +16,11 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.button.MaterialButton;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -36,11 +32,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import dahoum.wales.access_app.Consumer;
 import dahoum.wales.access_app.ProfileActivity;
 import dahoum.wales.access_app.R;
 import dahoum.wales.access_app.adapters.PlanVisitAdapter;
@@ -65,9 +61,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
     private ImageView image;
     private RetrofitService retrofitService;
     private SharedPreferences prefs;
-    private MaterialButton[] btn = new MaterialButton[7];
-    private MaterialButton btn_unfocus;
-    private int[] btn_id = {R.id.one, R.id.two, R.id.three, R.id.four, R.id.five, R.id.six, R.id.seven};
+    private BookingDialog dialog;
 
     public PlanVisitFragment() {
         // Required empty public constructor
@@ -99,6 +93,11 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+        this.dialog = new BookingDialog(getView(), getContext(), getActivity(), new Consumer<Void>() {
+            public void accept(Void t) {
+                getSlotsPlace();
+            }
+        });
         prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
         View goBackButton = view.findViewById(R.id.goBack);
         goBackButton.setOnClickListener(v -> getParentFragment().getChildFragmentManager().popBackStack());
@@ -207,144 +206,18 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
 
     @Override
     public void onItemClick(int position) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.CustomAlertDialog);
-        ViewGroup viewGroup = getView().findViewById(android.R.id.content);
-        View dialogView = LayoutInflater.from(getContext()).inflate(R.layout.custom_dialog, viewGroup, false);
-        Button saveButton = dialogView.findViewById(R.id.save_button);
-        Button cancelButton = dialogView.findViewById(R.id.cancel_button);
         Slot slot = slots.get(position);
-
-
-        TextView occupied = dialogView.findViewById(R.id.occupiedMax);
-        occupied.setText(slot.getOccupiedSlots() + "/" + slot.getMaxSlots());
-
-        MaterialButton type = dialogView.findViewById(R.id.priority_text);
-        type.setText(slot.getType());
-        if (slot.getType().equals("Standard"))
-            type.setBackgroundTintList(ContextCompat.getColorStateList(getActivity(), R.color.colorPrimary));
-
-        TextView hourFrom = dialogView.findViewById(R.id.hourFrom);
-        hourFrom.setText(slot.getFrom());
-
-        TextView hourTo = dialogView.findViewById(R.id.hourTo);
-        hourTo.setText(slot.getTo());
-
-        TextView placeName = dialogView.findViewById(R.id.titlePlanner);
-        placeName.setText(place.getName());
-
-        for (int i = 0; i < btn.length; i++) {
-            btn[i] = dialogView.findViewById(btn_id[i]);
-            btn[i].setOnClickListener(this);
-        }
-
-        btn_unfocus = btn[0];
-
-        if (slot.getFriends() > 0) {
-            int btnId = slot.getFriends() - 1;
-            setFocus(btn_unfocus, btn[btnId]);
-        }
-
-
-        builder.setView(dialogView);
-        final AlertDialog alertDialog = builder.create();
-        saveButton.setOnClickListener(v -> {
-            postPlanVisit(slot.getId(), Integer.parseInt(btn_unfocus.getText().toString()));
-            alertDialog.dismiss();
-        });
-        cancelButton.setOnClickListener(v -> {
-            alertDialog.dismiss();
-        });
-        View button = dialogView.findViewById(R.id.delete_button);
-        if (slot.getFriends() == 0) {
-            button.setVisibility(View.GONE);
-        } else {
-            button.setOnClickListener(v -> {
-                removeVisit(slot.getId());
-                alertDialog.dismiss();
-            });
-        }
-        alertDialog.show();
-    }
-
-    private void removeVisit(String slotId){
-        retrofitService.deleteVisit(prefs.getString("userId", null), slotId).enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
-                if (response.code() != 204 && response.errorBody() != null) {
-                    try {
-                        JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();
-                        Toast.makeText(getContext(), errorObject.get("message").getAsString(), Toast.LENGTH_LONG).show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+        dialog.itemClick(this, slot.getId(), slot.getOccupiedSlots(), slot.getMaxSlots(),
+                slot.getType(), slot.getFrom(), slot.getTo(), place.getName(), slot.getFriends(),
+                new Consumer<String>() {
+                    public void accept(String t) {
+                        dialog.postPlanVisit(slot.getId(), Integer.parseInt(t));
                     }
-                }
-                getSlotsPlace();
-            }
-
-            @Override
-            public void onFailure(@NotNull Call<JsonObject> call, @NotNull Throwable t) {
-                Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void postPlanVisit(String slotId, int visitorsCount) {
-        HashMap<String, Object> body = new HashMap<>();
-        body.put("slotId", slotId);
-        body.put("visitors", visitorsCount);
-        retrofitService.planVisit(prefs.getString("userId", null), body).enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
-                if (response.code() != 204 && response.errorBody() != null) {
-                    try {
-                        JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();
-                        Toast.makeText(getContext(), errorObject.get("message").getAsString(), Toast.LENGTH_LONG).show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                getSlotsPlace();
-            }
-
-            @Override
-            public void onFailure(@NotNull Call<JsonObject> call, @NotNull Throwable t) {
-                Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                });
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.one:
-                setFocus(btn_unfocus, btn[0]);
-                break;
-            case R.id.two:
-                setFocus(btn_unfocus, btn[1]);
-                break;
-            case R.id.three:
-                setFocus(btn_unfocus, btn[2]);
-                break;
-            case R.id.four:
-                setFocus(btn_unfocus, btn[3]);
-                break;
-            case R.id.five:
-                setFocus(btn_unfocus, btn[4]);
-                break;
-            case R.id.six:
-                setFocus(btn_unfocus, btn[5]);
-                break;
-            case R.id.seven:
-                setFocus(btn_unfocus, btn[6]);
-                break;
-        }
-    }
-
-    private void setFocus(MaterialButton btn_unfocus, MaterialButton btn_focus) {
-        btn_unfocus.setTextColor(ContextCompat.getColor(getContext(), R.color.text_gray));
-        btn_unfocus.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.gray));
-        btn_focus.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
-        btn_focus.setBackgroundTintList(ContextCompat.getColorStateList(getContext(), R.color.colorPrimary));
-        this.btn_unfocus = btn_focus;
+        dialog.click(v);
     }
 }
