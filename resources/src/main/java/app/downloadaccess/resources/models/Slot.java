@@ -25,9 +25,15 @@ public class Slot {
     @SerializedName("isPlanned")
     @Expose
     private Boolean isPlanned;
+    @SerializedName("repeat")
+    @Expose
+    private Boolean repeat;
     @SerializedName("friends")
     @Expose
     private Integer friends;
+
+    public Slot() {
+    }
 
     public Slot(String from, int viewType) {
         this.from = from;
@@ -100,12 +106,8 @@ public class Slot {
         this.viewType = viewType;
     }
 
-    public Boolean getPlanned() {
-        return isPlanned;
-    }
-
-    public void setPlanned(Boolean planned) {
-        isPlanned = planned;
+    public void setRepeat(Boolean repeat) {
+        this.repeat = repeat;
     }
 
     public Integer getFriends() {
@@ -115,5 +117,4 @@ public class Slot {
     public void setFriends(Integer friends) {
         this.friends = friends;
     }
-
 }

@@ -122,7 +122,7 @@ public class SplashActivity extends AppCompatActivity {
     void updateIndicators(int position) {
         for (int i = 0; i < indicators.length; i++) {
             indicators[i].setBackgroundTintList(
-                    i == position ? ContextCompat.getColorStateList(this, R.color.text_gray) : ContextCompat.getColorStateList(this, R.color.disabled_tint)
+                    i == position ? ContextCompat.getColorStateList(this, R.color.text_grey) : ContextCompat.getColorStateList(this, R.color.disabled_tint)
             );
         }
     }

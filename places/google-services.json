@@ -8,7 +8,36 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:139911213662:android:003fe2b5269f1cad727acf",
+        "mobilesdk_app_id": "1:139911213662:android:e9c8354dd7fcf699727acf",
+        "android_client_info": {
+          "package_name": "app.downloadaccess.administrator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139911213662-mec78qvi18u06q1dvfhtpceineaqfqis.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3Pn64KvgJlDvpJH319GrXONm_StL9J9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "139911213662-mec78qvi18u06q1dvfhtpceineaqfqis.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139911213662:android:f8db01d4c65f312f727acf",
         "android_client_info": {
           "package_name": "app.downloadaccess.places"
         }

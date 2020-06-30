@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "139911213662",
+    "firebase_url": "https://access-app-aux.firebaseio.com",
+    "project_id": "access-app-aux",
+    "storage_bucket": "access-app-aux.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139911213662:android:e9c8354dd7fcf699727acf",
+        "android_client_info": {
+          "package_name": "app.downloadaccess.administrator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139911213662-mec78qvi18u06q1dvfhtpceineaqfqis.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3Pn64KvgJlDvpJH319GrXONm_StL9J9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "139911213662-mec78qvi18u06q1dvfhtpceineaqfqis.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139911213662:android:003fe2b5269f1cad727acf",
+        "android_client_info": {
+          "package_name": "app.downloadaccess.places"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139911213662-mec78qvi18u06q1dvfhtpceineaqfqis.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3Pn64KvgJlDvpJH319GrXONm_StL9J9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "139911213662-mec78qvi18u06q1dvfhtpceineaqfqis.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139911213662:android:0fe2f55c2e0f4f5b727acf",
+        "android_client_info": {
+          "package_name": "app.downloadaccess.visitor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139911213662-mec78qvi18u06q1dvfhtpceineaqfqis.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3Pn64KvgJlDvpJH319GrXONm_StL9J9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "139911213662-mec78qvi18u06q1dvfhtpceineaqfqis.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

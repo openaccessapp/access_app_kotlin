@@ -9,24 +9,36 @@ public class Place implements Serializable {
     @SerializedName("id")
     @Expose
     private String id;
+    @SerializedName("typeId")
+    @Expose
+    private int typeId;
     @SerializedName("name")
     @Expose
     private String name;
     @SerializedName("type")
     @Expose
     private String type;
+    @SerializedName("image")
+    @Expose
+    private String image;
     @SerializedName("description")
     @Expose
     private String description;
     @SerializedName("www")
     @Expose
     private String www;
+    @SerializedName("address")
+    @Expose
+    private String address;
     @SerializedName("location")
     @Expose
     private String location;
     @SerializedName("isFavourite")
     @Expose
     private Boolean isFavourite;
+    @SerializedName("approved")
+    @Expose
+    private Boolean isApproved;
 
     public String getId() {
         return id;
@@ -82,5 +94,33 @@ public class Place implements Serializable {
 
     public void setIsFavourite(Boolean isFavourite) {
         this.isFavourite = isFavourite;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Boolean getApproved() {
+        return isApproved;
+    }
+
+    public void setApproved(Boolean approved) {
+        isApproved = approved;
     }
 }

@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Locale;
 
 import app.downloadaccess.places.R;
-import app.downloadaccess.places.models.Slot;
+import app.downloadaccess.resources.models.Slot;
 
 public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

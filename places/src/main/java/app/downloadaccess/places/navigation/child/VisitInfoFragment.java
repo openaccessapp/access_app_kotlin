@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.squareup.picasso.Picasso;
 
 import app.downloadaccess.places.R;
-import app.downloadaccess.places.models.Place;
+import app.downloadaccess.resources.models.Place;
 
 public class VisitInfoFragment extends Fragment {
 

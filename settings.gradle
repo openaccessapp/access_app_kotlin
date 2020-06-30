@@ -1,5 +1,5 @@
-include ':resources'
 include ':administrator'
+include ':resources'
 include ':places'
 rootProject.name='Access-App'
 include ':visitor'

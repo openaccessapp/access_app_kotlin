@@ -12,12 +12,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import app.downloadaccess.places.R;
-import app.downloadaccess.places.models.Place;
 import app.downloadaccess.places.navigation.child.AddPlaceFragment;
 import app.downloadaccess.places.navigation.child.FragmentCallback;
 import app.downloadaccess.places.navigation.child.PlacesFragment;
 import app.downloadaccess.places.navigation.child.PlanVisitFragment;
 import app.downloadaccess.places.navigation.child.VisitInfoFragment;
+import app.downloadaccess.resources.models.Place;
 
 public class PlacesFragmentContainer extends Fragment implements FragmentCallback {
 

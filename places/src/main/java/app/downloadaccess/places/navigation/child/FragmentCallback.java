@@ -1,6 +1,6 @@
 package app.downloadaccess.places.navigation.child;
 
-import app.downloadaccess.places.models.Place;
+import app.downloadaccess.resources.models.Place;
 
 public interface FragmentCallback {
     void onPlaceClicked(Place place);

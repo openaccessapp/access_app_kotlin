@@ -2,8 +2,8 @@ package app.downloadaccess.places.network;
 
 import com.google.gson.JsonObject;
 
-import app.downloadaccess.places.models.Place;
-import app.downloadaccess.places.models.Slot;
+import app.downloadaccess.resources.models.Place;
+import app.downloadaccess.resources.models.Slot;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;

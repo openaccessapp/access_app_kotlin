@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Locale;
 
 import app.downloadaccess.places.R;
-import app.downloadaccess.places.models.Visit;
+import app.downloadaccess.resources.models.Visit;
 
 public class VisitsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

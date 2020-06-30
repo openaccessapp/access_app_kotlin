@@ -118,7 +118,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/rubik"
                 android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr"
-                android:textColor="@color/text_gray"
+                android:textColor="@color/text_grey"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/placeName"

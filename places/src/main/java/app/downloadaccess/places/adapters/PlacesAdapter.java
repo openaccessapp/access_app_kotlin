@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.downloadaccess.places.R;
-import app.downloadaccess.places.models.Place;
+import app.downloadaccess.resources.models.Place;
 
 public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder> implements Filterable {
 

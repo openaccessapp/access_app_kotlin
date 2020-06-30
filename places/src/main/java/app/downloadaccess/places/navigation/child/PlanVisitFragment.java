@@ -36,10 +36,10 @@ import java.util.Set;
 
 import app.downloadaccess.places.R;
 import app.downloadaccess.places.adapters.PlanVisitAdapter;
-import app.downloadaccess.places.models.Place;
-import app.downloadaccess.places.models.Slot;
 import app.downloadaccess.places.network.RetrofitClientInstance;
 import app.downloadaccess.places.network.RetrofitService;
+import app.downloadaccess.resources.models.Place;
+import app.downloadaccess.resources.models.Slot;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

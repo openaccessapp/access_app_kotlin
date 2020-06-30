@@ -31,7 +31,7 @@
             android:layout_width="8dp"
             android:layout_height="8dp"
             android:background="@drawable/dot_unselected"
-            android:backgroundTint="@color/text_gray" />
+            android:backgroundTint="@color/text_grey" />
 
         <ImageView
             android:id="@+id/intro_indicator_1"

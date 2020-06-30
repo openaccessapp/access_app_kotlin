@@ -52,11 +52,11 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         } else {
             ItemViewHolder itemViewHolder = new ItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_slot, parent, false));
             if(viewType % 10 == 2){
-                itemViewHolder.linearLayout.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.gray));
+                itemViewHolder.linearLayout.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.grey));
                 itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.disabled_tint));
                 itemViewHolder.hourFromTo.setTextColor(ContextCompat.getColor(mActivity, R.color.disabled_tint));
                 itemViewHolder.occupiedMax.setTextColor(ContextCompat.getColor(mActivity, R.color.disabled_tint));
-                itemViewHolder.checkIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.gray));
+                itemViewHolder.checkIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.grey));
                 itemViewHolder.personIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.disabled_tint));
 
                 itemViewHolder.itemView.setOnClickListener(v ->
@@ -68,9 +68,9 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.colorPrimary));
             }
             if (viewType % 10 == 0){
-                itemViewHolder.hourFromTo.setTextColor(ContextCompat.getColor(mActivity, R.color.text_gray));
+                itemViewHolder.hourFromTo.setTextColor(ContextCompat.getColor(mActivity, R.color.text_grey));
                 itemViewHolder.personIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.icon_tint));
-                itemViewHolder.occupiedMax.setTextColor(ContextCompat.getColor(mActivity, R.color.text_gray));
+                itemViewHolder.occupiedMax.setTextColor(ContextCompat.getColor(mActivity, R.color.text_grey));
             }
             if (viewType == 20) itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.colorAccent));
             if (viewType == 21){

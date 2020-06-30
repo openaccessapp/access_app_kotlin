@@ -31,9 +31,9 @@ import java.util.List;
 
 import app.downloadaccess.places.R;
 import app.downloadaccess.places.adapters.PlacesAdapter;
-import app.downloadaccess.places.models.Place;
 import app.downloadaccess.places.network.RetrofitClientInstance;
 import app.downloadaccess.places.network.RetrofitService;
+import app.downloadaccess.resources.models.Place;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
