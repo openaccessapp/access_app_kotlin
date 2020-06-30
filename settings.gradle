@@ -1,2 +1,5 @@
+include ':resources'
+include ':administrator'
+include ':places'
 rootProject.name='Access-App'
-include ':app'
+include ':visitor'

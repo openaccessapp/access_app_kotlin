@@ -1,0 +1,5 @@
+<resources>
+    <string name="scan">Scan</string>
+    <string name="planner">Planner</string>
+    <string name="places">Places</string>
+</resources>

@@ -10,7 +10,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/administrator" />
+            <option value="$PROJECT_DIR$/places" />
+            <option value="$PROJECT_DIR$/resources" />
+            <option value="$PROJECT_DIR$/visitor" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
