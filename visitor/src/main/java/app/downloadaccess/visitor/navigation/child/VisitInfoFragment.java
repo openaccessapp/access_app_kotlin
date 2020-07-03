@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.squareup.picasso.Picasso;
 
 import app.downloadaccess.resources.models.Place;
+import app.downloadaccess.resources.network.RetrofitClientInstance;
 import app.downloadaccess.visitor.R;
 
 public class VisitInfoFragment extends Fragment {
@@ -74,7 +75,7 @@ public class VisitInfoFragment extends Fragment {
         placeName = view.findViewById(R.id.placeName);
         placeName.setText(place.getName());
         image = view.findViewById(R.id.image);
-        Picasso.get().load("http://80.100.38.7:3001/api/image/" + place.getId()).into(image);
+        Picasso.get().load(RetrofitClientInstance.BASE_URL + "/api/image/" + place.getId()).into(image);
 
     }
 }

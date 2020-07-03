@@ -20,9 +20,9 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import app.downloadaccess.resources.ShadowConstraintLayout;
 import app.downloadaccess.resources.models.Visit;
 import app.downloadaccess.visitor.R;
-import app.downloadaccess.visitor.ShadowConstraintLayout;
 import app.downloadaccess.visitor.stickyheaders.AdapterDataProvider;
 
 public class VisitsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements AdapterDataProvider {

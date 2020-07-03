@@ -37,9 +37,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import app.downloadaccess.places.R;
-import app.downloadaccess.places.network.RetrofitClientInstance;
-import app.downloadaccess.places.network.RetrofitService;
 import app.downloadaccess.resources.models.Place;
+import app.downloadaccess.resources.network.RetrofitClientInstance;
+import app.downloadaccess.resources.network.RetrofitService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -91,7 +91,7 @@ public class AddPlaceFragment extends Fragment {
         imagePlace = view.findViewById(R.id.imagePlaceholder);
         if (place != null) {
             ((TextView) view.findViewById(R.id.add_place_header)).setText("Edit Place");
-            Picasso.get().load("http://80.100.38.7:3001/api/image/" + place.getId()).into(imagePlace);
+            Picasso.get().load(RetrofitClientInstance.BASE_URL + "/api/image/" + place.getId()).into(imagePlace);
             ((EditText) view.findViewById(R.id.placeNameEt)).setText(place.getName());
             ((EditText) view.findViewById(R.id.LocEt)).setText(place.getAddress());
             ((EditText) view.findViewById(R.id.describeEt)).setText(place.getDescription());
@@ -185,7 +185,7 @@ public class AddPlaceFragment extends Fragment {
             }
         });
 
-        retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
 //        retrofitService.getPlaceTypes().enqueue(new Callback<JsonObject>() {
 //            @Override
 //            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {

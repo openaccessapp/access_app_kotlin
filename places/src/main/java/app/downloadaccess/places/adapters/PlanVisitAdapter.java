@@ -53,7 +53,7 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
             itemViewHolder.priorityText.setText(slot.getType().charAt(0) + "");
             itemViewHolder.occupiedMax.setText(slot.getOccupiedSlots() + "/" + slot.getMaxSlots());
-            if (slot.getIsPlanned()) {
+            if (slot.isPlanned()) {
                 itemViewHolder.linearLayout.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorAccent));
                 if (slot.getType().equals("Standard")) itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.colorPrimary));
                 else itemViewHolder.priorityText.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.green));

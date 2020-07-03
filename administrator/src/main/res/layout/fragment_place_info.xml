@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tree_top"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/rubik_bold"
+            android:gravity="center"
+            android:text="Place information"
+            android:textColor="@color/text_color_dark"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/goBackImage"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="27dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_keyboard_backspace_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tree_top"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tree_top" />
+
+        <ImageView
+            android:id="@+id/goBack"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            android:background="?selectableItemBackgroundBorderless"
+            app:layout_constraintBottom_toBottomOf="@+id/tree_top"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tree_top" />
+
+        <LinearLayout
+            android:id="@+id/allow_place"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginEnd="27dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/tree_top">
+
+            <ImageView
+                android:id="@+id/shieldImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_shield_inactive" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/rubik_medium"
+                android:text="Allow the place to be visible"
+                android:textColor="@color/icon_tint"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/approvePlace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:checked="false" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/placeBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="27dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/goBackImage"
+            app:layout_constraintTop_toBottomOf="@id/allow_place">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/placeImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="90dp"
+                    android:layout_height="100dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/pub_image" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/placeName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="11dp"
+                android:fontFamily="@font/rubik_bold"
+                android:text="Central Park"
+                android:textColor="@color/text_color_dark"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@id/placeImage"
+                app:layout_constraintTop_toTopOf="@id/placeImage" />
+
+            <TextView
+                android:id="@+id/placeDesc"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/rubik"
+                android:maxLines="3"
+                android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@id/placeImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/placeName"
+                app:layout_constraintTop_toBottomOf="@id/placeName" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/placeDesc"
+                android:layout_alignStart="@id/placeDesc"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintStart_toStartOf="@id/placeImage"
+                app:layout_constraintTop_toBottomOf="@id/placeImage">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_globe" />
+
+                <TextView
+                    android:id="@+id/websiteTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/rubik"
+                    android:text="www.centralpark.com"
+                    android:textColor="@color/light_blue" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/locationLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/placeDesc"
+                android:layout_alignStart="@id/placeDesc"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintStart_toStartOf="@id/placeImage"
+                app:layout_constraintTop_toBottomOf="@id/linearLayout2">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_map_marker"
+                    android:tint="@color/icon_tint" />
+
+                <TextView
+                    android:id="@+id/locationTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/rubik"
+                    android:text="Great Russell St, London, UK"
+                    android:textColor="@color/light_blue" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/disabled_tint"
+                app:layout_constraintTop_toBottomOf="@id/locationLayout" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/placeBox">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button4"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="33dp"
+                android:layout_marginTop="20dp"
+                android:enabled="false"
+                android:fontFamily="@font/rubik"
+                android:letterSpacing="0.0"
+                android:minWidth="0dp"
+                android:minHeight="40dp"
+                android:stateListAnimator="@null"
+                android:text="Priority"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:backgroundTint="@color/colorAccent"
+                app:cornerRadius="6dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="11dp"
+                android:fontFamily="@font/rubik_bold"
+                android:text="Priority Group"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_color_dark"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/button4"
+                app:layout_constraintStart_toEndOf="@id/button4"
+                app:layout_constraintTop_toTopOf="@id/button4" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/rubik_medium"
+                android:text="Mon-Sun"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/button4"
+                app:layout_constraintTop_toBottomOf="@+id/button4" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/rubik_bold"
+                android:text="08:00 - 12:00"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_color_dark"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/textView15"
+                app:layout_constraintStart_toEndOf="@id/button4"
+                app:layout_constraintTop_toTopOf="@id/textView15" />
+
+            <LinearLayout
+                android:id="@+id/important"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="33dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="33dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/textView15">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/dot_textview"
+                    android:drawablePadding="14dp"
+                    android:fontFamily="@font/rubik"
+                    android:text="Age range 60+"
+                    android:textColor="@color/text_grey"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableLeft="@drawable/dot_textview"
+                    android:drawablePadding="14dp"
+                    android:fontFamily="@font/rubik"
+                    android:text="Maximum number of visitors at the same time: 100 (1 visitor per 20m2)"
+                    android:textColor="@color/text_grey"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableLeft="@drawable/dot_textview"
+                    android:drawablePadding="14dp"
+                    android:fontFamily="@font/rubik"
+                    android:text="Mask is mandatory"
+                    android:textColor="@color/text_grey"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableLeft="@drawable/dot_textview"
+                    android:drawablePadding="14dp"
+                    android:fontFamily="@font/rubik"
+                    android:text="Disinfectant at the entrance"
+                    android:textColor="@color/text_grey"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/button5"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="33dp"
+                android:layout_marginTop="35dp"
+                android:enabled="false"
+                android:fontFamily="@font/rubik"
+                android:letterSpacing="0.0"
+                android:minWidth="0dp"
+                android:minHeight="40dp"
+                android:stateListAnimator="@null"
+                android:text="Standart"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:backgroundTint="@color/blue"
+                app:cornerRadius="6dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/important" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="11dp"
+                android:fontFamily="@font/rubik_bold"
+                android:text="Non-Priority Group"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_color_dark"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/button5"
+                app:layout_constraintStart_toEndOf="@id/button5"
+                app:layout_constraintTop_toTopOf="@id/button5" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/rubik_medium"
+                android:text="Mon-Sun"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/button5"
+                app:layout_constraintTop_toBottomOf="@+id/button5" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/rubik_bold"
+                android:text="10:00 - 18:00"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_color_dark"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/textView20"
+                app:layout_constraintStart_toEndOf="@id/button5"
+                app:layout_constraintTop_toTopOf="@id/textView20" />
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/rubik_medium"
+                android:text="Sat-Sun"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/textView20"
+                app:layout_constraintTop_toBottomOf="@id/textView20" />
+
+            <TextView
+                android:id="@+id/textView23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/rubik_bold"
+                android:text="10:00 - 14:00"
+                android:textAlignment="viewStart"
+                android:textColor="@color/text_color_dark"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@id/textView22"
+                app:layout_constraintStart_toEndOf="@id/button5"
+                app:layout_constraintTop_toTopOf="@id/textView22" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="33dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="33dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/textView22">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/dot_textview"
+                    android:drawablePadding="14dp"
+                    android:fontFamily="@font/rubik"
+                    android:text="Maximum number of visitors at the same time: 100 (1 visitor per 20m2)"
+                    android:textColor="@color/text_grey"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableLeft="@drawable/dot_textview"
+                    android:drawablePadding="14dp"
+                    android:fontFamily="@font/rubik"
+                    android:text="Mask is optional"
+                    android:textColor="@color/text_grey"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableLeft="@drawable/dot_textview"
+                    android:drawablePadding="14dp"
+                    android:fontFamily="@font/rubik"
+                    android:text="Disinfectant at the entrance"
+                    android:textColor="@color/text_grey"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

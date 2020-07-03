@@ -41,7 +41,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="app.downloadaccess.visitor.MainActivity2" />
+        <activity android:name="app.downloadaccess.visitor.MainActivity" />
     </application>
 
 </manifest>

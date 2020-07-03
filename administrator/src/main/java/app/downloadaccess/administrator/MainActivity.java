@@ -15,10 +15,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.JsonObject;
 
 import app.downloadaccess.administrator.navigation.PlacesFragmentContainer;
-import app.downloadaccess.administrator.network.RetrofitClientInstance;
-import app.downloadaccess.administrator.network.RetrofitService;
 import app.downloadaccess.resources.CustomViewPager;
 import app.downloadaccess.resources.ViewPagerAdapter;
+import app.downloadaccess.resources.network.RetrofitClientInstance;
+import app.downloadaccess.resources.network.RetrofitService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         prefs = getPreferences(MODE_PRIVATE);
 
-        retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
         if (prefs.getString("userId", null) == null) {
             retrofitService.getUserId().enqueue(new Callback<JsonObject>() {
                 @Override

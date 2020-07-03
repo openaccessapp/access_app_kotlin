@@ -24,17 +24,17 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 
 import app.downloadaccess.places.R;
-import app.downloadaccess.places.network.RetrofitClientInstance;
-import app.downloadaccess.places.network.RetrofitService;
 import app.downloadaccess.resources.models.Place;
 import app.downloadaccess.resources.models.Slot;
+import app.downloadaccess.resources.network.RetrofitClientInstance;
+import app.downloadaccess.resources.network.RetrofitService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class BookingDialog {
     private Activity activity;
-    private final RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+    private final RetrofitService retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
     private SharedPreferences prefs;
     private DatePicker datePicker;
     private TimePicker fromTimePicker, toTimePicker;

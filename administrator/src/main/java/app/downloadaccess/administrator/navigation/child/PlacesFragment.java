@@ -24,18 +24,15 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import app.downloadaccess.administrator.R;
 import app.downloadaccess.administrator.adapters.PlacesAdapter;
-import app.downloadaccess.administrator.network.RetrofitClientInstance;
-import app.downloadaccess.administrator.network.RetrofitService;
 import app.downloadaccess.resources.models.Place;
+import app.downloadaccess.resources.network.RetrofitClientInstance;
+import app.downloadaccess.resources.network.RetrofitService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -52,10 +49,10 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     private SharedPreferences prefs;
     private RelativeLayout loadingPanel;
     private MaterialButton addPlaceButton;
-//    private int currentPage = 0;
-//    private int visibleThreshold = 7;
-//    private boolean isLoading = false;
-//    private boolean reachedEnd = false;
+    private int currentPage = 0;
+    private int visibleThreshold = 7;
+    private boolean isLoading = false;
+    private boolean reachedEnd = false;
 
 
     public PlacesFragment() {
@@ -88,25 +85,19 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         loadingPanel = view.findViewById(R.id.loadingPanel);
-//        view.findViewById(R.id.openProfile).setOnClickListener(v ->
-//                startActivity(new Intent(getActivity(), ProfileActivity.class)));
-        addPlaceButton = view.findViewById(R.id.add_place_button);
-        addPlaceButton.setOnClickListener(v -> {
-            callback.onAddPlaceClicked(null);
-        });
         chipGroup = view.findViewById(R.id.chip_group);
         chipGroup.setOnCheckedChangeListener((group, checkedId) -> {
             Chip chip = group.findViewById(checkedId);
-            if (chip.getText().equals("Favourites")) {
-                adapter.getFilter().filter("fav");
+            if (chip.getText().equals("Approved")) {
+                getAllPlaces(true);
+            } else if (chip.getText().equals("Non-approved")) {
+                getAllPlaces(false);
             } else if (chip.getText().equals("All")) {
-                adapter.getFilter().filter("all");
-            } else {
-                adapter.getFilter().filter(chip.getText());
+                getAllPlaces(null);
             }
         });
 
-        retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
         recyclerView = view.findViewById(R.id.placesRecyclerView);
 //        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 //
@@ -118,7 +109,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
 //                if (llm != null) {
 //                    int page = llm.findLastCompletelyVisibleItemPosition();
 //                    if (page > (currentPage * visibleThreshold) - 4 && !reachedEnd && !isLoading) {
-//                        getAllPlaces();
+//                        getAllPlaces(null);
 //                    }
 //                }
 //
@@ -134,11 +125,11 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
         prefs.registerOnSharedPreferenceChangeListener((sharedPreferences, key) -> {
             if (key.equals("userId") && places.isEmpty()) {
-                getAllPlaces();
+                getAllPlaces(null);
             }
         });
         if (prefs.getString("userId", null) != null) {
-            getAllPlaces();
+            getAllPlaces(null);
         }
     }
 
@@ -154,35 +145,23 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         startActivity(intent);
     }
 
-    @Override
-    public void onCheckedChange(int position, boolean isChecked) {
-        retrofitService.setApproved(places.get(position).getId(), isChecked).enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                Log.d(TAG, t.getLocalizedMessage());
-            }
-        });
-    }
-
-    void getAllPlaces() {
-//        isLoading = true;
+    void getAllPlaces(Boolean isApproved) {
+        isLoading = true;
         loadingPanel.setVisibility(View.GONE);
-        Map<String, Object> map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
+        if (isApproved != null) {
+            map.put("approved", isApproved);
+        }
         retrofitService.getAllPlaces(prefs.getString("userId", null), map).enqueue(new Callback<JsonObject>() {
             @Override
-            public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 Gson gson = new Gson();
                 if (response.body().get("places").getAsJsonArray() != null) {
                     ArrayList<Place> newPlaces = gson.fromJson(response.body().get("places"), new TypeToken<ArrayList<Place>>() {
                     }.getType());
 
                     if (newPlaces.isEmpty()) {
-//                        reachedEnd = true;
+                        reachedEnd = true;
                         return;
                     }
 
@@ -191,13 +170,13 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
 
                     adapter.setDataList(places);
                 }
-//                isLoading = false;
+                isLoading = false;
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 Log.d(TAG, t.getLocalizedMessage());
-//                isLoading = false;
+                isLoading = false;
             }
         });
 

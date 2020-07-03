@@ -12,11 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import app.downloadaccess.administrator.R;
-import app.downloadaccess.administrator.navigation.child.AddPlaceFragment;
 import app.downloadaccess.administrator.navigation.child.FragmentCallback;
 import app.downloadaccess.administrator.navigation.child.PlacesFragment;
-import app.downloadaccess.administrator.navigation.child.PlanVisitFragment;
-import app.downloadaccess.administrator.navigation.child.VisitInfoFragment;
+import app.downloadaccess.administrator.navigation.child.PlaceInfoFragment;
 import app.downloadaccess.resources.models.Place;
 
 
@@ -54,15 +52,9 @@ public class PlacesFragmentContainer extends Fragment implements FragmentCallbac
         if (childFragment instanceof PlacesFragment) {
             ((PlacesFragment) childFragment).setListener(this);
             Log.d(TAG, "PlacesFragment attached");
-        } else if (childFragment instanceof PlanVisitFragment) {
-            ((PlanVisitFragment) childFragment).setListener(this);
+        } else if (childFragment instanceof PlaceInfoFragment) {
+            ((PlaceInfoFragment) childFragment).setListener(this);
             Log.d(TAG, "PlanVisit attached");
-        } else if (childFragment instanceof VisitInfoFragment) {
-            ((VisitInfoFragment) childFragment).setListener(this);
-            Log.d(TAG, "VisitInfo attached");
-        } else if (childFragment instanceof AddPlaceFragment) {
-            ((AddPlaceFragment) childFragment).setListener(this);
-            Log.d(TAG, "Place attached");
         }
     }
 
@@ -76,22 +68,8 @@ public class PlacesFragmentContainer extends Fragment implements FragmentCallbac
 
     @Override
     public void onPlaceClicked(Place place) {
-        PlanVisitFragment planVisitFragment = PlanVisitFragment.newInstance(place);
-        planVisitFragment.setListener(this);
-        openFragment(planVisitFragment);
-    }
-
-    @Override
-    public void onAddPlaceClicked(Place place) {
-        AddPlaceFragment fragment = AddPlaceFragment.newInstance(place);
-        fragment.setListener(this);
-        openFragment(fragment);
-    }
-
-    @Override
-    public void editPlace(Place place) {
-        AddPlaceFragment fragment = AddPlaceFragment.newInstance(place);
-        fragment.setListener(this);
-        openFragment(fragment);
+        PlaceInfoFragment placeInfoFragment = PlaceInfoFragment.newInstance(place);
+        placeInfoFragment.setListener(this);
+        openFragment(placeInfoFragment);
     }
 }

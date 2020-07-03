@@ -22,10 +22,10 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.util.HashMap;
 
+import app.downloadaccess.resources.network.RetrofitClientInstance;
+import app.downloadaccess.resources.network.RetrofitService;
 import app.downloadaccess.visitor.Consumer;
 import app.downloadaccess.visitor.R;
-import app.downloadaccess.visitor.network.RetrofitClientInstance;
-import app.downloadaccess.visitor.network.RetrofitService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,7 +37,7 @@ public class BookingDialog {
     private Context context;
     private Activity activity;
     private View view;
-    private final RetrofitService retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+    private final RetrofitService retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
     private SharedPreferences prefs;
     private Consumer<Void> updateFunc;
 

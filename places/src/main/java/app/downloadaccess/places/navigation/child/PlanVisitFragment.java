@@ -36,10 +36,10 @@ import java.util.Set;
 
 import app.downloadaccess.places.R;
 import app.downloadaccess.places.adapters.PlanVisitAdapter;
-import app.downloadaccess.places.network.RetrofitClientInstance;
-import app.downloadaccess.places.network.RetrofitService;
 import app.downloadaccess.resources.models.Place;
 import app.downloadaccess.resources.models.Slot;
+import app.downloadaccess.resources.network.RetrofitClientInstance;
+import app.downloadaccess.resources.network.RetrofitService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -117,7 +117,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setAdapter(adapter);
 
-        retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
     }
 
     @Override
@@ -134,7 +134,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
         websiteTv = view.findViewById(R.id.websiteTv);
         websiteTv.setText(place.getWww());
         image = view.findViewById(R.id.image);
-        Picasso.get().load("http://80.100.38.7:3001/api/image/" + place.getId()).into(image);
+        Picasso.get().load(RetrofitClientInstance.BASE_URL + "/api/image/" + place.getId()).into(image);
     }
 
     private void getSlotsPlace() {
@@ -171,6 +171,6 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
 
     @Override
     public void onItemClick(int position) {
-//        Slot slot = slots.get(position);
+        Slot slot = slots.get(position);
     }
 }

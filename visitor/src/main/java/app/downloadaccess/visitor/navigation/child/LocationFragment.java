@@ -25,10 +25,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.downloadaccess.resources.models.Place;
+import app.downloadaccess.resources.network.RetrofitService;
 import app.downloadaccess.visitor.ProfileActivity;
 import app.downloadaccess.visitor.R;
 import app.downloadaccess.visitor.adapters.PlacesAdapter;
-import app.downloadaccess.visitor.network.RetrofitService;
 
 public class LocationFragment extends Fragment implements OnMapReadyCallback {
 

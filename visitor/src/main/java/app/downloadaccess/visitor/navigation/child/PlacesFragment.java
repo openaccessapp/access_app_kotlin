@@ -35,14 +35,15 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import app.downloadaccess.resources.models.Place;
+import app.downloadaccess.resources.network.RetrofitClientInstance;
+import app.downloadaccess.resources.network.RetrofitService;
 import app.downloadaccess.visitor.ProfileActivity;
 import app.downloadaccess.visitor.R;
 import app.downloadaccess.visitor.adapters.PlacesAdapter;
-import app.downloadaccess.visitor.network.RetrofitClientInstance;
-import app.downloadaccess.visitor.network.RetrofitService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -58,13 +59,13 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     private List<Place> places = new ArrayList<>();
     private SharedPreferences prefs;
     private RelativeLayout loadingPanel;
-    private int currentPage = 0;
-    private int visibleThreshold = 7;
-    private boolean isLoading = false;
-    private boolean reachedEnd = false;
+    private Integer currentPage = 0;
+    private Integer visibleThreshold = 7;
+    private Boolean isLoading = false;
+    private Boolean reachedEnd = false;
     private String search = null;
     private Integer typeId = null;
-    private Boolean onlyFavourites = null;
+    private Boolean onlyFavourites = false;
 
     public PlacesFragment() {
         // Required empty public constructor
@@ -140,7 +141,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
             reset();
         });
 
-        retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
         recyclerView = view.findViewById(R.id.placesRecyclerView);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
@@ -178,7 +179,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
 
     @Override
     public void onFavouriteClick(ImageView imageView, int position) {
-        places.get(position).setIsFavourite(!places.get(position).getIsFavourite());
+        places.get(position).setFavourite(!places.get(position).isFavourite());
         adapter.notifyDataSetChanged();
         retrofitService.addRemoveFavourite(prefs.getString("userId", null), places.get(position).getId()).enqueue(new Callback<JsonObject>() {
             @Override
@@ -222,33 +223,48 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     void getAllPlaces() {
         isLoading = true;
         loadingPanel.setVisibility(View.GONE);
-        retrofitService.getAllPlaces(prefs.getString("userId", null), currentPage++ * visibleThreshold, visibleThreshold, search, typeId, onlyFavourites)
-                .enqueue(new Callback<JsonObject>() {
-                    @Override
-                    public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
-                        Gson gson = new Gson();
-                        if (response.body().get("places").getAsJsonArray() != null) {
-                            ArrayList<Place> newPlaces = gson.fromJson(response.body().get("places"), new TypeToken<ArrayList<Place>>() {
-                            }.getType());
+        HashMap<String, Object> map = new HashMap<>();
+        if (currentPage != null) {
+            map.put("skip", currentPage++ * visibleThreshold);
+        }
+        if (visibleThreshold != null) {
+            map.put("load", visibleThreshold);
+        }
+        if (search != null) {
+            map.put("name", search);
+        }
+        if (typeId != null) {
+            map.put("typeId", typeId);
+        }
+        map.put("approved", true);
+        map.put("onlyFavourites", onlyFavourites);
 
-                            if (newPlaces.isEmpty()) {
-                                reachedEnd = true;
-                                return;
-                            }
+        retrofitService.getAllPlaces(prefs.getString("userId", null), map).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
+                Gson gson = new Gson();
+                if (response.body().get("places").getAsJsonArray() != null) {
+                    ArrayList<Place> newPlaces = gson.fromJson(response.body().get("places"), new TypeToken<ArrayList<Place>>() {
+                    }.getType());
 
-                            places.addAll(newPlaces);
-
-                            adapter.setDataList(places);
-                        }
-                        isLoading = false;
+                    if (newPlaces.isEmpty()) {
+                        reachedEnd = true;
+                        return;
                     }
 
-                    @Override
-                    public void onFailure(Call<JsonObject> call, Throwable t) {
-                        Log.d(TAG, t.getLocalizedMessage());
-                        isLoading = false;
-                    }
-                });
+                    places.addAll(newPlaces);
+
+                    adapter.setDataList(places);
+                }
+                isLoading = false;
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Log.d(TAG, t.getLocalizedMessage());
+                isLoading = false;
+            }
+        });
     }
 
 }

@@ -44,7 +44,7 @@ public class SplashActivity extends AppCompatActivity {
         ImageView logo = findViewById(R.id.imageView);
         Button getStarted = findViewById(R.id.get_started_button);
         getStarted.setOnClickListener(v -> {
-            startActivity(new Intent(this, MainActivity2.class));
+            startActivity(new Intent(this, MainActivity.class));
             finish();
         });
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) logo.getLayoutParams();

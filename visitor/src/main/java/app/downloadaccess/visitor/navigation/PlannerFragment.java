@@ -29,14 +29,14 @@ import java.util.Set;
 
 import app.downloadaccess.resources.RecyclerViewEmptySupport;
 import app.downloadaccess.resources.models.Visit;
+import app.downloadaccess.resources.network.RetrofitClientInstance;
+import app.downloadaccess.resources.network.RetrofitService;
 import app.downloadaccess.visitor.Consumer;
-import app.downloadaccess.visitor.MainActivity2;
+import app.downloadaccess.visitor.MainActivity;
 import app.downloadaccess.visitor.ProfileActivity;
 import app.downloadaccess.visitor.R;
 import app.downloadaccess.visitor.adapters.VisitsAdapter;
 import app.downloadaccess.visitor.navigation.child.BookingDialog;
-import app.downloadaccess.visitor.network.RetrofitClientInstance;
-import app.downloadaccess.visitor.network.RetrofitService;
 import app.downloadaccess.visitor.stickyheaders.StickyLinearLayoutManager;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -87,10 +87,10 @@ public class PlannerFragment extends Fragment implements VisitsAdapter.AdapterCa
             startActivity(new Intent(getActivity(), ProfileActivity.class));
         });
         view.findViewById(R.id.plan_visit_button).setOnClickListener(v -> {
-            ((MainActivity2) getActivity()).bottomNavigationView.setSelectedItemId(R.id.placesNav);
+            ((MainActivity) getActivity()).bottomNavigationView.setSelectedItemId(R.id.placesNav);
         });
         prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
-        retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
         recyclerView = view.findViewById(R.id.recyclerViewPlanner);
         recyclerView.setEmptyView(view.findViewById(R.id.emptyViewPlanner));
         adapter = new VisitsAdapter(getActivity());
@@ -121,7 +121,6 @@ public class PlannerFragment extends Fragment implements VisitsAdapter.AdapterCa
                 }
             }
         };
-//        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setAdapter(adapter);
         layoutManager.setStickyHeaderListener(new StickyLinearLayoutManager.StickyHeaderListener() {
@@ -168,11 +167,7 @@ public class PlannerFragment extends Fragment implements VisitsAdapter.AdapterCa
 
         dialog.itemClick(this, visit.getSlotId(), visit.getOccupiedSlots(), visit.getMaxSlots(),
                 visit.getType(), visit.getStartTime(), visit.getEndTime(), visit.getName(), visit.getVisitors(),
-                new Consumer<String>() {
-                    public void accept(String t) {
-                        dialog.postPlanVisit(visit.getSlotId(), Integer.parseInt(t));
-                    }
-                });
+                t -> dialog.postPlanVisit(visit.getSlotId(), Integer.parseInt(t)));
     }
 
     @Override

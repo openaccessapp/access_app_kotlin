@@ -20,6 +20,7 @@ import java.util.List;
 
 import app.downloadaccess.administrator.R;
 import app.downloadaccess.resources.models.Place;
+import app.downloadaccess.resources.network.RetrofitClientInstance;
 
 public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder> implements Filterable {
 
@@ -50,15 +51,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
         holder.placeName.setText(place.getName());
         holder.placeDesc.setText(place.getDescription());
         holder.websiteTv.setText(place.getWww());
-        Picasso.get().load("http://80.100.38.7:3001/api/image/" + place.getId()).into(holder.image);
-
-        if (place.getIsFavourite()) {
-            holder.placeFav.setImageResource(R.drawable.ic_heart_filled);
-        } else {
-            holder.placeFav.setImageResource(R.drawable.ic_heart);
-        }
-
-        holder.switchApprove.setChecked(place.getApproved());
+        Picasso.get().load(RetrofitClientInstance.BASE_URL + "/api/image/" + place.getId()).into(holder.image);
     }
 
     @NonNull
@@ -102,7 +95,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
                 }
                 for (Place item : placesFull) {
                     if (keyword.equals("fav")) {
-                        if (item.getIsFavourite()) {
+                        if (item.isFavourite()) {
                             filteredList.add(item);
                         }
                     } else if (keyword.equals("all")) {
@@ -135,10 +128,6 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            switchApprove = itemView.findViewById(R.id.switchApprove);
-            switchApprove.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                callback.onCheckedChange(getAdapterPosition(), isChecked);
-            });
             placeName = itemView.findViewById(R.id.placeName);
             placeName.setOnClickListener(v -> {
                callback.onPlaceClick(getAdapterPosition());
@@ -147,7 +136,6 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
             placeDesc.setOnClickListener(v -> {
                 callback.onPlaceClick(getAdapterPosition());
             });
-            placeFav = itemView.findViewById(R.id.placeFav);
             websiteTv = itemView.findViewById(R.id.websiteTv);
             websiteTv.setOnClickListener(v -> {
                 callback.onWebsiteClick(getAdapterPosition());
@@ -162,6 +150,5 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
     public interface PlacesCallback {
         void onPlaceClick(int position);
         void onWebsiteClick(int position);
-        void onCheckedChange(int position, boolean isChecked);
     }
 }

@@ -7,7 +7,7 @@
     android:clipToPadding="false"
     android:focusable="true">
 
-    <app.downloadaccess.visitor.ShadowConstraintLayout
+    <app.downloadaccess.resources.ShadowConstraintLayout
         android:id="@+id/visitedSlot"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -152,5 +152,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/person" />
 
-    </app.downloadaccess.visitor.ShadowConstraintLayout>
+    </app.downloadaccess.resources.ShadowConstraintLayout>
 </LinearLayout>

@@ -17,18 +17,18 @@ import com.google.gson.JsonObject;
 
 import app.downloadaccess.resources.CustomViewPager;
 import app.downloadaccess.resources.ViewPagerAdapter;
+import app.downloadaccess.resources.network.RetrofitClientInstance;
+import app.downloadaccess.resources.network.RetrofitService;
 import app.downloadaccess.visitor.navigation.PlacesFragmentContainer;
 import app.downloadaccess.visitor.navigation.PlannerFragment;
 import app.downloadaccess.visitor.navigation.ScanFragment;
-import app.downloadaccess.visitor.network.RetrofitClientInstance;
-import app.downloadaccess.visitor.network.RetrofitService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity2 extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = MainActivity2.class.getSimpleName();
+    private static final String TAG = MainActivity.class.getSimpleName();
     private LinearLayout home, places, calendar, scan;
     private RetrofitService retrofitService;
     private Fragment placeFragmentContainer, plannerFragment, scanFragment;
@@ -50,7 +50,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         SharedPreferences prefs = getPreferences(MODE_PRIVATE);
 
-        retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
         if (prefs.getString("userId", null) == null) {
             retrofitService.getUserId().enqueue(new Callback<JsonObject>() {
                 @Override

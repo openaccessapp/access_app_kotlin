@@ -38,13 +38,13 @@ import java.util.Set;
 
 import app.downloadaccess.resources.models.Place;
 import app.downloadaccess.resources.models.Slot;
+import app.downloadaccess.resources.network.RetrofitClientInstance;
+import app.downloadaccess.resources.network.RetrofitService;
 import app.downloadaccess.visitor.Consumer;
 import app.downloadaccess.visitor.ProfileActivity;
 import app.downloadaccess.visitor.R;
 import app.downloadaccess.visitor.adapters.PlanVisitAdapter;
 import app.downloadaccess.visitor.adapters.SwipeToDeleteCallback;
-import app.downloadaccess.visitor.network.RetrofitClientInstance;
-import app.downloadaccess.visitor.network.RetrofitService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -128,7 +128,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeToDeleteCallback(adapter));
         itemTouchHelper.attachToRecyclerView(recyclerView);
 
-        retrofitService = RetrofitClientInstance.getRetrofitInstance().create(RetrofitService.class);
+        retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
     }
 
     @Override
@@ -145,7 +145,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
         websiteTv = view.findViewById(R.id.websiteTv);
         websiteTv.setText(place.getWww());
         image = view.findViewById(R.id.image);
-        Picasso.get().load("http://80.100.38.7:3001/api/image/" + place.getId()).into(image);
+        Picasso.get().load(RetrofitClientInstance.BASE_URL + "/api/image/" + place.getId()).into(image);
     }
 
     private void getSlotsPlace() {
@@ -179,7 +179,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
                         for (Slot slot : slots) {
                             if (slot.getType().equals("Standard")) slot.setViewType(10);
                             else slot.setViewType(20);
-                            if (slot.getIsPlanned()) {
+                            if (slot.isPlanned()) {
                                 plannedSlots++;
                                 slot.setViewType(slot.getViewType() + 1);
                             } else if (slot.getOccupiedSlots().equals(slot.getMaxSlots()))

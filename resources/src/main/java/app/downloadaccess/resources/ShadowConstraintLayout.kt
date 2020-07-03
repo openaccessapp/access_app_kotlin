@@ -1,4 +1,4 @@
-package app.downloadaccess.access_app
+package app.downloadaccess.resources
 
 import android.content.Context
 import android.graphics.*
@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import android.util.DisplayMetrics
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import app.downloadaccess.resources.R
 
 class ShadowConstraintLayout : ConstraintLayout {
 
