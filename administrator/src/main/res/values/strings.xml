@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Admin App</string>
+    <string name="app_name">Administrator</string>
     <string name="scan">Scan</string>
     <string name="planner">Planner</string>
     <string name="places">Places</string>
