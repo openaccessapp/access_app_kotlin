@@ -12,4 +12,4 @@
 /captures
 .externalNativeBuild
 .cxx
-/token/jwt_token
+/visitor/src/main/assets/jwt_key
