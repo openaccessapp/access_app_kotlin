@@ -77,6 +77,12 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         Log.d(TAG, "Attached Places Fragment");
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
     public void setListener(FragmentCallback callback) {
         this.callback = callback;
     }

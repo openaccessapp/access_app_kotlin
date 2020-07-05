@@ -93,4 +93,9 @@ public class PlacesFragmentContainer extends Fragment implements FragmentCallbac
         fragment.setListener(this);
         openFragment(fragment);
     }
+
+    @Override
+    public void onReturnFromAdd() {
+        Log.d(TAG, "From AddPlace");
+    }
 }

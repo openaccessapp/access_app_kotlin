@@ -115,8 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/rubik_medium"
-                android:gravity="center"
-                android:text="All"
+                android:text="Non-approved"
                 android:textColor="@color/chip_text_state_list"
                 android:textSize="12sp"
                 app:chipBackgroundColor="@color/chip_color_state_list"
@@ -124,7 +123,7 @@
                 app:chipIconEnabled="true"
                 app:chipIconSize="20dp"
                 app:chipIconTint="@color/chip_icon_state_list"
-                app:textStartPadding="12dp" />
+                app:iconStartPadding="10dp" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/option2"
@@ -149,7 +148,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/rubik_medium"
-                android:text="Non-approved"
+                android:gravity="center"
+                android:text="All"
                 android:textColor="@color/chip_text_state_list"
                 android:textSize="12sp"
                 app:chipBackgroundColor="@color/chip_color_state_list"
@@ -157,7 +157,8 @@
                 app:chipIconEnabled="true"
                 app:chipIconSize="20dp"
                 app:chipIconTint="@color/chip_icon_state_list"
-                app:iconStartPadding="10dp" />
+                app:textStartPadding="12dp" />
+
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
 

@@ -6,4 +6,5 @@ public interface FragmentCallback {
     void onPlaceClicked(Place place);
     void onAddPlaceClicked(Place place);
     void editPlace(Place place);
+    void onReturnFromAdd();
 }

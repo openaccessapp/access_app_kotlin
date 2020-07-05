@@ -145,6 +145,7 @@ public class AddPlaceFragment extends Fragment {
                         if (response.code() == 201) {
                             Toast.makeText(getContext(), "Place saved!", Toast.LENGTH_SHORT).show();
                             getParentFragment().getChildFragmentManager().popBackStack();
+                            callback.onReturnFromAdd();
                         } else {
                             try {
                                 JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();

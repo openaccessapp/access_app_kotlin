@@ -4,13 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.SwitchCompat;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
@@ -22,7 +20,7 @@ import app.downloadaccess.administrator.R;
 import app.downloadaccess.resources.models.Place;
 import app.downloadaccess.resources.network.RetrofitClientInstance;
 
-public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder> implements Filterable {
+public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder> {
 
     private List<Place> places;
     private List<Place> placesFull;
@@ -37,12 +35,6 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
 
     public void setAdapterCallback(PlacesCallback callback) {
         this.callback = callback;
-    }
-
-    public void setDataList(List<Place> places) {
-        this.places = places;
-        this.placesFull = new ArrayList<>(this.places);
-        notifyDataSetChanged();
     }
 
     @Override
@@ -65,69 +57,18 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
         return places.size();
     }
 
-    @Override
-    public Filter getFilter() {
-        return exampleFilter;
-    }
-
-    private Filter exampleFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence type) {
-            List<Place> filteredList = new ArrayList<>();
-            if (type == null || type.length() == 0) {
-                filteredList.addAll(placesFull);
-            } else {
-                String filterPattern = type.toString().toLowerCase().trim();
-                String keyword = "";
-                switch (filterPattern) {
-                    case "parks":
-                        keyword = "park";
-                        break;
-                    case "museums":
-                        keyword = "museum";
-                        break;
-                    case "fav":
-                        keyword = "fav";
-                        break;
-                    default:
-                        keyword = "all";
-                        break;
-                }
-                for (Place item : placesFull) {
-                    if (keyword.equals("fav")) {
-                        if (item.isFavourite()) {
-                            filteredList.add(item);
-                        }
-                    } else if (keyword.equals("all")) {
-                        filteredList.add(item);
-                    } else {
-                        if (item.getType() != null && item.getType().toLowerCase().equals(keyword)) {
-                            filteredList.add(item);
-                        }
-                    }
-                }
-            }
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults results) {
-            places.clear();
-            places.addAll((List) results.values);
-            notifyDataSetChanged();
-        }
-    };
-
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView placeName, placeDesc, websiteTv;
-        private ImageView placeFav, image;
-        private SwitchCompat switchApprove;
+        private ImageView image;
+        private ConstraintLayout cardLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            cardLayout = itemView.findViewById(R.id.card_history_museum);
+            cardLayout.setOnClickListener(v -> {
+                callback.onPlaceClick(getAdapterPosition());
+            });
             placeName = itemView.findViewById(R.id.placeName);
             placeName.setOnClickListener(v -> {
                callback.onPlaceClick(getAdapterPosition());

@@ -236,8 +236,10 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         if (typeId != null) {
             map.put("typeId", typeId);
         }
+        if (onlyFavourites != null) {
+            map.put("onlyFavourites", onlyFavourites);
+        }
         map.put("approved", true);
-        map.put("onlyFavourites", onlyFavourites);
 
         retrofitService.getAllPlaces(prefs.getString("userId", null), map).enqueue(new Callback<JsonObject>() {
             @Override

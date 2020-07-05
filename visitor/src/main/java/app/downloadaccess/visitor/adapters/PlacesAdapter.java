@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
@@ -68,9 +69,14 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
 
         private TextView placeName, placeDesc, websiteTv;
         private ImageView placeFav, image;
+        private ConstraintLayout cardLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            cardLayout = itemView.findViewById(R.id.card_history_museum);
+            cardLayout.setOnClickListener(v -> {
+                callback.onPlaceClick(getAdapterPosition());
+            });
             placeName = itemView.findViewById(R.id.placeName);
             placeName.setOnClickListener(v -> {
                 callback.onPlaceClick(getAdapterPosition());
@@ -96,7 +102,9 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
 
     public interface PlacesCallback {
         void onFavouriteClick(ImageView favImage, int position);
+
         void onPlaceClick(int position);
+
         void onWebsiteClick(int position);
     }
 }

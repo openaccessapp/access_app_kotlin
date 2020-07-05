@@ -17,7 +17,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.gson.Gson;
@@ -45,15 +44,13 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     private RetrofitService retrofitService;
     private RecyclerView recyclerView;
     private PlacesAdapter adapter;
-    private List<Place> places = new ArrayList<>();
+    private List<Place> places;
     private SharedPreferences prefs;
     private RelativeLayout loadingPanel;
-    private MaterialButton addPlaceButton;
     private int currentPage = 0;
     private int visibleThreshold = 7;
     private boolean isLoading = false;
     private boolean reachedEnd = false;
-
 
     public PlacesFragment() {
         // Required empty public constructor
@@ -97,24 +94,9 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
             }
         });
 
+        places = new ArrayList<>();
         retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
         recyclerView = view.findViewById(R.id.placesRecyclerView);
-//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//
-//            @Override
-//            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-//                super.onScrolled(recyclerView, dx, dy);
-//
-//                LinearLayoutManager llm = (LinearLayoutManager) recyclerView.getLayoutManager();
-//                if (llm != null) {
-//                    int page = llm.findLastCompletelyVisibleItemPosition();
-//                    if (page > (currentPage * visibleThreshold) - 4 && !reachedEnd && !isLoading) {
-//                        getAllPlaces(null);
-//                    }
-//                }
-//
-//            }
-//        });
         adapter = new PlacesAdapter(getContext(), places);
         adapter.setAdapterCallback(this);
         LinearLayoutManager manager = new LinearLayoutManager(view.getContext());
@@ -167,8 +149,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
 
                     places.clear();
                     places.addAll(newPlaces);
-
-                    adapter.setDataList(places);
+                    adapter.notifyDataSetChanged();
                 }
                 isLoading = false;
             }
