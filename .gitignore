@@ -12,4 +12,4 @@
 /captures
 .externalNativeBuild
 .cxx
-/visitor/src/main/assets/jwt_key
+/visitor/src/main/assets/jwt_key.txt

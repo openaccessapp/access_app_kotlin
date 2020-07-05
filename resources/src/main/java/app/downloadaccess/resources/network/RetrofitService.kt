@@ -21,6 +21,7 @@ interface RetrofitService {
 
     @GET("/api/place/{visitorId}")
     fun getAllPlaces(
+        @Header("Authorization") token: String?,
         @Path("visitorId") visitorId: String?,
         @QueryMap map: HashMap<String, Any>
     ): Call<JsonObject>
