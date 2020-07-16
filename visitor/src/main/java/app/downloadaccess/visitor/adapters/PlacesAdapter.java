@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,6 +45,12 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
         Place place = places.get(position);
         holder.placeName.setText(place.getName());
         holder.placeDesc.setText(place.getDescription());
+        if (place.getWww() != null && !place.getWww().isEmpty()) {
+            holder.locationLayout.setVisibility(View.VISIBLE);
+            holder.websiteTv.setText(place.getWww());
+        } else {
+            holder.locationLayout.setVisibility(View.GONE);
+        }
         holder.websiteTv.setText(place.getWww());
         Picasso.get().load(RetrofitClientInstance.BASE_URL + "/api/image/" + place.getId()).into(holder.image);
 
@@ -69,12 +76,14 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
 
         private TextView placeName, placeDesc, websiteTv;
         private ImageView placeFav, image;
-        private ConstraintLayout cardLayout;
+        private ConstraintLayout place_layout;
+        private LinearLayout locationLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            cardLayout = itemView.findViewById(R.id.card_history_museum);
-            cardLayout.setOnClickListener(v -> {
+            locationLayout = itemView.findViewById(R.id.locationLayout);
+            place_layout = itemView.findViewById(R.id.place_layout);
+            place_layout.setOnClickListener(v -> {
                 callback.onPlaceClick(getAdapterPosition());
             });
             placeName = itemView.findViewById(R.id.placeName);

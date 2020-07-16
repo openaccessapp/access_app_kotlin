@@ -35,6 +35,7 @@ import java.util.List;
 
 import app.downloadaccess.places.R;
 import app.downloadaccess.places.adapters.PlacesAdapter;
+import app.downloadaccess.resources.Utils;
 import app.downloadaccess.resources.models.Place;
 import app.downloadaccess.resources.network.RetrofitClientInstance;
 import app.downloadaccess.resources.network.RetrofitService;
@@ -50,14 +51,13 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     private RetrofitService retrofitService;
     private RecyclerView recyclerView;
     private PlacesAdapter adapter;
-    private List<Place> places = new ArrayList<>();
+    private List<Place> places;
     private SharedPreferences prefs;
     private RelativeLayout loadingPanel;
     private MaterialButton addPlaceButton;
     private Integer currentPage = 0;
     private Integer visibleThreshold = 7;
     private Boolean isLoading = false;
-    private Boolean reachedEnd = false;
 
 
     public PlacesFragment() {
@@ -75,12 +75,6 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     public void onAttachFragment(@NonNull Fragment childFragment) {
         super.onAttachFragment(childFragment);
         Log.d(TAG, "Attached Places Fragment");
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
     }
 
     public void setListener(FragmentCallback callback) {
@@ -112,6 +106,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
             }
         });
 
+        places = new ArrayList<>();
         retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
         recyclerView = view.findViewById(R.id.placesRecyclerView);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -122,8 +117,8 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
 
                 LinearLayoutManager llm = (LinearLayoutManager) recyclerView.getLayoutManager();
                 if (llm != null) {
-                    int page = llm.findLastCompletelyVisibleItemPosition();
-                    if (page > (currentPage * visibleThreshold) - 4 && !reachedEnd && !isLoading) {
+                    int page = llm.findLastVisibleItemPosition();
+                    if (page > (currentPage * visibleThreshold) - 4 && !isLoading) {
                         getAllPlaces();
                     }
                 }
@@ -164,7 +159,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     public void onFavouriteClick(int position) {
         places.get(position).setFavourite(!places.get(position).isFavourite());
         adapter.notifyDataSetChanged();
-        retrofitService.addRemoveFavourite(prefs.getString("userId", null), places.get(position).getId()).enqueue(new Callback<JsonObject>() {
+        retrofitService.addRemoveFavourite(Utils.getJwtToken(getContext()), prefs.getString("userId", null), places.get(position).getId()).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
                 if (response.code() != 204 && response.errorBody() != null) {
@@ -196,7 +191,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
             map.put("load", visibleThreshold);
         }
 
-        retrofitService.getAllPlaces(prefs.getString("userId", null), map).enqueue(new Callback<JsonObject>() {
+        retrofitService.getAllPlaces(Utils.getJwtToken(getContext()), prefs.getString("userId", null), map).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
                 Gson gson = new Gson();
@@ -205,7 +200,6 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
                     }.getType());
 
                     if (newPlaces.isEmpty()) {
-                        reachedEnd = true;
                         return;
                     }
 

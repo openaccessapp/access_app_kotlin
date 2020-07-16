@@ -76,12 +76,8 @@
             android:id="@+id/linearLayout2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/placeDesc"
-            android:layout_alignStart="@id/placeDesc"
-            android:layout_marginTop="7dp"
-            android:layout_marginBottom="8dp"
             app:layout_constraintStart_toStartOf="@id/placeDesc"
-            app:layout_constraintTop_toBottomOf="@id/placeDesc">
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <ImageView
                 android:layout_width="15dp"

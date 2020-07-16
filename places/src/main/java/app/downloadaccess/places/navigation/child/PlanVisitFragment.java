@@ -36,6 +36,7 @@ import java.util.Set;
 
 import app.downloadaccess.places.R;
 import app.downloadaccess.places.adapters.PlanVisitAdapter;
+import app.downloadaccess.resources.Utils;
 import app.downloadaccess.resources.models.Place;
 import app.downloadaccess.resources.models.Slot;
 import app.downloadaccess.resources.network.RetrofitClientInstance;
@@ -138,7 +139,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
     }
 
     private void getSlotsPlace() {
-        retrofitService.getSlotsPlace(prefs.getString("userId", null), place.getId()).enqueue(new Callback<JsonObject>() {
+        retrofitService.getSlotsPlace(Utils.getJwtToken(getContext()), prefs.getString("userId", null), place.getId()).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
                 if (response.code() != 204 && response.errorBody() != null) {

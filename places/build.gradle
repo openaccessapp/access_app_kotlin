@@ -50,6 +50,11 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.firebase:firebase-analytics:17.4.3'
     implementation 'com.google.firebase:firebase-crashlytics:17.1.0'
+    api 'io.jsonwebtoken:jjwt-api:0.10.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.10.5'
+    runtimeOnly('io.jsonwebtoken:jjwt-orgjson:0.10.5') {
+        exclude group: 'org.json', module: 'json'
+    }
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

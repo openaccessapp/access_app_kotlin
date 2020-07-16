@@ -24,6 +24,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 
 import app.downloadaccess.places.R;
+import app.downloadaccess.resources.Utils;
 import app.downloadaccess.resources.models.Place;
 import app.downloadaccess.resources.models.Slot;
 import app.downloadaccess.resources.network.RetrofitClientInstance;
@@ -118,7 +119,7 @@ public class BookingDialog {
     }
 
     private void removeVisit(String slotId) {
-        retrofitService.deleteVisit(prefs.getString("userId", null), slotId).enqueue(new Callback<JsonObject>() {
+        retrofitService.deleteVisit(Utils.getJwtToken(activity), prefs.getString("userId", null), slotId).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
                 if (response.code() != 204 && response.errorBody() != null) {
@@ -139,7 +140,7 @@ public class BookingDialog {
     }
 
     public void addNewSlot(String placeId, Slot slot) {
-        retrofitService.addSlot(placeId, slot).enqueue(new Callback<Void>() {
+        retrofitService.addSlot(Utils.getJwtToken(activity), placeId, slot).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(@NotNull Call<Void> call, @NotNull Response<Void> response) {
                 if (response.code() != 201 && response.errorBody() != null) {

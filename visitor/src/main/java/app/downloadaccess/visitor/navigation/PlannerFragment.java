@@ -28,6 +28,7 @@ import java.util.Map;
 import java.util.Set;
 
 import app.downloadaccess.resources.RecyclerViewEmptySupport;
+import app.downloadaccess.resources.Utils;
 import app.downloadaccess.resources.models.Visit;
 import app.downloadaccess.resources.network.RetrofitClientInstance;
 import app.downloadaccess.resources.network.RetrofitService;
@@ -137,7 +138,7 @@ public class PlannerFragment extends Fragment implements VisitsAdapter.AdapterCa
     }
 
     public void getAllVisits() {
-        retrofitService.getUserVisits(prefs.getString("userId", null)).enqueue(new Callback<JsonObject>() {
+        retrofitService.getUserVisits(Utils.getJwtToken(getContext()), prefs.getString("userId", null)).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if (response.body().get("visits").getAsJsonObject() != null) {

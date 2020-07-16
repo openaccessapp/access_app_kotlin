@@ -37,6 +37,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 import app.downloadaccess.places.R;
+import app.downloadaccess.resources.Utils;
 import app.downloadaccess.resources.models.Place;
 import app.downloadaccess.resources.network.RetrofitClientInstance;
 import app.downloadaccess.resources.network.RetrofitService;
@@ -139,7 +140,7 @@ public class AddPlaceFragment extends Fragment {
             place.setLocation(((EditText) view.findViewById(R.id.LocEt)).getText().toString());
             place.setAddress("Sofia");
             if (place.getId() == null) {
-                retrofitService.addPlace(place, prefs.getString("userId", null)).enqueue(new Callback<Void>() {
+                retrofitService.addPlace(Utils.getJwtToken(getContext()), place, prefs.getString("userId", null)).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(@NotNull Call<Void> call, @NotNull Response<Void> response) {
                         if (response.code() == 201) {
@@ -162,7 +163,7 @@ public class AddPlaceFragment extends Fragment {
                     }
                 });
             } else {
-                retrofitService.editPlace(place, prefs.getString("userId", null), place.getId()).enqueue(new Callback<Void>() {
+                retrofitService.editPlace(Utils.getJwtToken(getContext()), place, prefs.getString("userId", null), place.getId()).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(@NotNull Call<Void> call, @NotNull Response<Void> response) {
                         if (response.code() == 200) {

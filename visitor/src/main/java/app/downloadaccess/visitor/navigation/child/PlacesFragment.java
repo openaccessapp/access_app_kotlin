@@ -31,33 +31,20 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 
-import org.apache.commons.codec.DecoderException;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.security.Key;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
-import javax.crypto.spec.SecretKeySpec;
-
+import app.downloadaccess.resources.Utils;
 import app.downloadaccess.resources.models.Place;
 import app.downloadaccess.resources.network.RetrofitClientInstance;
 import app.downloadaccess.resources.network.RetrofitService;
 import app.downloadaccess.visitor.ProfileActivity;
 import app.downloadaccess.visitor.R;
 import app.downloadaccess.visitor.adapters.PlacesAdapter;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.io.Encoders;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -195,7 +182,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     public void onFavouriteClick(ImageView imageView, int position) {
         places.get(position).setFavourite(!places.get(position).isFavourite());
         adapter.notifyDataSetChanged();
-        retrofitService.addRemoveFavourite(prefs.getString("userId", null), places.get(position).getId()).enqueue(new Callback<JsonObject>() {
+        retrofitService.addRemoveFavourite(Utils.getJwtToken(getContext()), prefs.getString("userId", null), places.get(position).getId()).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
                 if (response.code() != 204 && response.errorBody() != null) {
@@ -255,35 +242,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         }
         map.put("approved", true);
 
-        String token = "";
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(
-                    new InputStreamReader(getActivity().getAssets().open("jwt_key.txt"), "UTF-8"));
-
-            // do reading, usually loop until end of file reading
-            String mLine;
-            while ((mLine = reader.readLine()) != null) {
-                token = mLine;
-            }
-        } catch (IOException e) {
-            //log the exception
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    //log the exception
-                }
-            }
-        }
-
-//        Key hmacKey = new SecretKeySpec(token.getBytes(), SignatureAlgorithm.HS256.getJcaName());
-        Key hmacKey = new SecretKeySpec(Base64.getDecoder().decode(token), SignatureAlgorithm.HS256.getJcaName());
-        String jwtToken = Jwts.builder()
-                .signWith(hmacKey)
-                .compact();
-        retrofitService.getAllPlaces("Bearer " + jwtToken, prefs.getString("userId", null), map).enqueue(new Callback<JsonObject>() {
+        retrofitService.getAllPlaces(Utils.getJwtToken(getContext()), prefs.getString("userId", null), map).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
                 Gson gson = new Gson();

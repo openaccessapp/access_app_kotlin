@@ -1,6 +1,7 @@
 package app.downloadaccess.resources.network
 
 import app.downloadaccess.resources.BuildConfig
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -16,7 +17,7 @@ object RetrofitClientInstance {
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
         .client(client)
         .build()
 

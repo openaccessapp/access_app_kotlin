@@ -22,6 +22,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.util.HashMap;
 
+import app.downloadaccess.resources.Utils;
 import app.downloadaccess.resources.network.RetrofitClientInstance;
 import app.downloadaccess.resources.network.RetrofitService;
 import app.downloadaccess.visitor.Consumer;
@@ -109,7 +110,7 @@ public class BookingDialog {
     }
 
     private void removeVisit(String slotId, Consumer<Void> updateFunc) {
-        retrofitService.deleteVisit(prefs.getString("userId", null), slotId).enqueue(new Callback<JsonObject>() {
+        retrofitService.deleteVisit(Utils.getJwtToken(activity), prefs.getString("userId", null), slotId).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
                 if (response.code() != 204 && response.errorBody() != null) {
@@ -143,7 +144,7 @@ public class BookingDialog {
         HashMap<String, Object> body = new HashMap<>();
         body.put("slotId", slotId);
         body.put("visitors", visitorsCount);
-        retrofitService.planVisit(prefs.getString("userId", null), body).enqueue(new Callback<JsonObject>() {
+        retrofitService.planVisit(Utils.getJwtToken(activity), prefs.getString("userId", null), body).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
                 if (response.code() != 204 && response.errorBody() != null) {

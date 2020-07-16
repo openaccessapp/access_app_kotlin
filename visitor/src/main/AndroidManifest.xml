@@ -3,7 +3,6 @@
     package="app.downloadaccess.visitor">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application

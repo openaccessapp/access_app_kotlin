@@ -15,7 +15,6 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,6 +35,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import app.downloadaccess.resources.Utils;
 import app.downloadaccess.resources.models.Place;
 import app.downloadaccess.resources.models.Slot;
 import app.downloadaccess.resources.network.RetrofitClientInstance;
@@ -109,7 +109,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, backButton);
-        ConstraintLayout placeBox = view.findViewById(R.id.placeBox);
+        View placeBox = view.findViewById(R.id.place_card);
         placeBox.setOnClickListener(v -> {
             callback.onInfoClicked(place);
         });
@@ -143,13 +143,18 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
         placeDesc = view.findViewById(R.id.placeDesc);
         placeDesc.setText(place.getDescription());
         websiteTv = view.findViewById(R.id.websiteTv);
-        websiteTv.setText(place.getWww());
+        if (place.getWww() != null && !place.getWww().isEmpty()) {
+            view.findViewById(R.id.locationLayout).setVisibility(View.VISIBLE);
+            websiteTv.setText(place.getWww());
+        } else {
+            view.findViewById(R.id.locationLayout).setVisibility(View.GONE);
+        }
         image = view.findViewById(R.id.image);
         Picasso.get().load(RetrofitClientInstance.BASE_URL + "/api/image/" + place.getId()).into(image);
     }
 
     private void getSlotsPlace() {
-        retrofitService.getSlotsPlace(prefs.getString("userId", null), place.getId()).enqueue(new Callback<JsonObject>() {
+        retrofitService.getSlotsPlace(Utils.getJwtToken(getContext()), prefs.getString("userId", null), place.getId()).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
                 if (response.code() != 204 && response.errorBody() != null) {
@@ -198,8 +203,9 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
 
             @Override
             public void onFailure(@NotNull Call<JsonObject> call, @NotNull Throwable t) {
-                //todo this toast was crashing the app
-//                Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                if (t.getLocalizedMessage() != null) {
+                    Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

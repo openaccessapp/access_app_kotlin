@@ -58,7 +58,6 @@ dependencies {
     // Add the Firebase Crashlytics SDK.
     implementation 'com.google.firebase:firebase-crashlytics:17.0.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
-    implementation 'commons-codec:commons-codec:1.10'
     api 'io.jsonwebtoken:jjwt-api:0.10.5'
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.10.5'
     runtimeOnly('io.jsonwebtoken:jjwt-orgjson:0.10.5') {

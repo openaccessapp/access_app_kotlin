@@ -29,6 +29,7 @@ import java.util.List;
 
 import app.downloadaccess.administrator.R;
 import app.downloadaccess.administrator.adapters.PlacesAdapter;
+import app.downloadaccess.resources.Utils;
 import app.downloadaccess.resources.models.Place;
 import app.downloadaccess.resources.network.RetrofitClientInstance;
 import app.downloadaccess.resources.network.RetrofitService;
@@ -51,6 +52,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     private int visibleThreshold = 7;
     private boolean isLoading = false;
     private boolean reachedEnd = false;
+    private int checkedId = -1;
 
     public PlacesFragment() {
         // Required empty public constructor
@@ -81,9 +83,11 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         loadingPanel = view.findViewById(R.id.loadingPanel);
         chipGroup = view.findViewById(R.id.chip_group);
         chipGroup.setOnCheckedChangeListener((group, checkedId) -> {
+            this.checkedId = checkedId;
             Chip chip = group.findViewById(checkedId);
             if (chip.getText().equals("Approved")) {
                 getAllPlaces(true);
@@ -103,15 +107,57 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         manager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+
+                if (!isLoading) {
+                    if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == places.size() - 1) {
+                        //bottom of list!
+                        Log.d(TAG, "Load more!");
+                        isLoading = true;
+                    }
+                }
+            }
+        });
 
         prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
         prefs.registerOnSharedPreferenceChangeListener((sharedPreferences, key) -> {
             if (key.equals("userId") && places.isEmpty()) {
-                getAllPlaces(null);
+                if (checkedId == -1) {
+                    checkedId = chipGroup.getCheckedChipId();
+                }
+                Chip chip = chipGroup.findViewById(chipGroup.getCheckedChipId());
+                if (chip.getText().equals("Approved")) {
+                    getAllPlaces(true);
+                } else if (chip.getText().equals("Non-approved")) {
+                    getAllPlaces(false);
+                } else if (chip.getText().equals("All")) {
+                    getAllPlaces(null);
+                }
             }
         });
         if (prefs.getString("userId", null) != null) {
-            getAllPlaces(null);
+            if (checkedId == -1) {
+                checkedId = chipGroup.getCheckedChipId();
+            }
+            chipGroup.check(checkedId);
+            Chip chip = chipGroup.findViewById(checkedId);
+            if (chip.getText().equals("Approved")) {
+                getAllPlaces(true);
+            } else if (chip.getText().equals("Non-approved")) {
+                getAllPlaces(false);
+            } else if (chip.getText().equals("All")) {
+                getAllPlaces(null);
+            }
         }
     }
 
@@ -134,7 +180,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         if (isApproved != null) {
             map.put("approved", isApproved);
         }
-        retrofitService.getAllPlaces(prefs.getString("userId", null), map).enqueue(new Callback<JsonObject>() {
+        retrofitService.getAllPlaces(Utils.getJwtToken(getContext()), prefs.getString("userId", null), map).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 Gson gson = new Gson();

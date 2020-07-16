@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.downloadaccess.administrator.R;
+import app.downloadaccess.resources.Utils;
 import app.downloadaccess.resources.models.Place;
 import app.downloadaccess.resources.models.Slot;
 import app.downloadaccess.resources.network.RetrofitClientInstance;
@@ -105,7 +106,7 @@ public class PlaceInfoFragment extends Fragment {
         isPlaceApproved(place.getApproved());
         approvedSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             isPlaceApproved(isChecked);
-            retrofitService.setApproved(place.getId(), isChecked).enqueue(new Callback<JsonObject>() {
+            retrofitService.setApproved(Utils.getJwtToken(getContext()), place.getId(), isChecked).enqueue(new Callback<JsonObject>() {
                 @Override
                 public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
 

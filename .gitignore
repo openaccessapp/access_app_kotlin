@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 /visitor/src/main/assets/jwt_key.txt
+/places/src/main/assets/jwt_key.txt
+/administrator/src/main/assets/jwt_key.txt
