@@ -59,10 +59,11 @@ interface RetrofitService {
         @Path("placeId") placeId: String?
     ): Call<Void>
 
-    @POST("/api/slot/{placeId}")
+    @POST("/api/slot/{placeId}/{visitorId}")
     fun addSlot(
         @Header("Authorization") token: String?,
         @Path("placeId") placeId: String?,
+        @Path("visitorId") visitorId: String?,
         @Body slot: Slot?
     ): Call<Void>
 

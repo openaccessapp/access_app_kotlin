@@ -140,7 +140,7 @@ public class BookingDialog {
     }
 
     public void addNewSlot(String placeId, Slot slot) {
-        retrofitService.addSlot(Utils.getJwtToken(activity), placeId, slot).enqueue(new Callback<Void>() {
+        retrofitService.addSlot(Utils.getJwtToken(activity), placeId, prefs.getString("userId", null), slot).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(@NotNull Call<Void> call, @NotNull Response<Void> response) {
                 if (response.code() != 201 && response.errorBody() != null) {

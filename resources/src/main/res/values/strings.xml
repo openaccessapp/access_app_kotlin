@@ -2,4 +2,8 @@
     <string name="scan">Scan</string>
     <string name="planner">Planner</string>
     <string name="places">Places</string>
+    <string name="admin_app_name" translatable="false">Administrator</string>
+    <string name="access_app_name" translatable="false">Access App</string>
+    <string name="places_app_name" translatable="false">Places App</string>
+    <string name="choose_place">Choose Place</string>
 </resources>
