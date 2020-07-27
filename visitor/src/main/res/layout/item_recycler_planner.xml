@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipChildren="false"
@@ -115,29 +116,15 @@
             app:layout_constraintStart_toEndOf="@id/separatorPlanner" />
 
         <TextView
-            android:id="@+id/visitorsTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:fontFamily="@font/rubik_medium"
-            android:text="Visitors"
-            android:textColor="@color/text_grey"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@id/person"
-            app:layout_constraintStart_toEndOf="@id/person"
-            app:layout_constraintTop_toTopOf="@id/person" />
-
-        <TextView
             android:id="@+id/personCountTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:fontFamily="@font/rubik_bold"
             android:text="1"
             android:textColor="@color/text_color_dark"
-            app:layout_constraintBottom_toBottomOf="@id/visitorsTv"
-            app:layout_constraintStart_toEndOf="@id/visitorsTv"
-            app:layout_constraintTop_toTopOf="@id/visitorsTv" />
+            app:layout_constraintBottom_toBottomOf="@+id/person"
+            app:layout_constraintEnd_toEndOf="@+id/priority_text"
+            app:layout_constraintTop_toTopOf="@+id/person" />
 
         <TextView
             android:id="@+id/occupiedMax"
@@ -148,9 +135,30 @@
             android:text="20/100"
             android:textColor="@color/text_grey"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@id/person"
+            app:layout_constraintBottom_toBottomOf="@+id/titlePlanner"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/person" />
+            app:layout_constraintTop_toTopOf="@+id/titlePlanner" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/person"
+            app:layout_constraintEnd_toStartOf="@+id/occupiedMax"
+            app:layout_constraintStart_toEndOf="@+id/personCountTv"
+            app:layout_constraintTop_toTopOf="@+id/person"
+            app:layout_constraintVertical_bias="0.333"
+            app:srcCompat="@drawable/ic_map_marker_2" />
+
+        <TextView
+            android:id="@+id/placeLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Place Location"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+            app:layout_constraintEnd_toEndOf="@+id/occupiedMax"
+            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
     </app.downloadaccess.resources.ShadowConstraintLayout>
 </LinearLayout>
