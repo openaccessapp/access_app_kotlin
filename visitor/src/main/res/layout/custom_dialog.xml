@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/rubik_bold"
-            android:text="Book Visit"
+            android:text="@string/book_visit"
             android:textAlignment="center"
             android:textColor="@color/text_color_dark"
             android:textSize="20sp" />
@@ -31,7 +31,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="30dp"
             android:fontFamily="@font/rubik_medium"
-            android:text="12:00"
+            android:text="@string/_12_00"
             android:textColor="@color/text_color_dark"
             android:textSize="14sp" />
 
@@ -44,7 +44,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="26dp"
             android:fontFamily="@font/rubik_medium"
-            android:text="13:00"
+            android:text="@string/_13_00"
             android:textColor="@color/text_grey"
             android:textSize="14sp" />
 
@@ -74,7 +74,7 @@
             android:minWidth="0dp"
             android:minHeight="40dp"
             android:stateListAnimator="@null"
-            android:text="Priority"
+            android:text="@string/priority"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="12sp"
@@ -90,7 +90,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="13dp"
             android:fontFamily="@font/rubik_bold"
-            android:text="Place Name"
+            android:text="@string/place_name"
             android:textColor="@color/text_color_dark"
             android:textSize="16sp" />
 
@@ -114,7 +114,7 @@
             android:layout_marginStart="6dp"
             android:fontFamily="@font/rubik_medium"
             android:gravity="center"
-            android:text="14/20"
+            android:text="@string/_14_20"
             android:textColor="@color/text_grey" />
 
         <ImageView
@@ -149,14 +149,14 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/one"
-                android:layout_width="42dp"
+                android:layout_width="46dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:elevation="0dp"
                 android:fontFamily="@font/rubik_bold"
                 android:gravity="center"
                 android:stateListAnimator="@null"
-                android:text="1"
+                android:text="@string/_1"
                 android:textSize="12sp" />
 
             <com.google.android.material.button.MaterialButton
@@ -170,7 +170,7 @@
                 android:fontFamily="@font/rubik_bold"
                 android:gravity="center"
                 android:stateListAnimator="@null"
-                android:text="2"
+                android:text="@string/_2"
                 android:textColor="@color/text_grey"
                 android:textSize="12sp" />
 
@@ -185,7 +185,7 @@
                 android:fontFamily="@font/rubik_bold"
                 android:gravity="center"
                 android:stateListAnimator="@null"
-                android:text="3"
+                android:text="@string/_3"
                 android:textColor="@color/text_grey"
                 android:textSize="12sp" />
 
@@ -200,7 +200,7 @@
                 android:fontFamily="@font/rubik_bold"
                 android:gravity="center"
                 android:stateListAnimator="@null"
-                android:text="4"
+                android:text="@string/_4"
                 android:textColor="@color/text_grey"
                 android:textSize="12sp" />
 
@@ -215,7 +215,7 @@
                 android:fontFamily="@font/rubik_bold"
                 android:gravity="center"
                 android:stateListAnimator="@null"
-                android:text="5"
+                android:text="@string/_5"
                 android:textColor="@color/text_grey"
                 android:textSize="12sp" />
 
@@ -230,7 +230,7 @@
                 android:fontFamily="@font/rubik_bold"
                 android:gravity="center"
                 android:stateListAnimator="@null"
-                android:text="6"
+                android:text="@string/_6"
                 android:textColor="@color/text_grey"
                 android:textSize="12sp" />
 
@@ -245,7 +245,7 @@
                 android:fontFamily="@font/rubik_bold"
                 android:gravity="center"
                 android:stateListAnimator="@null"
-                android:text="7"
+                android:text="@string/_7"
                 android:textColor="@color/text_grey"
                 android:textSize="12sp" />
 
@@ -271,7 +271,7 @@
             android:layout_toEndOf="@id/personIcon"
             android:fontFamily="@font/rubik_medium"
             android:gravity="center_vertical"
-            android:text="Reminder"
+            android:text="@string/reminder"
             android:textSize="12sp" />
 
         <androidx.appcompat.widget.SwitchCompat
@@ -305,7 +305,7 @@
         android:paddingTop="14dp"
         android:paddingEnd="50dp"
         android:paddingBottom="14dp"
-        android:text="Cancel"
+        android:text="@string/cancel"
         android:textAllCaps="false"
         android:textSize="14sp"
         app:cornerRadius="30dp"
@@ -328,7 +328,7 @@
         android:paddingTop="14dp"
         android:paddingEnd="54dp"
         android:paddingBottom="14dp"
-        android:text="Save"
+        android:text="@string/save"
         android:textAllCaps="false"
         android:textSize="14sp"
         app:cornerRadius="30dp" />
@@ -348,7 +348,7 @@
         android:paddingTop="14dp"
         android:paddingEnd="54dp"
         android:paddingBottom="14dp"
-        android:text="Remove Visit"
+        android:text="@string/remove_visit"
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:textSize="14sp"

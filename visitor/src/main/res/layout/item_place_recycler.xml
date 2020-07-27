@@ -51,7 +51,7 @@
             android:layout_marginStart="11dp"
             android:ellipsize="end"
             android:fontFamily="@font/rubik_bold"
-            android:text="Place Name"
+            android:text="@string/place_name"
             android:textColor="@color/text_color_dark"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/placeFav"
@@ -67,7 +67,7 @@
             android:ellipsize="end"
             android:fontFamily="@font/rubik"
             android:maxLines="3"
-            android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr"
+            android:text="@string/lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr"
             android:textColor="@color/text_grey"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:fontFamily="@font/rubik"
-                android:text="www.centralpark.com"
+                android:text="@string/www_centralpark_com"
                 android:textColor="@color/light_blue" />
 
         </LinearLayout>

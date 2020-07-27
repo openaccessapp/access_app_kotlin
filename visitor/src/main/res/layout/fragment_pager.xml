@@ -26,7 +26,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/rubik"
-            android:text="Safe and queue free visiting"
+            android:text="@string/safe_and_queue_free_visiting"
             android:textColor="@color/text_grey"
             android:textSize="18sp" />
 

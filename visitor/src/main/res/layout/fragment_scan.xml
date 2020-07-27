@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/rubik_bold"
-        android:text="Scan/Tap"
+        android:text="@string/scan_tap"
         android:textColor="@color/text_color_dark"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"

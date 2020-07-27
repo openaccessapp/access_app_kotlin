@@ -53,7 +53,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="23dp"
         android:fontFamily="@font/rubik_bold"
-        android:text="Plan Visit"
+        android:text="@string/plan_visit"
         android:textColor="@color/text_color_dark"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
