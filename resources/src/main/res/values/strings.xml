@@ -6,9 +6,9 @@
     <string name="access_app_name" translatable="false">Access App</string>
     <string name="places_app_name" translatable="false">Places App</string>
     <string name="choose_place">Choose Place</string>
-    <string name="personal_ninformation">Personal Information</string>
+    <string name="personal_ninformation">Personal \nInformation</string>
     <string name="age">Age</string>
-    <string name="enter_your_age">Enter your age</string>
+    <string name="enter_your_age"></string>
     <string name="wheelchair_assistant_required">Wheelchair assistant required</string>
     <string name="blindness_or_visual_impairment">Blindness or visual impairment</string>
     <string name="book_visit">Book Visit</string>
@@ -33,7 +33,7 @@
     <string name="museums">Museums</string>
     <string name="upcoming_visits">Upcoming Visits</string>
     <string name="no_planned_visits">No planned visits</string>
-    <string name="you_must_arrive_15_minutes_before_the_time">You must arrive 15 minutes before the time.</string>
+    <string name="you_must_arrive_15_minutes_before_the_time">You must arrive 15 minutes before \nthe time.</string>
     <string name="scan_tap">Scan/Tap</string>
     <string name="central_park">Central Park</string>
     <string name="visitors_information">Visitors Information</string>
@@ -55,17 +55,12 @@
     <string name="_10_10_11_00">10:10 - 11:00</string>
     <string name="_25th_may">25th May</string>
     <string name="_20_100">20/100</string>
-    <string name="place_name">Place Name</string>
     <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</string>
     <string name="www_centralpark_com">www.centralpark.com</string>
     <string name="_10_00">10:00</string>
     <string name="_11_00">11:00</string>
-    <string name="priority">Priority</string>
-    <string name="place_name">Place Name</string>
     <string name="_1">1</string>
-    <string name="_20_100">20/100</string>
     <string name="place_location">Place Location</string>
-    <string name="priority">Priority</string>
     <string name="_10_00_11_00">10:00 - 11:00</string>
     <string name="_100_100">100/100</string>
     <string name="mon">MON</string>
