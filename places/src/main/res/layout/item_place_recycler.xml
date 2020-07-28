@@ -1,19 +1,28 @@
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="16dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginEnd="16dp"
-    android:layout_marginBottom="10dp"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="2dp">
+    android:clickable="true"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:focusable="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/card_history_museum"
+    <app.downloadaccess.resources.ShadowConstraintLayout
+        android:id="@+id/place_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="8dp">
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:paddingBottom="8dp"
+        app:blurRadius="10dp"
+        app:cornerRadius="15dp"
+        app:shadowColor="#00000014"
+        app:shadowStartY="0dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/placeImage"
@@ -31,19 +40,21 @@
                 android:id="@+id/image"
                 android:layout_width="90dp"
                 android:layout_height="100dp"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/pub_image" />
         </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/placeName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="11dp"
+            android:ellipsize="end"
             android:fontFamily="@font/rubik_bold"
-            android:text="Central Park"
+            android:text="Place Name"
             android:textColor="@color/text_color_dark"
             android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/placeFav"
             app:layout_constraintStart_toEndOf="@id/placeImage"
             app:layout_constraintTop_toTopOf="@id/placeImage" />
 
@@ -53,9 +64,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="13dp"
-            android:maxLines="3"
             android:ellipsize="end"
             android:fontFamily="@font/rubik"
+            android:maxLines="3"
             android:text="Lorem ipsum dolor sit amet, consetetur sadipscing elitr"
             android:textColor="@color/text_grey"
             android:textSize="12sp"
@@ -68,16 +79,16 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginEnd="17dp"
-            android:src="@drawable/ic_heart"
+            android:src="@drawable/ic_edit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/placeImage" />
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
+            android:id="@+id/locationLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@id/placeDesc"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/placeDesc">
 
             <ImageView
                 android:layout_width="15dp"
@@ -96,5 +107,6 @@
 
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</androidx.cardview.widget.CardView>
+    </app.downloadaccess.resources.ShadowConstraintLayout>
+
+</LinearLayout>

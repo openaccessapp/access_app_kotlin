@@ -40,7 +40,7 @@
                 android:id="@+id/image"
                 android:layout_width="90dp"
                 android:layout_height="100dp"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:src="@mipmap/pub_image" />
         </androidx.cardview.widget.CardView>
 

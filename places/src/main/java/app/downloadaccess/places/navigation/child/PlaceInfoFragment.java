@@ -14,7 +14,6 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,9 +44,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.AdapterCallback {
+public class PlaceInfoFragment extends Fragment implements PlanVisitAdapter.AdapterCallback {
 
-    private static final String TAG = PlanVisitFragment.class.getSimpleName();
+    private static final String TAG = PlaceInfoFragment.class.getSimpleName();
     private RecyclerView recyclerView;
     private PlanVisitAdapter adapter;
     private List<Slot> slots = new ArrayList<>();
@@ -59,12 +58,12 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
     private SharedPreferences prefs;
     private BookingDialog dialog;
 
-    public PlanVisitFragment() {
+    public PlaceInfoFragment() {
         // Required empty public constructor
     }
 
-    public static PlanVisitFragment newInstance(Place place) {
-        PlanVisitFragment fragment = new PlanVisitFragment();
+    public static PlaceInfoFragment newInstance(Place place) {
+        PlaceInfoFragment fragment = new PlaceInfoFragment();
         Bundle args = new Bundle();
         args.putSerializable("place", place);
         fragment.setArguments(args);
@@ -77,7 +76,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_plan_visit, container, false);
+        return inflater.inflate(R.layout.fragment_place_info, container, false);
     }
 
     @Override
@@ -102,7 +101,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, backButton);
-        ConstraintLayout placeBox = view.findViewById(R.id.placeBox);
+        View placeBox = view.findViewById(R.id.place_card);
         placeBox.setOnClickListener(v -> {
             callback.editPlace(place);
         });

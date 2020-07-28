@@ -15,7 +15,7 @@ import app.downloadaccess.places.R;
 import app.downloadaccess.places.navigation.child.AddPlaceFragment;
 import app.downloadaccess.places.navigation.child.FragmentCallback;
 import app.downloadaccess.places.navigation.child.PlacesFragment;
-import app.downloadaccess.places.navigation.child.PlanVisitFragment;
+import app.downloadaccess.places.navigation.child.PlaceInfoFragment;
 import app.downloadaccess.places.navigation.child.VisitInfoFragment;
 import app.downloadaccess.resources.models.Place;
 
@@ -53,8 +53,8 @@ public class PlacesFragmentContainer extends Fragment implements FragmentCallbac
         if (childFragment instanceof PlacesFragment) {
             ((PlacesFragment) childFragment).setListener(this);
             Log.d(TAG, "PlacesFragment attached");
-        } else if (childFragment instanceof PlanVisitFragment) {
-            ((PlanVisitFragment) childFragment).setListener(this);
+        } else if (childFragment instanceof PlaceInfoFragment) {
+            ((PlaceInfoFragment) childFragment).setListener(this);
             Log.d(TAG, "PlanVisit attached");
         } else if (childFragment instanceof VisitInfoFragment) {
             ((VisitInfoFragment) childFragment).setListener(this);
@@ -75,9 +75,9 @@ public class PlacesFragmentContainer extends Fragment implements FragmentCallbac
 
     @Override
     public void onPlaceClicked(Place place) {
-        PlanVisitFragment planVisitFragment = PlanVisitFragment.newInstance(place);
-        planVisitFragment.setListener(this);
-        openFragment(planVisitFragment);
+        PlaceInfoFragment placeInfoFragment = PlaceInfoFragment.newInstance(place);
+        placeInfoFragment.setListener(this);
+        openFragment(placeInfoFragment);
     }
 
     @Override

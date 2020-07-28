@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -179,7 +178,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     }
 
     @Override
-    public void onFavouriteClick(ImageView imageView, int position) {
+    public void onFavouriteClick(int position) {
         places.get(position).setFavourite(!places.get(position).isFavourite());
         adapter.notifyDataSetChanged();
         retrofitService.addRemoveFavourite(Utils.getJwtToken(getContext()), prefs.getString("userId", null), places.get(position).getId()).enqueue(new Callback<JsonObject>() {

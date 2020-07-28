@@ -43,7 +43,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCallback {
+public  class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCallback {
 
     private static final String TAG = PlacesFragment.class.getSimpleName();
     private FragmentCallback callback;
@@ -58,6 +58,10 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     private Integer currentPage = 0;
     private Integer visibleThreshold = 7;
     private Boolean isLoading = false;
+    private Boolean reachedEnd = false;
+    private String search = null;
+    private Integer typeId = null;
+    private Boolean onlyFavourites = false;
 
 
     public PlacesFragment() {
@@ -98,12 +102,19 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         chipGroup.setOnCheckedChangeListener((group, checkedId) -> {
             Chip chip = group.findViewById(checkedId);
             if (chip.getText().equals("Favourites")) {
-                adapter.getFilter().filter("fav");
+                onlyFavourites = true;
+                typeId = null;
             } else if (chip.getText().equals("All")) {
-                adapter.getFilter().filter("all");
-            } else {
-                adapter.getFilter().filter(chip.getText());
+                onlyFavourites = null;
+                typeId = null;
+            } else if (chip.getText().equals("Parks")) {
+                onlyFavourites = null;
+                typeId = 0;
+            } else if (chip.getText().equals("Museums")) {
+                onlyFavourites = null;
+                typeId = 1;
             }
+            reset();
         });
 
         places = new ArrayList<>();
@@ -117,8 +128,8 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
 
                 LinearLayoutManager llm = (LinearLayoutManager) recyclerView.getLayoutManager();
                 if (llm != null) {
-                    int page = llm.findLastVisibleItemPosition();
-                    if (page > (currentPage * visibleThreshold) - 4 && !isLoading) {
+                    int lastItem = llm.findLastVisibleItemPosition();
+                    if (lastItem > (currentPage * visibleThreshold) - 4 && !isLoading) {
                         getAllPlaces();
                     }
                 }
@@ -155,6 +166,13 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         startActivity(intent);
     }
 
+    private void reset() {
+        currentPage = 0;
+        places.clear();
+        adapter.setDataList(places);
+        getAllPlaces();
+    }
+
     @Override
     public void onFavouriteClick(int position) {
         places.get(position).setFavourite(!places.get(position).isFavourite());
@@ -184,11 +202,20 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         loadingPanel.setVisibility(View.GONE);
         HashMap<String, Object> map = new HashMap<>();
         map.put("own", true);
-        if (currentPage != null) {
-            map.put("skip", currentPage++ * visibleThreshold);
+//        if (currentPage != null) {
+//            map.put("skip", currentPage++ * visibleThreshold);
+//        }
+//        if (visibleThreshold != null) {
+//            map.put("load", visibleThreshold);
+//        }
+        if (search != null) {
+            map.put("name", search);
         }
-        if (visibleThreshold != null) {
-            map.put("load", visibleThreshold);
+        if (typeId != null) {
+            map.put("typeId", typeId);
+        }
+        if (onlyFavourites != null) {
+            map.put("onlyFavourites", onlyFavourites);
         }
 
         retrofitService.getAllPlaces(Utils.getJwtToken(getContext()), prefs.getString("userId", null), map).enqueue(new Callback<JsonObject>() {

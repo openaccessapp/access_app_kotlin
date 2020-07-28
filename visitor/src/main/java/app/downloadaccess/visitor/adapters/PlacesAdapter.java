@@ -96,7 +96,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
             });
             placeFav = itemView.findViewById(R.id.placeFav);
             placeFav.setOnClickListener(v -> {
-                callback.onFavouriteClick((ImageView) v, getAdapterPosition());
+                callback.onFavouriteClick(getAdapterPosition());
             });
             websiteTv = itemView.findViewById(R.id.websiteTv);
             websiteTv.setOnClickListener(v -> {
@@ -110,7 +110,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
     }
 
     public interface PlacesCallback {
-        void onFavouriteClick(ImageView favImage, int position);
+        void onFavouriteClick(int position);
 
         void onPlaceClick(int position);
 
