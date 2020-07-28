@@ -29,6 +29,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
         SharedPreferences.Editor editor = prefs.edit();
         super.onCreate(savedInstanceState);
         overridePendingTransition(0, 0);
+        loadLocale();
         setContentView(R.layout.activity_profile);
         findViewById(R.id.goBack).setOnClickListener(v -> finish());
         MaterialButton saveButton = findViewById(R.id.save_button);
@@ -73,7 +74,6 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
             case R.id.spinner:
                 String languageName = parent.getItemAtPosition(position).toString();
                 String languageKey = language.get(languageName);
-                Log.d("myTest", languageKey);
                 if (languageKey.equals("de")) {
                     setLocale("de");
                     break;
@@ -104,7 +104,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
 
     public void loadLocale() {
         SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = prefs.getString("My_lang", "");
+        String language = prefs.getString("M_lang", "");
         setLocale(language);
     }
 }
