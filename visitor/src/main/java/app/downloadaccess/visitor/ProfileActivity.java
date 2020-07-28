@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class ProfileActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    HashMap<String,String> language = new HashMap<String, String>();
+    HashMap<String, String> language = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,16 +35,16 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
         EditText ageField = findViewById(R.id.ageField);
         Spinner spinner = findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
-        ArrayList<String> spinnerLang = new ArrayList<String>();
+        ArrayList<String> spinnerLang = new ArrayList<>();
         spinnerLang.add("Български");
         spinnerLang.add("English");
         spinnerLang.add("German");
         ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerLang);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerAdapter);
-        language.put("Български","bg");
-        language.put("English","en");
-        language.put("German","de");
+        language.put("Български", "bg");
+        language.put("English", "en");
+        language.put("German", "de");
         spinner.setOnItemSelectedListener(this);
         // EditText nameField = findViewById(R.id.nameField);
         int age = prefs.getInt("userAge", 0);
@@ -58,9 +58,9 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
             else editor.remove("userAge");
             recreate();
 
-           // String nameInput = String.valueOf(nameField.getText());
-          //  if (!input.isEmpty()) editor.putString("userName", nameInput);
-          //  else editor.remove("userName");
+            // String nameInput = String.valueOf(nameField.getText());
+            //  if (!input.isEmpty()) editor.putString("userName", nameInput);
+            //  else editor.remove("userName");
 
             editor.apply();
             Toast.makeText(getBaseContext(), "Saved", Toast.LENGTH_SHORT).show();
@@ -69,20 +69,17 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        switch (parent.getId()){
-                case R.id.spinner:
+        switch (parent.getId()) {
+            case R.id.spinner:
                 String languageName = parent.getItemAtPosition(position).toString();
                 String languageKey = language.get(languageName);
-                Log.d("myTest",languageKey);
-                if(languageKey.equals("de")){
+                Log.d("myTest", languageKey);
+                if (languageKey.equals("de")) {
                     setLocale("de");
                     break;
-                }
-                else if(languageKey.equals("en")){
+                } else if (languageKey.equals("en")) {
                     setLocale("en");
-                }
-
-                else if (languageKey.equals("bg")){
+                } else if (languageKey.equals("bg")) {
                     setLocale("bg");
                 }
                 break;
@@ -94,20 +91,20 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
 
     }
 
-    public void setLocale(String lang){
+    public void setLocale(String lang) {
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
-        config.locale=locale;
-        getBaseContext().getResources().updateConfiguration(config,getBaseContext().getResources().getDisplayMetrics());
-        SharedPreferences.Editor editor = getSharedPreferences("Settings",MODE_PRIVATE).edit();
-        editor.putString("M_lang",lang);
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("M_lang", lang);
         editor.apply();
     }
 
-    public void loadLocale(){
+    public void loadLocale() {
         SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = prefs.getString("My_lang","");
+        String language = prefs.getString("My_lang", "");
         setLocale(language);
     }
 }

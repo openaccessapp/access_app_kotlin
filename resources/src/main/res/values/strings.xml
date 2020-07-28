@@ -8,23 +8,23 @@
     <string name="choose_place">Choose Place</string>
     <string name="personal_ninformation">Personal \nInformation</string>
     <string name="age">Age</string>
-    <string name="enter_your_age"></string>
+    <string name="enter_your_age">Enter your age</string>
     <string name="wheelchair_assistant_required">Wheelchair assistant required</string>
     <string name="blindness_or_visual_impairment">Blindness or visual impairment</string>
     <string name="book_visit">Book Visit</string>
-    <string name="_2">2</string>
-    <string name="_3">3</string>
-    <string name="_4">4</string>
-    <string name="_5">5</string>
-    <string name="_6">6</string>
-    <string name="_7">7</string>
+    <string name="_2" translatable="false">2</string>
+    <string name="_3" translatable="false">3</string>
+    <string name="_4" translatable="false">4</string>
+    <string name="_5" translatable="false">5</string>
+    <string name="_6" translatable="false">6</string>
+    <string name="_7" translatable="false">7</string>
     <string name="reminder">Reminder</string>
-    <string name="_14_20">14/20</string>
+    <string name="_14_20" translatable="false">14/20</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
     <string name="remove_visit">Remove Visit</string>
-    <string name="_12_00">12:00</string>
-    <string name="_13_00">13:00</string>
+    <string name="_12_00" translatable="false">12:00</string>
+    <string name="_13_00" translatable="false">13:00</string>
     <string name="search">Search...</string>
     <string name="safe_and_queue_free_visiting">Safe and queue free visiting</string>
     <string name="all">All</string>
@@ -38,13 +38,13 @@
     <string name="central_park">Central Park</string>
     <string name="visitors_information">Visitors Information</string>
     <string name="priority_group">Priority Group</string>
-    <string name="_08_00_12_00">08:00 - 12:00</string>
+    <string name="_08_00_12_00" translatable="false">08:00 - 12:00</string>
     <string name="age_range_60">Age range 60+</string>
     <string name="mask_is_mandatory">Mask is mandatory</string>
     <string name="standart">Standart</string>
     <string name="non_priority_group">Non-Priority Group</string>
     <string name="mon_sun">Mon-Sun</string>
-    <string name="_10_00_18_00">10:00 - 18:00</string>
+    <string name="_10_00_18_00" translatable="false">10:00 - 18:00</string>
     <string name="sat_sun">Sat-Sun</string>
     <string name="_10_00_14_00">10:00 - 14:00</string>
     <string name="maximum_number_of_visitors_at_the_same_time_100_1_visitor_per_20m2">Maximum number of visitors at the same time: 100 (1 visitor per 20m2)</string>
@@ -52,17 +52,18 @@
     <string name="disinfectant_at_the_entrance">Disinfectant at the entrance</string>
     <string name="priority">Priority</string>
     <string name="place_name">Place Name</string>
-    <string name="_10_10_11_00">10:10 - 11:00</string>
+    <string name="_10_10_11_00" translatable="false">10:10 - 11:00</string>
     <string name="_25th_may">25th May</string>
-    <string name="_20_100">20/100</string>
+    <string name="_20_100" translatable="false">20/100</string>
     <string name="lorem_ipsum_dolor_sit_amet_consetetur_sadipscing_elitr">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</string>
     <string name="www_centralpark_com">www.centralpark.com</string>
-    <string name="_10_00">10:00</string>
-    <string name="_11_00">11:00</string>
-    <string name="_1">1</string>
+    <string name="_10_00" translatable="false">10:00</string>
+    <string name="_11_00" translatable="false">11:00</string>
+    <string name="_1" translatable="false">1</string>
     <string name="place_location">Place Location</string>
-    <string name="_10_00_11_00">10:00 - 11:00</string>
-    <string name="_100_100">100/100</string>
+    <string name="_10_00_11_00" translatable="false">10:00 - 11:00</string>
+    <string name="_100_100" translatable="false">100/100</string>
     <string name="mon">MON</string>
     <string name="_27th_may">27th May</string>
+    <string name="plan_visit">Plan Visit</string>
 </resources>

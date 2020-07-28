@@ -194,7 +194,6 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
                             if (slot.getViewType() % 10 == 0)
                                 slot.setViewType(slot.getViewType() + 2);
                         }
-                        ;
                         PlanVisitFragment.this.slots.addAll(slots);
                     }
                     adapter.notifyDataSetChanged();

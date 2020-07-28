@@ -5,215 +5,213 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-    <RelativeLayout
-        android:id="@+id/loadingPanel"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        tools:context=".MainActivity">
 
-        <ProgressBar
+        <RelativeLayout
+            android:id="@+id/loadingPanel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminate="true" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/tree_top"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/openProfile"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="35dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_profile_icon"
+            app:layout_constraintBottom_toBottomOf="@id/tree_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tree_top" />
+
+        <ImageView
+            android:id="@+id/locationIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="30dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_near_me_24px"
+            app:layout_constraintBottom_toBottomOf="@id/tree_top"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tree_top" />
+
+        <TextView
+            android:id="@+id/choosePlaceTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:indeterminate="true" />
-    </RelativeLayout>
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/rubik_bold"
+            android:text="@string/choose_place"
+            android:textColor="@color/text_color_dark"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tree_top" />
 
-    <ImageView
-        android:id="@+id/tree_top"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/openProfile"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="35dp"
-        android:background="?selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_profile_icon"
-        app:layout_constraintBottom_toBottomOf="@id/tree_top"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tree_top" />
-
-    <ImageView
-        android:id="@+id/locationIcon"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="30dp"
-        android:background="?selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_near_me_24px"
-        app:layout_constraintBottom_toBottomOf="@id/tree_top"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tree_top" />
-
-    <TextView
-        android:id="@+id/choosePlaceTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/rubik_bold"
-        android:text="@string/choose_place"
-        android:textColor="@color/text_color_dark"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tree_top" />
-
-    <LinearLayout
-        android:id="@+id/searchInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/rounded_linear"
-        android:paddingStart="14dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="14dp"
-        android:paddingBottom="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choosePlaceTv">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/searchBar"
+        <LinearLayout
+            android:id="@+id/searchInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:drawableEnd="@drawable/ic_search"
-            android:ellipsize="end"
-            android:fontFamily="@font/rubik_medium"
-            android:hint="@string/search"
-            android:lines="1"
-            android:imeOptions="actionSearch"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:textColor="@color/text_color_dark"
-            android:textColorHint="@color/text_grey"
-            android:textSize="14sp" />
-    </LinearLayout>
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/rounded_linear"
+            android:paddingStart="14dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="14dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/choosePlaceTv">
 
-    <HorizontalScrollView
-
-        android:id="@+id/chipScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:scrollbars="none"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchInputLayout">
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chip_group"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            app:checkedChip="@id/option1"
-            app:chipSpacing="8dp"
-            app:selectionRequired="true"
-            app:singleSelection="true">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/option1"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/searchBar"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@null"
+                android:drawableEnd="@drawable/ic_search"
+                android:ellipsize="end"
                 android:fontFamily="@font/rubik_medium"
-                android:gravity="center"
-                android:text="@string/all"
-                android:textColor="@color/chip_text_state_list"
-                android:textSize="12sp"
-                app:chipBackgroundColor="@color/chip_color_state_list"
-                app:chipCornerRadius="30dp"
-                app:chipIconEnabled="true"
-                app:chipIconSize="20dp"
-                app:chipIconTint="@color/chip_icon_state_list"
-                app:textStartPadding="12dp" />
+                android:hint="@string/search"
+                android:imeOptions="actionSearch"
+                android:lines="1"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textColor="@color/text_color_dark"
+                android:textColorHint="@color/text_grey"
+                android:textSize="14sp" />
+        </LinearLayout>
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/option2"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+        <HorizontalScrollView
+
+            android:id="@+id/chipScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchInputLayout">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/rubik_medium"
-                android:padding="10dp"
-                android:text="@string/favourites"
-                android:textColor="@color/chip_text_state_list"
-                android:textSize="12sp"
-                app:chipBackgroundColor="@color/chip_color_state_list"
-                app:chipCornerRadius="30dp"
-                app:chipIcon="@drawable/ic_heart"
-                app:chipIconEnabled="true"
-                app:chipIconSize="20dp"
-                app:chipIconTint="@color/chip_icon_state_list"
-                app:iconStartPadding="10dp" />
+                android:layout_height="match_parent"
+                app:checkedChip="@id/option1"
+                app:chipSpacing="8dp"
+                app:selectionRequired="true"
+                app:singleSelection="true">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/option3"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/rubik_medium"
-                android:text="@string/parks"
-                android:textColor="@color/chip_text_state_list"
-                android:textSize="12sp"
-                app:chipBackgroundColor="@color/chip_color_state_list"
-                app:chipCornerRadius="30dp"
-                app:chipIcon="@drawable/ic_trees"
-                app:chipIconEnabled="true"
-                app:chipIconSize="20dp"
-                app:chipIconTint="@color/chip_icon_state_list"
-                app:iconStartPadding="10dp" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/option1"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/rubik_medium"
+                    android:gravity="center"
+                    android:text="@string/all"
+                    android:textColor="@color/chip_text_state_list"
+                    android:textSize="12sp"
+                    app:chipBackgroundColor="@color/chip_color_state_list"
+                    app:chipCornerRadius="30dp"
+                    app:chipIconEnabled="true"
+                    app:chipIconSize="20dp"
+                    app:chipIconTint="@color/chip_icon_state_list"
+                    app:textStartPadding="12dp" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/option4"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/rubik_medium"
-                android:text="@string/museums"
-                android:textColor="@color/chip_text_state_list"
-                android:textSize="12sp"
-                app:chipBackgroundColor="@color/chip_color_state_list"
-                app:chipCornerRadius="30dp"
-                app:chipIcon="@drawable/ic_museum_24px"
-                app:chipIconEnabled="true"
-                app:chipIconSize="20dp"
-                app:chipIconTint="@color/chip_icon_state_list"
-                app:iconStartPadding="10dp" />
-        </com.google.android.material.chip.ChipGroup>
-    </HorizontalScrollView>
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/option2"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/rubik_medium"
+                    android:padding="10dp"
+                    android:text="@string/favourites"
+                    android:textColor="@color/chip_text_state_list"
+                    android:textSize="12sp"
+                    app:chipBackgroundColor="@color/chip_color_state_list"
+                    app:chipCornerRadius="30dp"
+                    app:chipIcon="@drawable/ic_heart"
+                    app:chipIconEnabled="true"
+                    app:chipIconSize="20dp"
+                    app:chipIconTint="@color/chip_icon_state_list"
+                    app:iconStartPadding="10dp" />
 
-    <View
-        android:id="@+id/separatorView2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/grey"
-        app:layout_constraintTop_toBottomOf="@id/chipScrollView" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/option3"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/rubik_medium"
+                    android:text="@string/parks"
+                    android:textColor="@color/chip_text_state_list"
+                    android:textSize="12sp"
+                    app:chipBackgroundColor="@color/chip_color_state_list"
+                    app:chipCornerRadius="30dp"
+                    app:chipIcon="@drawable/ic_trees"
+                    app:chipIconEnabled="true"
+                    app:chipIconSize="20dp"
+                    app:chipIconTint="@color/chip_icon_state_list"
+                    app:iconStartPadding="10dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/placesRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingBottom="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/separatorView2" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/option4"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/rubik_medium"
+                    android:text="@string/museums"
+                    android:textColor="@color/chip_text_state_list"
+                    android:textSize="12sp"
+                    app:chipBackgroundColor="@color/chip_color_state_list"
+                    app:chipCornerRadius="30dp"
+                    app:chipIcon="@drawable/ic_museum_24px"
+                    app:chipIconEnabled="true"
+                    app:chipIconSize="20dp"
+                    app:chipIconTint="@color/chip_icon_state_list"
+                    app:iconStartPadding="10dp" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:id="@+id/separatorView2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/grey"
+            app:layout_constraintTop_toBottomOf="@id/chipScrollView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/placesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/separatorView2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

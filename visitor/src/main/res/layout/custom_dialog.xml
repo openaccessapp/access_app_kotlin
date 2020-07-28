@@ -1,366 +1,365 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:id="@+id/contentBody"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="25dp">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/dialogTitle"
+        <RelativeLayout
+            android:id="@+id/contentBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/rubik_bold"
-            android:text="@string/book_visit"
-            android:textAlignment="center"
-            android:textColor="@color/text_color_dark"
-            android:textSize="20sp" />
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="25dp">
+
+            <TextView
+                android:id="@+id/dialogTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik_bold"
+                android:text="@string/book_visit"
+                android:textAlignment="center"
+                android:textColor="@color/text_color_dark"
+                android:textSize="20sp" />
 
 
-        <TextView
-            android:id="@+id/hourFrom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/dialogTitle"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/rubik_medium"
-            android:text="@string/_12_00"
-            android:textColor="@color/text_color_dark"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/hourFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dialogTitle"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/rubik_medium"
+                android:text="@string/_12_00"
+                android:textColor="@color/text_color_dark"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/hourTo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/hourFrom"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="26dp"
-            android:fontFamily="@font/rubik_medium"
-            android:text="@string/_13_00"
-            android:textColor="@color/text_grey"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/hourTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/hourFrom"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="26dp"
+                android:fontFamily="@font/rubik_medium"
+                android:text="@string/_13_00"
+                android:textColor="@color/text_grey"
+                android:textSize="14sp" />
 
-        <View
-            android:id="@+id/separator"
-            android:layout_width="1dp"
-            android:layout_height="62dp"
-            android:layout_alignTop="@id/priority_text"
-            android:layout_alignBottom="@id/titlePlanner"
-            android:layout_marginStart="15dp"
-            android:layout_toEndOf="@id/hourFrom"
-            android:background="@color/grey" />
+            <View
+                android:id="@+id/separator"
+                android:layout_width="1dp"
+                android:layout_height="62dp"
+                android:layout_alignTop="@id/priority_text"
+                android:layout_alignBottom="@id/titlePlanner"
+                android:layout_marginStart="15dp"
+                android:layout_toEndOf="@id/hourFrom"
+                android:background="@color/grey" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/priority_text"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/dialogTitle"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="13dp"
+                android:layout_toEndOf="@id/separator"
+                android:enabled="false"
+                android:fontFamily="@font/rubik_medium"
+                android:letterSpacing="0.0"
+                android:minWidth="0dp"
+                android:minHeight="40dp"
+                android:stateListAnimator="@null"
+                android:text="@string/priority"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:backgroundTint="@color/colorAccent"
+                app:cornerRadius="6dp" />
+
+            <TextView
+                android:id="@+id/titlePlanner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/priority_text"
+                android:layout_alignStart="@id/priority_text"
+                android:layout_gravity="center"
+                android:layout_marginTop="13dp"
+                android:fontFamily="@font/rubik_bold"
+                android:text="@string/place_name"
+                android:textColor="@color/text_color_dark"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignTop="@id/priority_text"
+                android:layout_alignBottom="@id/priority_text"
+                android:layout_marginStart="65dp"
+                android:layout_toStartOf="@id/occupiedMax"
+                app:srcCompat="@drawable/ic_person_outline_24px" />
+
+            <TextView
+                android:id="@+id/occupiedMax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/priority_text"
+                android:layout_alignBottom="@id/priority_text"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="6dp"
+                android:fontFamily="@font/rubik_medium"
+                android:gravity="center"
+                android:text="@string/_14_20"
+                android:textColor="@color/text_grey" />
+
+            <ImageView
+                android:id="@+id/personIcon"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:layout_below="@id/hourTo"
+                android:layout_alignStart="@id/hourFrom"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_person_outline_24px" />
+
+            <TextView
+                android:id="@+id/visitTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/personIcon"
+                android:layout_alignBottom="@id/personIcon"
+                android:layout_marginStart="6dp"
+                android:layout_toEndOf="@id/personIcon"
+                android:fontFamily="@font/rubik_medium"
+                android:gravity="center_vertical"
+                android:text="Visitors"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:id="@+id/pickPeopleLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/personIcon"
+                android:layout_alignStart="@id/personIcon"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/one"
+                    android:layout_width="46dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:elevation="0dp"
+                    android:fontFamily="@font/rubik_bold"
+                    android:gravity="center"
+                    android:stateListAnimator="@null"
+                    android:text="@string/_1"
+                    android:textSize="12sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/two"
+                    android:layout_width="42dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/grey"
+                    android:elevation="0dp"
+                    android:fontFamily="@font/rubik_bold"
+                    android:gravity="center"
+                    android:stateListAnimator="@null"
+                    android:text="@string/_2"
+                    android:textColor="@color/text_grey"
+                    android:textSize="12sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/three"
+                    android:layout_width="42dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/grey"
+                    android:elevation="0dp"
+                    android:fontFamily="@font/rubik_bold"
+                    android:gravity="center"
+                    android:stateListAnimator="@null"
+                    android:text="@string/_3"
+                    android:textColor="@color/text_grey"
+                    android:textSize="12sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/four"
+                    android:layout_width="42dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/grey"
+                    android:elevation="0dp"
+                    android:fontFamily="@font/rubik_bold"
+                    android:gravity="center"
+                    android:stateListAnimator="@null"
+                    android:text="@string/_4"
+                    android:textColor="@color/text_grey"
+                    android:textSize="12sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/five"
+                    android:layout_width="42dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/grey"
+                    android:elevation="0dp"
+                    android:fontFamily="@font/rubik_bold"
+                    android:gravity="center"
+                    android:stateListAnimator="@null"
+                    android:text="@string/_5"
+                    android:textColor="@color/text_grey"
+                    android:textSize="12sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/six"
+                    android:layout_width="42dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/grey"
+                    android:elevation="0dp"
+                    android:fontFamily="@font/rubik_bold"
+                    android:gravity="center"
+                    android:stateListAnimator="@null"
+                    android:text="@string/_6"
+                    android:textColor="@color/text_grey"
+                    android:textSize="12sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/seven"
+                    android:layout_width="42dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/grey"
+                    android:elevation="0dp"
+                    android:fontFamily="@font/rubik_bold"
+                    android:gravity="center"
+                    android:stateListAnimator="@null"
+                    android:text="@string/_7"
+                    android:textColor="@color/text_grey"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/bellIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pickPeopleLayout"
+                android:layout_alignStart="@id/hourFrom"
+                android:layout_alignEnd="@id/personIcon"
+                android:layout_marginTop="27dp"
+                android:src="@drawable/ic_bell" />
+
+            <TextView
+                android:id="@+id/reminderTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/bellIcon"
+                android:layout_alignBottom="@id/bellIcon"
+                android:layout_marginStart="6dp"
+                android:layout_toEndOf="@id/personIcon"
+                android:fontFamily="@font/rubik_medium"
+                android:gravity="center_vertical"
+                android:text="@string/reminder"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@id/bellIcon"
+                android:layout_alignParentEnd="true"
+                android:minWidth="0dp"
+                android:minHeight="0dp"
+                android:padding="0dp"
+                app:thumbTint="@color/white"
+                app:trackTint="@color/blue" />
+
+        </RelativeLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/priority_text"
-            style="@style/Widget.MaterialComponents.Button"
+            android:id="@+id/cancel_button"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/dialogTitle"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="13dp"
-            android:layout_toEndOf="@id/separator"
-            android:enabled="false"
+            android:layout_below="@id/contentBody"
+            android:layout_alignParentStart="true"
+            android:layout_gravity="start"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="39dp"
+            android:layout_marginBottom="25dp"
             android:fontFamily="@font/rubik_medium"
             android:letterSpacing="0.0"
             android:minWidth="0dp"
-            android:minHeight="40dp"
-            android:stateListAnimator="@null"
-            android:text="@string/priority"
+            android:paddingStart="50dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="50dp"
+            android:paddingBottom="14dp"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            app:cornerRadius="30dp"
+            app:strokeColor="@color/blue"
+            app:strokeWidth="2dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/save_button"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/cancel_button"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:layout_marginEnd="25dp"
+            android:fontFamily="@font/rubik_medium"
+            android:letterSpacing="0.0"
+            android:minWidth="0dp"
+            android:paddingStart="54dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="54dp"
+            android:paddingBottom="14dp"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            app:cornerRadius="30dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/delete_button"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/save_button"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="25dp"
+            android:fontFamily="@font/rubik_medium"
+            android:letterSpacing="0.0"
+            android:minWidth="0dp"
+            android:paddingStart="54dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="54dp"
+            android:paddingBottom="14dp"
+            android:text="@string/remove_visit"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="12sp"
-            app:backgroundTint="@color/colorAccent"
-            app:cornerRadius="6dp" />
-
-        <TextView
-            android:id="@+id/titlePlanner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/priority_text"
-            android:layout_alignStart="@id/priority_text"
-            android:layout_gravity="center"
-            android:layout_marginTop="13dp"
-            android:fontFamily="@font/rubik_bold"
-            android:text="@string/place_name"
-            android:textColor="@color/text_color_dark"
-            android:textSize="16sp" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignTop="@id/priority_text"
-            android:layout_alignBottom="@id/priority_text"
-            android:layout_marginStart="65dp"
-            android:layout_toStartOf="@id/occupiedMax"
-            app:srcCompat="@drawable/ic_person_outline_24px" />
-
-        <TextView
-            android:id="@+id/occupiedMax"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/priority_text"
-            android:layout_alignBottom="@id/priority_text"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="6dp"
-            android:fontFamily="@font/rubik_medium"
-            android:gravity="center"
-            android:text="@string/_14_20"
-            android:textColor="@color/text_grey" />
-
-        <ImageView
-            android:id="@+id/personIcon"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_below="@id/hourTo"
-            android:layout_alignStart="@id/hourFrom"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/ic_person_outline_24px" />
-
-        <TextView
-            android:id="@+id/visitTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/personIcon"
-            android:layout_alignBottom="@id/personIcon"
-            android:layout_marginStart="6dp"
-            android:layout_toEndOf="@id/personIcon"
-            android:fontFamily="@font/rubik_medium"
-            android:gravity="center_vertical"
-            android:text="Visitors"
-            android:textSize="12sp" />
-
-        <LinearLayout
-            android:id="@+id/pickPeopleLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/personIcon"
-            android:layout_alignStart="@id/personIcon"
-            android:orientation="horizontal">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/one"
-                android:layout_width="46dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:elevation="0dp"
-                android:fontFamily="@font/rubik_bold"
-                android:gravity="center"
-                android:stateListAnimator="@null"
-                android:text="@string/_1"
-                android:textSize="12sp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/two"
-                android:layout_width="42dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/grey"
-                android:elevation="0dp"
-                android:fontFamily="@font/rubik_bold"
-                android:gravity="center"
-                android:stateListAnimator="@null"
-                android:text="@string/_2"
-                android:textColor="@color/text_grey"
-                android:textSize="12sp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/three"
-                android:layout_width="42dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/grey"
-                android:elevation="0dp"
-                android:fontFamily="@font/rubik_bold"
-                android:gravity="center"
-                android:stateListAnimator="@null"
-                android:text="@string/_3"
-                android:textColor="@color/text_grey"
-                android:textSize="12sp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/four"
-                android:layout_width="42dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/grey"
-                android:elevation="0dp"
-                android:fontFamily="@font/rubik_bold"
-                android:gravity="center"
-                android:stateListAnimator="@null"
-                android:text="@string/_4"
-                android:textColor="@color/text_grey"
-                android:textSize="12sp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/five"
-                android:layout_width="42dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/grey"
-                android:elevation="0dp"
-                android:fontFamily="@font/rubik_bold"
-                android:gravity="center"
-                android:stateListAnimator="@null"
-                android:text="@string/_5"
-                android:textColor="@color/text_grey"
-                android:textSize="12sp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/six"
-                android:layout_width="42dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/grey"
-                android:elevation="0dp"
-                android:fontFamily="@font/rubik_bold"
-                android:gravity="center"
-                android:stateListAnimator="@null"
-                android:text="@string/_6"
-                android:textColor="@color/text_grey"
-                android:textSize="12sp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/seven"
-                android:layout_width="42dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:layout_weight="1"
-                android:backgroundTint="@color/grey"
-                android:elevation="0dp"
-                android:fontFamily="@font/rubik_bold"
-                android:gravity="center"
-                android:stateListAnimator="@null"
-                android:text="@string/_7"
-                android:textColor="@color/text_grey"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/bellIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/pickPeopleLayout"
-            android:layout_alignStart="@id/hourFrom"
-            android:layout_alignEnd="@id/personIcon"
-            android:layout_marginTop="27dp"
-            android:src="@drawable/ic_bell" />
-
-        <TextView
-            android:id="@+id/reminderTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/bellIcon"
-            android:layout_alignBottom="@id/bellIcon"
-            android:layout_marginStart="6dp"
-            android:layout_toEndOf="@id/personIcon"
-            android:fontFamily="@font/rubik_medium"
-            android:gravity="center_vertical"
-            android:text="@string/reminder"
-            android:textSize="12sp" />
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/bellIcon"
-            android:layout_alignParentEnd="true"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:padding="0dp"
-            app:thumbTint="@color/white"
-            app:trackTint="@color/blue" />
+            android:textSize="14sp"
+            app:backgroundTint="@color/red"
+            app:cornerRadius="30dp"
+            app:strokeColor="@color/red"
+            app:strokeWidth="2dp" />
 
     </RelativeLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/cancel_button"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/contentBody"
-        android:layout_alignParentStart="true"
-        android:layout_gravity="start"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="39dp"
-        android:layout_marginBottom="25dp"
-        android:fontFamily="@font/rubik_medium"
-        android:letterSpacing="0.0"
-        android:minWidth="0dp"
-        android:paddingStart="50dp"
-        android:paddingTop="14dp"
-        android:paddingEnd="50dp"
-        android:paddingBottom="14dp"
-        android:text="@string/cancel"
-        android:textAllCaps="false"
-        android:textSize="14sp"
-        app:cornerRadius="30dp"
-        app:strokeColor="@color/blue"
-        app:strokeWidth="2dp" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/save_button"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/cancel_button"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="end"
-        android:layout_marginEnd="25dp"
-        android:fontFamily="@font/rubik_medium"
-        android:letterSpacing="0.0"
-        android:minWidth="0dp"
-        android:paddingStart="54dp"
-        android:paddingTop="14dp"
-        android:paddingEnd="54dp"
-        android:paddingBottom="14dp"
-        android:text="@string/save"
-        android:textAllCaps="false"
-        android:textSize="14sp"
-        app:cornerRadius="30dp" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/delete_button"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/save_button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="25dp"
-        android:fontFamily="@font/rubik_medium"
-        android:letterSpacing="0.0"
-        android:minWidth="0dp"
-        android:paddingStart="54dp"
-        android:paddingTop="14dp"
-        android:paddingEnd="54dp"
-        android:paddingBottom="14dp"
-        android:text="@string/remove_visit"
-        android:textColor="@color/white"
-        android:textAllCaps="false"
-        android:textSize="14sp"
-        app:backgroundTint="@color/red"
-        app:cornerRadius="30dp"
-        app:strokeColor="@color/red"
-        app:strokeWidth="2dp" />
-
-</RelativeLayout>
 </ScrollView>

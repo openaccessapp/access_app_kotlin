@@ -1,88 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/tree_top"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/goBackImage"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="27dp"
-        android:background="?selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_keyboard_backspace_black_24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tree_top"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tree_top" />
-
-    <ImageView
-        android:id="@+id/goBack"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="12dp"
-        android:background="?selectableItemBackgroundBorderless"
-        app:layout_constraintBottom_toBottomOf="@+id/tree_top"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tree_top" />
-
-    <ImageView
-        android:id="@+id/openProfile"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginEnd="35dp"
-        android:background="?selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_profile_icon"
-        app:layout_constraintBottom_toBottomOf="@id/tree_top"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tree_top" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="23dp"
-        android:fontFamily="@font/rubik_bold"
-        android:text="@string/plan_visit"
-        android:textColor="@color/text_color_dark"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tree_top" />
-
-    <include
-        android:id="@+id/place_card"
-        layout="@layout/item_place_recycler"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerPlanVisit"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:overScrollMode="never"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/place_card" />
+        android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/tree_top"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/goBackImage"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="27dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_keyboard_backspace_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tree_top"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tree_top" />
+
+        <ImageView
+            android:id="@+id/goBack"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            android:background="?selectableItemBackgroundBorderless"
+            app:layout_constraintBottom_toBottomOf="@+id/tree_top"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tree_top" />
+
+        <ImageView
+            android:id="@+id/openProfile"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="35dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_profile_icon"
+            app:layout_constraintBottom_toBottomOf="@id/tree_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tree_top" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="23dp"
+            android:fontFamily="@font/rubik_bold"
+            android:text="@string/plan_visit"
+            android:textColor="@color/text_color_dark"
+            android:textSize="30sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tree_top" />
+
+        <include
+            android:id="@+id/place_card"
+            layout="@layout/item_place_recycler"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerPlanVisit"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/place_card" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -78,10 +78,9 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.placesNav:
-                    viewPager.setCurrentItem(0, false);
-                    return true;
+            if (item.getItemId() == R.id.placesNav) {
+                viewPager.setCurrentItem(0, false);
+                return true;
             }
             return false;
         }
