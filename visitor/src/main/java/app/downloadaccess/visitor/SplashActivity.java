@@ -28,8 +28,6 @@ public class SplashActivity extends AppCompatActivity {
     ImageView zero, one, two;
     ImageView[] indicators;
 
-    int lastLeftValue = 0;
-
     int page = 0;
 
     @Override
