@@ -1,6 +1,7 @@
 package app.downloadaccess.visitor;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -22,6 +23,9 @@ import java.util.Locale;
 
 public class ProfileActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     HashMap<String, String> language = new HashMap<>();
+    String languageName;
+    public static String languageKey ="bg";
+    String languageCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
         language.put("Български", "bg");
         language.put("English", "en");
         language.put("German", "de");
+        languageCheck = languageKey;
         spinner.setOnItemSelectedListener(this);
         // EditText nameField = findViewById(R.id.nameField);
         int age = prefs.getInt("userAge", 0);
@@ -57,7 +62,8 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
             String input = String.valueOf(ageField.getText());
             if (!input.isEmpty()) editor.putInt("userAge", Integer.parseInt(input));
             else editor.remove("userAge");
-            recreate();
+            Intent intent = new Intent(this,MainActivity.class);
+            startActivity(intent);
 
             // String nameInput = String.valueOf(nameField.getText());
             //  if (!input.isEmpty()) editor.putString("userName", nameInput);
@@ -72,16 +78,8 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         switch (parent.getId()) {
             case R.id.spinner:
-                String languageName = parent.getItemAtPosition(position).toString();
-                String languageKey = language.get(languageName);
-                if (languageKey.equals("de")) {
-                    setLocale("de");
-                    break;
-                } else if (languageKey.equals("en")) {
-                    setLocale("en");
-                } else if (languageKey.equals("bg")) {
-                    setLocale("bg");
-                }
+                languageName = parent.getItemAtPosition(position).toString();
+                languageKey = language.get(languageName);
                 break;
         }
     }
@@ -91,20 +89,15 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
 
     }
 
-    public void setLocale(String lang) {
-        Locale locale = new Locale(lang);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
-        editor.putString("M_lang", lang);
-        editor.apply();
-    }
 
     public void loadLocale() {
-        SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String language = prefs.getString("M_lang", "");
-        setLocale(language);
+            Locale locale = new Locale(languageKey);
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+            setContentView(R.layout.activity_profile);
     }
+
 }

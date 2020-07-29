@@ -1,6 +1,7 @@
 package app.downloadaccess.visitor;
 
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -14,6 +15,8 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.JsonObject;
+
+import java.util.Locale;
 
 import app.downloadaccess.resources.CustomViewPager;
 import app.downloadaccess.resources.Utils;
@@ -41,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(0, 0);
+        loadLocale();
         setContentView(R.layout.activity_main);
-
         viewPager = findViewById(R.id.viewPager);
         viewPager.setOffscreenPageLimit(2);
         viewPager.setPagingEnabled(false);
@@ -130,6 +133,18 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+
+
+    public void loadLocale() {
+            Locale locale = new Locale(ProfileActivity.languageKey);
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config,
+                    getBaseContext().getResources().getDisplayMetrics());
+            setContentView(R.layout.activity_main);
+    }
+
 }
 
 
