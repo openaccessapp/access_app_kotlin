@@ -30,6 +30,7 @@
 
         <activity
             android:name="app.downloadaccess.visitor.ProfileActivity"
+            android:configChanges="locale"
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="app.downloadaccess.visitor.SplashActivity"
@@ -40,7 +41,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="app.downloadaccess.visitor.MainActivity" />
+        <activity android:name="app.downloadaccess.visitor.MainActivity" android:configChanges="locale" />
     </application>
 
 </manifest>
