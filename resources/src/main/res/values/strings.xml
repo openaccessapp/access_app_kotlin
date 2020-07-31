@@ -25,7 +25,7 @@
     <string name="remove_visit">Remove Visit</string>
     <string name="_12_00" translatable="false">12:00</string>
     <string name="_13_00" translatable="false">13:00</string>
-    <string name="search">Search...</string>
+    <string name="search">Search…</string>
     <string name="safe_and_queue_free_visiting">Safe and queue free visiting</string>
     <string name="all">All</string>
     <string name="favourites">Favourites</string>
@@ -46,7 +46,7 @@
     <string name="mon_sun">Mon-Sun</string>
     <string name="_10_00_18_00" translatable="false">10:00 - 18:00</string>
     <string name="sat_sun">Sat-Sun</string>
-    <string name="_10_00_14_00">10:00 - 14:00</string>
+    <string name="_10_00_14_00">10:00 – 14:00</string>
     <string name="maximum_number_of_visitors_at_the_same_time_100_1_visitor_per_20m2">Maximum number of visitors at the same time: 100 (1 visitor per 20m2)</string>
     <string name="mask_is_optional">Mask is optional</string>
     <string name="disinfectant_at_the_entrance">Disinfectant at the entrance</string>

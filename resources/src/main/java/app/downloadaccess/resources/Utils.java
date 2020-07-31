@@ -11,6 +11,9 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 public class Utils {
+
+    public static String PREFS_NAME = "access-app-prefs";
+
     public static String getJwtToken(Context context) {
         String token1 = null;
         String token2 = null;

@@ -13,14 +13,14 @@
     <string name="reminder">Напомняне</string>
     <string name="cancel">Отказ</string>
     <string name="remove_visit">Премахнете посещение</string>
-    <string name="search">Търси...</string>
+    <string name="search">Търси…</string>
     <string name="all">Всички</string>
     <string name="favourites">Любими</string>
     <string name="parks">Паркове</string>
     <string name="museums">Музеи</string>
     <string name="upcoming_visits">Предстоящи посещения</string>
     <string name="no_planned_visits">Няма лланирани посещения</string>
-    <string name="you_must_arrive_15_minutes_before_the_time">Трябва да пристигнете 15 минути преди започването</string>
+    <string name="you_must_arrive_15_minutes_before_the_time">Трябва да пристигнете 15 минути \nпреди започването</string>
     <string name="central_park">Централен парк</string>
     <string name="visitors_information">Информация за посетители</string>
     <string name="mon_sun">Пон-Нед</string>
@@ -29,7 +29,7 @@
     <string name="disinfectant_at_the_entrance">Дезинфектант на входа</string>
     <string name="standart">Стандартен</string>
     <string name="sat_sun">Съб-Нед</string>
-    <string name="_10_00_14_00">10:00 - 14:00</string>
+    <string name="_10_00_14_00">10:00 – 14:00</string>
     <string name="mask_is_optional">Маската е по желание на посетителя</string>
     <string name="_25th_may">25-ти май</string>
     <string name="www_centralpark_com">www.centralpark.com</string>
