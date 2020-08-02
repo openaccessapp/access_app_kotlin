@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -58,7 +57,6 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     private PlacesAdapter adapter;
     private List<Place> places = new ArrayList<>();
     private SharedPreferences prefs;
-    private RelativeLayout loadingPanel;
     private Integer currentPage = 0;
     private Integer visibleThreshold = 7;
     private Boolean isLoading = false;
@@ -117,7 +115,6 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
                     return false; // pass on to other listeners.
                 }
         );
-        loadingPanel = view.findViewById(R.id.loadingPanel);
         view.findViewById(R.id.openProfile).setOnClickListener(v -> {
             startActivityForResult(new Intent(getActivity(), ProfileActivity.class), Utils.PROFILE_REQ_CODE);
         });
@@ -222,7 +219,6 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
 
     void getAllPlaces() {
         isLoading = true;
-        loadingPanel.setVisibility(View.GONE);
         HashMap<String, Object> map = new HashMap<>();
         if (currentPage != null) {
             map.put("skip", currentPage++ * visibleThreshold);
