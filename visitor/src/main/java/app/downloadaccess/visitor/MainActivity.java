@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private CustomViewPager viewPager;
     public BottomNavigationView bottomNavigationView;
     MenuItem prevMenuItem;
+    private String currentLocale;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,13 +46,19 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         setContentView(R.layout.activity_main);
         Utils.loadLocale(this);
+
         viewPager = findViewById(R.id.viewPager);
         viewPager.setOffscreenPageLimit(2);
         viewPager.setPagingEnabled(false);
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(Utils.PREFS_NAME, MODE_PRIVATE);
+        if (!prefs.getString("lang", "no").equals("no")) {
+            currentLocale = prefs.getString("lang", "no");
+        } else {
+            currentLocale = "en";
+        }
 
         retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
         if (prefs.getString("userId", null) == null) {
@@ -136,7 +143,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
-            recreate();
+            if (data != null && !currentLocale.equals(data.getStringExtra("lang_key"))) {
+                recreate();
+            }
         }
     }
 }

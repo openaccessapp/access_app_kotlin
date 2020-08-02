@@ -1,5 +1,6 @@
 package app.downloadaccess.visitor;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -41,8 +42,7 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
         Utils.loadLocale(this);
 
         findViewById(R.id.goBack).setOnClickListener(v -> {
-            setResult(RESULT_OK);
-            finish();
+            this.onBackPressed();
         });
         MaterialButton saveButton = findViewById(R.id.save_button);
         EditText ageField = findViewById(R.id.ageField);
@@ -90,6 +90,14 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
         if (key.equals("lang")) {
             recreate();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent data = new Intent();
+        data.putExtra("lang_key", languageKey);
+        setResult(RESULT_OK, data);
+        finish();
     }
 
     @Override

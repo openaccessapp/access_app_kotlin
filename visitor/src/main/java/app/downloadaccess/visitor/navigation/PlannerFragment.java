@@ -30,7 +30,6 @@ import app.downloadaccess.resources.Utils;
 import app.downloadaccess.resources.models.Visit;
 import app.downloadaccess.resources.network.RetrofitClientInstance;
 import app.downloadaccess.resources.network.RetrofitService;
-import app.downloadaccess.visitor.Consumer;
 import app.downloadaccess.visitor.MainActivity;
 import app.downloadaccess.visitor.ProfileActivity;
 import app.downloadaccess.visitor.R;
@@ -76,11 +75,7 @@ public class PlannerFragment extends Fragment implements VisitsAdapter.AdapterCa
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        this.dialog = new BookingDialog(getView(), getContext(), getActivity(), new Consumer<Void>() {
-            public void accept(Void t) {
-                getAllVisits();
-            }
-        });
+        this.dialog = new BookingDialog(getView(), getContext(), getActivity(), t -> getAllVisits());
         view.findViewById(R.id.openProfile).setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), ProfileActivity.class));
         });
