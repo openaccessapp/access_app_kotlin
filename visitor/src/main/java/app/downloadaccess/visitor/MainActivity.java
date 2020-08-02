@@ -1,7 +1,8 @@
 package app.downloadaccess.visitor;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -15,8 +16,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.JsonObject;
-
-import java.util.Locale;
 
 import app.downloadaccess.resources.CustomViewPager;
 import app.downloadaccess.resources.Utils;
@@ -44,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         overridePendingTransition(0, 0);
-        loadLocale();
         setContentView(R.layout.activity_main);
+        Utils.loadLocale(this);
         viewPager = findViewById(R.id.viewPager);
         viewPager.setOffscreenPageLimit(2);
         viewPager.setPagingEnabled(false);
@@ -124,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.plannerNav:
                     viewPager.setCurrentItem(1, false);
-                    ((PlannerFragment) plannerFragment).getAllVisits();
                     return true;
                 case R.id.scanNav:
                     viewPager.setCurrentItem(2, false);
@@ -134,17 +132,13 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-
-    public void loadLocale() {
-            Locale locale = new Locale(ProfileActivity.languageKey);
-            Locale.setDefault(locale);
-            Configuration config = new Configuration();
-            config.locale = locale;
-            getBaseContext().getResources().updateConfiguration(config,
-                    getBaseContext().getResources().getDisplayMetrics());
-            setContentView(R.layout.activity_main);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            recreate();
+        }
     }
-
 }
 
 

@@ -14,8 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSmoothScroller;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -38,7 +36,6 @@ import app.downloadaccess.visitor.ProfileActivity;
 import app.downloadaccess.visitor.R;
 import app.downloadaccess.visitor.adapters.VisitsAdapter;
 import app.downloadaccess.visitor.navigation.child.BookingDialog;
-import app.downloadaccess.visitor.stickyheaders.StickyLinearLayoutManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -68,7 +65,7 @@ public class PlannerFragment extends Fragment implements VisitsAdapter.AdapterCa
     @Override
     public void onResume() {
         super.onResume();
-
+        getAllVisits();
     }
 
     @Override
@@ -94,47 +91,46 @@ public class PlannerFragment extends Fragment implements VisitsAdapter.AdapterCa
         retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
         recyclerView = view.findViewById(R.id.recyclerViewPlanner);
         recyclerView.setEmptyView(view.findViewById(R.id.emptyViewPlanner));
-        adapter = new VisitsAdapter(getActivity());
-        adapter.setDataList(visits);
+        adapter = new VisitsAdapter(getActivity(), visits);
         adapter.setAdapterCallback(this);
-        StickyLinearLayoutManager layoutManager = new StickyLinearLayoutManager(view.getContext(), adapter) {
-            @Override
-            public boolean isAutoMeasureEnabled() {
-                return true;
-            }
-
-            @Override
-            public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int position) {
-                RecyclerView.SmoothScroller smoothScroller = new TopSmoothScroller(recyclerView.getContext());
-                smoothScroller.setTargetPosition(position);
-                startSmoothScroll(smoothScroller);
-            }
-
-            class TopSmoothScroller extends LinearSmoothScroller {
-
-                TopSmoothScroller(Context context) {
-                    super(context);
-                }
-
-                @Override
-                public int calculateDtToFit(int viewStart, int viewEnd, int boxStart, int boxEnd, int snapPreference) {
-                    return boxStart - viewStart;
-                }
-            }
-        };
+//        StickyLinearLayoutManager layoutManager = new StickyLinearLayoutManager(view.getContext(), adapter) {
+//            @Override
+//            public boolean isAutoMeasureEnabled() {
+//                return true;
+//            }
+//
+//            @Override
+//            public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int position) {
+//                RecyclerView.SmoothScroller smoothScroller = new TopSmoothScroller(recyclerView.getContext());
+//                smoothScroller.setTargetPosition(position);
+//                startSmoothScroll(smoothScroller);
+//            }
+//
+//            class TopSmoothScroller extends LinearSmoothScroller {
+//
+//                TopSmoothScroller(Context context) {
+//                    super(context);
+//                }
+//
+//                @Override
+//                public int calculateDtToFit(int viewStart, int viewEnd, int boxStart, int boxEnd, int snapPreference) {
+//                    return boxStart - viewStart;
+//                }
+//            }
+//        };
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setAdapter(adapter);
-        layoutManager.setStickyHeaderListener(new StickyLinearLayoutManager.StickyHeaderListener() {
-            @Override
-            public void headerAttached(View headerView, int adapterPosition) {
-                Log.d("StickyHeader", "Header Attached : " + adapterPosition);
-            }
-
-            @Override
-            public void headerDetached(View headerView, int adapterPosition) {
-                Log.d("StickyHeader", "Header Detached : " + adapterPosition);
-            }
-        });
+//        layoutManager.setStickyHeaderListener(new StickyLinearLayoutManager.StickyHeaderListener() {
+//            @Override
+//            public void headerAttached(View headerView, int adapterPosition) {
+//                Log.d("StickyHeader", "Header Attached : " + adapterPosition);
+//            }
+//
+//            @Override
+//            public void headerDetached(View headerView, int adapterPosition) {
+//                Log.d("StickyHeader", "Header Detached : " + adapterPosition);
+//            }
+//        });
     }
 
     public void getAllVisits() {

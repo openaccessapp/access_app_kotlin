@@ -6,7 +6,6 @@
     <string name="access_app_name" translatable="false">Access App</string>
     <string name="places_app_name" translatable="false">Places App</string>
     <string name="choose_place">Choose Place</string>
-    <string name="personal_ninformation">Personal \nInformation</string>
     <string name="age">Age</string>
     <string name="enter_your_age">Enter your age</string>
     <string name="wheelchair_assistant_required">Wheelchair assistant required</string>
@@ -34,6 +33,7 @@
     <string name="upcoming_visits">Upcoming Visits</string>
     <string name="no_planned_visits">No planned visits</string>
     <string name="you_must_arrive_15_minutes_before_the_time">You must arrive 15 minutes before \nthe time.</string>
+    <string name="personal_information">Personal \nInformation</string>
     <string name="scan_tap">Scan/Tap</string>
     <string name="central_park">Central Park</string>
     <string name="visitors_information">Visitors Information</string>
@@ -66,4 +66,5 @@
     <string name="mon">MON</string>
     <string name="_27th_may">27th May</string>
     <string name="plan_visit">Plan Visit</string>
+    <string name="language">Language:</string>
 </resources>

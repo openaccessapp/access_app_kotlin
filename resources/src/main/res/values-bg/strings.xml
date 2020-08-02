@@ -4,7 +4,7 @@
     <string name="planner">Планирани</string>
     <string name="places">Места</string>
     <string name="choose_place">Избери място</string>
-    <string name="personal_ninformation">Лична информация</string>
+    <string name="personal_information">Лична \nинформация</string>
     <string name="age">Години</string>
     <string name="enter_your_age">Въведете вашата възраст</string>
     <string name="save">Запази</string>
@@ -35,7 +35,7 @@
     <string name="www_centralpark_com">www.centralpark.com</string>
     <string name="mon">ПОН</string>
     <string name="_27th_may">27- ми май</string>
-    <string name="wheelchair_assistant_required">Нужен човек за помощ на хора в инвалидни колички</string>
+    <string name="wheelchair_assistant_required">Човек в инвалидна количка</string>
     <string name="blindness_or_visual_impairment">Слепота или намалено зрение</string>
     <string name="safe_and_queue_free_visiting">Безопасно посещение без чакане на опашки</string>
     <string name="plan_visit">Планирайте посещение</string>
@@ -46,4 +46,5 @@
     <string name="age_range_60">Над 60 години</string>
     <string name="priority_group">Група с приоритет</string>
     <string name="place_name">Име</string>
+    <string name="language">Език:</string>
 </resources>

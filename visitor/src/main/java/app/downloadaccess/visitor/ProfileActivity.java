@@ -1,55 +1,66 @@
 package app.downloadaccess.visitor;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Locale;
+import java.util.List;
 
-public class ProfileActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    HashMap<String, String> language = new HashMap<>();
+import app.downloadaccess.resources.Utils;
+
+public class ProfileActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, SharedPreferences.OnSharedPreferenceChangeListener {
+    List<StringWithTag> languagesMap = new ArrayList<>();
     String languageName;
-    String languageKey = "en";
+    String languageKey;
+    SharedPreferences prefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         overridePendingTransition(0, 0);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        prefs = getSharedPreferences(Utils.PREFS_NAME, MODE_PRIVATE);
+        prefs.registerOnSharedPreferenceChangeListener(this);
         SharedPreferences.Editor editor = prefs.edit();
+        languageKey = prefs.getString("lang", "no");
+        if (languageKey.equals("no")) {
+            languageKey = "en";
+            editor.putString("lang", languageKey);
+        }
 
-        loadLocale();
-        findViewById(R.id.goBack).setOnClickListener(v -> finish());
+        Utils.loadLocale(this);
+
+        findViewById(R.id.goBack).setOnClickListener(v -> {
+            setResult(RESULT_OK);
+            finish();
+        });
         MaterialButton saveButton = findViewById(R.id.save_button);
         EditText ageField = findViewById(R.id.ageField);
 
+        languagesMap.add(new StringWithTag("en", "English"));
+        languagesMap.add(new StringWithTag("bg", "Български"));
+        languagesMap.add(new StringWithTag("de", "Deutshland"));
         Spinner spinner = findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
-        ArrayList<String> spinnerLang = new ArrayList<>();
-        spinnerLang.add("Български");
-        spinnerLang.add("English");
-        spinnerLang.add("German");
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, spinnerLang);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<StringWithTag> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, languagesMap);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinner.setAdapter(spinnerAdapter);
-        language.put("Български", "bg");
-        language.put("English", "en");
-        language.put("German", "de");
         spinner.setOnItemSelectedListener(this);
+        for (StringWithTag stringWithTag : languagesMap) {
+            if (stringWithTag.value.equals(languageKey)) {
+                spinner.setSelection(spinnerAdapter.getPosition(stringWithTag));
+            }
+        }
         int age = prefs.getInt("userAge", 0);
         ageField.setText(age > 0 ? age + "" : "");
 
@@ -57,22 +68,16 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
             String input = String.valueOf(ageField.getText());
             if (!input.isEmpty()) editor.putInt("userAge", Integer.parseInt(input));
             else editor.remove("userAge");
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-
+            editor.putString("lang", languageKey);
             editor.apply();
-            Toast.makeText(getBaseContext(), "Saved", Toast.LENGTH_SHORT).show();
+            Utils.loadLocale(this);
         });
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        switch (parent.getId()) {
-            case R.id.spinner:
-                languageName = parent.getItemAtPosition(position).toString();
-                languageKey = language.get(languageName);
-                break;
-        }
+        languageName = ((StringWithTag) parent.getItemAtPosition(position)).key;
+        languageKey = languagesMap.get(position).value;
     }
 
     @Override
@@ -80,14 +85,31 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
 
     }
 
-    public void loadLocale() {
-        Locale locale = new Locale(languageKey);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        getBaseContext().getResources().updateConfiguration(config,
-                getBaseContext().getResources().getDisplayMetrics());
-        setContentView(R.layout.activity_profile);
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals("lang")) {
+            recreate();
+        }
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        prefs.unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    private static class StringWithTag {
+        public String key;
+        public String value;
+
+        public StringWithTag(String value, String key) {
+            this.key = key;
+            this.value = value;
+        }
+
+        @Override
+        public String toString() {
+            return key;
+        }
+    }
 }

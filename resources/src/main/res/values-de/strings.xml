@@ -1,6 +1,8 @@
 <resources>
-    <string name="scan">Scan in de</string>
-    <string name="planner">Planner in de</string>
-    <string name="places">Places in de</string>
+    <string name="scan">Scan</string>
+    <string name="planner">Planner</string>
+    <string name="places">Places</string>
     <string name="choose_place">Ort auswählen</string>
+    <string name="language">Sprache:</string>
+    <string name="mon_sun">Mon-Son</string>
 </resources>

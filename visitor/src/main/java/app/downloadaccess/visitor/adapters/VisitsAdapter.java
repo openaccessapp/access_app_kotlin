@@ -31,8 +31,9 @@ public class VisitsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private VisitsAdapter.AdapterCallback callback;
     private Activity mActivity;
 
-    public VisitsAdapter(Activity activity) {
+    public VisitsAdapter(Activity activity, List<Visit> visits) {
         mActivity = activity;
+        this.visitList = visits;
     }
 
     @NotNull
@@ -98,10 +99,6 @@ public class VisitsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public List<Visit> getAdapterData() {
         return visitList;
-    }
-
-    public void setDataList(List<Visit> items) {
-        visitList = items;
     }
 
     private static final class ItemViewHolder extends RecyclerView.ViewHolder {

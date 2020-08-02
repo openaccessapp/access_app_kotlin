@@ -119,7 +119,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         );
         loadingPanel = view.findViewById(R.id.loadingPanel);
         view.findViewById(R.id.openProfile).setOnClickListener(v -> {
-            startActivity(new Intent(getActivity(), ProfileActivity.class));
+            startActivityForResult(new Intent(getActivity(), ProfileActivity.class), 1);
         });
         view.findViewById(R.id.locationIcon).setOnClickListener(v -> callback.onLocationClick());
         chipGroup = view.findViewById(R.id.chip_group);
@@ -268,5 +268,4 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
             }
         });
     }
-
 }

@@ -1,11 +1,15 @@
 package app.downloadaccess.resources;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -45,5 +49,20 @@ public class Utils {
         }
         System.out.println(jsontoken);
         return jsontoken;
+    }
+
+    public static void loadLocale(Activity activity) {
+        SharedPreferences prefs = activity.getSharedPreferences(Utils.PREFS_NAME, Context.MODE_PRIVATE);
+        String languageKey = prefs.getString("lang", "no");
+        if (languageKey.equals("no")) {
+            languageKey = "en";
+            prefs.edit().putString("lang", languageKey).apply();
+        }
+        Locale locale = new Locale(languageKey);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        activity.getBaseContext().getResources().updateConfiguration(config,
+                activity.getBaseContext().getResources().getDisplayMetrics());
     }
 }
