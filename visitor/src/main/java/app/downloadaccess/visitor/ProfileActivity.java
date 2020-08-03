@@ -52,8 +52,8 @@ public class ProfileActivity extends AppCompatActivity implements AdapterView.On
         languagesMap.add(new StringWithTag("de", "Deutshland"));
         Spinner spinner = findViewById(R.id.spinner);
         spinner.setOnItemSelectedListener(this);
-        ArrayAdapter<StringWithTag> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, languagesMap);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        ArrayAdapter<StringWithTag> spinnerAdapter = new ArrayAdapter<>(this, R.layout.item_spinner, languagesMap);
+        spinnerAdapter.setDropDownViewResource(R.layout.item_spinner);
         spinner.setAdapter(spinnerAdapter);
         spinner.setOnItemSelectedListener(this);
         for (StringWithTag stringWithTag : languagesMap) {
