@@ -91,6 +91,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         return inflater.inflate(R.layout.fragment_places, container, false);
     }
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

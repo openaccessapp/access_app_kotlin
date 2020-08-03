@@ -33,7 +33,7 @@
     <string name="upcoming_visits">Upcoming Visits</string>
     <string name="no_planned_visits">No planned visits</string>
     <string name="you_must_arrive_15_minutes_before_the_time">You must arrive 15 minutes before \nthe time.</string>
-    <string name="personal_information">Personal \\nInformation</string>
+    <string name="personal_information">Personal \nInformation</string>
     <string name="scan_tap">Scan/Tap</string>
     <string name="central_park">Central Park</string>
     <string name="visitors_information">Visitors Information</string>
