@@ -14,8 +14,7 @@
         android:networkSecurityConfig="@xml/network_sec_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:theme="@style/AppTheme">
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
