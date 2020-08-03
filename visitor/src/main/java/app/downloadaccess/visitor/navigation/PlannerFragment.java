@@ -82,7 +82,7 @@ public class PlannerFragment extends Fragment implements VisitsAdapter.AdapterCa
         view.findViewById(R.id.plan_visit_button).setOnClickListener(v -> {
             ((MainActivity) getActivity()).bottomNavigationView.setSelectedItemId(R.id.placesNav);
         });
-        prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
+        prefs = getActivity().getSharedPreferences(Utils.PREFS_NAME, Context.MODE_PRIVATE);
         retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
         recyclerView = view.findViewById(R.id.recyclerViewPlanner);
         recyclerView.setEmptyView(view.findViewById(R.id.emptyViewPlanner));

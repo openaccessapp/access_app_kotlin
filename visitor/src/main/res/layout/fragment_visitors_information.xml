@@ -206,7 +206,7 @@
             android:minWidth="0dp"
             android:minHeight="40dp"
             android:stateListAnimator="@null"
-            android:text="@string/standart"
+            android:text="@string/standard"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="12sp"

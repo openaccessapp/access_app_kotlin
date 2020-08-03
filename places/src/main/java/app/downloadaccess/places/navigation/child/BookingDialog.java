@@ -42,7 +42,7 @@ public class BookingDialog {
     private Place place;
 
     public BookingDialog(Activity activity, Place place) {
-        this.prefs = activity.getPreferences(Context.MODE_PRIVATE);
+        this.prefs = activity.getSharedPreferences(Utils.PREFS_NAME, Context.MODE_PRIVATE);
         this.activity = activity;
         this.place = place;
     }

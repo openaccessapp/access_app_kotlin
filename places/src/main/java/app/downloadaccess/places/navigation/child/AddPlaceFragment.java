@@ -99,7 +99,7 @@ public class AddPlaceFragment extends Fragment {
             ((EditText) view.findViewById(R.id.urlEt)).setText(place.getWww());
         }
 
-        prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
+        prefs = getActivity().getSharedPreferences(Utils.PREFS_NAME, Context.MODE_PRIVATE);
         view.findViewById(R.id.goBack).setOnClickListener(v -> getParentFragment().getChildFragmentManager().popBackStack());
 
         EditText descriptionField = view.findViewById(R.id.describeEt);

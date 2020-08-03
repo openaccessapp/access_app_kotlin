@@ -43,7 +43,7 @@ public class BookingDialog {
     private Consumer<Void> updateFunc;
 
     public BookingDialog(View view, Context context, Activity activity, Consumer<Void> updateFunc) {
-        this.prefs = activity.getPreferences(Context.MODE_PRIVATE);
+        prefs = activity.getSharedPreferences(Utils.PREFS_NAME, Context.MODE_PRIVATE);
         this.view = view;
         this.context = context;
         this.activity = activity;

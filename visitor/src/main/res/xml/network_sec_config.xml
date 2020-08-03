@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config>
+        <domain includeSubdomains="true">http://162.13.159.108:3001</domain>
+    </domain-config>
+</network-security-config>

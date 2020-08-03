@@ -129,7 +129,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
             }
         });
 
-        prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
+        prefs = getActivity().getSharedPreferences(Utils.PREFS_NAME, Context.MODE_PRIVATE);
         prefs.registerOnSharedPreferenceChangeListener((sharedPreferences, key) -> {
             if (key.equals("userId") && places.isEmpty()) {
                 if (checkedId == -1) {

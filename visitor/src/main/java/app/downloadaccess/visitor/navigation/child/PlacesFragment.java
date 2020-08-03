@@ -163,7 +163,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
 
-        prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
+        prefs = getActivity().getSharedPreferences(Utils.PREFS_NAME, Context.MODE_PRIVATE);
         prefs.registerOnSharedPreferenceChangeListener((sharedPreferences, key) -> {
             if (key.equals("userId") && places.isEmpty()) {
                 getAllPlaces();

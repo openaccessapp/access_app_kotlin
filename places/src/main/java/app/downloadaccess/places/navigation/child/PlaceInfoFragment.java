@@ -90,7 +90,7 @@ public class PlaceInfoFragment extends Fragment implements PlanVisitAdapter.Adap
         place = (Place) getArguments().getSerializable("place");
         dialog = new BookingDialog(getActivity(), place);
         TextView button = view.findViewById(R.id.addSlot);
-        prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
+        prefs = getActivity().getSharedPreferences(Utils.PREFS_NAME, Context.MODE_PRIVATE);
         View goBackButton = view.findViewById(R.id.goBack);
         goBackButton.setOnClickListener(v -> getParentFragment().getChildFragmentManager().popBackStack());
 

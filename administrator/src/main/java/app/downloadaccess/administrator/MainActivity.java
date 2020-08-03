@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setOffscreenPageLimit(1);
         viewPager.setPagingEnabled(false);
 
-        prefs = getPreferences(MODE_PRIVATE);
+        prefs = getSharedPreferences(Utils.PREFS_NAME, MODE_PRIVATE);
 
         retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
         if (prefs.getString("userId", null) == null) {

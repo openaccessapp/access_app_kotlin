@@ -93,12 +93,8 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        this.dialog = new BookingDialog(getView(), getContext(), getActivity(), new Consumer<Void>() {
-            public void accept(Void t) {
-                getSlotsPlace();
-            }
-        });
-        prefs = getActivity().getPreferences(Context.MODE_PRIVATE);
+        this.dialog = new BookingDialog(getView(), getContext(), getActivity(), t -> getSlotsPlace());
+        prefs = getActivity().getSharedPreferences(Utils.PREFS_NAME, Context.MODE_PRIVATE);
         View goBackButton = view.findViewById(R.id.goBack);
         goBackButton.setOnClickListener(v -> getParentFragment().getChildFragmentManager().popBackStack());
 
