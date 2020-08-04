@@ -2,7 +2,7 @@
 <TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/textView1"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerHorizontal="true"
     android:layout_centerVertical="true"
@@ -11,5 +11,5 @@
     android:paddingTop="12dp"
     android:paddingRight="15dp"
     android:paddingBottom="12dp"
-    android:fontFamily="@font/rubik_medium"
-    android:textSize="16dp" />
+    android:fontFamily="@font/rubik"
+    android:textSize="14sp" />
