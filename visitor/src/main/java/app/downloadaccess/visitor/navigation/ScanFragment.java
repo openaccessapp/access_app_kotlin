@@ -4,14 +4,13 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,8 +23,6 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.List;
 
 import app.downloadaccess.visitor.ProfileActivity;
 import app.downloadaccess.visitor.R;
@@ -49,8 +46,7 @@ public class ScanFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_scan, container, false);
-        return rootView;
+        return inflater.inflate(R.layout.fragment_scan, container, false);
     }
 
     @Override
@@ -59,7 +55,7 @@ public class ScanFragment extends Fragment {
             startActivity(new Intent(getActivity(), ProfileActivity.class));
         });
 
-        cameraView = getView().findViewById(R.id.cameraView);
+        cameraView = view.findViewById(R.id.cameraView);
         createCameraSource();
 
     }
@@ -76,7 +72,7 @@ public class ScanFragment extends Fragment {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
                 if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA}, 100);
+                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, 100);
                     getFragmentManager()
                             .beginTransaction()
                             .detach(ScanFragment.this)
@@ -111,7 +107,8 @@ public class ScanFragment extends Fragment {
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 //holds scanned barcode
-              final   SparseArray<Barcode> barcodeSparseArray = detections.getDetectedItems();
+                final SparseArray<Barcode> barcodeSparseArray = detections.getDetectedItems();
+                Toast.makeText(getActivity(), barcodeSparseArray.toString(), Toast.LENGTH_SHORT).show();
             }
         });
     }
