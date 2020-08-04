@@ -69,7 +69,7 @@ public class ScanFragment extends Fragment {
         BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(getContext()).setBarcodeFormats(Barcode.ALL_FORMATS).build();
         final CameraSource cameraSource = new CameraSource.Builder(getContext(), barcodeDetector)
                 .setAutoFocusEnabled(true)
-                .setRequestedPreviewSize(1600, 1024)
+                .setRequestedPreviewSize(1440, 1440)
                 .build();
 
         cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
@@ -77,6 +77,11 @@ public class ScanFragment extends Fragment {
             public void surfaceCreated(SurfaceHolder holder) {
                 if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA}, 100);
+                    getFragmentManager()
+                            .beginTransaction()
+                            .detach(ScanFragment.this)
+                            .attach(ScanFragment.this)
+                            .commit();
                     return;
                 }
                 try {
@@ -107,8 +112,6 @@ public class ScanFragment extends Fragment {
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 //holds scanned barcode
               final   SparseArray<Barcode> barcodeSparseArray = detections.getDetectedItems();
-                TextView holder = getView().findViewById(R.id.holder);
-                holder.setText(barcodeSparseArray.valueAt(0).displayValue);
             }
         });
     }
