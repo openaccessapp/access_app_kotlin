@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
+import android.hardware.camera2.CameraManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Size;
 import android.util.SparseArray;
@@ -34,6 +36,7 @@ import app.downloadaccess.visitor.R;
 public class ScanFragment extends Fragment {
 
     private SurfaceView cameraView;
+
     //private CameraSource cameraSource;
 
 
@@ -87,6 +90,7 @@ public class ScanFragment extends Fragment {
                     return;
                 }
                 try {
+
                     cameraSource.start(cameraView.getHolder());
                 } catch (IOException e) {
                     e.printStackTrace();
