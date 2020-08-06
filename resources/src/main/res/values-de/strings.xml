@@ -43,4 +43,7 @@
     <string name="non_priority_group">Non-Priority Group</string>
     <string name="mask_is_mandatory">Mask is mandatory</string>
     <string name="visitors_information">Visitors Information</string>
+    <string name="ok">OK</string>
+    <string name="permission_camera_rationale">Zur Erkennung ist ein Zugriff auf die Kamera erforderlich</string>
+    <string name="no_camera_permission">Sie haben die Kameraerlaubnis verweigert und können den Scanner nicht verwenden.</string>
 </resources>

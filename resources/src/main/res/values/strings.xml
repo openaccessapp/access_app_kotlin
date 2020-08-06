@@ -67,4 +67,8 @@
     <string name="_27th_may">27th May</string>
     <string name="plan_visit">Plan Visit</string>
     <string name="language">Language:</string>
+
+    <string name="ok">OK</string>
+    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
+    <string name="no_camera_permission">You denied camera permission and can\'t use scanner.</string>
 </resources>

@@ -44,4 +44,7 @@
     <string name="priority_group">Група с приоритет</string>
     <string name="place_name">Име</string>
     <string name="language">Език:</string>
+    <string name="ok">OK</string>
+    <string name="permission_camera_rationale">Нужен е достъп до камерата за сканиране</string>
+    <string name="no_camera_permission">Забранихте използването на камерата.</string>
 </resources>
