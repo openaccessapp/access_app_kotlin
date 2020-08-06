@@ -3,13 +3,18 @@ package app.downloadaccess.visitor.navigation;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.hardware.Camera;
+import android.hardware.camera2.CameraManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Size;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,6 +28,7 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
+import java.util.List;
 
 import app.downloadaccess.visitor.ProfileActivity;
 import app.downloadaccess.visitor.R;
@@ -30,6 +36,7 @@ import app.downloadaccess.visitor.R;
 public class ScanFragment extends Fragment {
 
     private SurfaceView cameraView;
+
     //private CameraSource cameraSource;
 
 
@@ -46,7 +53,8 @@ public class ScanFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_scan, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_scan, container, false);
+        return rootView;
     }
 
     @Override
@@ -55,24 +63,25 @@ public class ScanFragment extends Fragment {
             startActivity(new Intent(getActivity(), ProfileActivity.class));
         });
 
-        cameraView = view.findViewById(R.id.cameraView);
+        cameraView = getView().findViewById(R.id.cameraView);
         createCameraSource();
 
     }
 
     private void createCameraSource() {
 
+
         BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(getContext()).setBarcodeFormats(Barcode.ALL_FORMATS).build();
         final CameraSource cameraSource = new CameraSource.Builder(getContext(), barcodeDetector)
                 .setAutoFocusEnabled(true)
-                .setRequestedPreviewSize(1440, 1440)
+                .setRequestedPreviewSize(1600, 1024)
                 .build();
 
         cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
                 if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CAMERA}, 100);
+                    ActivityCompat.requestPermissions(getActivity(), new String[] {Manifest.permission.CAMERA}, 100);
                     getFragmentManager()
                             .beginTransaction()
                             .detach(ScanFragment.this)
@@ -81,6 +90,7 @@ public class ScanFragment extends Fragment {
                     return;
                 }
                 try {
+
                     cameraSource.start(cameraView.getHolder());
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -107,8 +117,16 @@ public class ScanFragment extends Fragment {
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 //holds scanned barcode
-                final SparseArray<Barcode> barcodeSparseArray = detections.getDetectedItems();
-                Toast.makeText(getActivity(), barcodeSparseArray.toString(), Toast.LENGTH_SHORT).show();
+                final   SparseArray<Barcode> barcodeSparseArray = detections.getDetectedItems();
+                if (barcodeSparseArray.size()>0) {
+                    TextView holder = getView().findViewById(R.id.codeHolder);
+                    holder.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            holder.setText("Result: " + barcodeSparseArray.valueAt(0).displayValue);
+                        }
+                    });
+                }
             }
         });
     }
