@@ -35,6 +35,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.google.android.material.timepicker.TimeFormat.CLOCK_24H;
+
 public class BookingDialog {
     private static final String TAG = BookingDialog.class.getSimpleName();
     private AppCompatActivity activity;
@@ -80,6 +82,7 @@ public class BookingDialog {
         startHourTV.setText(String.format("%02d:%02d", current.get(Calendar.HOUR_OF_DAY), current.get(Calendar.MINUTE)));
         startHourTV.setOnClickListener(v -> {
             MaterialTimePicker startHourPicker = MaterialTimePicker.newInstance();
+            startHourPicker.setTimeFormat(CLOCK_24H);
             startHourPicker.setListener(dialog -> {
                 startHourTV.setText(String.format("%02d:%02d", dialog.getHour(), dialog.getMinute()));
             });
@@ -91,6 +94,7 @@ public class BookingDialog {
         endHourTV.setText(String.format("%02d:%02d", current.get(Calendar.HOUR_OF_DAY), current.get(Calendar.MINUTE)));
         endHourTV.setOnClickListener(v -> {
             MaterialTimePicker endHourPicker = MaterialTimePicker.newInstance();
+            endHourPicker.setTimeFormat(CLOCK_24H);
             endHourPicker.setListener(dialog -> {
                 endHourTV.setText(String.format("%02d:%02d", dialog.getHour(), dialog.getMinute()));
             });
@@ -126,7 +130,6 @@ public class BookingDialog {
                     " " + endHourTV.getText().toString());
             slot.setMaxSlots(Integer.parseInt(maxVisitors.getText().toString()));
             addNewSlot(place.getId(), slot);
-            callback.onDismiss();
             alertDialog.dismiss();
         });
         cancelButton.setOnClickListener(v -> {
@@ -139,6 +142,7 @@ public class BookingDialog {
         retrofitService.addSlot(Utils.getJwtToken(activity), placeId, prefs.getString("userId", null), slot).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(@NotNull Call<Void> call, @NotNull Response<Void> response) {
+                callback.onDismiss();
                 if (response.code() != 201 && response.errorBody() != null) {
                     try {
                         JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();
@@ -153,6 +157,7 @@ public class BookingDialog {
 
             @Override
             public void onFailure(@NotNull Call<Void> call, @NotNull Throwable t) {
+                callback.onDismiss();
                 Toast.makeText(activity, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
