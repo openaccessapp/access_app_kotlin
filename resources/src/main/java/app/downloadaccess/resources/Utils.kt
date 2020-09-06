@@ -3,6 +3,7 @@ package app.downloadaccess.resources
 import android.app.Activity
 import android.content.Context
 import android.content.res.Configuration
+import com.google.common.base.Preconditions.checkArgument
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import java.io.BufferedReader
@@ -74,5 +75,18 @@ object Utils {
             config,
             activity.baseContext.resources.displayMetrics
         )
+    }
+
+    @JvmStatic
+    fun getDayOfMonthSuffix(n: Int): String? {
+        checkArgument(n in 1..31, "illegal day of month: $n")
+        return if (n in 11..13) {
+            "th"
+        } else when (n % 10) {
+            1 -> "st"
+            2 -> "nd"
+            3 -> "rd"
+            else -> "th"
+        }
     }
 }

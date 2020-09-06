@@ -17,6 +17,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
@@ -43,7 +44,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public  class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCallback {
+public  class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCallback, SwipeRefreshLayout.OnRefreshListener {
 
     private static final String TAG = PlacesFragment.class.getSimpleName();
     private FragmentCallback callback;
@@ -62,7 +63,7 @@ public  class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCal
     private String search = null;
     private Integer typeId = null;
     private Boolean onlyFavourites = false;
-
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public PlacesFragment() {
         // Required empty public constructor
@@ -118,6 +119,8 @@ public  class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCal
         });
 
         places = new ArrayList<>();
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefresh);
+        swipeRefreshLayout.setOnRefreshListener(this);
         retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
         recyclerView = view.findViewById(R.id.placesRecyclerView);
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -149,9 +152,15 @@ public  class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCal
                 getAllPlaces();
             }
         });
-        if (prefs.getString("userId", null) != null) {
-            getAllPlaces();
-        }
+//        if (prefs.getString("userId", null) != null) {
+//            getAllPlaces();
+//        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        reset();
     }
 
     @Override
@@ -169,7 +178,7 @@ public  class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCal
     private void reset() {
         currentPage = 0;
         places.clear();
-        adapter.setDataList(places);
+        adapter.notifyDataSetChanged();
         getAllPlaces();
     }
 
@@ -221,6 +230,7 @@ public  class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCal
         retrofitService.getAllPlaces(Utils.getJwtToken(getContext()), prefs.getString("userId", null), map).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
+                swipeRefreshLayout.setRefreshing(false);
                 Gson gson = new Gson();
                 if (response.body().get("places").getAsJsonArray() != null) {
                     ArrayList<Place> newPlaces = gson.fromJson(response.body().get("places"), new TypeToken<ArrayList<Place>>() {
@@ -240,6 +250,7 @@ public  class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCal
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
+                swipeRefreshLayout.setRefreshing(false);
                 Log.d(TAG, t.getLocalizedMessage());
                 isLoading = false;
             }
@@ -247,4 +258,8 @@ public  class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCal
 
     }
 
+    @Override
+    public void onRefresh() {
+        reset();
+    }
 }

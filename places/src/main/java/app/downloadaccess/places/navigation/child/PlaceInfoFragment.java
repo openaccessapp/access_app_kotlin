@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -88,7 +89,7 @@ public class PlaceInfoFragment extends Fragment implements PlanVisitAdapter.Adap
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         place = (Place) getArguments().getSerializable("place");
-        dialog = new BookingDialog(getActivity(), place);
+        dialog = new BookingDialog((AppCompatActivity) getActivity(), place, this::getSlotsPlace);
         TextView button = view.findViewById(R.id.addSlot);
         prefs = getActivity().getSharedPreferences(Utils.PREFS_NAME, Context.MODE_PRIVATE);
         View goBackButton = view.findViewById(R.id.goBack);

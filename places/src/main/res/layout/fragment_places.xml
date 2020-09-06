@@ -32,16 +32,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <ImageView-->
-<!--        android:id="@+id/openProfile"-->
-<!--        android:layout_width="24dp"-->
-<!--        android:layout_height="24dp"-->
-<!--        android:layout_marginEnd="35dp"-->
-<!--        android:background="?selectableItemBackgroundBorderless"-->
-<!--        android:src="@drawable/ic_profile_icon"-->
-<!--        app:layout_constraintBottom_toBottomOf="@id/tree_top"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="@id/tree_top" />-->
+    <!--    <ImageView-->
+    <!--        android:id="@+id/openProfile"-->
+    <!--        android:layout_width="24dp"-->
+    <!--        android:layout_height="24dp"-->
+    <!--        android:layout_marginEnd="35dp"-->
+    <!--        android:background="?selectableItemBackgroundBorderless"-->
+    <!--        android:src="@drawable/ic_profile_icon"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@id/tree_top"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="@id/tree_top" />-->
 
     <TextView
         android:id="@+id/choosePlaceTv"
@@ -188,14 +188,21 @@
         android:background="@color/grey"
         app:layout_constraintTop_toBottomOf="@id/chipScrollView" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/placesRecyclerView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingBottom="10dp"
         android:overScrollMode="never"
+        android:paddingBottom="10dp"
         app:layout_constraintBottom_toTopOf="@id/add_place_button"
-        app:layout_constraintTop_toBottomOf="@id/separatorView2" />
+        app:layout_constraintTop_toBottomOf="@id/separatorView2">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/placesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/add_place_button"

@@ -11,6 +11,7 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
         android:orientation="vertical">
 
         <TextView
@@ -48,7 +49,7 @@
                 android:text="Priority"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:backgroundTint="@color/colorAccent"
                 app:cornerRadius="6dp" />
 
@@ -71,7 +72,7 @@
                 android:text="Standard"
                 android:textAllCaps="false"
                 android:textColor="@color/text_grey"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 app:backgroundTint="@color/disabled_tint"
                 app:cornerRadius="6dp" />
         </LinearLayout>
@@ -84,44 +85,70 @@
             android:fontFamily="@font/rubik_medium"
             android:gravity="center_vertical"
             android:text="Date"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
-        <DatePicker
-            android:id="@+id/datePicker"
+        <TextView
+            android:id="@+id/chooseDatePicker"
             android:layout_width="wrap_content"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:calendarViewShown="false"
-            android:datePickerMode="spinner" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/rubik_medium"
+            android:padding="10dp"
+            android:text="Monday, 27th May"
+            android:textColor="@color/text_color_dark"
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="17dp"
             android:fontFamily="@font/rubik_medium"
             android:gravity="center_vertical"
             android:text="Time slot"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:orientation="horizontal">
 
-            <TimePicker
-                android:id="@+id/hourFromTimePicker"
+            <TextView
+                android:id="@+id/startHourTV"
                 android:layout_width="wrap_content"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:timePickerMode="spinner" />
+                android:fontFamily="@font/rubik_medium"
+                android:gravity="end"
+                android:padding="10dp"
+                android:text="12:00"
+                android:textColor="@color/text_color_dark"
+                android:textSize="16sp" />
 
-            <TimePicker
-                android:id="@+id/hourToTimePicker"
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="150dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.1"
+                android:fontFamily="@font/rubik_medium"
+                android:gravity="center"
+                android:text="-"
+                android:textColor="@color/text_color_dark"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/endHourTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_weight="1"
-                android:timePickerMode="spinner" />
+                android:fontFamily="@font/rubik_medium"
+                android:gravity="start"
+                android:padding="10dp"
+                android:text="13:00"
+                android:textColor="@color/text_color_dark"
+                android:textSize="16sp" />
         </LinearLayout>
 
         <TextView
@@ -132,7 +159,7 @@
             android:fontFamily="@font/rubik_medium"
             android:gravity="center_vertical"
             android:text="Maximum visitors per slot"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
         <View
             android:layout_width="match_parent"
@@ -150,111 +177,60 @@
             android:gravity="center"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="20" />
+            android:text="20"
+            android:textColor="@color/text_color_dark"
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/grey" />
 
-        <LinearLayout
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/reminderTv"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/cancel_button"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="start"
                 android:fontFamily="@font/rubik_medium"
-                android:gravity="center_vertical"
-                android:text="Repeat every weekday"
-                android:textSize="12sp" />
+                android:letterSpacing="0.0"
+                android:minWidth="0dp"
+                android:paddingStart="46dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="46dp"
+                android:paddingBottom="12dp"
+                android:text="Cancel"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                app:cornerRadius="30dp"
+                app:strokeColor="@color/blue"
+                app:strokeWidth="2dp" />
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/repeatSwitch"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/save_button"
+                style="@style/Widget.MaterialComponents.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="start"
+                android:fontFamily="@font/rubik_medium"
+                android:letterSpacing="0.0"
                 android:minWidth="0dp"
-                android:minHeight="0dp"
-                android:padding="0dp"
-                app:thumbTint="@color/white"
-                app:trackTint="@color/blue" />
-        </LinearLayout>
-
+                android:paddingStart="46dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="46dp"
+                android:paddingBottom="12dp"
+                android:text="Save"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                app:cornerRadius="30dp" />
+        </RelativeLayout>
     </LinearLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/cancel_button"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/contentBody"
-        android:layout_alignParentStart="true"
-        android:layout_gravity="start"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="25dp"
-        android:fontFamily="@font/rubik_medium"
-        android:letterSpacing="0.0"
-        android:minWidth="0dp"
-        android:paddingStart="54dp"
-        android:paddingTop="14dp"
-        android:paddingEnd="54dp"
-        android:paddingBottom="14dp"
-        android:text="Cancel"
-        android:textAllCaps="false"
-        android:textSize="14sp"
-        app:cornerRadius="30dp"
-        app:strokeColor="@color/blue"
-        app:strokeWidth="2dp" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/save_button"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/cancel_button"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="end"
-        android:layout_marginEnd="25dp"
-        android:fontFamily="@font/rubik_medium"
-        android:letterSpacing="0.0"
-        android:minWidth="0dp"
-        android:paddingStart="54dp"
-        android:paddingTop="14dp"
-        android:paddingEnd="54dp"
-        android:paddingBottom="14dp"
-        android:text="Save"
-        android:textAllCaps="false"
-        android:textSize="14sp"
-        app:cornerRadius="30dp" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/delete_button"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/save_button"
-        android:layout_centerHorizontal="true"
-        android:fontFamily="@font/rubik_medium"
-        android:letterSpacing="0.0"
-        android:minWidth="0dp"
-        android:paddingStart="54dp"
-        android:paddingTop="14dp"
-        android:paddingEnd="54dp"
-        android:paddingBottom="14dp"
-        android:text="Remove Visit"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        android:visibility="gone"
-        app:backgroundTint="@color/red"
-        app:cornerRadius="30dp"
-        app:strokeColor="@color/red"
-        app:strokeWidth="2dp" />
 
 </RelativeLayout>

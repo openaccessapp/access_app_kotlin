@@ -1,56 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/linearLayout"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
     android:layout_marginTop="10dp"
     android:layout_marginEnd="16dp"
+    android:layout_marginBottom="10dp"
     android:background="@drawable/rounded_linear_7dp"
     android:backgroundTint="@color/grey"
     android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:focusable="true">
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/priority_text"
-        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:layout_gravity="center|center_horizontal|center_vertical"
+        android:layout_centerVertical="true"
         android:layout_marginStart="12dp"
-        android:background="@color/disabled_tint"
         android:backgroundTint="@color/disabled_tint"
+        android:clickable="false"
         android:enabled="false"
+        android:focusable="false"
         android:fontFamily="@font/rubik_medium"
+        android:insetLeft="6dp"
         android:insetTop="6dp"
+        android:insetRight="6dp"
         android:insetBottom="6dp"
         android:letterSpacing="0.0"
         android:minWidth="0dp"
         android:minHeight="40dp"
-        android:stateListAnimator="@null"
         android:text="@string/priority"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="12sp"
-        android:focusable="true" />
+        android:textSize="10sp"
+        app:cornerRadius="6dp" />
 
     <TextView
         android:id="@+id/hourFromTo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_gravity="center"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="50dp"
+        android:layout_toEndOf="@id/priority_text"
         android:fontFamily="@font/rubik_bold"
         android:gravity="center"
         android:lineSpacingExtra="10sp"
         android:text="@string/_10_00_11_00"
-        android:layout_marginEnd="50dp"
         android:textAlignment="center"
         android:textColor="@color/disabled_tint"
         android:textSize="12sp" />
@@ -59,6 +60,9 @@
         android:id="@+id/personIconSlot"
         android:layout_width="24dp"
         android:layout_height="24dp"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="6dp"
+        android:layout_toStartOf="@id/occupiedMax"
         android:tint="@color/disabled_tint"
         app:srcCompat="@drawable/ic_person_outline_24px" />
 
@@ -66,20 +70,20 @@
         android:id="@+id/occupiedMax"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="17dp"
+        android:layout_toStartOf="@id/checkIcon"
         android:fontFamily="@font/rubik_bold"
         android:text="@string/_100_100"
-        android:textColor="@color/disabled_tint" />
-
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:textColor="@color/disabled_tint"
+        android:textSize="12sp" />
 
     <ImageView
         android:id="@+id/checkIcon"
         android:layout_width="11dp"
         android:layout_height="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="14dp"
         app:srcCompat="@drawable/check" />
-</LinearLayout>
+</RelativeLayout>

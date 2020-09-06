@@ -185,12 +185,18 @@
         android:background="@color/grey"
         app:layout_constraintTop_toBottomOf="@id/chipScrollView" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/placesRecyclerView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/separatorView2" />
+        app:layout_constraintTop_toBottomOf="@id/separatorView2">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/placesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
