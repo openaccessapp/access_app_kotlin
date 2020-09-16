@@ -101,6 +101,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
             websiteTv = itemView.findViewById(R.id.websiteTv);
             websiteTv.setOnClickListener(v -> {
                 callback.onWebsiteClick(getAdapterPosition());
+
             });
             image = itemView.findViewById(R.id.image);
             image.setOnClickListener(v -> {
