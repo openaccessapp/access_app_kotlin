@@ -58,6 +58,7 @@ public class PlaceInfoFragment extends Fragment implements PlanVisitAdapter.Adap
     private RetrofitService retrofitService;
     private SharedPreferences prefs;
     private BookingDialog dialog;
+    private ImageView editPlace;
 
     public PlaceInfoFragment() {
         // Required empty public constructor
@@ -93,6 +94,13 @@ public class PlaceInfoFragment extends Fragment implements PlanVisitAdapter.Adap
         TextView button = view.findViewById(R.id.addSlot);
         prefs = getActivity().getSharedPreferences(Utils.PREFS_NAME, Context.MODE_PRIVATE);
         View goBackButton = view.findViewById(R.id.goBack);
+        editPlace = view.findViewById(R.id.EditPlace);
+        editPlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         goBackButton.setOnClickListener(v -> getParentFragment().getChildFragmentManager().popBackStack());
 
         OnBackPressedCallback backButton = new OnBackPressedCallback(true) {
