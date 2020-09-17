@@ -131,7 +131,6 @@ public class BookingDialog {
         });
     }
 
-
     private void setFocus(MaterialButton btnUnfocus, MaterialButton btn_focus) {
         btnUnfocus.setTextColor(ContextCompat.getColor(context, R.color.text_grey));
         btnUnfocus.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.grey));

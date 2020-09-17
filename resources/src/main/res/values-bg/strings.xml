@@ -47,4 +47,5 @@
     <string name="ok">OK</string>
     <string name="permission_camera_rationale">Нужен е достъп до камерата за сканиране</string>
     <string name="no_camera_permission">Забранихте използването на камерата.</string>
+    <string name="delete_slot">Изтрий слот</string>
 </resources>

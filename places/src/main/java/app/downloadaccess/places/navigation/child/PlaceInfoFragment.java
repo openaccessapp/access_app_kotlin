@@ -35,7 +35,7 @@ import java.util.Map;
 import java.util.Set;
 
 import app.downloadaccess.places.R;
-import app.downloadaccess.places.adapters.PlanVisitAdapter;
+import app.downloadaccess.places.adapters.PlaceInfoAdapter;
 import app.downloadaccess.resources.Utils;
 import app.downloadaccess.resources.models.Place;
 import app.downloadaccess.resources.models.Slot;
@@ -45,11 +45,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PlaceInfoFragment extends Fragment implements PlanVisitAdapter.AdapterCallback {
+public class PlaceInfoFragment extends Fragment implements PlaceInfoAdapter.AdapterCallback {
 
     private static final String TAG = PlaceInfoFragment.class.getSimpleName();
     private RecyclerView recyclerView;
-    private PlanVisitAdapter adapter;
+    private PlaceInfoAdapter adapter;
     private List<Slot> slots = new ArrayList<>();
     private FragmentCallback callback;
     private Place place;
@@ -57,7 +57,6 @@ public class PlaceInfoFragment extends Fragment implements PlanVisitAdapter.Adap
     private ImageView image;
     private RetrofitService retrofitService;
     private SharedPreferences prefs;
-    private BookingDialog dialog;
     private ImageView editPlace;
 
     public PlaceInfoFragment() {
@@ -90,17 +89,14 @@ public class PlaceInfoFragment extends Fragment implements PlanVisitAdapter.Adap
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         place = (Place) getArguments().getSerializable("place");
-        dialog = new BookingDialog((AppCompatActivity) getActivity(), place, this::getSlotsPlace);
+        BookingDialog dialog = new BookingDialog((AppCompatActivity) getActivity(), place, null, this::getSlotsPlace);
         TextView button = view.findViewById(R.id.addSlot);
         prefs = getActivity().getSharedPreferences(Utils.PREFS_NAME, Context.MODE_PRIVATE);
-        View goBackButton = view.findViewById(R.id.goBack);
         editPlace = view.findViewById(R.id.EditPlace);
-        editPlace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        editPlace.setOnClickListener(v -> {
 
-            }
         });
+        View goBackButton = view.findViewById(R.id.goBack);
         goBackButton.setOnClickListener(v -> getParentFragment().getChildFragmentManager().popBackStack());
 
         OnBackPressedCallback backButton = new OnBackPressedCallback(true) {
@@ -120,7 +116,7 @@ public class PlaceInfoFragment extends Fragment implements PlanVisitAdapter.Adap
         });
 
         recyclerView = view.findViewById(R.id.recyclerPlanVisit);
-        adapter = new PlanVisitAdapter(view.getContext());
+        adapter = new PlaceInfoAdapter(view.getContext());
         adapter.setDataList(slots);
         adapter.setAdapterCallback(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -181,5 +177,7 @@ public class PlaceInfoFragment extends Fragment implements PlanVisitAdapter.Adap
     @Override
     public void onItemClick(int position) {
         Slot slot = slots.get(position);
+        BookingDialog dialog = new BookingDialog((AppCompatActivity) getActivity(), place, slot, this::getSlotsPlace);
+        dialog.setupDialog();
     }
 }

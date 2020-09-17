@@ -44,6 +44,13 @@ interface RetrofitService {
         @Path("slotId") slotId: String?
     ): Call<JsonObject>
 
+    @DELETE("/api/slot/{slotId}/{userId}")
+    fun deleteSlot(
+        @Header("Authorization") token: String?,
+        @Path("slotId") slotId: String?,
+        @Path("userId") userId: String?
+    ): Call<JsonObject>
+
     @POST("/api/place/{visitorId}")
     fun addPlace(
         @Header("Authorization") token: String?,

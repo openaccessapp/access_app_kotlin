@@ -22,6 +22,7 @@
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
     <string name="remove_visit">Remove Visit</string>
+    <string name="delete_slot">Delete Slot</string>
     <string name="_12_00" translatable="false">12:00</string>
     <string name="_13_00" translatable="false">13:00</string>
     <string name="search">Search…</string>

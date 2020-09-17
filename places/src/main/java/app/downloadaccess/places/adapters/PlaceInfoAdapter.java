@@ -21,23 +21,24 @@ import java.util.Locale;
 import app.downloadaccess.places.R;
 import app.downloadaccess.resources.models.Slot;
 
-public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PlaceInfoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<Slot> dataList = new ArrayList<>();
     private AdapterCallback callback;
     private Context context;
 
-    public PlanVisitAdapter(Context context) {
+    public PlaceInfoAdapter(Context context) {
         this.context = context;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == 0) {
-            //            itemViewHolder.itemView.setOnClickListener(v -> {
-//                callback.onItemClick(itemViewHolder.getAdapterPosition());
-//            });
-            return new ItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_slot, parent, false));
+            ItemViewHolder itemViewHolder = new ItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_slot, parent, false));
+            itemViewHolder.itemView.setOnClickListener(v -> {
+                callback.onItemClick(itemViewHolder.getAdapterPosition());
+            });
+            return itemViewHolder;
 
         } else {
             return new HeaderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.row_planner_header, parent, false));

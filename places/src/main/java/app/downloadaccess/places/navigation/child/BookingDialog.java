@@ -43,16 +43,18 @@ public class BookingDialog {
     private final RetrofitService retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
     private SharedPreferences prefs;
     private Place place;
+    private Slot slot;
     private String displayDate;
     private Calendar datePickerCal;
     private TextView pickerTV, startHourTV, endHourTV;
     private AlertDialog alertDialog;
     private OnBookingDialogDismissed callback;
 
-    public BookingDialog(AppCompatActivity activity, Place place, OnBookingDialogDismissed callback) {
+    public BookingDialog(AppCompatActivity activity, Place place, Slot slot, OnBookingDialogDismissed callback) {
         this.prefs = activity.getSharedPreferences(Utils.PREFS_NAME, Context.MODE_PRIVATE);
         this.activity = activity;
         this.place = place;
+        this.slot = slot;
         this.callback = callback;
     }
 
@@ -64,6 +66,16 @@ public class BookingDialog {
         displayDate = getDisplayDate(current);
         Button saveButton = dialogView.findViewById(R.id.save_button);
         Button cancelButton = dialogView.findViewById(R.id.cancel_button);
+        Button deleteButton = dialogView.findViewById(R.id.delete_button);
+        if (slot != null) {
+            deleteButton.setVisibility(View.VISIBLE);
+            deleteButton.setOnClickListener(v -> {
+                deleteSlot(slot.getId());
+                alertDialog.dismiss();
+            });
+        } else {
+            deleteButton.setVisibility(View.GONE);
+        }
         pickerTV = dialogView.findViewById(R.id.chooseDatePicker);
         startHourTV = dialogView.findViewById(R.id.startHourTV);
         endHourTV = dialogView.findViewById(R.id.endHourTV);
@@ -158,6 +170,27 @@ public class BookingDialog {
             @Override
             public void onFailure(@NotNull Call<Void> call, @NotNull Throwable t) {
                 callback.onDismiss();
+                Toast.makeText(activity, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void deleteSlot(String slotId) {
+        retrofitService.deleteSlot(Utils.getJwtToken(activity), slotId, prefs.getString("userId", null)).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
+                if (response.code() != 201 && response.errorBody() != null) {
+                    try {
+                        JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();
+                        Toast.makeText(activity, errorObject.get("message").getAsString(), Toast.LENGTH_LONG).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<JsonObject> call, @NotNull Throwable t) {
                 Toast.makeText(activity, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });

@@ -138,7 +138,6 @@ public class AddPlaceFragment extends Fragment {
             place.setDescription(((EditText) view.findViewById(R.id.describeEt)).getText().toString());
             place.setWww(((EditText) view.findViewById(R.id.urlEt)).getText().toString());
             place.setLocation(((EditText) view.findViewById(R.id.LocEt)).getText().toString());
-            place.setAddress("Sofia");
             if (place.getId() == null) {
                 retrofitService.addPlace(Utils.getJwtToken(getContext()), place, prefs.getString("userId", null)).enqueue(new Callback<Void>() {
                     @Override
@@ -240,10 +239,5 @@ public class AddPlaceFragment extends Fragment {
 
         String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
         return encodedImage;
-    }
-
-    private void showToastMessage(String message) {
-        Log.v(TAG, String.format("showToastMessage :: message = %s", message));
-//        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
 }

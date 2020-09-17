@@ -49,7 +49,7 @@ class Place : Serializable {
     @Expose
     var approved: Boolean? = false
 
-    fun setImage(image: String?) {
+    fun     setImage(image: String?) {
         this.image = image
     }
 

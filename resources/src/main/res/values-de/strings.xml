@@ -46,4 +46,5 @@
     <string name="ok">OK</string>
     <string name="permission_camera_rationale">Zur Erkennung ist ein Zugriff auf die Kamera erforderlich</string>
     <string name="no_camera_permission">Sie haben die Kameraerlaubnis verweigert und können den Scanner nicht verwenden.</string>
+    <string name="delete_slot">Delete Slot</string>
 </resources>
