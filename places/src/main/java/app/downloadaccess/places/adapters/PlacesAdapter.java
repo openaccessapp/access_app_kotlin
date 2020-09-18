@@ -55,8 +55,10 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
         Picasso.get().load(RetrofitClientInstance.BASE_URL + "/api/image/" + place.getId()).into(holder.image);
 
         if (place.isFavourite()) {
+            holder.placeFav.setVisibility(View.VISIBLE);
             holder.placeFav.setImageResource(R.drawable.ic_heart_filled);
         } else {
+            holder.placeFav.setVisibility(View.VISIBLE);
             holder.placeFav.setImageResource(R.drawable.ic_heart);
         }
     }

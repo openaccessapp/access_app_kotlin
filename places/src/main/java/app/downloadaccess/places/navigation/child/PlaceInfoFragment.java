@@ -94,7 +94,7 @@ public class PlaceInfoFragment extends Fragment implements PlaceInfoAdapter.Adap
         prefs = getActivity().getSharedPreferences(Utils.PREFS_NAME, Context.MODE_PRIVATE);
         editPlace = view.findViewById(R.id.EditPlace);
         editPlace.setOnClickListener(v -> {
-
+            callback.editPlace(place);
         });
         View goBackButton = view.findViewById(R.id.goBack);
         goBackButton.setOnClickListener(v -> getParentFragment().getChildFragmentManager().popBackStack());
@@ -106,10 +106,6 @@ public class PlaceInfoFragment extends Fragment implements PlaceInfoAdapter.Adap
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(this, backButton);
-        View placeBox = view.findViewById(R.id.place_card);
-        placeBox.setOnClickListener(v -> {
-            callback.editPlace(place);
-        });
         setupPlace(view);
         button.setOnClickListener(v -> {
             dialog.setupDialog();

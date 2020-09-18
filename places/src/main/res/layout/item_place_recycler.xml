@@ -80,6 +80,7 @@
             android:layout_height="20dp"
             android:layout_marginEnd="17dp"
             android:src="@drawable/ic_edit"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/placeImage" />
 
