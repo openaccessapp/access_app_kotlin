@@ -75,10 +75,19 @@ public class BookingDialog {
 
         TextView placeName = dialogView.findViewById(R.id.titlePlanner);
         placeName.setText(placeNameValue);
+        int availableSlots = btn.length;
 
-        for (int i = 0; i < btn.length; i++) {
+        if((maxSlots-occupiedSlots)<7){
+            availableSlots = maxSlots - occupiedSlots;
+        }
+
+        if(maxSlots-occupiedSlots==0){
+            //Add appropriate message
+        }
+        for (int i = 0; i < availableSlots ; i++) {
             btn[i] = dialogView.findViewById(btn_id[i]);
             btn[i].setOnClickListener(listener);
+            btn[i].setVisibility(View.VISIBLE);
         }
 
         btn_unfocus = btn[0];

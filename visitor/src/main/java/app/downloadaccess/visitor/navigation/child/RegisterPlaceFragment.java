@@ -67,7 +67,6 @@ public class RegisterPlaceFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         AutoCompleteTextView editText = view.findViewById(R.id.LocEt);
 
-        //have some bug
         //ArrayAdapter<Place> adapter = new ArrayAdapter<Place>(this,R.layout.fragment_add_place,places);
         //editText.setAdapter(adapter);
 

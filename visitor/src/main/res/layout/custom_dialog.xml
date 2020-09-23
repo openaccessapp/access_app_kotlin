@@ -161,7 +161,8 @@
                     android:gravity="center"
                     android:stateListAnimator="@null"
                     android:text="@string/_1"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:visibility="invisible" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/two"
@@ -176,7 +177,8 @@
                     android:stateListAnimator="@null"
                     android:text="@string/_2"
                     android:textColor="@color/text_grey"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:visibility="invisible" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/three"
@@ -191,7 +193,8 @@
                     android:stateListAnimator="@null"
                     android:text="@string/_3"
                     android:textColor="@color/text_grey"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:visibility="invisible" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/four"
@@ -206,7 +209,8 @@
                     android:stateListAnimator="@null"
                     android:text="@string/_4"
                     android:textColor="@color/text_grey"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:visibility="invisible" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/five"
@@ -221,7 +225,8 @@
                     android:stateListAnimator="@null"
                     android:text="@string/_5"
                     android:textColor="@color/text_grey"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:visibility="invisible" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/six"
@@ -236,7 +241,8 @@
                     android:stateListAnimator="@null"
                     android:text="@string/_6"
                     android:textColor="@color/text_grey"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:visibility="invisible" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/seven"
@@ -251,7 +257,8 @@
                     android:stateListAnimator="@null"
                     android:text="@string/_7"
                     android:textColor="@color/text_grey"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:visibility="invisible" />
 
             </LinearLayout>
 
