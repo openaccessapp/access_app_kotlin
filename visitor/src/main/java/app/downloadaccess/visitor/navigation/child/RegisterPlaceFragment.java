@@ -32,8 +32,6 @@ public class RegisterPlaceFragment extends Fragment {
     private ImageView goBackButton;
     private FragmentCallback callback;
     private List<Place> places = new ArrayList<>();
-    private ArrayList<String> arr = new ArrayList<>();
-    //arr.add("Sofia");
     private RetrofitService retrofitService;
     private SharedPreferences prefs;
     private PlacesAdapter adapter;

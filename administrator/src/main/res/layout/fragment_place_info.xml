@@ -179,7 +179,7 @@
                     android:layout_height="15dp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_map_marker"
-                    android:tint="@color/icon_tint" />
+                    app:tint="@color/icon_tint" />
 
                 <TextView
                     android:id="@+id/locationTv"

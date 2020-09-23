@@ -150,12 +150,14 @@ public class PlanVisitAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 itemViewHolder.mainLayout.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.colorAccent));
                 itemViewHolder.hourFromTo.setTextColor(ContextCompat.getColor(mActivity, R.color.white));
                 itemViewHolder.occupiedMax.setTextColor(ContextCompat.getColor(mActivity, R.color.white));
+                itemViewHolder.priorityText.setTextColor(ContextCompat.getColor(mActivity, R.color.white));
                 itemViewHolder.checkIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.white));
                 itemViewHolder.personIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.white));
             } else {
                 itemViewHolder.mainLayout.setBackgroundTintList(ContextCompat.getColorStateList(mActivity, R.color.grey));
                 itemViewHolder.hourFromTo.setTextColor(ContextCompat.getColor(mActivity, R.color.disabled_tint));
                 itemViewHolder.occupiedMax.setTextColor(ContextCompat.getColor(mActivity, R.color.disabled_tint));
+                itemViewHolder.priorityText.setTextColor(ContextCompat.getColor(mActivity, R.color.grey));
                 itemViewHolder.checkIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.grey));
                 itemViewHolder.personIcon.setImageTintList(ContextCompat.getColorStateList(mActivity, R.color.disabled_tint));
             }
