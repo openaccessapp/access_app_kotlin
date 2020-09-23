@@ -32,8 +32,6 @@ public class RegisterPlaceFragment extends Fragment {
     private ImageView goBackButton;
     private FragmentCallback callback;
     private List<Place> places = new ArrayList<>();
-    private ArrayList<String> arr = new ArrayList<>();
-    arr.add("Sofia");
     private RetrofitService retrofitService;
     private SharedPreferences prefs;
     private PlacesAdapter adapter;
@@ -69,8 +67,9 @@ public class RegisterPlaceFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         AutoCompleteTextView editText = view.findViewById(R.id.LocEt);
 
-        ArrayAdapter<Place> adapter = new ArrayAdapter<Place>(this,R.layout.fragment_add_place,places);
-        editText.setAdapter(adapter);
+        //have some bug
+        //ArrayAdapter<Place> adapter = new ArrayAdapter<Place>(this,R.layout.fragment_add_place,places);
+        //editText.setAdapter(adapter);
 
         goBackButton = view.findViewById(R.id.goBack);
         goBackButton.setOnClickListener(v -> getParentFragment().getChildFragmentManager().popBackStack());
