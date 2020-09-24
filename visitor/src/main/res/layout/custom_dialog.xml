@@ -149,11 +149,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/personIcon"
                 android:layout_alignStart="@id/personIcon"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/one"
-                    android:layout_width="46dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:elevation="0dp"
@@ -166,7 +168,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/two"
-                    android:layout_width="42dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3dp"
                     android:layout_weight="1"
@@ -182,7 +184,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/three"
-                    android:layout_width="42dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3dp"
                     android:layout_weight="1"
@@ -198,7 +200,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/four"
-                    android:layout_width="42dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3dp"
                     android:layout_weight="1"
@@ -214,7 +216,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/five"
-                    android:layout_width="42dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3dp"
                     android:layout_weight="1"
@@ -230,7 +232,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/six"
-                    android:layout_width="42dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3dp"
                     android:layout_weight="1"
@@ -246,7 +248,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/seven"
-                    android:layout_width="42dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3dp"
                     android:layout_weight="1"

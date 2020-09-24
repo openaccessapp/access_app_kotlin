@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/goBack4"
+        android:id="@+id/goBack"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="12dp"
-        android:background="@drawable/ic_keyboard_backspace_black_24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tree_top2"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="15dp"
+        android:src="@drawable/ic_keyboard_backspace_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tree_top"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tree_top2" />
+        app:layout_constraintTop_toTopOf="@+id/tree_top" />
 
     <ImageView
-        android:id="@+id/tree_top2"
+        android:id="@+id/tree_top"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginTop="20dp"
@@ -33,12 +33,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tree_top2">
+        app:layout_constraintTop_toBottomOf="@+id/tree_top">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/add_place_header2"
@@ -47,8 +47,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="23dp"
                 android:fontFamily="@font/rubik_bold"
-                android:text="Edit Place"
                 android:gravity="center"
+                android:text="Edit Place"
                 android:textColor="@color/text_color_dark"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -63,8 +63,8 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/rounded_textview"
                 android:backgroundTint="@color/grey"
-                android:src="@mipmap/ic_launcher"
                 android:foregroundGravity="center"
+                android:src="@mipmap/ic_launcher"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />

@@ -92,7 +92,7 @@ public class PlaceInfoFragment extends Fragment implements PlaceInfoAdapter.Adap
         BookingDialog dialog = new BookingDialog((AppCompatActivity) getActivity(), place, null, this::getSlotsPlace);
         TextView button = view.findViewById(R.id.addSlot);
         prefs = getActivity().getSharedPreferences(Utils.PREFS_NAME, Context.MODE_PRIVATE);
-        editPlace = view.findViewById(R.id.EditPlace);
+        editPlace = view.findViewById(R.id.editPlace);
         editPlace.setOnClickListener(v -> {
             callback.editPlace(place);
         });

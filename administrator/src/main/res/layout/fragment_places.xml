@@ -32,16 +32,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-<!--    <ImageView-->
-<!--        android:id="@+id/openProfile"-->
-<!--        android:layout_width="24dp"-->
-<!--        android:layout_height="24dp"-->
-<!--        android:layout_marginEnd="35dp"-->
-<!--        android:background="?selectableItemBackgroundBorderless"-->
-<!--        android:src="@drawable/ic_profile_icon"-->
-<!--        app:layout_constraintBottom_toBottomOf="@id/tree_top"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="@id/tree_top" />-->
+    <!--    <ImageView-->
+    <!--        android:id="@+id/openProfile"-->
+    <!--        android:layout_width="24dp"-->
+    <!--        android:layout_height="24dp"-->
+    <!--        android:layout_marginEnd="35dp"-->
+    <!--        android:background="?selectableItemBackgroundBorderless"-->
+    <!--        android:src="@drawable/ic_profile_icon"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@id/tree_top"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="@id/tree_top" />-->
 
     <TextView
         android:id="@+id/choosePlaceTv"
@@ -56,7 +56,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tree_top" />
 
-    <LinearLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/searchInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
@@ -64,30 +64,37 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/rounded_linear"
-        android:paddingStart="14dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="14dp"
-        android:paddingBottom="10dp"
+        app:boxBackgroundColor="@color/grey"
+        app:boxCornerRadiusBottomEnd="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxStrokeColor="@color/grey"
+        app:boxStrokeWidth="0dp"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/choosePlaceTv">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:drawableEnd="@drawable/ic_search"
             android:ellipsize="end"
             android:fontFamily="@font/rubik_medium"
-            android:hint="Search..."
+            android:hint="@string/search"
+            android:imeOptions="actionSearch"
             android:lines="1"
+            android:padding="10dp"
             android:scrollHorizontally="true"
             android:singleLine="true"
             android:textColor="@color/text_color_dark"
             android:textColorHint="@color/text_grey"
             android:textSize="14sp" />
-    </LinearLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <HorizontalScrollView
@@ -177,23 +184,23 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-    <View
-        android:id="@+id/separatorView2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/grey"
-        app:layout_constraintTop_toBottomOf="@id/chipScrollView" />
+            <View
+                android:id="@+id/separatorView2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/grey"
+                app:layout_constraintTop_toBottomOf="@id/chipScrollView" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/placesRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:paddingBottom="10dp"
-        android:overScrollMode="never"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/separatorView2" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/placesRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:overScrollMode="never"
+                android:paddingBottom="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/separatorView2" />
 
-    </LinearLayout>
+        </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -54,7 +53,6 @@ public  class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCal
     private PlacesAdapter adapter;
     private List<Place> places;
     private SharedPreferences prefs;
-    private RelativeLayout loadingPanel;
     private MaterialButton addPlaceButton;
     private Integer currentPage = 0;
     private Integer visibleThreshold = 7;
@@ -94,7 +92,6 @@ public  class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCal
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        loadingPanel = view.findViewById(R.id.loadingPanel);
         addPlaceButton = view.findViewById(R.id.add_place_button);
         addPlaceButton.setOnClickListener(v -> {
             callback.onAddPlaceClicked(null);
@@ -208,7 +205,6 @@ public  class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCal
 
     void getAllPlaces() {
         isLoading = true;
-        loadingPanel.setVisibility(View.GONE);
         HashMap<String, Object> map = new HashMap<>();
         map.put("own", true);
 //        if (currentPage != null) {

@@ -47,23 +47,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tree_top" />
 
-    <LinearLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/searchInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/rounded_linear"
-        android:paddingStart="14dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="14dp"
-        android:paddingBottom="10dp"
+        app:boxBackgroundColor="@color/grey"
+        app:boxCornerRadiusBottomEnd="30dp"
+        app:boxCornerRadiusBottomStart="30dp"
+        app:boxCornerRadiusTopEnd="30dp"
+        app:boxCornerRadiusTopStart="30dp"
+        app:boxStrokeColor="@color/grey"
+        app:boxStrokeWidth="0dp"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tree_top">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/searchBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -71,13 +77,16 @@
             android:ellipsize="end"
             android:fontFamily="@font/rubik_medium"
             android:hint="@string/search"
+            android:imeOptions="actionSearch"
             android:lines="1"
+            android:padding="10dp"
             android:scrollHorizontally="true"
             android:singleLine="true"
             android:textColor="@color/text_color_dark"
             android:textColorHint="@color/text_grey"
             android:textSize="14sp" />
-    </LinearLayout>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <HorizontalScrollView
 
