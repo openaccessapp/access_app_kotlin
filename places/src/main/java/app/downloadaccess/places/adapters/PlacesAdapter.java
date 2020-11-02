@@ -52,7 +52,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
             holder.locationLayout.setVisibility(View.GONE);
         }
         holder.websiteTv.setText(place.getWww());
-        Picasso.get().load(RetrofitClientInstance.BASE_URL + "/api/image/" + place.getId()).into(holder.image);
+        Picasso.get().load(RetrofitClientInstance.BASE_URL + "/get-image/" + place.getId()).into(holder.image);
 
         if (place.isFavourite()) {
             holder.placeFav.setVisibility(View.VISIBLE);

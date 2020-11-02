@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClientInstance {
     @JvmField
-    var BASE_URL = "http://162.13.159.108:3001"
+    var BASE_URL = "https://downloadaccess.app/.netlify/functions"
     private val client = OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor().apply {
         level =
             if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE

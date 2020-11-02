@@ -223,7 +223,8 @@ public  class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCal
             map.put("onlyFavourites", onlyFavourites);
         }
 
-        retrofitService.getAllPlaces(Utils.getJwtToken(getContext()), prefs.getString("userId", null), map).enqueue(new Callback<JsonObject>() {
+        map.put("visitorId", prefs.getString("userId", null));
+        retrofitService.getAllPlaces(Utils.getJwtToken(getContext()), map).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
                 swipeRefreshLayout.setRefreshing(false);
