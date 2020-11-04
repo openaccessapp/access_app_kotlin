@@ -93,25 +93,27 @@ public class BookingDialog {
 
         startHourTV.setText(String.format("%02d:%02d", current.get(Calendar.HOUR_OF_DAY), current.get(Calendar.MINUTE)));
         startHourTV.setOnClickListener(v -> {
-            MaterialTimePicker startHourPicker = MaterialTimePicker.newInstance();
-            startHourPicker.setTimeFormat(CLOCK_24H);
-            startHourPicker.setListener(dialog -> {
-                startHourTV.setText(String.format("%02d:%02d", dialog.getHour(), dialog.getMinute()));
+            MaterialTimePicker startHourPicker = new MaterialTimePicker.Builder()
+                    .setTimeFormat(CLOCK_24H)
+                    .setHour(current.get(Calendar.HOUR_OF_DAY))
+                    .setMinute(current.get(Calendar.MINUTE))
+                    .build();
+            startHourPicker.addOnPositiveButtonClickListener(view -> {
+                startHourTV.setText(String.format("%02d:%02d", startHourPicker.getHour(), startHourPicker.getMinute()));
             });
-            startHourPicker.setHour(current.get(Calendar.HOUR_OF_DAY));
-            startHourPicker.setMinute(current.get(Calendar.MINUTE));
             startHourPicker.show(activity.getSupportFragmentManager(), startHourPicker.toString());
         });
 
         endHourTV.setText(String.format("%02d:%02d", current.get(Calendar.HOUR_OF_DAY), current.get(Calendar.MINUTE)));
         endHourTV.setOnClickListener(v -> {
-            MaterialTimePicker endHourPicker = MaterialTimePicker.newInstance();
-            endHourPicker.setTimeFormat(CLOCK_24H);
-            endHourPicker.setListener(dialog -> {
-                endHourTV.setText(String.format("%02d:%02d", dialog.getHour(), dialog.getMinute()));
+            MaterialTimePicker endHourPicker = new MaterialTimePicker.Builder()
+                    .setTimeFormat(CLOCK_24H)
+                    .setHour(current.get(Calendar.HOUR_OF_DAY))
+                    .setMinute(current.get(Calendar.MINUTE))
+                    .build();
+            endHourPicker.addOnPositiveButtonClickListener(view -> {
+                endHourTV.setText(String.format("%02d:%02d", endHourPicker.getHour(), endHourPicker.getMinute()));
             });
-            endHourPicker.setHour(current.get(Calendar.HOUR_OF_DAY));
-            endHourPicker.setMinute(current.get(Calendar.MINUTE));
             endHourPicker.show(activity.getSupportFragmentManager(), endHourPicker.toString());
         });
 
@@ -151,7 +153,7 @@ public class BookingDialog {
     }
 
     public void addNewSlot(String placeId, Slot slot) {
-        slot.setVisitorId(prefs.getString("userId", null));
+        slot.setUserId(prefs.getString("userId", null));
         retrofitService.addSlot(Utils.getJwtToken(activity), placeId, slot).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(@NotNull Call<Void> call, @NotNull Response<Void> response) {

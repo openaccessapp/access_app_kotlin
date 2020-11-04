@@ -7,78 +7,81 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface RetrofitService {
-    @GET(".netlify/functions/generate-user-id")
+    @GET("generate-user-id")
     fun getUserId(@Header("Authorization") token: String?): Call<JsonObject>
 
-    @GET(".netlify/functions/get-place-types")
+    @GET("get-place-types")
     fun getPlaceTypes(@Header("Authorization") token: String?): Call<JsonObject>
 
-    @POST(".netlify/functions/approve-place/{placeId}/{approvedStatus}")
+    @POST("approve-place/{placeId}/{approvedStatus}")
     fun setApproved(
         @Header("Authorization") token: String?,
         @Path("placeId") placeId: String?,
         @Path("approvedStatus") approvedStatus: Boolean
     ): Call<JsonObject?>?
 
-    @POST(".netlify/functions/get-places/{visitorId}")
+    @POST("get-places/{userId}")
     fun getAllPlaces(
         @Header("Authorization") token: String?,
-        @Path("visitorId") placeId: String?,
+        @Path("userId") placeId: String?,
         @Body body: HashMap<String?, Any?>?
     ): Call<JsonObject>
 
-    @POST(".netlify/functions/get-place-slots/{visitorId}/{placeId}")
+    @POST("get-place-slots/{userId}/{placeId}")
     fun getSlotsPlace(
         @Header("Authorization") token: String?,
-        @Path("visitorId") visitorId: String?,
+        @Path("userId") userId: String?,
         @Path("placeId") placeId: String?
     ): Call<JsonObject>
 
-    @GET(".netlify/functions/get-bookings/{visitorId}")
-    fun getUserVisits(@Header("Authorization") token: String?, @Path("visitorId") visitorId: String?): Call<JsonObject>
+    @GET("get-bookings/{userId}")
+    fun getUserVisits(
+        @Header("Authorization") token: String?,
+        @Path("userId") userId: String?
+    ): Call<JsonObject>
 
-    @GET(".netlify/functions/delete-booking/{visitorId}/{slotId}")
+    @GET("delete-booking/{userId}/{slotId}")
     fun deleteVisit(
         @Header("Authorization") token: String?,
-        @Path("visitorId") visitorId: String?,
+        @Path("userId") userId: String?,
         @Path("slotId") slotId: String?
     ): Call<JsonObject>
 
-    @DELETE(".netlify/functions/delete-slot/{slotId}/{userId}")
+    @DELETE("delete-slot/{slotId}/{userId}")
     fun deleteSlot(
         @Header("Authorization") token: String?,
         @Path("slotId") slotId: String?,
         @Path("userId") userId: String?
     ): Call<JsonObject>
 
-    @POST(".netlify/functions/add-place")
+    @POST("add-place")
     fun addPlace(
         @Header("Authorization") token: String?,
         @Body place: Place?
     ): Call<Void>
 
-    @PUT(".netlify/functions/update-place/{placeId}")
+    @PUT("update-place/{placeId}")
     fun editPlace(
         @Header("Authorization") token: String?,
         @Body place: Place?,
         @Path("placeId") placeId: String?
     ): Call<Void>
 
-    @POST(".netlify/functions/add-slot/{placeId}")
+    @POST("add-slot/{placeId}")
     fun addSlot(
         @Header("Authorization") token: String?,
         @Path("placeId") placeId: String?,
         @Body slot: Slot?
     ): Call<Void>
 
-    @GET(".netlify/functions/change-favourite/{visitorId}/{placeId}")
+    @GET("change-favourite/{userId}/{placeId}")
     fun addRemoveFavourite(
         @Header("Authorization") token: String?,
-        @Path("visitorId") visitorId: String?,
+        @Path("userId") userId: String?,
         @Path("placeId") placeId: String?
     ): Call<JsonObject?>?
 
-    @POST(".netlify/functions/visit")
+    @POST("visit")
     fun planVisit(
         @Header("Authorization") token: String?,
         @Body body: HashMap<String?, Any?>?

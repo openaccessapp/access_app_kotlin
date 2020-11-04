@@ -75,7 +75,7 @@ public class VisitInfoFragment extends Fragment {
         placeName = view.findViewById(R.id.placeName);
         placeName.setText(place.getName());
         image = view.findViewById(R.id.image);
-        Picasso.get().load(RetrofitClientInstance.BASE_URL + ".netlify/functions/get-image/" + place.getId()).into(image);
+        Picasso.get().load(RetrofitClientInstance.BASE_URL + "get-image/" + place.getId()).into(image);
 
     }
 }

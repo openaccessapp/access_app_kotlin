@@ -135,7 +135,7 @@ public class PlaceInfoFragment extends Fragment implements PlaceInfoAdapter.Adap
         websiteTv = view.findViewById(R.id.websiteTv);
         websiteTv.setText(place.getWww());
         image = view.findViewById(R.id.image);
-        Picasso.get().load(RetrofitClientInstance.BASE_URL + ".netlify/functions/get-image/" + place.getId()).into(image);
+        Picasso.get().load(RetrofitClientInstance.BASE_URL + "get-image/" + place.getId()).into(image);
     }
 
     private void getSlotsPlace() {

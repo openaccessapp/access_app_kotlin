@@ -92,7 +92,7 @@ public class AddPlaceFragment extends Fragment {
         imagePlace = view.findViewById(R.id.imagePlaceholder);
         if (place != null) {
             ((TextView) view.findViewById(R.id.add_place_header)).setText("Edit Place");
-            Picasso.get().load(RetrofitClientInstance.BASE_URL + ".netlify/functions/get-image/" + place.getId()).into(imagePlace);
+            Picasso.get().load(RetrofitClientInstance.BASE_URL + "get-image/" + place.getId()).into(imagePlace);
             ((EditText) view.findViewById(R.id.placeNameEt)).setText(place.getName());
             ((EditText) view.findViewById(R.id.LocEt)).setText(place.getAddress());
             ((EditText) view.findViewById(R.id.describeEt)).setText(place.getDescription());

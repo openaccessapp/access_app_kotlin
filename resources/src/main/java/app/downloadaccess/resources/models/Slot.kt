@@ -40,9 +40,9 @@ class Slot {
     @Expose
     var friends: Int? = null
 
-    @SerializedName("visitorId")
+    @SerializedName("userId")
     @Expose
-    var visitorId: String? = null
+    var userId: String? = null
 
     constructor() {}
     constructor(from: String?, viewType: Int) {

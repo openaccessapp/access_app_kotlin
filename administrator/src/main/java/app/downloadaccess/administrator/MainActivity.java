@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     private RetrofitService retrofitService;
     private Fragment placeFragmentContainer;
     private CustomViewPager viewPager;
-    MenuItem prevMenuItem;
     private SharedPreferences prefs;
 
     @Override

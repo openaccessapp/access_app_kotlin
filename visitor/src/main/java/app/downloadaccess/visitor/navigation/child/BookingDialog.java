@@ -152,7 +152,7 @@ public class BookingDialog {
         HashMap<String, Object> body = new HashMap<>();
         body.put("slotId", slotId);
         body.put("visitors", visitorsCount);
-        body.put("visitorId", prefs.getString("userId", null));
+        body.put("userId", prefs.getString("userId", null));
         retrofitService.planVisit(Utils.getJwtToken(activity), body).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {

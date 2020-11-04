@@ -6,22 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/loadingPanel"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true" />
-    </RelativeLayout>
-
     <ImageView
         android:id="@+id/tree_top"
         android:layout_width="45dp"
@@ -32,157 +16,146 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--    <ImageView-->
-    <!--        android:id="@+id/openProfile"-->
-    <!--        android:layout_width="24dp"-->
-    <!--        android:layout_height="24dp"-->
-    <!--        android:layout_marginEnd="35dp"-->
-    <!--        android:background="?selectableItemBackgroundBorderless"-->
-    <!--        android:src="@drawable/ic_profile_icon"-->
-    <!--        app:layout_constraintBottom_toBottomOf="@id/tree_top"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="@id/tree_top" />-->
-
-    <TextView
-        android:id="@+id/choosePlaceTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="15dp"
-        android:fontFamily="@font/rubik_bold"
-        android:text="@string/choose_place"
-        android:textColor="@color/text_color_dark"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tree_top" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/searchInputLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="16dp"
-        app:boxBackgroundColor="@color/grey"
-        app:boxCornerRadiusBottomEnd="30dp"
-        app:boxCornerRadiusBottomStart="30dp"
-        app:boxCornerRadiusTopEnd="30dp"
-        app:boxCornerRadiusTopStart="30dp"
-        app:boxStrokeColor="@color/grey"
-        app:boxStrokeWidth="0dp"
-        app:hintAnimationEnabled="false"
-        app:hintEnabled="false"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choosePlaceTv">
+        app:layout_constraintTop_toBottomOf="@+id/tree_top">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/searchBar"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:drawableEnd="@drawable/ic_search"
-            android:ellipsize="end"
-            android:fontFamily="@font/rubik_medium"
-            android:hint="@string/search"
-            android:imeOptions="actionSearch"
-            android:lines="1"
-            android:padding="10dp"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:textColor="@color/text_color_dark"
-            android:textColorHint="@color/text_grey"
-            android:textSize="14sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content">
 
-
-    <HorizontalScrollView
-
-        android:id="@+id/chipScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:scrollbars="none"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchInputLayout">
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chip_group"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            app:checkedChip="@id/option1"
-            app:chipSpacing="8dp"
-            app:selectionRequired="true"
-            app:singleSelection="true">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/option1"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
+            <TextView
+                android:id="@+id/choosePlaceTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/rubik_medium"
-                android:text="Non-approved"
-                android:textColor="@color/chip_text_state_list"
-                android:textSize="12sp"
-                app:chipBackgroundColor="@color/chip_color_state_list"
-                app:chipCornerRadius="30dp"
-                app:chipIconEnabled="true"
-                app:chipIconSize="20dp"
-                app:chipIconTint="@color/chip_icon_state_list"
-                app:iconStartPadding="10dp" />
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/rubik_bold"
+                android:text="@string/choose_place"
+                android:textColor="@color/text_color_dark"
+                android:textSize="30sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/option2"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/searchInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/rubik_medium"
-                android:padding="10dp"
-                android:text="Approved"
-                android:textColor="@color/chip_text_state_list"
-                android:textSize="12sp"
-                app:chipBackgroundColor="@color/chip_color_state_list"
-                app:chipCornerRadius="30dp"
-                app:chipIconEnabled="true"
-                app:chipIconSize="20dp"
-                app:chipIconTint="@color/chip_icon_state_list"
-                app:iconStartPadding="10dp" />
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                app:boxBackgroundColor="@color/grey"
+                app:boxCornerRadiusBottomEnd="30dp"
+                app:boxCornerRadiusBottomStart="30dp"
+                app:boxCornerRadiusTopEnd="30dp"
+                app:boxCornerRadiusTopStart="30dp"
+                app:boxStrokeColor="@color/grey"
+                app:boxStrokeWidth="0dp"
+                app:hintAnimationEnabled="false"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/choosePlaceTv">
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/option3"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/searchBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:drawableEnd="@drawable/ic_search"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/rubik_medium"
+                    android:hint="@string/search"
+                    android:imeOptions="actionSearch"
+                    android:lines="1"
+                    android:padding="10dp"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+                    android:textColor="@color/text_color_dark"
+                    android:textColorHint="@color/text_grey"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <HorizontalScrollView
+
+                android:id="@+id/chipScrollView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/rubik_medium"
-                android:gravity="center"
-                android:text="All"
-                android:textColor="@color/chip_text_state_list"
-                android:textSize="12sp"
-                app:chipBackgroundColor="@color/chip_color_state_list"
-                app:chipCornerRadius="30dp"
-                app:chipIconEnabled="true"
-                app:chipIconSize="20dp"
-                app:chipIconTint="@color/chip_icon_state_list"
-                app:textStartPadding="12dp" />
+                android:layout_marginStart="16dp"
+                android:scrollbars="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/searchInputLayout">
 
-        </com.google.android.material.chip.ChipGroup>
-    </HorizontalScrollView>
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chip_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:checkedChip="@id/option1"
+                    app:chipSpacing="8dp"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
 
-    <ScrollView
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/option1"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rubik_medium"
+                        android:text="Non-approved"
+                        android:textColor="@color/chip_text_state_list"
+                        android:textSize="12sp"
+                        app:chipBackgroundColor="@color/chip_color_state_list"
+                        app:chipCornerRadius="30dp"
+                        app:chipIconEnabled="true"
+                        app:chipIconSize="20dp"
+                        app:chipIconTint="@color/chip_icon_state_list"
+                        app:iconStartPadding="10dp" />
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chipScrollView">
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/option2"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rubik_medium"
+                        android:padding="10dp"
+                        android:text="Approved"
+                        android:textColor="@color/chip_text_state_list"
+                        android:textSize="12sp"
+                        app:chipBackgroundColor="@color/chip_color_state_list"
+                        app:chipCornerRadius="30dp"
+                        app:chipIconEnabled="true"
+                        app:chipIconSize="20dp"
+                        app:chipIconTint="@color/chip_icon_state_list"
+                        app:iconStartPadding="10dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/option3"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rubik_medium"
+                        android:gravity="center"
+                        android:text="All"
+                        android:textColor="@color/chip_text_state_list"
+                        android:textSize="12sp"
+                        app:chipBackgroundColor="@color/chip_color_state_list"
+                        app:chipCornerRadius="30dp"
+                        app:chipIconEnabled="true"
+                        app:chipIconSize="20dp"
+                        app:chipIconTint="@color/chip_icon_state_list"
+                        app:textStartPadding="12dp" />
+
+                </com.google.android.material.chip.ChipGroup>
+            </HorizontalScrollView>
 
             <View
                 android:id="@+id/separatorView2"
@@ -192,15 +165,24 @@
                 android:background="@color/grey"
                 app:layout_constraintTop_toBottomOf="@id/chipScrollView" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/placesRecyclerView"
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipeRefresh"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:overScrollMode="never"
                 android:paddingBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/separatorView2" />
+                app:layout_constraintTop_toBottomOf="@id/separatorView2">
 
-        </LinearLayout>
-    </ScrollView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/placesRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:overScrollMode="never"
+                    android:paddingBottom="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/separatorView2" />
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

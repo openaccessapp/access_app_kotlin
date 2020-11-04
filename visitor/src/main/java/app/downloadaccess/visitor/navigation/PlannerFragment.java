@@ -132,7 +132,7 @@ public class PlannerFragment extends Fragment implements VisitsAdapter.AdapterCa
         retrofitService.getUserVisits(Utils.getJwtToken(getContext()), prefs.getString("userId", null)).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if (response.body().get("visits").getAsJsonObject() != null) {
+                if (response.body().get("visits") != null) {
                     visits.clear();
                     Gson gson = new Gson();
                     Set<Map.Entry<String, JsonElement>> entries = response.body().getAsJsonObject().get("visits").getAsJsonObject().entrySet();

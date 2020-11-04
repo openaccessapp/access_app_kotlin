@@ -144,7 +144,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
             view.findViewById(R.id.locationLayout).setVisibility(View.GONE);
         }
         image = view.findViewById(R.id.image);
-        Picasso.get().load(RetrofitClientInstance.BASE_URL + ".netlify/functions/get-image/" + place.getId()).into(image);
+        Picasso.get().load(RetrofitClientInstance.BASE_URL + "get-image/" + place.getId()).into(image);
     }
 
     private void getSlotsPlace() {

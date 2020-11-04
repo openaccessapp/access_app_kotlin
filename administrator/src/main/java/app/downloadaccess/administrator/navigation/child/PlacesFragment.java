@@ -9,13 +9,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -37,7 +37,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCallback {
+public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCallback, SwipeRefreshLayout.OnRefreshListener {
 
     private static final String TAG = PlacesFragment.class.getSimpleName();
     private FragmentCallback callback;
@@ -47,12 +47,13 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     private PlacesAdapter adapter;
     private List<Place> places;
     private SharedPreferences prefs;
-    private RelativeLayout loadingPanel;
     private int currentPage = 0;
     private int visibleThreshold = 7;
     private boolean isLoading = false;
     private boolean reachedEnd = false;
     private int checkedId = -1;
+    private Boolean currentChipState;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public PlacesFragment() {
         // Required empty public constructor
@@ -84,21 +85,23 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        loadingPanel = view.findViewById(R.id.loadingPanel);
         chipGroup = view.findViewById(R.id.chip_group);
         chipGroup.setOnCheckedChangeListener((group, checkedId) -> {
             this.checkedId = checkedId;
             Chip chip = group.findViewById(checkedId);
             if (chip.getText().equals("Approved")) {
-                getAllPlaces(true);
+                currentChipState = true;
             } else if (chip.getText().equals("Non-approved")) {
-                getAllPlaces(false);
+                currentChipState = false;
             } else if (chip.getText().equals("All")) {
-                getAllPlaces(null);
+                currentChipState = null;
             }
+            getAllPlaces(currentChipState);
         });
 
         places = new ArrayList<>();
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefresh);
+        swipeRefreshLayout.setOnRefreshListener(this);
         retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
         recyclerView = view.findViewById(R.id.placesRecyclerView);
         adapter = new PlacesAdapter(getContext(), places);
@@ -137,12 +140,13 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
                 }
                 Chip chip = chipGroup.findViewById(chipGroup.getCheckedChipId());
                 if (chip.getText().equals("Approved")) {
-                    getAllPlaces(true);
+                    currentChipState = true;
                 } else if (chip.getText().equals("Non-approved")) {
-                    getAllPlaces(false);
+                    currentChipState = false;
                 } else if (chip.getText().equals("All")) {
-                    getAllPlaces(null);
+                    currentChipState = null;
                 }
+                getAllPlaces(currentChipState);
             }
         });
         if (prefs.getString("userId", null) != null) {
@@ -152,12 +156,13 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
             chipGroup.check(checkedId);
             Chip chip = chipGroup.findViewById(checkedId);
             if (chip.getText().equals("Approved")) {
-                getAllPlaces(true);
+                currentChipState = true;
             } else if (chip.getText().equals("Non-approved")) {
-                getAllPlaces(false);
+                currentChipState = false;
             } else if (chip.getText().equals("All")) {
-                getAllPlaces(null);
+                currentChipState = null;
             }
+            getAllPlaces(currentChipState);
         }
     }
 
@@ -173,9 +178,15 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         startActivity(intent);
     }
 
+    private void reset() {
+        currentPage = 0;
+        places.clear();
+        adapter.notifyDataSetChanged();
+        getAllPlaces(currentChipState);
+    }
+
     void getAllPlaces(Boolean isApproved) {
         isLoading = true;
-        loadingPanel.setVisibility(View.GONE);
         HashMap<String, Object> map = new HashMap<>();
         if (isApproved != null) {
             map.put("approved", isApproved);
@@ -183,6 +194,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         retrofitService.getAllPlaces(Utils.getJwtToken(getContext()), prefs.getString("userId", null), map).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                swipeRefreshLayout.setRefreshing(false);
                 Gson gson = new Gson();
                 if (response.body().get("places").getAsJsonArray() != null) {
                     ArrayList<Place> newPlaces = gson.fromJson(response.body().get("places"), new TypeToken<ArrayList<Place>>() {
@@ -202,11 +214,17 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
+                swipeRefreshLayout.setRefreshing(false);
                 Log.d(TAG, t.getLocalizedMessage());
                 isLoading = false;
             }
         });
 
+    }
+
+    @Override
+    public void onRefresh() {
+        reset();
     }
 
 }
