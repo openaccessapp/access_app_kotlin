@@ -192,7 +192,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         retrofitService.addRemoveFavourite(Utils.getJwtToken(getContext()), prefs.getString("userId", null), places.get(position).getId()).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
-                if (response.code() != 204 && response.errorBody() != null) {
+                if (response.code() > 300 && response.errorBody() != null) {
                     try {
                         JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();
                         Toast.makeText(getContext(), errorObject.get("message").getAsString(), Toast.LENGTH_SHORT).show();
@@ -248,8 +248,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         }
         map.put("approved", true);
 
-        map.put("visitorId", prefs.getString("userId", null));
-        retrofitService.getAllPlaces(Utils.getJwtToken(getContext()), map).enqueue(new Callback<JsonObject>() {
+        retrofitService.getAllPlaces(Utils.getJwtToken(getContext()), prefs.getString("userId", null), map).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
                 swipeRefreshLayout.setRefreshing(false);

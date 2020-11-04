@@ -49,9 +49,9 @@ class Place : Serializable {
     @Expose
     var approved: Boolean? = false
 
-    @SerializedName("visitorId")
+    @SerializedName("userId")
     @Expose
-    var visitorId: String? = null
+    var userId: String? = null
 
     fun     setImage(image: String?) {
         this.image = image
