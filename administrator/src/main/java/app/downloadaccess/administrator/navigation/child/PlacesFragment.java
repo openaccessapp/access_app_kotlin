@@ -180,7 +180,8 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         if (isApproved != null) {
             map.put("approved", isApproved);
         }
-        retrofitService.getAllPlaces(Utils.getJwtToken(getContext()), prefs.getString("userId", null), map).enqueue(new Callback<JsonObject>() {
+        map.put("visitorId", prefs.getString("userId", null));
+        retrofitService.getAllPlaces(Utils.getJwtToken(getContext()), map).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 Gson gson = new Gson();

@@ -152,7 +152,8 @@ public class BookingDialog {
         HashMap<String, Object> body = new HashMap<>();
         body.put("slotId", slotId);
         body.put("visitors", visitorsCount);
-        retrofitService.planVisit(Utils.getJwtToken(activity), prefs.getString("userId", null), body).enqueue(new Callback<JsonObject>() {
+        body.put("visitorId", prefs.getString("userId", null));
+        retrofitService.planVisit(Utils.getJwtToken(activity), body).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
                 if (response.code() != 204 && response.errorBody() != null) {

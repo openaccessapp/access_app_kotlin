@@ -40,6 +40,10 @@ class Slot {
     @Expose
     var friends: Int? = null
 
+    @SerializedName("visitorId")
+    @Expose
+    var visitorId: String? = null
+
     constructor() {}
     constructor(from: String?, viewType: Int) {
         this.from = from

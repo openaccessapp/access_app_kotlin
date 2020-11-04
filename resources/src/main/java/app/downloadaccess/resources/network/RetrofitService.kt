@@ -7,84 +7,79 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface RetrofitService {
-    @GET("/api/user")
+    @GET("/generate-user-id")
     fun getUserId(@Header("Authorization") token: String?): Call<JsonObject>
 
-    @GET("/api/place-types")
+    @GET("/get-place-types")
     fun getPlaceTypes(@Header("Authorization") token: String?): Call<JsonObject>
 
-    @GET("/api/place/{placeId}/approve/{approvedStatus}")
+    @POST("/approve-place/{placeId}/{approvedStatus}")
     fun setApproved(
         @Header("Authorization") token: String?,
         @Path("placeId") placeId: String?,
         @Path("approvedStatus") approvedStatus: Boolean
     ): Call<JsonObject?>?
 
-    @GET("/api/place/{visitorId}")
+    @POST("/get-places/{visitorId}")
     fun getAllPlaces(
         @Header("Authorization") token: String?,
-        @Path("visitorId") visitorId: String?,
-        @QueryMap map: HashMap<String, Any>
+        @Body body: HashMap<String?, Any?>?
     ): Call<JsonObject>
 
-    @GET("/api/place/{visitorId}/{placeId}")
+    @POST("/get-place-slots/{visitorId}/{placeId}")
     fun getSlotsPlace(
         @Header("Authorization") token: String?,
         @Path("visitorId") visitorId: String?,
         @Path("placeId") placeId: String?
     ): Call<JsonObject>
 
-    @GET("/api/user/{visitorId}/visits")
+    @GET("/get-bookings/{visitorId}")
     fun getUserVisits(@Header("Authorization") token: String?, @Path("visitorId") visitorId: String?): Call<JsonObject>
 
-    @DELETE("/api/user/{visitorId}/visit/{slotId}")
+    @GET("/delete-booking/{visitorId}/{slotId}")
     fun deleteVisit(
         @Header("Authorization") token: String?,
         @Path("visitorId") visitorId: String?,
         @Path("slotId") slotId: String?
     ): Call<JsonObject>
 
-    @DELETE("/api/slot/{slotId}/{userId}")
+    @DELETE("/delete-slot/{slotId}/{userId}")
     fun deleteSlot(
         @Header("Authorization") token: String?,
         @Path("slotId") slotId: String?,
         @Path("userId") userId: String?
     ): Call<JsonObject>
 
-    @POST("/api/place/{visitorId}")
+    @POST("/add-place")
     fun addPlace(
         @Header("Authorization") token: String?,
-        @Body place: Place?,
-        @Path("visitorId") visitorId: String?
+        @Body place: Place?
     ): Call<Void>
 
-    @PUT("/api/place/{visitorId}/{placeId}")
+    @PUT("/update-place/{placeId}")
     fun editPlace(
         @Header("Authorization") token: String?,
         @Body place: Place?,
-        @Path("visitorId") visitorId: String?,
         @Path("placeId") placeId: String?
     ): Call<Void>
 
-    @POST("/api/slot/{placeId}/{visitorId}")
+    @POST("/add-slot/{placeId}")
     fun addSlot(
         @Header("Authorization") token: String?,
         @Path("placeId") placeId: String?,
-        @Path("visitorId") visitorId: String?,
         @Body slot: Slot?
     ): Call<Void>
 
-    @GET("/api/user/{visitorId}/favourites/{placeId}")
+    @GET("/change-favourite/{visitorId}/{placeId}")
     fun addRemoveFavourite(
         @Header("Authorization") token: String?,
         @Path("visitorId") visitorId: String?,
         @Path("placeId") placeId: String?
     ): Call<JsonObject?>?
 
-    @POST("/api/user/{visitorId}/visit")
+    @POST("/visit")
     fun planVisit(
         @Header("Authorization") token: String?,
-        @Path("visitorId") visitorId: String?,
         @Body body: HashMap<String?, Any?>?
     ): Call<JsonObject?>?
 }
