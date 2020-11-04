@@ -118,7 +118,7 @@ public class PlaceInfoFragment extends Fragment {
                 }
             });
         });
-        Picasso.get().load(RetrofitClientInstance.BASE_URL + "/get-image/" + place.getId()).into(image);
+        Picasso.get().load(RetrofitClientInstance.BASE_URL + ".netlify/functions/get-image/" + place.getId()).into(image);
     }
 
     private void isPlaceApproved(boolean isChecked) {

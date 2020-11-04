@@ -156,7 +156,7 @@ public class BookingDialog {
             @Override
             public void onResponse(@NotNull Call<Void> call, @NotNull Response<Void> response) {
                 callback.onDismiss();
-                if (response.code() != 201 && response.errorBody() != null) {
+                if (response.code() > 300 && response.errorBody() != null) {
                     try {
                         JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();
                         Toast.makeText(activity, errorObject.get("message").getAsString(), Toast.LENGTH_SHORT).show();
@@ -180,7 +180,7 @@ public class BookingDialog {
         retrofitService.deleteSlot(Utils.getJwtToken(activity), slotId, prefs.getString("userId", null)).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
-                if (response.code() != 201 && response.errorBody() != null) {
+                if (response.code() > 300 && response.errorBody() != null) {
                     try {
                         JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();
                         Toast.makeText(activity, errorObject.get("message").getAsString(), Toast.LENGTH_LONG).show();

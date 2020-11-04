@@ -144,14 +144,14 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
             view.findViewById(R.id.locationLayout).setVisibility(View.GONE);
         }
         image = view.findViewById(R.id.image);
-        Picasso.get().load(RetrofitClientInstance.BASE_URL + "/get-image/" + place.getId()).into(image);
+        Picasso.get().load(RetrofitClientInstance.BASE_URL + ".netlify/functions/get-image/" + place.getId()).into(image);
     }
 
     private void getSlotsPlace() {
         retrofitService.getSlotsPlace(Utils.getJwtToken(getContext()), prefs.getString("userId", null), place.getId()).enqueue(new Callback<JsonObject>() {
 //            @Override
 //            public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
-//                if (response.code() != 204 && response.errorBody() != null) {
+//                if (response.code() > 300 && response.errorBody() != null) {
 //                    try {
 //                        JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();
 //                        Toast.makeText(getContext(), errorObject.get("message").getAsString(), Toast.LENGTH_SHORT).show();
@@ -196,7 +196,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
 
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
-                if (response.code() != 204 && response.errorBody() != null) {
+                if (response.code() > 300 && response.errorBody() != null) {
                     try {
                         JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();
                         Toast.makeText(getContext(), errorObject.get("message").getAsString(), Toast.LENGTH_SHORT).show();

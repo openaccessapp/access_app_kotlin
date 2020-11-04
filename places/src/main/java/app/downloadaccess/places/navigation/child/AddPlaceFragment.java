@@ -92,7 +92,7 @@ public class AddPlaceFragment extends Fragment {
         imagePlace = view.findViewById(R.id.imagePlaceholder);
         if (place != null) {
             ((TextView) view.findViewById(R.id.add_place_header)).setText("Edit Place");
-            Picasso.get().load(RetrofitClientInstance.BASE_URL + "/get-image/" + place.getId()).into(imagePlace);
+            Picasso.get().load(RetrofitClientInstance.BASE_URL + ".netlify/functions/get-image/" + place.getId()).into(imagePlace);
             ((EditText) view.findViewById(R.id.placeNameEt)).setText(place.getName());
             ((EditText) view.findViewById(R.id.LocEt)).setText(place.getAddress());
             ((EditText) view.findViewById(R.id.describeEt)).setText(place.getDescription());
@@ -138,12 +138,12 @@ public class AddPlaceFragment extends Fragment {
             place.setDescription(((EditText) view.findViewById(R.id.describeEt)).getText().toString());
             place.setWww(((EditText) view.findViewById(R.id.urlEt)).getText().toString());
             place.setLocation(((EditText) view.findViewById(R.id.LocEt)).getText().toString());
-            place.setVisitorId(prefs.getString("userId", null));
+            place.setUserId(prefs.getString("userId", null));
             if (place.getId() == null) {
                 retrofitService.addPlace(Utils.getJwtToken(getContext()), place).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(@NotNull Call<Void> call, @NotNull Response<Void> response) {
-                        if (response.code() == 201) {
+                        if (response.code() < 300) {
                             Toast.makeText(getContext(), "Place saved!", Toast.LENGTH_SHORT).show();
                             getParentFragment().getChildFragmentManager().popBackStack();
                             callback.onReturnFromAdd();
@@ -166,7 +166,7 @@ public class AddPlaceFragment extends Fragment {
                 retrofitService.editPlace(Utils.getJwtToken(getContext()), place, place.getId()).enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(@NotNull Call<Void> call, @NotNull Response<Void> response) {
-                        if (response.code() == 200) {
+                        if (response.code() < 300) {
                             Toast.makeText(getContext(), "Place saved!", Toast.LENGTH_SHORT).show();
                             getParentFragment().getChildFragmentManager().popBackStack();
                         } else {

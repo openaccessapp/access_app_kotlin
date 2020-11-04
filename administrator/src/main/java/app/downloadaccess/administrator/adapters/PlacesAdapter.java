@@ -43,7 +43,7 @@ public class PlacesAdapter extends RecyclerView.Adapter<PlacesAdapter.ViewHolder
         holder.placeName.setText(place.getName());
         holder.placeDesc.setText(place.getDescription());
         holder.websiteTv.setText(place.getWww());
-        Picasso.get().load(RetrofitClientInstance.BASE_URL + "/get-image/" + place.getId()).into(holder.image);
+        Picasso.get().load(RetrofitClientInstance.BASE_URL + ".netlify/functions/get-image/" + place.getId()).into(holder.image);
     }
 
     @NonNull
