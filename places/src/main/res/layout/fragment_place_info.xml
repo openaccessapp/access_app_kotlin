@@ -54,66 +54,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tree_top" />
 
-    <ScrollView
-
+    <include
+        android:id="@+id/place_card"
+        layout="@layout/item_place_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@id/textView" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/addSlotsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/place_card">
+
+        <TextView
+            android:id="@+id/addSlot"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_gravity="center"
+            android:background="?attr/selectableItemBackground"
+            android:drawableLeft="@drawable/ic_baseline_add_24"
+            android:drawableTint="@color/colorPrimary"
+            android:fontFamily="@font/rubik_medium"
+            android:gravity="center"
+            android:text="Add Slots"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp" />
+    </LinearLayout>
 
-
-            <include
-                android:id="@+id/place_card"
-                layout="@layout/item_place_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textView" />
-
-            <LinearLayout
-                android:id="@+id/addSlotsLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/place_card">
-
-                <TextView
-                    android:id="@+id/addSlot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="?attr/selectableItemBackground"
-                    android:drawableLeft="@drawable/ic_baseline_add_24"
-                    android:drawableTint="@color/colorPrimary"
-                    android:fontFamily="@font/rubik_medium"
-                    android:gravity="center"
-                    android:text="Add Slots"
-                    android:textColor="@color/colorPrimary"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerPlanVisit"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:overScrollMode="never"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/addSlotsLayout" />
-
-        </LinearLayout>
-    </ScrollView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerPlanVisit"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addSlotsLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

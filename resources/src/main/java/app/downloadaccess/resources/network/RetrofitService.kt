@@ -27,7 +27,7 @@ interface RetrofitService {
         @Body body: HashMap<String?, Any?>?
     ): Call<JsonObject>
 
-    @POST("get-place-slots/{userId}/{placeId}")
+    @GET("get-place-slots/{userId}/{placeId}")
     fun getSlotsPlace(
         @Header("Authorization") token: String?,
         @Path("userId") userId: String?,

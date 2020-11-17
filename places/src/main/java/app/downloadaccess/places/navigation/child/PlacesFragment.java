@@ -205,8 +205,8 @@ public  class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCal
 
     void getAllPlaces() {
         isLoading = true;
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("own", true);
+        HashMap<String, Object> body = new HashMap<>();
+        body.put("own", true);
 //        if (currentPage != null) {
 //            map.put("skip", currentPage++ * visibleThreshold);
 //        }
@@ -214,21 +214,21 @@ public  class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCal
 //            map.put("load", visibleThreshold);
 //        }
         if (search != null) {
-            map.put("name", search);
+            body.put("name", search);
         }
         if (typeId != null) {
-            map.put("typeId", typeId);
+            body.put("typeId", typeId);
         }
         if (onlyFavourites != null) {
-            map.put("onlyFavourites", onlyFavourites);
+            body.put("onlyFavourites", onlyFavourites);
         }
 
-        retrofitService.getAllPlaces(Utils.getJwtToken(getContext()), prefs.getString("userId", null), map).enqueue(new Callback<JsonObject>() {
+        retrofitService.getAllPlaces(Utils.getJwtToken(getContext()), prefs.getString("userId", null), body).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
                 swipeRefreshLayout.setRefreshing(false);
                 Gson gson = new Gson();
-                if (response.body().get("places").getAsJsonArray() != null) {
+                if (response.body() != null) {
                     ArrayList<Place> newPlaces = gson.fromJson(response.body().get("places"), new TypeToken<ArrayList<Place>>() {
                     }.getType());
 
