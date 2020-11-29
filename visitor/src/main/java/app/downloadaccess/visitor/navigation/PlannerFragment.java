@@ -1,5 +1,6 @@
 package app.downloadaccess.visitor.navigation;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -129,9 +130,11 @@ public class PlannerFragment extends Fragment implements VisitsAdapter.AdapterCa
     }
 
     public void getAllVisits() {
+        ProgressDialog pd = Utils.showLoadingIndicator(getContext());
         retrofitService.getUserVisits(Utils.getJwtToken(getContext()), prefs.getString("userId", null)).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                pd.dismiss();
                 if (response.body() != null) {
                     visits.clear();
                     Gson gson = new Gson();
@@ -147,6 +150,7 @@ public class PlannerFragment extends Fragment implements VisitsAdapter.AdapterCa
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
+                pd.dismiss();
                 Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 Log.d(TAG, t.getLocalizedMessage());
             }

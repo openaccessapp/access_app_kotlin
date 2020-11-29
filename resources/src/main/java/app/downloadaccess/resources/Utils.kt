@@ -1,6 +1,7 @@
 package app.downloadaccess.resources
 
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.res.Configuration
 import com.google.common.base.Preconditions.checkArgument
@@ -89,4 +90,15 @@ object Utils {
             else -> "th"
         }
     }
+
+    @JvmStatic
+    fun showLoadingIndicator(context: Context): ProgressDialog {
+        val indicator = ProgressDialog(context)
+        indicator.setCancelable(false)
+        indicator.setCanceledOnTouchOutside(false)
+        indicator.show()
+
+        return indicator
+    }
+
 }

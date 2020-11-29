@@ -1,5 +1,6 @@
 package app.downloadaccess.places.navigation.child;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -222,10 +223,11 @@ public  class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCal
         if (onlyFavourites != null) {
             body.put("onlyFavourites", onlyFavourites);
         }
-
+        ProgressDialog pd = Utils.showLoadingIndicator(getContext());
         retrofitService.getAllPlaces(Utils.getJwtToken(getContext()), prefs.getString("userId", null), body).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
+                pd.dismiss();
                 swipeRefreshLayout.setRefreshing(false);
                 Gson gson = new Gson();
                 if (response.body() != null) {
@@ -246,6 +248,7 @@ public  class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCal
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
+                pd.dismiss();
                 swipeRefreshLayout.setRefreshing(false);
                 Log.d(TAG, t.getLocalizedMessage());
                 isLoading = false;

@@ -2,6 +2,7 @@ package app.downloadaccess.visitor.navigation.child;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
@@ -149,6 +150,7 @@ public class BookingDialog {
     }
 
     public void postPlanVisit(String slotId, int visitorsCount) {
+        ProgressDialog pd = Utils.showLoadingIndicator(activity);
         HashMap<String, Object> body = new HashMap<>();
         body.put("slotId", slotId);
         body.put("visitors", visitorsCount);
@@ -156,6 +158,7 @@ public class BookingDialog {
         retrofitService.planVisit(Utils.getJwtToken(activity), body).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
+                pd.dismiss();
                 if (response.code() > 300 && response.errorBody() != null) {
                     try {
                         JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();
@@ -169,6 +172,7 @@ public class BookingDialog {
 
             @Override
             public void onFailure(@NotNull Call<JsonObject> call, @NotNull Throwable t) {
+                pd.dismiss();
                 Toast.makeText(context, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });

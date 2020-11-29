@@ -5,50 +5,61 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/goBack"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="12dp"
+        android:id="@+id/tree_top"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/logo_p"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/goBackImage"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="27dp"
         android:background="?selectableItemBackgroundBorderless"
-        android:padding="15dp"
         android:src="@drawable/ic_keyboard_backspace_black_24dp"
         app:layout_constraintBottom_toBottomOf="@+id/tree_top"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tree_top" />
 
     <ImageView
-        android:id="@+id/tree_top"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/logo"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/goBack"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="12dp"
+        android:background="?selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="@+id/tree_top"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/tree_top" />
 
-    <ScrollView
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollViewPlace"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tree_top">
+        app:layout_constraintTop_toBottomOf="@id/tree_top">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <TextView
-                android:id="@+id/add_place_header2"
-                android:layout_width="match_parent"
+                android:id="@+id/add_place_header"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="23dp"
                 android:fontFamily="@font/rubik_bold"
-                android:gravity="center"
-                android:text="Edit Place"
+                android:text="Register Place"
                 android:textColor="@color/text_color_dark"
                 android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -56,21 +67,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/scrollViewPlace" />
 
             <ImageView
-                android:id="@+id/imagePlaceholder2"
-                android:layout_width="255dp"
-                android:layout_height="255dp"
+                android:id="@+id/imagePlaceholder"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/rounded_textview"
                 android:backgroundTint="@color/grey"
-                android:foregroundGravity="center"
                 android:src="@mipmap/ic_launcher"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/uploadImageButton2"
+                android:id="@+id/uploadImageButton"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -78,16 +89,20 @@
                 android:fontFamily="@font/rubik_medium"
                 android:paddingTop="13dp"
                 android:paddingBottom="13dp"
-                android:text="Change Image"
+                android:text="Upload Image"
                 android:textAllCaps="false"
+                android:textColor="@drawable/text_selector"
                 android:textSize="14sp"
+                app:backgroundTint="@drawable/background_selector"
                 app:cornerRadius="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imagePlaceholder" />
+                app:layout_constraintTop_toBottomOf="@id/imagePlaceholder"
+                app:strokeColor="@color/colorPrimary"
+                app:strokeWidth="3dp" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -99,14 +114,14 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/placeNameEt3"
+                android:id="@+id/placeNameEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/edittext_rounded"
-                android:hint="Edit name of place"
+                android:hint="Enter name of place"
                 android:inputType="text"
                 android:nextFocusDown="@+id/LocEt"
                 android:paddingStart="16dp"
@@ -115,7 +130,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -127,8 +142,8 @@
                 android:textColor="@color/text_grey"
                 android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/locEt2"
+            <AutoCompleteTextView
+                android:id="@+id/LocEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -137,7 +152,7 @@
                 android:background="@drawable/edittext_rounded"
                 android:drawableStart="@drawable/ic_near_me_24px"
                 android:drawablePadding="10dp"
-                android:hint="Edit location"
+                android:hint="Enter location..."
                 android:inputType="text"
                 android:nextFocusDown="@+id/describeEt"
                 android:paddingStart="16dp"
@@ -146,7 +161,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -159,7 +174,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/describeEt3"
+                android:id="@+id/describeEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -167,7 +182,7 @@
                 android:layout_marginEnd="32dp"
                 android:background="@drawable/edittext_rounded"
                 android:gravity="start"
-                android:hint="Edit place description"
+                android:hint="Enter description..."
                 android:inputType="textMultiLine"
                 android:lines="6"
                 android:maxLines="6"
@@ -180,7 +195,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/textView18"
+                android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -193,7 +208,7 @@
                 android:textSize="14sp" />
 
             <EditText
-                android:id="@+id/urlEt3"
+                android:id="@+id/urlEt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
@@ -210,22 +225,24 @@
                 android:textSize="14sp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/next_button3"
-                style="@style/Widget.MaterialComponents.Button"
+                android:id="@+id/next_button"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginEnd="40dp"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="@font/rubik_medium"
-                android:gravity="center"
                 android:letterSpacing="0.0"
                 android:padding="21dp"
-                android:text="Save"
+                android:text="Next"
                 android:textAllCaps="false"
+                android:textColor="@drawable/text_selector"
                 android:textSize="16sp"
-                app:cornerRadius="30dp" />
+                app:backgroundTint="@drawable/background_selector"
+                app:cornerRadius="30dp"
+                app:strokeColor="@color/colorPrimary"
+                app:strokeWidth="3dp" />
         </LinearLayout>
-    </ScrollView>
-
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

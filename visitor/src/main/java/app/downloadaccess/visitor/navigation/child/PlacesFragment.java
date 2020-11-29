@@ -1,6 +1,7 @@
 package app.downloadaccess.visitor.navigation.child;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -229,6 +230,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
     }
 
     void getAllPlaces() {
+        ProgressDialog pd = Utils.showLoadingIndicator(getContext());
         isLoading = true;
         HashMap<String, Object> body = new HashMap<>();
         if (currentPage != null) {
@@ -251,6 +253,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
         retrofitService.getAllPlaces(Utils.getJwtToken(getContext()), prefs.getString("userId", null), body).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
+                pd.dismiss();
                 swipeRefreshLayout.setRefreshing(false);
                 Gson gson = new Gson();
                 if (response.body() != null) {
@@ -271,6 +274,7 @@ public class PlacesFragment extends Fragment implements PlacesAdapter.PlacesCall
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
+                pd.dismiss();
                 swipeRefreshLayout.setRefreshing(false);
                 Log.d(TAG, t.getLocalizedMessage());
                 isLoading = false;

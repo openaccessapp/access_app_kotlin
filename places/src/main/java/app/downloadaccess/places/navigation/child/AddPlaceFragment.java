@@ -1,6 +1,7 @@
 package app.downloadaccess.places.navigation.child;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +28,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.squareup.picasso.Picasso;
@@ -55,8 +57,7 @@ public class AddPlaceFragment extends Fragment {
     private RetrofitService retrofitService;
     private String img;
     private SharedPreferences prefs;
-    private MaterialButton uploadImage, nextButton;
-    private boolean imgChanged = false;
+    private MaterialButton uploadImage, addPlaceBtn;
 
     public AddPlaceFragment() {
         // Required empty public constructor
@@ -77,7 +78,7 @@ public class AddPlaceFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_add_place, container, false);
+        return inflater.inflate(R.layout.fragment_add_edit_place, container, false);
     }
 
     @Override
@@ -94,7 +95,7 @@ public class AddPlaceFragment extends Fragment {
             ((TextView) view.findViewById(R.id.add_place_header)).setText("Edit Place");
             Picasso.get().load(RetrofitClientInstance.BASE_URL + "get-image/" + place.getId()).into(imagePlace);
             ((EditText) view.findViewById(R.id.placeNameEt)).setText(place.getName());
-            ((EditText) view.findViewById(R.id.LocEt)).setText(place.getAddress());
+            ((EditText) view.findViewById(R.id.LocEt)).setText(place.getLocation());
             ((EditText) view.findViewById(R.id.describeEt)).setText(place.getDescription());
             ((EditText) view.findViewById(R.id.urlEt)).setText(place.getWww());
         }
@@ -128,64 +129,8 @@ public class AddPlaceFragment extends Fragment {
         uploadImage.setOnClickListener(v -> {
             galleryIntent();
         });
-        nextButton = view.findViewById(R.id.next_button);
-        nextButton.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Saving...", Toast.LENGTH_SHORT).show();
-            if (place == null) place = new Place();
-            place.setTypeId(0);
-            if (imgChanged) place.setImage(this.img);
-            place.setName(((EditText) view.findViewById(R.id.placeNameEt)).getText().toString());
-            place.setDescription(((EditText) view.findViewById(R.id.describeEt)).getText().toString());
-            place.setWww(((EditText) view.findViewById(R.id.urlEt)).getText().toString());
-            place.setLocation(((EditText) view.findViewById(R.id.LocEt)).getText().toString());
-            place.setUserId(prefs.getString("userId", null));
-            if (place.getId() == null) {
-                retrofitService.addPlace(Utils.getJwtToken(getContext()), place).enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(@NotNull Call<Void> call, @NotNull Response<Void> response) {
-                        if (response.code() < 300) {
-                            Toast.makeText(getContext(), "Place saved!", Toast.LENGTH_SHORT).show();
-                            getParentFragment().getChildFragmentManager().popBackStack();
-                            callback.onReturnFromAdd();
-                        } else {
-                            try {
-                                JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();
-                                Toast.makeText(getContext(), errorObject.get("message").getAsString(), Toast.LENGTH_SHORT).show();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(@NotNull Call<Void> call, @NotNull Throwable t) {
-                        Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-            } else {
-                retrofitService.editPlace(Utils.getJwtToken(getContext()), place, place.getId()).enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(@NotNull Call<Void> call, @NotNull Response<Void> response) {
-                        if (response.code() < 300) {
-                            Toast.makeText(getContext(), "Place saved!", Toast.LENGTH_SHORT).show();
-                            getParentFragment().getChildFragmentManager().popBackStack();
-                        } else {
-                            try {
-                                JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();
-                                Toast.makeText(getContext(), errorObject.get("message").getAsString(), Toast.LENGTH_SHORT).show();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(@NotNull Call<Void> call, @NotNull Throwable t) {
-                        Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
+        addPlaceBtn = view.findViewById(R.id.next_button);
+        addPlaceBtn.setOnClickListener(v -> addPlace(view));
 
         retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
 //        retrofitService.getPlaceTypes().enqueue(new Callback<JsonObject>() {
@@ -199,6 +144,88 @@ public class AddPlaceFragment extends Fragment {
 //
 //            }
 //        });
+    }
+
+    private void addPlace(View view) {
+        if (place == null) place = new Place();
+        place.setTypeId(0);
+        if (img == null) {
+            new MaterialAlertDialogBuilder(getContext()).setTitle("Image required").setMessage("Choose image for the place").show();
+            return;
+        }
+        place.setImage(this.img);
+        if (((EditText) view.findViewById(R.id.placeNameEt)).getText().toString().trim().isEmpty()) {
+            new MaterialAlertDialogBuilder(getContext()).setTitle("Place name required").setMessage("Enter name of the place").show();
+            return;
+        }
+        place.setName(((EditText) view.findViewById(R.id.placeNameEt)).getText().toString().trim());
+        if (((EditText) view.findViewById(R.id.describeEt)).getText().toString().trim().isEmpty()) {
+            new MaterialAlertDialogBuilder(getContext()).setTitle("Description required").setMessage("Enter description of the place").show();
+            return;
+        }
+        place.setDescription(((EditText) view.findViewById(R.id.describeEt)).getText().toString());
+        if (((EditText) view.findViewById(R.id.urlEt)).getText().toString().trim().isEmpty()) {
+            new MaterialAlertDialogBuilder(getContext()).setTitle("Website address required").setMessage("Enter website address of the place").show();
+            return;
+        }
+        place.setWww(((EditText) view.findViewById(R.id.urlEt)).getText().toString());
+        if (((EditText) view.findViewById(R.id.LocEt)).getText().toString().trim().isEmpty()) {
+            new MaterialAlertDialogBuilder(getContext()).setTitle("Location required").setMessage("Enter location of the place").show();
+            return;
+        }
+        place.setLocation(((EditText) view.findViewById(R.id.LocEt)).getText().toString());
+        place.setUserId(prefs.getString("userId", null));
+        ProgressDialog pd = Utils.showLoadingIndicator(getContext());
+        if (place.getId() == null) {
+            retrofitService.addPlace(Utils.getJwtToken(getContext()), place).enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(@NotNull Call<Void> call, @NotNull Response<Void> response) {
+                    pd.dismiss();
+                    if (response.code() < 300) {
+                        Toast.makeText(getContext(), "Place saved!", Toast.LENGTH_SHORT).show();
+                        getParentFragment().getChildFragmentManager().popBackStack();
+                        callback.onReturnFromAdd();
+                    } else {
+                        try {
+                            JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();
+                            Toast.makeText(getContext(), errorObject.get("message").getAsString(), Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(@NotNull Call<Void> call, @NotNull Throwable t) {
+                    pd.dismiss();
+                    Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            retrofitService.editPlace(Utils.getJwtToken(getContext()), place, place.getId()).enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(@NotNull Call<Void> call, @NotNull Response<Void> response) {
+                    pd.dismiss();
+                    if (response.code() < 300) {
+                        Toast.makeText(getContext(), "Place saved!", Toast.LENGTH_SHORT).show();
+                        getParentFragment().getChildFragmentManager().popBackStack();
+                    } else {
+                        try {
+                            JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();
+                            Toast.makeText(getContext(), errorObject.get("message").getAsString(), Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(@NotNull Call<Void> call, @NotNull Throwable t) {
+                    pd.dismiss();
+                    Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     private void galleryIntent() {
@@ -229,8 +256,6 @@ public class AddPlaceFragment extends Fragment {
 
         imagePlace.setImageBitmap(bitmap);
         this.img = getStringImage(bitmap);
-        this.imgChanged = true;
-
     }
 
     public String getStringImage(Bitmap bmp) {

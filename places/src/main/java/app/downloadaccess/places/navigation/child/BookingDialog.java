@@ -1,6 +1,7 @@
 package app.downloadaccess.places.navigation.child;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -136,6 +138,10 @@ public class BookingDialog {
         alertDialog = builder.create();
         EditText maxVisitors = dialogView.findViewById(R.id.visitorsCount);
         saveButton.setOnClickListener(v -> {
+            if (maxVisitors.getText().toString().trim().isEmpty() || maxVisitors.getText().toString().trim().equals("0")) {
+                new MaterialAlertDialogBuilder(activity).setTitle("Number of visitors required").setMessage("Enter number of visitors").show();
+                return;
+            }
             Slot slot = new Slot();
             slot.setType(standard_button.isChecked() ? "Standard" : "Priority");
             slot.setFrom(datePickerCal.get(Calendar.DAY_OF_MONTH) + "." + (datePickerCal.get(Calendar.MONTH) + 1) + "." + datePickerCal.get(Calendar.YEAR) +
@@ -153,10 +159,12 @@ public class BookingDialog {
     }
 
     public void addNewSlot(String placeId, Slot slot) {
+        ProgressDialog pd = Utils.showLoadingIndicator(activity);
         slot.setUserId(prefs.getString("userId", null));
         retrofitService.addSlot(Utils.getJwtToken(activity), placeId, slot).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(@NotNull Call<Void> call, @NotNull Response<Void> response) {
+                pd.dismiss();
                 callback.onDismiss();
                 if (response.code() > 300 && response.errorBody() != null) {
                     try {
@@ -172,6 +180,7 @@ public class BookingDialog {
 
             @Override
             public void onFailure(@NotNull Call<Void> call, @NotNull Throwable t) {
+                pd.dismiss();
                 callback.onDismiss();
                 Toast.makeText(activity, t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }

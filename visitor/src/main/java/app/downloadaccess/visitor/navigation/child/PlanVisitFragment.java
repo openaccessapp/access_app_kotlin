@@ -1,5 +1,6 @@
 package app.downloadaccess.visitor.navigation.child;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -148,6 +149,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
     }
 
     private void getSlotsPlace() {
+        ProgressDialog pd = Utils.showLoadingIndicator(getContext());
         retrofitService.getSlotsPlace(Utils.getJwtToken(getContext()), prefs.getString("userId", null), place.getId()).enqueue(new Callback<JsonObject>() {
 //            @Override
 //            public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
@@ -196,6 +198,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
 
             @Override
             public void onResponse(@NotNull Call<JsonObject> call, @NotNull Response<JsonObject> response) {
+                pd.dismiss();
                 if (response.code() > 300 && response.errorBody() != null) {
                     try {
                         JsonObject errorObject = new JsonParser().parse(response.errorBody().string()).getAsJsonObject();
@@ -219,6 +222,7 @@ public class PlanVisitFragment extends Fragment implements PlanVisitAdapter.Adap
 
             @Override
             public void onFailure(@NotNull Call<JsonObject> call, @NotNull Throwable t) {
+                pd.dismiss();
                 if (t.getLocalizedMessage() != null) {
                     Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }
