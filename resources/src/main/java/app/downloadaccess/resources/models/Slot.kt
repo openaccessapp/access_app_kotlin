@@ -44,16 +44,4 @@ class Slot {
     @Expose
     var userId: String? = null
 
-    constructor() {}
-    constructor(from: String?, viewType: Int) {
-        this.from = from
-        this.viewType = viewType
-    }
-
-    var viewType = 0
-
-    fun setRepeat(repeat: Boolean?) {
-        this.repeat = repeat
-    }
-
 }

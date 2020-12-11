@@ -63,8 +63,8 @@
         android:layout_centerVertical="true"
         android:layout_marginEnd="6dp"
         android:layout_toStartOf="@id/occupiedMax"
-        android:tint="@color/disabled_tint"
-        app:srcCompat="@drawable/ic_person_outline_24px" />
+        app:srcCompat="@drawable/ic_person_outline_24px"
+        app:tint="@color/disabled_tint" />
 
     <TextView
         android:id="@+id/occupiedMax"

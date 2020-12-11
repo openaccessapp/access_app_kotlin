@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -35,8 +36,9 @@ import java.util.Map;
 import java.util.Set;
 
 import app.downloadaccess.places.R;
-import app.downloadaccess.places.adapters.PlaceInfoAdapter;
+import app.downloadaccess.places.adapters.SlotsAdapter;
 import app.downloadaccess.resources.Utils;
+import app.downloadaccess.resources.models.Header;
 import app.downloadaccess.resources.models.Place;
 import app.downloadaccess.resources.models.Slot;
 import app.downloadaccess.resources.network.RetrofitClientInstance;
@@ -45,12 +47,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PlaceInfoFragment extends Fragment implements PlaceInfoAdapter.AdapterCallback {
+public class PlaceInfoFragment extends Fragment implements SlotsAdapter.AdapterCallback, RecyclerView.OnItemTouchListener {
 
     private static final String TAG = PlaceInfoFragment.class.getSimpleName();
     private RecyclerView recyclerView;
-    private PlaceInfoAdapter adapter;
-    private List<Slot> slots = new ArrayList<>();
+    private SlotsAdapter adapter;
+    private List<Header> headersList = new ArrayList<>();
     private FragmentCallback callback;
     private Place place;
     private TextView placeName, placeDesc, websiteTv;
@@ -112,11 +114,12 @@ public class PlaceInfoFragment extends Fragment implements PlaceInfoAdapter.Adap
         });
 
         recyclerView = view.findViewById(R.id.recyclerPlanVisit);
-        adapter = new PlaceInfoAdapter(view.getContext());
-        adapter.setDataList(slots);
+        adapter = new SlotsAdapter(view.getContext());
+        adapter.setHeaders(headersList);
         adapter.setAdapterCallback(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         recyclerView.setAdapter(adapter);
+        recyclerView.addOnItemTouchListener(this);
 
         retrofitService = RetrofitClientInstance.INSTANCE.buildService(RetrofitService.class);
     }
@@ -150,14 +153,13 @@ public class PlaceInfoFragment extends Fragment implements PlaceInfoAdapter.Adap
                         e.printStackTrace();
                     }
                 } else if (response.body().get("slots").getAsJsonObject() != null) {
-                    slots.clear();
+                    headersList.clear();
                     adapter.notifyDataSetChanged();
                     Gson gson = new Gson();
                     Set<Map.Entry<String, JsonElement>> entries = response.body().getAsJsonObject().get("slots").getAsJsonObject().entrySet();
                     for (Map.Entry<String, JsonElement> entry : entries) {
-                        slots.add(new Slot(entry.getKey(), 1));
-                        slots.addAll(gson.fromJson(entry.getValue().getAsJsonArray(), new TypeToken<ArrayList<Slot>>() {
-                        }.getType()));
+                        headersList.add(new Header(entry.getKey(), new ArrayList<>(gson.fromJson(entry.getValue().getAsJsonArray(), new TypeToken<ArrayList<Slot>>() {
+                        }.getType()))));
                     }
                     adapter.notifyDataSetChanged();
                 }
@@ -171,9 +173,24 @@ public class PlaceInfoFragment extends Fragment implements PlaceInfoAdapter.Adap
     }
 
     @Override
-    public void onItemClick(int position) {
-        Slot slot = slots.get(position);
+    public void onItemClick(int headerPosition, int childPosition) {
+        Slot slot = headersList.get(headerPosition).getSlots().get(childPosition);
         BookingDialog dialog = new BookingDialog((AppCompatActivity) getActivity(), place, slot, this::getSlotsPlace);
         dialog.setupDialog();
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+        
+    }
+
+    @Override
+    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
     }
 }
